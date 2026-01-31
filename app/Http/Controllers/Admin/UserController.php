@@ -13,18 +13,16 @@ class UserController extends Controller
 {
     public function index()
     {
-        $currentUser = auth()->user();
-        
-        if ($currentUser->role === 'superadmin') {
-            $users = User::with('school')->latest()->get();
-            $schools = School::all();
-        } else {
-            $users = User::where('school_id', $currentUser->school_id)->latest()->get();
-            $schools = School::where('id', $currentUser->school_id)->get();
+        if (auth()->user()->role !== 'superadmin') {
+            abort(403, 'Akses Terbatas: Hanya Administrator Pusat yang dapat mengelola akun.');
         }
 
+        // Only Internal Admins (Super Admins) for System Central
+        $users = User::where('role', 'superadmin')->with('school')->latest()->get();
+        $schools = School::all();
+
         return view('admin.users.index', [
-            'title' => 'Manajemen Administrator',
+            'title' => 'Manajemen Admin Internal',
             'users' => $users,
             'schools' => $schools
         ]);
@@ -38,24 +36,22 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
             'password' => ['required', Rules\Password::defaults()],
-            'role' => ['required', 'in:superadmin,school_admin'],
-            'school_id' => ['required_if:role,school_admin', 'nullable', 'exists:schools,id'],
         ]);
 
         // Security check
-        if ($currentUser->role !== 'superadmin' && $request->role === 'superadmin') {
-            return back()->with('error', 'Unauthorized role assignment.');
+        if ($currentUser->role !== 'superadmin') {
+            abort(403);
         }
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
-            'school_id' => $request->role === 'superadmin' ? null : ($request->school_id ?? $currentUser->school_id),
+            'role' => 'superadmin',
+            'school_id' => null,
         ]);
 
-        return back()->with('success', 'Administrator berhasil ditambahkan.');
+        return back()->with('success', 'Admin Internal berhasil ditambahkan.');
     }
 
     public function update(Request $request, User $user)
