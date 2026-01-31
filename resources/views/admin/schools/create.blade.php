@@ -5,8 +5,8 @@
     <div class="bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden">
         <div class="p-8 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
             <div>
-                <h2 class="text-2xl font-black text-slate-900">Pendaftaran Sekolah Baru</h2>
-                <p class="text-slate-500 text-xs font-medium mt-1">Lengkapi data untuk membuat akses sekolah baru.</p>
+                <h2 class="text-2xl font-black text-slate-900">Pendaftaran Instansi Baru</h2>
+                <p class="text-slate-500 text-xs font-medium mt-1">Lengkapi data untuk membuat akses instansi baru.</p>
             </div>
             <a href="{{ route('schools.index') }}" class="text-slate-400 hover:text-slate-900 font-bold text-sm">Kembali</a>
         </div>
@@ -17,7 +17,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Logo Upload Section -->
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Logo Sekolah (Opsional)</label>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Logo Instansi (Opsional)</label>
                     <div class="flex items-center gap-4">
                         <div id="preview-box" class="w-16 h-16 bg-slate-100 rounded-2xl border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 overflow-hidden">
                             <span id="preview-placeholder">🏫</span>
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Nama Sekolah</label>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Nama Instansi</label>
                     <input type="text" name="name" required value="{{ old('name') }}"
                         placeholder="Misal: SMK Codifi Indonesia"
                         class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-medium text-slate-900">
@@ -49,14 +49,15 @@
                 <div class="md:col-span-1">
                     <label class="block text-sm font-bold text-slate-700 mb-2">Tipe Langganan</label>
                     <select name="subscription_type" id="subscription_type" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-bold text-slate-700">
-                        <option value="year">1 TAHUN / DURASI</option>
-                        <option value="lifetime">LIFE TIME (FOREVER)</option>
+                        <option value="trial">TRIAL (COBA GRATIS)</option>
+                        <option value="year">PAKET DURASI (TAHUN/BULAN)</option>
+                        <option value="lifetime">LIFE TIME (SELAMANYA)</option>
                     </select>
                 </div>
 
                 <div class="md:col-span-1" id="duration_box">
                     <label class="block text-sm font-bold text-slate-700 mb-2">Durasi (Bulan)</label>
-                    <input type="number" name="subscription_months" value="12" min="1"
+                    <input type="number" name="subscription_months" id="subscription_months" value="12" min="1"
                         class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-bold">
                 </div>
             </div>
@@ -85,14 +86,26 @@
 <script>
     document.getElementById('subscription_type').addEventListener('change', function() {
         const durationBox = document.getElementById('duration_box');
-        if (this.value === 'lifetime') {
+        const monthsInput = document.getElementById('subscription_months');
+        
+        if (this.value === 'lifetime' || this.value === 'trial') {
             durationBox.style.opacity = '0.3';
             durationBox.style.pointerEvents = 'none';
+            monthsInput.value = (this.value === 'trial' ? 1 : 12); // Default trial 1 month if manual
         } else {
             durationBox.style.opacity = '1';
             durationBox.style.pointerEvents = 'auto';
+            monthsInput.value = 12;
         }
     });
+
+    // Initial check
+    if(document.getElementById('subscription_type').value === 'trial') {
+        const durationBox = document.getElementById('duration_box');
+        durationBox.style.opacity = '0.3';
+        durationBox.style.pointerEvents = 'none';
+        document.getElementById('subscription_months').value = 1;
+    }
 
     document.getElementById('logo-input').addEventListener('change', function(e) {
         const reader = new FileReader();

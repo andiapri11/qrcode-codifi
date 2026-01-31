@@ -49,7 +49,7 @@ class SchoolController extends Controller
             'name' => 'required|string|max:255',
             'domain_whitelist' => 'required|string|max:255',
             'is_active' => 'required|boolean',
-            'subscription_type' => ['required', Rule::in(['year', 'lifetime'])],
+            'subscription_type' => ['required', Rule::in(['year', 'lifetime', 'trial'])],
             'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:1',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
