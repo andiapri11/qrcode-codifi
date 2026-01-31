@@ -14,6 +14,9 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
+// GET Logout to prevent 419 Page Expired
+Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout.get');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
