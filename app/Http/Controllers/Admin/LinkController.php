@@ -77,7 +77,10 @@ class LinkController extends Controller
             }
         }
 
-        $token = 'SCHOLA-' . Str::upper(Str::random(12));
+        // Generate a random 5-character alphanumeric token (uppercase)
+        do {
+            $token = Str::upper(Str::random(5));
+        } while (ExamLink::where('secure_token', $token)->exists());
 
         $link = ExamLink::create([
             'school_id' => $request->school_id,
