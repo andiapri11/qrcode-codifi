@@ -58,6 +58,39 @@ class UserController extends Controller
         return back()->with('success', 'Administrator berhasil ditambahkan.');
     }
 
+    public function update(Request $request, User $user)
+    {
+        $currentUser = auth()->user();
+
+        // Admin cannot edit a Superadmin if they are not a Superadmin themselves
+        if ($currentUser->role !== 'superadmin' && $user->role === 'superadmin') {
+            abort(403);
+        }
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'password' => ['nullable', Rules\Password::defaults()],
+            'role' => ['required', 'in:superadmin,school_admin'],
+            'school_id' => ['required_if:role,school_admin', 'nullable', 'exists:schools,id'],
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'school_id' => $request->role === 'superadmin' ? null : ($request->school_id ?? $currentUser->school_id),
+        ];
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        return back()->with('success', 'Data administrator berhasil diperbarui.');
+    }
+
     public function destroy(User $user)
     {
         if (auth()->id() === $user->id) {
