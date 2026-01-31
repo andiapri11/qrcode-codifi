@@ -10,6 +10,9 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class SchoolController extends Controller
 {
@@ -46,36 +49,58 @@ class SchoolController extends Controller
         }
 
         $request->validate([
+            // School Data
             'name' => 'required|string|max:255',
             'domain_whitelist' => 'required|string|max:255',
             'is_active' => 'required|boolean',
             'subscription_type' => ['required', Rule::in(['year', 'lifetime', 'trial'])],
             'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:1',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            
+            // Admin Account Data
+            'admin_name' => 'required|string|max:255',
+            'admin_email' => 'required|string|email|max:255|unique:users,email',
+            'admin_phone' => 'required|string|max:20',
+            'admin_password' => ['required', 'string', 'min:8'],
         ]);
 
-        $logoPath = null;
-        if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('schools', 'public');
-        }
+        return DB::transaction(function() use ($request) {
+            $logoPath = null;
+            if ($request->hasFile('logo')) {
+                $logoPath = $request->file('logo')->store('schools', 'public');
+            }
 
-        $expiresAt = null;
-        if ($request->subscription_type === 'year') {
-            $expiresAt = Carbon::now()->addMonths((int)$request->subscription_months);
-        }
+            $expiresAt = null;
+            if ($request->subscription_type === 'year') {
+                $expiresAt = Carbon::now()->addMonths((int)$request->subscription_months);
+            } elseif ($request->subscription_type === 'trial') {
+                $expiresAt = Carbon::now()->addDays(7); // Default 7 days for manual trial
+            }
 
-        School::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'domain_whitelist' => $request->domain_whitelist,
-            'api_key' => Str::random(32),
-            'is_active' => $request->is_active,
-            'subscription_type' => $request->subscription_type,
-            'subscription_expires_at' => $expiresAt,
-            'logo' => $logoPath,
-        ]);
+            // 1. Create School
+            $school = School::create([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'domain_whitelist' => $request->domain_whitelist,
+                'api_key' => 'SK-' . strtoupper(Str::random(16)),
+                'is_active' => $request->is_active,
+                'subscription_type' => $request->subscription_type,
+                'subscription_expires_at' => $expiresAt,
+                'logo' => $logoPath,
+            ]);
 
-        return redirect()->route('schools.index')->with('success', 'Sekolah berhasil ditambahkan.');
+            // 2. Create User (School Admin)
+            User::create([
+                'name' => $request->admin_name,
+                'email' => $request->admin_email,
+                'phone' => $request->admin_phone,
+                'password' => Hash::make($request->admin_password),
+                'role' => 'school_admin',
+                'school_id' => $school->id,
+            ]);
+
+            return redirect()->route('schools.index')->with('success', 'Instansi dan Akun Administrator berhasil dibuat.');
+        });
     }
 
     public function edit(School $school)
