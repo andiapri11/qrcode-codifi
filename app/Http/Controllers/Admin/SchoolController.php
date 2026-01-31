@@ -145,15 +145,15 @@ class SchoolController extends Controller
             abort(403);
         }
 
-        if ($school->users()->exists() || $school->examLinks()->exists()) {
-            return back()->with('error', 'Tidak bisa menghapus sekolah yang masih memiliki User atau Link Ujian!');
-        }
+        // Delete related data first to avoid foreign key constraints
+        $school->users()->delete();
+        $school->examLinks()->delete();
 
         if ($school->logo) {
             Storage::disk('public')->delete($school->logo);
         }
 
         $school->delete();
-        return redirect()->route('schools.index')->with('success', 'Sekolah berhasil dihapus.');
+        return redirect()->route('schools.index')->with('success', 'Instansi berhasil dihapus beserta seluruh data terkait.');
     }
 }
