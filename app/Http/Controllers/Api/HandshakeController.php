@@ -69,8 +69,11 @@ class HandshakeController extends Controller
             ], 402);
         }
 
+        // Dynamically create whitelist from the exam URL domain
+        $examDomain = parse_url($examLink->exam_url, PHP_URL_HOST);
+        $whitelist = $examDomain ? $examDomain . ', docs.google.com, forms.gle' : 'docs.google.com, forms.gle';
+
         // 5. SUCCESS RESPOND
-        // Return full details including whitelist for the Android Secure Browser
         return response()->json([
             'success' => true,
             'data' => [
@@ -78,7 +81,7 @@ class HandshakeController extends Controller
                 'school_name' => $examLink->school->name,
                 'exam_title' => $examLink->title,
                 'exam_url' => $examLink->exam_url,
-                'domain_whitelist' => $examLink->school->domain_whitelist,
+                'domain_whitelist' => $whitelist,
                 'authorized_at' => now()->toIso8601String(),
             ]
         ]);

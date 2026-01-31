@@ -36,7 +36,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <span class="text-slate-900 font-bold text-sm">{{ $school->name }}</span>
-                                <span class="text-slate-400 text-[10px] font-medium tracking-wider">Whitelist: {{ $school->domain_whitelist }}</span>
+                                <span class="text-slate-400 text-[10px] font-medium tracking-wider uppercase">Terintegrasi Ke Sistem Schola</span>
                             </div>
                         </div>
                     </td>

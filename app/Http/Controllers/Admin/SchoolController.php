@@ -51,7 +51,6 @@ class SchoolController extends Controller
         $request->validate([
             // School Data
             'name' => 'required|string|max:255',
-            'domain_whitelist' => 'required|string|max:255',
             'is_active' => 'required|boolean',
             'subscription_type' => ['required', Rule::in(['year', 'lifetime', 'trial'])],
             'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:1',
@@ -81,7 +80,7 @@ class SchoolController extends Controller
             $school = School::create([
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
-                'domain_whitelist' => $request->domain_whitelist,
+                'domain_whitelist' => 'docs.google.com, forms.gle', // Default fallback
                 'api_key' => 'SK-' . strtoupper(Str::random(16)),
                 'is_active' => $request->is_active,
                 'subscription_type' => $request->subscription_type,
@@ -125,7 +124,6 @@ class SchoolController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'domain_whitelist' => 'required|string|max:255',
             'is_active' => $user->role === 'superadmin' ? 'required|boolean' : 'nullable',
             'subscription_type' => $user->role === 'superadmin' ? ['required', Rule::in(['year', 'lifetime'])] : 'nullable',
             'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:1',
@@ -135,7 +133,6 @@ class SchoolController extends Controller
         $data = [
             'name' => $request->name,
             'slug' => Str::slug($request->name),
-            'domain_whitelist' => $request->domain_whitelist,
         ];
 
         if ($request->hasFile('logo')) {

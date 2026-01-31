@@ -38,14 +38,8 @@
                 </div>
 
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-bold text-slate-700 mb-2 font-jakarta">Nama Sekolah</label>
+                    <label class="block text-sm font-bold text-slate-700 mb-2 font-jakarta">Nama Instansi</label>
                     <input type="text" name="name" required value="{{ old('name', $school->name) }}"
-                        class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-medium text-slate-900">
-                </div>
-
-                <div class="md:col-span-2">
-                    <label class="block text-sm font-bold text-slate-700 mb-2 font-jakarta">Domain Whitelist</label>
-                    <input type="text" name="domain_whitelist" required value="{{ old('domain_whitelist', $school->domain_whitelist) }}"
                         class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-medium text-slate-900">
                 </div>
 

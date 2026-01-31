@@ -46,11 +46,6 @@
                     <input type="text" name="name" value="{{ old('name') }}" required placeholder="Contoh: SMK Codifi Indonesia" class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-xs font-bold text-slate-900 outline-none focus:ring-2 focus:ring-indigo-600 transition shadow-inner">
                 </div>
 
-                <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2 ml-1">Domain Whitelist (Tanpa HTTP)</label>
-                    <input type="text" name="domain_whitelist" value="{{ old('domain_whitelist') }}" required placeholder="forms.gle, docs.google.com" class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-xs font-bold text-slate-900 outline-none focus:ring-2 focus:ring-indigo-600 transition shadow-inner">
-                </div>
-
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2 ml-1">Paket</label>
