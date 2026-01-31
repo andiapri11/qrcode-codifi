@@ -70,15 +70,30 @@
                                 </svg>
                                 <span class="font-semibold text-sm">Data Barcode Ujian</span>
                             </div>
-                            <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">New</span>
                         </a>
 
-                        <!-- Chat / Log -->
-                        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 sidebar-item-hover">
-                            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                            </svg>
-                            <span class="font-semibold text-sm">System Chat</span>
+                        <div class="pt-6 pb-2 px-4">
+                            <span class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Pengaturan Sistem</span>
+                        </div>
+
+                        <!-- Users -->
+                        <a href="{{ route('users.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all text-slate-600 sidebar-item-hover {{ request()->is('users*') ? 'sidebar-item-active' : '' }}">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 {{ request()->is('users*') ? 'text-indigo-600' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                                <span class="font-semibold text-sm">Manajemen Admin</span>
+                            </div>
+                        </a>
+
+                        <!-- My Profile -->
+                        <a href="{{ route('profile.edit') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all text-slate-600 sidebar-item-hover {{ request()->is('profile*') ? 'sidebar-item-active' : '' }}">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 {{ request()->is('profile*') ? 'text-indigo-600' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="font-semibold text-sm">Profil Saya</span>
+                            </div>
                         </a>
                     </nav>
                 </div>
