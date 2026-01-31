@@ -73,7 +73,7 @@ class HandshakeController extends Controller
 
         // Dynamically create whitelist from the exam URL domain
         $examDomain = parse_url($examLink->exam_url, PHP_URL_HOST);
-        $baseWhitelist = ['docs.google.com', 'forms.gle', 'google.com', 'gstatic.com', 'googleusercontent.com', 'googleapis.com'];
+        $baseWhitelist = ['docs.google.com', 'forms.gle', 'accounts.google.com', 'gstatic.com', 'googleusercontent.com', 'googleapis.com'];
         if ($examDomain) {
             array_unshift($baseWhitelist, $examDomain);
         }
