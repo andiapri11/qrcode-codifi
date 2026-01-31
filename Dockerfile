@@ -41,5 +41,9 @@ RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 # Expose port 80
 EXPOSE 80
 
-# Start Apache
-CMD ["apache2-foreground"]
+# Make entrypoint script executable
+RUN chmod +x /var/www/html/entrypoint.sh
+
+# Use entrypoint script
+ENTRYPOINT ["/var/www/html/entrypoint.sh"]
+
