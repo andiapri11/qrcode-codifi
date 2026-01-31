@@ -194,19 +194,32 @@
         const formData = new FormData(qrForm);
         try {
             const response = await fetch("{{ route('links.store') }}", {
-                method: 'POST', body: formData, headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                method: 'POST', 
+                body: formData, 
+                headers: { 
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+                }
             });
+
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                const text = await response.text();
+                console.error("Server Error Response:", text);
+                throw new Error("Respon server bukan JSON. Kemungkinan terjadi galat 500.");
+            }
+
             const data = await response.json();
             if (data.success) {
                 closeCreateModal();
                 showQR(data.token, document.getElementById('school_id').value);
-                // After closing QR, we should refresh to see new item
                 window.refreshList = true;
             } else {
-                alert(data.message);
+                alert(data.message || 'Gagal membuat barcode');
             }
         } catch (err) {
-            alert('Sistem sedang sibuk. Coba lagi nanti.');
+            console.error('Submission Error:', err);
+            alert('Gagal membuat barcode: ' + (err.message.includes('JSON') ? 'Kesalahan Server Internal (500)' : err.message));
         } finally {
             btnText.innerText = originalText;
             generateBtn.disabled = false;
