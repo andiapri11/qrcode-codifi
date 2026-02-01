@@ -113,7 +113,7 @@ class GoogleController extends Controller
         // 1. Create School
         $school = School::create([
             'name' => $request->school_name,
-            'slug' => Str::slug($request->school_name) . '-' . Str::random(5),
+            'slug' => \Illuminate\Support\Str::slug($request->school_name) . '-' . \Illuminate\Support\Str::random(5),
             'subscription_type' => 'trial',
             'subscription_expires_at' => now()->addDays(7),
             'is_active' => true,
