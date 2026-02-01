@@ -114,6 +114,8 @@ class GoogleController extends Controller
         $school = School::create([
             'name' => $request->school_name,
             'slug' => \Illuminate\Support\Str::slug($request->school_name) . '-' . \Illuminate\Support\Str::random(5),
+            'domain_whitelist' => '*', // Default allow all
+            'api_key' => \Illuminate\Support\Str::random(32),
             'subscription_type' => 'trial',
             'subscription_expires_at' => now()->addDays(7),
             'is_active' => true,
