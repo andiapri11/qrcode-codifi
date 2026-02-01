@@ -23,7 +23,7 @@
         <div>
             <h2 class="text-xl font-bold text-slate-900 leading-none">Hello, {{ explode(' ', $user->name)[0] }}!</h2>
             <p class="text-xs font-medium text-slate-400 mt-1 uppercase tracking-wider">
-                {{ $isSuperAdmin ? 'SISTEM ADMINISTRATOR' : $user->school->name }}
+                {{ $isSuperAdmin ? 'SISTEM ADMINISTRATOR' : ($user->school ? $user->school->name : 'ADMINISTRATOR') }}
             </p>
         </div>
     </div>
@@ -33,17 +33,17 @@
         <div>
             <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-0.5">BERLANGGANAN SAMPAI</span>
             <span class="text-sm font-black text-indigo-600 uppercase">
-                {{ $user->school->subscription_expires_at ? $user->school->subscription_expires_at->format('d M Y') : 'Life Time' }}
+                {{ ($user->school && $user->school->subscription_expires_at) ? $user->school->subscription_expires_at->format('d M Y') : 'Life Time' }}
             </span>
         </div>
         <div class="h-8 w-[1px] bg-slate-200"></div>
         <div class="flex items-center gap-2">
-            @if($user->school->isSubscriptionActive())
+            @if($user->school && $user->school->isSubscriptionActive())
                 <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span class="text-[10px] font-black text-emerald-600 uppercase">Active</span>
             @else
                 <span class="h-2 w-2 rounded-full bg-rose-500"></span>
-                <span class="text-[10px] font-black text-rose-600 uppercase">Expired</span>
+                <span class="text-[10px] font-black text-rose-600 uppercase">Expired / N/A</span>
             @endif
         </div>
     </div>
@@ -62,12 +62,12 @@
     </div>
     @else
     <div class="bg-white p-5 rounded-3xl border border-slate-200 flex items-center gap-4">
-        <div class="w-10 h-10 {{ $user->school->subscription_type === 'trial' ? 'bg-rose-50 text-rose-600' : 'bg-amber-50 text-amber-600' }} rounded-xl flex items-center justify-center text-lg">
-            {{ $user->school->subscription_type === 'trial' ? '🎁' : '👑' }}
+        <div class="w-10 h-10 {{ ($user->school && $user->school->subscription_type === 'trial') ? 'bg-rose-50 text-rose-600' : 'bg-amber-50 text-amber-600' }} rounded-xl flex items-center justify-center text-lg">
+            {{ ($user->school && $user->school->subscription_type === 'trial') ? '🎁' : '👑' }}
         </div>
         <div>
             <div class="text-lg font-black text-slate-900 leading-none uppercase">
-                {{ $user->school->subscription_type === 'trial' ? 'Trial Mode' : 'Premium' }}
+                {{ ($user->school && $user->school->subscription_type === 'trial') ? 'Trial Mode' : 'Premium' }}
             </div>
             <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1">Status Akun</div>
         </div>
