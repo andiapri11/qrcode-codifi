@@ -17,6 +17,20 @@ Route::get('/', function () {
 // GET Logout to prevent 419 Page Expired
 Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout.get');
 
+// Custom Secure Migration Link (For Dokploy Ease of Use)
+Route::get('/system-auth-migrate-codifi', function () {
+    // Basic Security: Only allow if logged in as Admin (ID 1)
+    if (auth()->check() && auth()->id() == 1) {
+        try {
+            \Illuminate\Support\Facades\Artisan::call('migrate', ["--force" => true]);
+            return "✅ Migrasi Berhasil: " . \Illuminate\Support\Facades\Artisan::output();
+        } catch (\Exception $e) {
+            return "❌ Migrasi Gagal: " . $e->getMessage();
+        }
+    }
+    return abort(404); // Sembunyikan link jika bukan admin log-in
+});
+
 // Google Socialite Routes
 Route::get('auth/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
