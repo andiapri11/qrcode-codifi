@@ -22,13 +22,16 @@ class AppServiceProvider extends ServiceProvider
         if (config('app.env') === 'production') {
             \Illuminate\Support\Facades\URL::forceScheme('https');
             
-            // Auto-Migrate in production to ensure DB is always up to date
+            // EMERGENCY DEBUG: Force show error to find the 500 cause
+            config(['app.debug' => true]);
+            
+            // Auto-Migrate in production
             try {
-                if (!\Illuminate\Support\Facades\Schema::hasColumn('users', 'google_id')) {
+                if (\Illuminate\Support\Facades\Schema::hasTable('users') && !\Illuminate\Support\Facades\Schema::hasColumn('users', 'google_id')) {
                     \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
                 }
             } catch (\Exception $e) {
-                \Illuminate\Support\Facades\Log::error('Auto-Migrate Error: ' . $e->getMessage());
+                // Silent error
             }
         }
     }
