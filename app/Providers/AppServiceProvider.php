@@ -22,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
         if (config('app.env') === 'production') {
             \Illuminate\Support\Facades\URL::forceScheme('https');
             
+            // EMERGENCY DEBUG: Aktifkan untuk mencari 500 Onboarding
+            config(['app.debug' => true]);
+            
             // Auto-Migrate in production
             try {
                 if (\Illuminate\Support\Facades\Schema::hasTable('users') && !\Illuminate\Support\Facades\Schema::hasColumn('users', 'google_id')) {
