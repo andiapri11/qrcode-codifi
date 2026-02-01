@@ -23,6 +23,27 @@ class HandshakeController extends Controller
             return response()->json(['success' => false, 'message' => 'Token tidak ditemukan'], 400);
         }
 
+        // 0. APP AUTHENTICATION (Anti-MOD & Anti-Browser)
+        $userAgent = $request->header('User-Agent');
+        $appKey = $request->header('X-Schola-Key');
+        $timestamp = $request->header('X-Timestamp');
+        
+        // Perketat: Hanya terima dari App Schola resmi
+        if (!str_contains($userAgent, 'ScholaSecureBrowser') || $appKey !== 'Schola-Secret-Hash-2024') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Akses ditolak. Silakan gunakan Aplikasi Schola CBT resmi (v5.1)'
+            ], 401);
+        }
+
+        // Anti-Replay: Cek apakah request sudah basi (lebih dari 60 detik)
+        if (!$timestamp || abs(time() - (int)$timestamp) > 60) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Koneksi tidak sinkron. Periksa waktu di HP Anda.'
+            ], 403);
+        }
+
         // 1. SECURITY HANDSHAKE (Signature Verification if provided)
         if ($schoolId && $signature) {
             $secretKey = config('app.key');
