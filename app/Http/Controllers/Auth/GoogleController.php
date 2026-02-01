@@ -61,7 +61,7 @@ class GoogleController extends Controller
                         'email' => $user->email,
                         'google_id' => $user->id,
                         'avatar' => $user->avatar,
-                        'password' => encrypt('my-google-account-123') // Default password
+                        'password' => bcrypt(\Illuminate\Support\Str::random(16)) // Use hash instead of encrypt
                     ]);
 
                     Auth::login($newUser);

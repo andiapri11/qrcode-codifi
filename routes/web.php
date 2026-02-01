@@ -19,12 +19,12 @@ Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController
 
 // Custom Secure Migration Link (For Dokploy Ease of Use)
 Route::get('/system-auth-migrate-codifi', function () {
-    // TEMPORARY: Disabled auth check for emergency database fix
     try {
+        echo "Menjalankan migrasi...<br>";
         \Illuminate\Support\Facades\Artisan::call('migrate', ["--force" => true]);
         return "✅ Migrasi Berhasil: <br><pre>" . \Illuminate\Support\Facades\Artisan::output() . "</pre>";
     } catch (\Exception $e) {
-        return "❌ Migrasi Gagal: " . $e->getMessage();
+        return "❌ Migrasi Gagal! <br>Pesan Error: " . $e->getMessage() . "<br>Line: " . $e->getLine();
     }
 });
 
