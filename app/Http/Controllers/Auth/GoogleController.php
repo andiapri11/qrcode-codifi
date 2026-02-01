@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\School;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
+use Illuminate\Support\Str;
 
 class GoogleController extends Controller
 {
@@ -38,6 +42,12 @@ class GoogleController extends Controller
                 ]);
 
                 Auth::login($findUser);
+                
+                // If school is not set, redirect to onboarding
+                if (!$findUser->school_id && $findUser->role !== 'superadmin') {
+                    return redirect()->route('auth.onboarding');
+                }
+
                 return redirect()->intended('dashboard');
             } else {
                 // Look for user by email if google_id is not set
@@ -49,27 +59,73 @@ class GoogleController extends Controller
                         'avatar' => $user->avatar,
                     ]);
                     Auth::login($existingUser);
+
+                    if (!$existingUser->school_id && $existingUser->role !== 'superadmin') {
+                        return redirect()->route('auth.onboarding');
+                    }
+
                     return redirect()->intended('dashboard');
                 } else {
-                    // Optional: Create new user if not found
-                    // For now, let's just redirect to login with error if registration via google is not desired
-                    // return redirect()->route('login')->with('error', 'Akun tidak terdaftar. Silakan hubungi admin.');
-                    
-                    // IF we want to allow new registrations:
                     $newUser = User::create([
                         'name' => $user->name,
                         'email' => $user->email,
                         'google_id' => $user->id,
                         'avatar' => $user->avatar,
-                        'password' => bcrypt(\Illuminate\Support\Str::random(16)) // Use hash instead of encrypt
+                        'password' => bcrypt(Str::random(16)) 
                     ]);
 
                     Auth::login($newUser);
-                    return redirect()->intended('dashboard');
+                    return redirect()->route('auth.onboarding');
                 }
             }
         } catch (Exception $e) {
             return redirect('login')->with('error', 'Gagal login dengan Google: ' . $e->getMessage());
         }
+    }
+
+    /**
+     * Show onboarding form.
+     */
+    public function onboarding()
+    {
+        $user = Auth::user();
+        
+        // Prevent if already has school
+        if ($user->school_id || $user->role === 'superadmin') {
+            return redirect()->route('dashboard');
+        }
+
+        return view('auth.onboarding');
+    }
+
+    /**
+     * Complete onboarding.
+     */
+    public function completeOnboarding(Request $request)
+    {
+        $request->validate([
+            'school_name' => 'required|string|max:255',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        // 1. Create School
+        $school = School::create([
+            'name' => $request->school_name,
+            'slug' => Str::slug($request->school_name) . '-' . Str::random(5),
+            'subscription_type' => 'trial',
+            'subscription_expires_at' => now()->addDays(7),
+            'is_active' => true,
+        ]);
+
+        // 2. Update User
+        $user->update([
+            'school_id' => $school->id,
+            'role' => 'admin',
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('dashboard')->with('status', 'Profil instansi berhasil dilengkapi!');
     }
 }
