@@ -69,14 +69,7 @@ class GoogleController extends Controller
                 }
             }
         } catch (Exception $e) {
-            // Detailed debugging for 500 errors in production
-            return response()->json([
-                'error_debug' => 'Gagal Login Google',
-                'exception' => get_class($e),
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine()
-            ], 500);
+            return redirect('login')->with('error', 'Gagal login dengan Google: ' . $e->getMessage());
         }
     }
 }

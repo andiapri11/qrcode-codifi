@@ -19,13 +19,16 @@ Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController
 
 // Custom Secure Migration Link (For Dokploy Ease of Use)
 Route::get('/system-auth-migrate-codifi', function () {
-    try {
-        echo "Menjalankan migrasi...<br>";
-        \Illuminate\Support\Facades\Artisan::call('migrate', ["--force" => true]);
-        return "✅ Migrasi Berhasil: <br><pre>" . \Illuminate\Support\Facades\Artisan::output() . "</pre>";
-    } catch (\Exception $e) {
-        return "❌ Migrasi Gagal! <br>Pesan Error: " . $e->getMessage() . "<br>Line: " . $e->getLine();
+    // Basic Security: Only allow if logged in as Admin (ID 1)
+    if (auth()->check() && auth()->id() == 1) {
+        try {
+            \Illuminate\Support\Facades\Artisan::call('migrate', ["--force" => true]);
+            return "✅ Migrasi Berhasil: " . \Illuminate\Support\Facades\Artisan::output();
+        } catch (\Exception $e) {
+            return "❌ Migrasi Gagal: " . $e->getMessage();
+        }
     }
+    return abort(404);
 });
 
 // Google Socialite Routes

@@ -26,7 +26,7 @@
                     <div class="absolute -inset-1 bg-gradient-to-r from-primary to-cyan-400 rounded-2xl blur opacity-20"></div>
                     <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="relative w-16 h-16 mx-auto drop-shadow-sm">
                 </div>
-                <h1 class="text-3xl font-black tracking-[0.25em] text-slate-800 uppercase leading-none">Schola <span class="text-primary italic">CBT v5.1 OK</span></h1>
+                <h1 class="text-3xl font-black tracking-[0.25em] text-slate-800 uppercase leading-none">Schola <span class="text-primary italic">CBT</span></h1>
                 <p class="text-[10px] text-slate-400 font-black uppercase tracking-[0.3em] mt-4 opacity-70">Admin Control Panel</p>
             </div>
 
