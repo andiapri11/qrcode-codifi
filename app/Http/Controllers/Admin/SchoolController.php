@@ -177,6 +177,8 @@ class SchoolController extends Controller
 
         $school->delete();
         return redirect()->route('schools.index')->with('success', 'Instansi berhasil dihapus beserta seluruh data terkait.');
+    }
+
     public function toggleStatus(School $school)
     {
         if (Auth::user()->role !== 'superadmin') {
