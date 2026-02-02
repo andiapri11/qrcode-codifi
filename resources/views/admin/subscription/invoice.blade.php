@@ -16,7 +16,7 @@
     </style>
 </head>
 <body class="bg-slate-50 p-4 md:p-12">
-    <div class="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden print-shadow-none">
+    <div id="invoice-content" class="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden print-shadow-none">
         <!-- Header -->
         <div class="bg-slate-900 p-10 md:p-16 text-white overflow-hidden relative">
             <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
@@ -114,12 +114,38 @@
 
     <!-- Actions -->
     <div class="max-w-4xl mx-auto mt-10 flex justify-center gap-6 no-print">
-        <button onclick="window.print()" class="px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] hover:scale-105 active:scale-95 transition-all shadow-xl">
-            Cetak Invoice
+        <button onclick="downloadPdf()" class="px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center gap-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Download PDF
         </button>
         <a href="{{ route('subscription.index') }}" class="px-8 py-4 bg-white text-slate-400 rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] border border-slate-200 hover:bg-slate-50 transition-all">
             Kembali
         </a>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function downloadPdf() {
+            const element = document.getElementById('invoice-content');
+            const opt = {
+                margin:       0,
+                filename:     'Invoice-{{ $transaction->reference }}.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Show loading state
+            const btn = event.currentTarget;
+            const originalContent = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = 'Generating PDF...';
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                btn.disabled = false;
+                btn.innerHTML = originalContent;
+            });
+        }
+    </script>
 </body>
 </html>
