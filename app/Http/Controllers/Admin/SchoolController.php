@@ -16,24 +16,35 @@ use App\Models\User;
 
 class SchoolController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
+        $query = School::query();
+        $search = $request->input('q');
+        $perPage = $request->input('per_page', 10);
+
         if ($user->role === 'superadmin') {
-            $schools = School::withCount('examLinks')
-                ->withSum(['transactions as total_revenue' => function($query) {
-                    $query->where('status', 'success');
-                }], 'amount')
-                ->latest()
-                ->get();
+            $query->withCount('examLinks')
+                  ->withSum(['transactions as total_revenue' => function($query) {
+                      $query->where('status', 'success');
+                  }], 'amount');
         } else {
-            $schools = School::where('id', $user->school_id)
-                ->withCount('examLinks')
-                ->withSum(['transactions as total_revenue' => function($query) {
-                    $query->where('status', 'success');
-                }], 'amount')
-                ->get();
+            $query->where('id', $user->school_id)
+                  ->withCount('examLinks')
+                  ->withSum(['transactions as total_revenue' => function($query) {
+                      $query->where('status', 'success');
+                  }], 'amount');
         }
+
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('phone', 'like', "%{$search}%");
+            });
+        }
+
+        $schools = $query->latest()->paginate($perPage)->withQueryString();
 
         return view('admin.schools.index', [
             'title' => 'Manajemen Sekolah',

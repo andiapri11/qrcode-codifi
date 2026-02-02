@@ -14,6 +14,27 @@
     @endif
 </div>
 
+<!-- Search & Toolbar -->
+<form method="GET" action="{{ route('schools.index') }}" class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <!-- Per Page Selector -->
+    <div class="flex items-center gap-3 bg-white dark:bg-slate-800 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider pl-3">Tampilkan</span>
+        <select name="per_page" onchange="this.form.submit()" class="bg-transparent border-none text-sm font-black text-slate-700 dark:text-white outline-none focus:ring-0 cursor-pointer pr-8">
+            <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
+            <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
+            <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100</option>
+        </select>
+    </div>
+
+    <!-- Search Input -->
+    <div class="relative w-full md:w-80 group">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <svg class="h-4 w-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        </div>
+        <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama instansi, email..." class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-3 pl-11 pr-4 text-sm font-bold placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 shadow-sm transition-all text-slate-700 dark:text-white">
+    </div>
+</form>
+
 <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
     <div class="overflow-x-auto no-scrollbar">
         <table class="w-full text-left border-collapse">
@@ -141,11 +162,17 @@
         <div class="w-24 h-24 bg-slate-50 dark:bg-slate-800/50 rounded-full flex items-center justify-center mx-auto mb-6 border border-dashed border-slate-200 dark:border-slate-700 text-4xl">
             🏗️
         </div>
-        <h3 class="text-slate-900 dark:text-white font-black uppercase text-lg tracking-tight">Belum ada mitra instansi</h3>
-        <p class="text-slate-400 dark:text-slate-500 text-xs font-bold mt-2 uppercase tracking-widest">Mulai dengan menambahkan sekolah mitra pertama Anda.</p>
-        <a href="{{ route('schools.create') }}" class="inline-flex items-center gap-2 bg-blue-600 px-8 py-4 rounded-2xl font-black text-white shadow-xl shadow-blue-100 dark:shadow-none hover:bg-blue-700 transition-all text-[10px] uppercase tracking-[0.2em] mt-8">
-            Tambah Sekarang
-        </a>
+        <h3 class="text-slate-900 dark:text-white font-black uppercase text-lg tracking-tight">Belum ada mitra instansi/Pencarian tidak ditemukan</h3>
+        <p class="text-slate-400 dark:text-slate-500 text-xs font-bold mt-2 uppercase tracking-widest">Coba sesuaikan kata kunci pencarian atau tambah data baru.</p>
+        @if(Auth::user()->role === 'superadmin')
+            <a href="{{ route('schools.create') }}" class="inline-flex items-center gap-2 bg-blue-600 px-8 py-4 rounded-2xl font-black text-white shadow-xl shadow-blue-100 dark:shadow-none hover:bg-blue-700 transition-all text-[10px] uppercase tracking-[0.2em] mt-8">
+                Tambah Sekarang
+            </a>
+        @endif
+    </div>
+    @else
+    <div class="px-8 py-6 border-t border-slate-100 dark:border-slate-800">
+        {{ $schools->links() }}
     </div>
     @endif
 </div>
