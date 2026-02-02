@@ -191,41 +191,44 @@ class SchoolController extends Controller
             $data['is_active'] = $request->is_active;
             $data['subscription_type'] = $request->subscription_type;
             
-            if ($request->filled('max_links')) {
-                $data['max_links'] = $request->max_links;
-            }
-            
+            // Auto-calculate based on type if it's changed or specifically requested
             if ($request->subscription_type === '6_months') {
-                $data['max_links'] = 10;
-                if ($request->filled('subscription_months') && (int)$request->subscription_months > 0) {
-                    $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
-                        ? $school->subscription_expires_at 
-                        : Carbon::now();
-                    $data['subscription_expires_at'] = $currentExpiry->addMonths((int)$request->subscription_months);
-                }
+                $maxLinks = 10;
+                $months = (int)($request->subscription_months ?: 6);
+                $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
+                    ? $school->subscription_expires_at 
+                    : Carbon::now();
+                
+                $data['max_links'] = $school->subscription_type === '6_months' ? $school->max_links : $maxLinks;
+                $data['subscription_expires_at'] = $currentExpiry->addMonths($months);
             } elseif ($request->subscription_type === '1_year') {
-                $data['max_links'] = 20;
-                if ($request->filled('subscription_months') && (int)$request->subscription_months > 0) {
-                    $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
-                        ? $school->subscription_expires_at 
-                        : Carbon::now();
-                    $data['subscription_expires_at'] = $currentExpiry->addMonths((int)$request->subscription_months);
-                }
+                $maxLinks = 20;
+                $months = (int)($request->subscription_months ?: 12);
+                $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
+                    ? $school->subscription_expires_at 
+                    : Carbon::now();
+                
+                $data['max_links'] = $school->subscription_type === '1_year' ? $school->max_links : $maxLinks;
+                $data['subscription_expires_at'] = $currentExpiry->addMonths($months);
             } elseif ($request->subscription_type === 'year') {
-                if ($request->filled('subscription_months') && (int)$request->subscription_months > 0) {
-                    $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
-                        ? $school->subscription_expires_at 
-                        : Carbon::now();
-                    $data['subscription_expires_at'] = $currentExpiry->addMonths((int)$request->subscription_months);
-                }
+                $months = (int)$request->subscription_months;
+                $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
+                    ? $school->subscription_expires_at 
+                    : Carbon::now();
+                $data['subscription_expires_at'] = $currentExpiry->addMonths($months);
+                // Keep existing max_links or set default if not existing
+                $data['max_links'] = $school->max_links ?: 20;
             } elseif ($request->subscription_type === 'trial') {
-                // Only set trial expiry if not already set or expired
-                if (!$school->subscription_expires_at || $school->subscription_expires_at->isPast()) {
-                    $data['subscription_expires_at'] = Carbon::now()->addDays(3);
-                }
-            } else { // lifetime
+                $data['subscription_expires_at'] = Carbon::now()->addDays(3);
+                $data['max_links'] = 5; // Reset to trial limit
+            } elseif ($request->subscription_type === 'lifetime') {
                 $data['subscription_expires_at'] = null;
                 $data['max_links'] = 999999;
+            }
+
+            // Manual override for max_links if provided
+            if ($request->filled('max_links')) {
+                $data['max_links'] = $request->max_links;
             }
         }
 

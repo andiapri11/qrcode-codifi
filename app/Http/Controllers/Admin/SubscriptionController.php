@@ -180,15 +180,21 @@ class SubscriptionController extends Controller
                         ]);
                     } else {
                         $months = $type == '6_months' ? 6 : 12;
-                        $maxLinks = $type == '6_months' ? 10 : 20;
+                        $addLinks = $type == '6_months' ? 10 : 20;
+                        
                         $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
                             ? $school->subscription_expires_at 
                             : now();
                         
+                        // Cumulative logic: if not trial/expired, add to existing. Otherwise start fresh.
+                        $newMaxLinks = ($school->subscription_type === 'trial' || !$school->subscription_expires_at || $school->subscription_expires_at->isPast())
+                            ? $addLinks 
+                            : $school->max_links + $addLinks;
+
                         $school->update([
-                            'subscription_type' => $type, // 6_months or 1_year
+                            'subscription_type' => $type, 
                             'subscription_expires_at' => $currentExpiry->addMonths($months),
-                            'max_links' => $maxLinks,
+                            'max_links' => $newMaxLinks,
                         ]);
                     }
                 } elseif ($request->transaction_status == 'pending') {
