@@ -45,7 +45,7 @@ Route::get('/force-update-system-v1', function () {
     }
 });
 
-})->middleware('throttle:5,1'); // Strictly limited attempts
+
 
 // Google Socialite Routes (Throttled)
 Route::middleware(['throttle:10,1'])->group(function () {
