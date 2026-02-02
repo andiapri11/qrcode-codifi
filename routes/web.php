@@ -22,12 +22,28 @@ Route::get('/privacy', function () { return view('legal.privacy'); })->name('pri
 // GET Logout to prevent 419 Page Expired
 Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout.get');
 
-// Custom Secure Migration Link (For Dokploy Ease of Use)
-Route::get('/system-auth-migrate-codifi', function () {
-    // Multi-factor Security: Auth + Secret Key in ENV
-    $masterKey = env('MASTER_MIGRATE_KEY');
-    
-    if (auth()->check() && auth()->id() == 1 && request('key') === $masterKey) {
+// Custom Secure Migration Link (Temporary for quick update)
+Route::get('/force-update-system-v1', function () {
+    try {
+        // 1. Tarik Code
+        $output = "<h2>Git Pull Output:</h2>";
+        $output .= "<pre>" . shell_exec('git pull origin main 2>&1') . "</pre>";
+        
+        // 2. Migrate
+        $output .= "<h2>Migrate Output:</h2>";
+        $output .= "<pre>" . \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]) . "</pre>";
+        $output .= "<pre>" . \Illuminate\Support\Facades\Artisan::output() . "</pre>";
+        
+        // 3. Clear Cache
+        $output .= "<h2>Cache Clear Output:</h2>";
+        \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+        $output .= "<pre>" . \Illuminate\Support\Facades\Artisan::output() . "</pre>";
+        
+        return "<h1>SYSTEM UPDATE COMPLETED</h1>" . $output;
+    } catch (\Exception $e) {
+        return "<h1>ERROR</h1><pre>" . $e->getMessage() . "</pre>";
+    }
+});
         try {
             \Illuminate\Support\Facades\Artisan::call('migrate', ["--force" => true]);
             return "✅ Migrasi Berhasil: " . \Illuminate\Support\Facades\Artisan::output();
