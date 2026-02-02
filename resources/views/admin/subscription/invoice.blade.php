@@ -183,12 +183,13 @@
             const opt = {
                 margin: 0,
                 filename: 'Invoice-{{ $transaction->reference }}.pdf',
-                image: { type: 'jpeg', quality: 1 },
+                image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { 
-                    scale: 4, 
+                    scale: 2, // Reduced from 4 to fix file size and processing load
                     useCORS: true,
                     logging: false,
-                    windowWidth: 559 // Adjust to A5 width in pixels at standard DPI
+                    letterRendering: true,
+                    windowWidth: 800
                 },
                 jsPDF: { unit: 'mm', format: 'a5', orientation: 'portrait' }
             };
@@ -196,7 +197,7 @@
             const btn = document.querySelector('button[onclick="downloadPdf()"]');
             if (btn) {
                 btn.disabled = true;
-                btn.innerHTML = '<span class="animate-pulse">GENERATING...</span>';
+                btn.innerHTML = '<span class="animate-pulse tracking-widest text-[8px]">RENDERING...</span>';
             }
 
             html2pdf().set(opt).from(element).save().then(() => {
@@ -217,7 +218,8 @@
 
         window.addEventListener('load', () => {
             if (window.location.search.includes('download')) {
-                downloadPdf();
+                // Add explicit delay to ensure CDN styles and fonts are fully applied
+                setTimeout(downloadPdf, 1000);
             }
         });
     </script>

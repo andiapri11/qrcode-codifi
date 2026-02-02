@@ -378,7 +378,7 @@
         });
     }
 </script>
-<iframe id="downloadFrame" class="hidden"></iframe>
+<iframe id="downloadFrame" class="opacity-0 pointer-events-none absolute h-0 w-0"></iframe>
 <script>
         let lastDownloadBtn = null;
         let originalBtnHtml = '';
