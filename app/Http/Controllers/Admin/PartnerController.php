@@ -9,20 +9,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class UserController extends Controller
+class PartnerController extends Controller
 {
     public function index()
     {
         if (auth()->user()->role !== 'superadmin') {
-            abort(403, 'Akses Terbatas: Hanya Administrator Pusat yang dapat mengelola akun.');
+            abort(403, 'Akses Terbatas.');
         }
 
-        // Only Internal Admins (Super Admins)
-        $users = User::where('role', 'superadmin')->latest()->get();
-        $schools = []; // No school selection needed for internal admin usually
+        // Only School Admins (Partners)
+        $users = User::where('role', 'school_admin')->with('school')->latest()->get();
+        $schools = School::all();
 
-        return view('admin.users.index', [
-            'title' => 'Manajemen Admin Internal',
+        return view('admin.partners.index', [
+            'title' => 'Manajemen Mitra Sekolah',
             'users' => $users,
             'schools' => $schools
         ]);
@@ -30,36 +30,31 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $currentUser = auth()->user();
+        if (auth()->user()->role !== 'superadmin') {
+            abort(403);
+        }
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
             'password' => ['required', Rules\Password::defaults()],
+            'school_id' => ['required', 'exists:schools,id'],
         ]);
-
-        // Security check
-        if ($currentUser->role !== 'superadmin') {
-            abort(403);
-        }
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'superadmin',
-            'school_id' => null,
+            'role' => 'school_admin',
+            'school_id' => $request->school_id,
         ]);
 
-        return back()->with('success', 'Admin Internal berhasil ditambahkan.');
+        return back()->with('success', 'Admin Mitra berhasil ditambahkan.');
     }
 
     public function update(Request $request, User $user)
     {
-        $currentUser = auth()->user();
-
-        // Admin cannot edit a Superadmin if they are not a Superadmin themselves
-        if ($currentUser->role !== 'superadmin' && $user->role === 'superadmin') {
+        if (auth()->user()->role !== 'superadmin') {
             abort(403);
         }
 
@@ -67,13 +62,13 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,'.$user->id],
             'password' => ['nullable', Rules\Password::defaults()],
+            'school_id' => ['required', 'exists:schools,id'],
         ]);
 
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'role' => 'superadmin',
-            'school_id' => null,
+            'school_id' => $request->school_id,
         ];
 
         if ($request->filled('password')) {
@@ -82,20 +77,16 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return back()->with('success', 'Data administrator berhasil diperbarui.');
+        return back()->with('success', 'Data Mitra berhasil diperbarui.');
     }
 
     public function destroy(User $user)
     {
-        if (auth()->id() === $user->id) {
-            return back()->with('error', 'Anda tidak bisa menghapus akun sendiri!');
-        }
-
-        if (auth()->user()->role !== 'superadmin' && $user->role === 'superadmin') {
-             return back()->with('error', 'Unauthorized.');
+        if (auth()->user()->role !== 'superadmin') {
+            abort(403);
         }
 
         $user->delete();
-        return back()->with('success', 'Administrator berhasil dihapus.');
+        return back()->with('success', 'Akun Mitra berhasil dihapus.');
     }
 }

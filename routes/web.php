@@ -88,6 +88,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/users', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store');
     Route::put('/users/{user}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+
+    // Partner Management
+    Route::get('/partners', [\App\Http\Controllers\Admin\PartnerController::class, 'index'])->name('partners.index');
+    Route::post('/partners', [\App\Http\Controllers\Admin\PartnerController::class, 'store'])->name('partners.store');
+    Route::put('/partners/{user}', [\App\Http\Controllers\Admin\PartnerController::class, 'update'])->name('partners.update');
+    Route::delete('/partners/{user}', [\App\Http\Controllers\Admin\PartnerController::class, 'destroy'])->name('partners.destroy');
 });
 
 require __DIR__.'/auth.php';
