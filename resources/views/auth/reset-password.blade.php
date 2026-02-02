@@ -16,6 +16,7 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            <p class="mt-1 text-[10px] text-slate-500 font-bold uppercase tracking-wider">Min. 8 Karakter (Huruf, Angka & Simbol)</p>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 

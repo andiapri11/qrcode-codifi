@@ -117,6 +117,11 @@
             <div>
                 <label class="mb-2 block font-black text-slate-400 dark:text-slate-500 text-[9px] uppercase tracking-[0.2em] ml-1">Kata Sandi</label>
                 <input type="password" name="password" required class="w-full rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 py-4 px-6 font-black text-slate-900 dark:text-white outline-none focus:ring-4 focus:ring-blue-500/10 transition text-xs shadow-sm">
+                <div class="mt-2 flex gap-3 ml-2">
+                    <span class="text-[7px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><span class="w-1 h-1 bg-blue-500 rounded-full"></span> 8+ Karakter</span>
+                    <span class="text-[7px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><span class="w-1 h-1 bg-blue-500 rounded-full"></span> Huruf & Angka</span>
+                    <span class="text-[7px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><span class="w-1 h-1 bg-blue-500 rounded-full"></span> Simbol (@#$!)</span>
+                </div>
             </div>
 
             <button type="submit" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] shadow-xl shadow-blue-100 dark:shadow-none hover:bg-blue-700 transition-all active:scale-95 mt-4">
@@ -163,6 +168,10 @@
             <div>
                 <label class="mb-2 block font-black text-slate-400 dark:text-slate-500 text-[9px] uppercase tracking-[0.2em] ml-1">Ganti Password (Opsional)</label>
                 <input type="password" name="password" class="w-full rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 py-4 px-6 font-black text-slate-900 dark:text-white outline-none focus:ring-4 focus:ring-blue-500/10 transition text-xs shadow-sm">
+                <div class="mt-2 flex gap-3 ml-2">
+                    <span class="text-[7px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><span class="w-1 h-1 bg-blue-500 rounded-full"></span> 8+ Karakter</span>
+                    <span class="text-[7px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><span class="w-1 h-1 bg-blue-500 rounded-full"></span> Angka & Simbol</span>
+                </div>
             </div>
 
             <button type="submit" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] shadow-xl shadow-blue-100 dark:shadow-none hover:bg-blue-700 transition-all active:scale-95 mt-4">

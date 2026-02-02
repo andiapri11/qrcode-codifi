@@ -172,7 +172,15 @@
                                     placeholder="Buat Kata Sandi" data-i18n-placeholder="password_placeholder"
                                     class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-sm md:text-base placeholder:text-slate-400 pr-4 md:pr-6" />
                             </div>
-                            <p id="error-password" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n="error_password">Kata sandi minimal 8 karakter!</p>
+                            <div class="mt-1 flex flex-wrap gap-x-2 gap-y-1 ml-6">
+                                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
+                                    <span class="w-1 h-1 bg-blue-500 rounded-full"></span> 8+ Karakter
+                                </span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
+                                    <span class="w-1 h-1 bg-blue-500 rounded-full"></span> Mix Huruf, Angka & Simbol
+                                </span>
+                            </div>
+                            <p id="error-password" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n-error-password>Sandi harus 8+ karakter dengan kombinasi angka & simbol!</p>
                         </div>
 
                         <div class="space-y-1">
