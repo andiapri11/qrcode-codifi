@@ -91,10 +91,22 @@ class SchoolController extends Controller
             }
 
             $expiresAt = null;
-            if ($request->subscription_type === 'year') {
+            $maxLinks = 20; // Default
+
+            if ($request->subscription_type === '6_months') {
+                $expiresAt = Carbon::now()->addMonths(6);
+                $maxLinks = 10;
+            } elseif ($request->subscription_type === '1_year') {
+                $expiresAt = Carbon::now()->addMonths(12);
+                $maxLinks = 20;
+            } elseif ($request->subscription_type === 'year') {
                 $expiresAt = Carbon::now()->addMonths((int)$request->subscription_months);
+                $maxLinks = 20;
             } elseif ($request->subscription_type === 'trial') {
-                $expiresAt = Carbon::now()->addDays(3); // Default 3 days for manual trial
+                $expiresAt = Carbon::now()->addDays(3);
+                $maxLinks = 5; // Trial default
+            } elseif ($request->subscription_type === 'lifetime') {
+                $maxLinks = 999999;
             }
 
             // 1. Create School
@@ -109,6 +121,7 @@ class SchoolController extends Controller
                 'is_active' => $request->is_active,
                 'subscription_type' => $request->subscription_type,
                 'subscription_expires_at' => $expiresAt,
+                'max_links' => $maxLinks,
                 'logo' => $logoPath,
             ]);
 
@@ -152,7 +165,7 @@ class SchoolController extends Controller
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
             'is_active' => $user->role === 'superadmin' ? 'required|boolean' : 'nullable',
-            'subscription_type' => $user->role === 'superadmin' ? ['required', Rule::in(['year', 'lifetime', 'trial'])] : 'nullable',
+            'subscription_type' => $user->role === 'superadmin' ? ['required', Rule::in(['year', '6_months', '1_year', 'lifetime', 'trial'])] : 'nullable',
             'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:0',
             'max_links' => $user->role === 'superadmin' ? 'nullable|integer|min:1' : 'nullable',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
@@ -182,7 +195,23 @@ class SchoolController extends Controller
                 $data['max_links'] = $request->max_links;
             }
             
-            if ($request->subscription_type === 'year') {
+            if ($request->subscription_type === '6_months') {
+                $data['max_links'] = 10;
+                if ($request->filled('subscription_months') && (int)$request->subscription_months > 0) {
+                    $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
+                        ? $school->subscription_expires_at 
+                        : Carbon::now();
+                    $data['subscription_expires_at'] = $currentExpiry->addMonths((int)$request->subscription_months);
+                }
+            } elseif ($request->subscription_type === '1_year') {
+                $data['max_links'] = 20;
+                if ($request->filled('subscription_months') && (int)$request->subscription_months > 0) {
+                    $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
+                        ? $school->subscription_expires_at 
+                        : Carbon::now();
+                    $data['subscription_expires_at'] = $currentExpiry->addMonths((int)$request->subscription_months);
+                }
+            } elseif ($request->subscription_type === 'year') {
                 if ($request->filled('subscription_months') && (int)$request->subscription_months > 0) {
                     $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
                         ? $school->subscription_expires_at 

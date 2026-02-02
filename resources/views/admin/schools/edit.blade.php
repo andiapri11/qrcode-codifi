@@ -107,7 +107,9 @@
                         <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Tipe Langganan</label>
                         <select name="subscription_type" id="subscription_type" class="w-full bg-slate-50 border border-slate-200 py-3 px-5 rounded-xl font-bold text-slate-700 text-xs outline-none focus:ring-2 focus:ring-indigo-500 transition">
                             <option value="trial" {{ $school->subscription_type === 'trial' ? 'selected' : '' }}>TRIAL (3 Hari)</option>
-                            <option value="year" {{ $school->subscription_type === 'year' ? 'selected' : '' }}>1 TAHUN</option>
+                            <option value="6_months" {{ $school->subscription_type === '6_months' ? 'selected' : '' }}>6 BULAN</option>
+                            <option value="1_year" {{ $school->subscription_type === '1_year' ? 'selected' : '' }}>1 TAHUN</option>
+                            <option value="year" {{ $school->subscription_type === 'year' ? 'selected' : '' }}>ANNUAL (Custom)</option>
                             <option value="lifetime" {{ $school->subscription_type === 'lifetime' ? 'selected' : '' }}>LIFE TIME</option>
                         </select>
                         @if($school->subscription_expires_at)

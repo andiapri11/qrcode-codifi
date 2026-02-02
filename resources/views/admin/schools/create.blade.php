@@ -111,7 +111,9 @@
                         <div class="relative">
                             <select name="subscription_type" id="subscription_type" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm font-black text-slate-800 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500/50">
                                 <option value="trial" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">TRIAL (3 Hari)</option>
-                                <option value="year" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">TAHUNAN</option>
+                                <option value="6_months" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">PREMIUM 6 BULAN</option>
+                                <option value="1_year" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">PREMIUM 1 TAHUN</option>
+                                <option value="year" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">ANNUAL (Custom)</option>
                                 <option value="lifetime" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">LIFETIME (Permanen)</option>
                             </select>
                             <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
@@ -183,7 +185,7 @@
 <script>
     document.getElementById('subscription_type').addEventListener('change', function() {
         const durationBox = document.getElementById('duration_box');
-        if (this.value === 'lifetime' || this.value === 'trial') {
+        if (this.value === 'lifetime' || this.value === 'trial' || this.value === '6_months' || this.value === '1_year') {
             durationBox.style.opacity = '0.3';
             durationBox.style.pointerEvents = 'none';
         } else {
@@ -213,7 +215,7 @@
 
     window.addEventListener('load', () => {
         const subType = document.getElementById('subscription_type').value;
-        if(subType === 'trial' || subType === 'lifetime') {
+        if(subType === 'trial' || subType === 'lifetime' || subType === '6_months' || subType === '1_year') {
             document.getElementById('duration_box').style.opacity = '0.3';
             document.getElementById('duration_box').style.pointerEvents = 'none';
         }

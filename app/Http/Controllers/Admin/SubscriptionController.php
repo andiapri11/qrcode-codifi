@@ -186,7 +186,7 @@ class SubscriptionController extends Controller
                             : now();
                         
                         $school->update([
-                            'subscription_type' => 'year', // Standard premium label
+                            'subscription_type' => $type, // 6_months or 1_year
                             'subscription_expires_at' => $currentExpiry->addMonths($months),
                             'max_links' => $maxLinks,
                         ]);
