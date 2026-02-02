@@ -270,9 +270,11 @@
             }
         });
 
-        // Dark Mode Logic
-        if (localStorage.getItem('dark-mode') === 'true' || (!localStorage.getItem('dark-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // Dark Mode Logic (Default to Light Mode)
+        if (localStorage.getItem('dark-mode') === 'true') {
             document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
         }
 
         function toggleDarkMode() {

@@ -149,8 +149,22 @@
             html2pdf().set(opt).from(element).save().then(() => {
                 btn.disabled = false;
                 btn.innerHTML = originalContent;
+
+                // Close tab if auto-downloaded
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('download')) {
+                    setTimeout(() => { window.close(); }, 1500);
+                }
             });
         }
+
+        // Auto download if query param exists
+        window.addEventListener('load', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('download')) {
+                downloadPdf();
+            }
+        });
     </script>
 </body>
 </html>
