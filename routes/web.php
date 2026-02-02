@@ -44,14 +44,7 @@ Route::get('/force-update-system-v1', function () {
         return "<h1>ERROR</h1><pre>" . $e->getMessage() . "</pre>";
     }
 });
-        try {
-            \Illuminate\Support\Facades\Artisan::call('migrate', ["--force" => true]);
-            return "✅ Migrasi Berhasil: " . \Illuminate\Support\Facades\Artisan::output();
-        } catch (\Exception $e) {
-            return "❌ Migrasi Gagal: " . $e->getMessage();
-        }
-    }
-    return abort(404);
+
 })->middleware('throttle:5,1'); // Strictly limited attempts
 
 // Google Socialite Routes (Throttled)
