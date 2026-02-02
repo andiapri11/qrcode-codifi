@@ -125,112 +125,112 @@
     </div>
 
     <!-- Main Content -->
-    <div class="flex h-screen items-center justify-center p-4">
-        <div class="max-w-6xl w-full flex flex-col md:flex-row items-center gap-12 md:gap-24 py-4 md:py-8">
+    <div class="h-screen flex items-center justify-center p-4 overflow-hidden">
+        <div class="max-w-6xl w-full flex flex-col md:flex-row items-center gap-8 md:gap-24">
             
             <!-- Left Side: Form -->
             <div class="w-full md:w-1/2 max-w-[420px] flex flex-col justify-center order-2 md:order-1">
-                <div class="mb-8 text-left">
-                    <div class="flex items-center gap-4 mb-6 md:mb-8">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="w-10 h-10 md:w-12 md:h-12">
-                        <div class="border-l border-slate-200 dark:border-slate-700 pl-4">
-                            <h2 class="text-base md:text-lg font-black text-slate-800 dark:text-white uppercase tracking-tighter leading-none">Schola <span class="text-blue-600 italic">CBT</span></h2>
-                            <p class="text-[8px] md:text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.2em] mt-1" data-i18n="slogan">Smart Examination System</p>
+                <div class="mb-5 text-left">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="w-8 h-8 md:w-10 md:h-10">
+                        <div class="border-l border-slate-200 dark:border-slate-700 pl-3">
+                            <h2 class="text-sm md:text-base font-black text-slate-800 dark:text-white uppercase tracking-tighter leading-none">Schola <span class="text-blue-600 italic">CBT</span></h2>
+                            <p class="text-[7px] md:text-[8px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.2em] mt-0.5" data-i18n="slogan">Smart Examination System</p>
                         </div>
                     </div>
-                    <h1 class="text-2xl md:text-3xl font-bold text-[#111827] dark:text-white tracking-tight" data-i18n="reg_title">Daftar</h1>
-                    <p class="text-xs md:text-sm text-slate-400 dark:text-slate-500 font-medium mt-2" data-i18n="reg_subtitle">Daftarkan instansi Anda dan mulai trial gratis hari ini.</p>
+                    <h1 class="text-xl md:text-2xl font-bold text-[#111827] dark:text-white tracking-tight leading-none" data-i18n="reg_title">Daftar</h1>
+                    <p class="text-[11px] md:text-xs text-slate-400 dark:text-slate-500 font-medium mt-1.5" data-i18n="reg_subtitle">Daftarkan instansi Anda dan mulai trial gratis hari ini.</p>
                 </div>
 
-                <form method="POST" action="{{ route('register') }}" class="space-y-4" id="registerForm" onsubmit="return handleFormSubmit()" novalidate>
+                <form method="POST" action="{{ route('register') }}" class="space-y-2.5" id="registerForm" onsubmit="return handleFormSubmit()" novalidate>
                     @csrf
                     
                     @if ($errors->any())
-                        <div class="mb-4 p-4 bg-red-50 dark:bg-red-900/20 rounded-2xl border border-red-100 dark:border-red-900/30 text-red-600 dark:text-red-400 text-sm font-medium">
+                        <div class="mb-2 p-3 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-100 dark:border-red-900/30 text-red-600 dark:text-red-400 text-[11px] font-medium">
                             {{ $errors->first() }}
                         </div>
                     @endif
 
-                    <div class="space-y-4">
+                    <div class="space-y-2.5">
                         <div class="space-y-1">
-                            <div class="input-pill flex items-center p-1 md:p-1.5 group">
-                                <div class="icon-circle mr-3 md:mr-4">
-                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
+                            <div class="input-pill flex items-center p-1 md:p-1 group">
+                                <div class="icon-circle mr-3 md:mr-3 w-9 h-9">
+                                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
                                 </div>
-                                <input type="text" name="name" id="name" required placeholder="Nama Lengkap Admin" data-i18n-placeholder="name_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-sm md:text-base placeholder:text-slate-400 pr-4 md:pr-6" />
+                                <input type="text" name="name" id="name" required placeholder="Nama Lengkap Admin" data-i18n-placeholder="name_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-xs md:text-sm placeholder:text-slate-400 pr-4" />
                             </div>
                             <p id="error-name" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n="error_name">Silakan isi nama lengkap!</p>
                         </div>
 
                         <div class="space-y-1">
-                            <div class="input-pill flex items-center p-1 md:p-1.5 group">
-                                <div class="icon-circle mr-3 md:mr-4">
-                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L4.12 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+                            <div class="input-pill flex items-center p-1 md:p-1 group">
+                                <div class="icon-circle mr-3 md:mr-3 w-9 h-9">
+                                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L4.12 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
                                 </div>
-                                <input type="email" name="email" id="email" required placeholder="Alamat Email" data-i18n-placeholder="email_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-sm md:text-base placeholder:text-slate-400 pr-4 md:pr-6" />
+                                <input type="email" name="email" id="email" required placeholder="Alamat Email" data-i18n-placeholder="email_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-xs md:text-sm placeholder:text-slate-400 pr-4" />
                             </div>
                             <p id="error-email" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n="error_email">Alamat email tidak boleh kosong!</p>
                         </div>
 
                         <div class="space-y-1">
-                            <div class="input-pill flex items-center p-1 md:p-1.5 group">
-                                <div class="icon-circle mr-3 md:mr-4">
-                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3H10.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
+                            <div class="input-pill flex items-center p-1 md:p-1 group">
+                                <div class="icon-circle mr-3 md:mr-3 w-9 h-9">
+                                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3H10.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
                                 </div>
-                                <input type="text" name="school_name" id="school_name" required placeholder="Nama Sekolah / Instansi" data-i18n-placeholder="school_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-sm md:text-base placeholder:text-slate-400 pr-4 md:pr-6" />
+                                <input type="text" name="school_name" id="school_name" required placeholder="Nama Sekolah / Instansi" data-i18n-placeholder="school_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-xs md:text-sm placeholder:text-slate-400 pr-4" />
                             </div>
                             <p id="error-school_name" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n="error_school">Nama instansi wajib diisi!</p>
                         </div>
 
                         <div class="space-y-1">
-                            <div class="input-pill flex items-center p-1 md:p-1.5 group">
-                                <div class="icon-circle mr-3 md:mr-4">
-                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" /></svg>
+                            <div class="input-pill flex items-center p-1 md:p-1 group">
+                                <div class="icon-circle mr-3 md:mr-3 w-9 h-9">
+                                    <svg class="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" /></svg>
                                 </div>
-                                <input type="password" name="password" id="password" required placeholder="Buat Kata Sandi" data-i18n-placeholder="password_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-sm md:text-base placeholder:text-slate-400 pr-4 md:pr-6" />
+                                <input type="password" name="password" id="password" required placeholder="Buat Kata Sandi" data-i18n-placeholder="password_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-xs md:text-sm placeholder:text-slate-400 pr-4" />
                             </div>
                             <p id="error-password" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n="error_password">Kata sandi minimal 8 karakter!</p>
                         </div>
 
                         <div class="space-y-1">
-                            <div class="input-pill flex items-center p-1 md:p-1.5 group">
-                                <div class="icon-circle mr-3 md:mr-4">
-                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" /></svg>
+                            <div class="input-pill flex items-center p-1 md:p-1 group">
+                                <div class="icon-circle mr-3 md:mr-3 w-9 h-9">
+                                    <svg class="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" /></svg>
                                 </div>
-                                <input type="password" name="password_confirmation" id="password_confirmation" required placeholder="Konfirmasi Kata Sandi" data-i18n-placeholder="confirm_password_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-sm md:text-base placeholder:text-slate-400 pr-4 md:pr-6" />
+                                <input type="password" name="password_confirmation" id="password_confirmation" required placeholder="Konfirmasi Kata Sandi" data-i18n-placeholder="confirm_password_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-xs md:text-sm placeholder:text-slate-400 pr-4" />
                             </div>
                             <p id="error-password-mismatch" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n="error_password_mismatch">Konfirmasi sandi tidak cocok!</p>
                         </div>
                     </div>
 
-                    <div class="pt-6">
-                        <button type="submit" id="submitBtn" class="w-full btn-blue py-3.5 md:py-4 rounded-full text-white font-black text-base md:text-lg hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center">
+                    <div class="pt-4">
+                        <button type="submit" id="submitBtn" class="w-full btn-blue py-3 rounded-full text-white font-black text-sm md:text-base hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center">
                             <span class="spinner"></span>
                             <span class="btn-text" data-i18n="reg_btn">Daftar</span>
                         </button>
                     </div>
 
-                    <div class="text-[#8a94a6] font-bold text-[10px] md:text-xs text-center pt-3">
+                    <div class="text-[#8a94a6] font-bold text-[10px] text-center pt-2">
                         <span data-i18n="has_account">Sudah memiliki akun?</span>
                         <a href="{{ route('login') }}" class="text-blue-600 hover:underline ml-1" data-i18n="login_now">Log in sekarang</a>
                     </div>
                 </form>
 
-                <div class="mt-8 md:mt-auto pt-6 text-center">
-                    <div class="flex flex-wrap items-center justify-center gap-x-4 md:gap-x-6 gap-y-2 text-[10px] md:text-[11px] text-[#8a94a6] font-bold uppercase tracking-widest mb-4">
+                <div class="mt-8 pt-4 text-center">
+                    <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[9px] text-[#8a94a6] font-bold uppercase tracking-widest mb-3">
                         <a href="{{ route('help') }}" class="hover:text-blue-500 transition-colors" data-i18n="footer_help">Bantuan</a>
-                        <a href="{{ route('terms') }}" class="hover:text-blue-500 transition-colors" data-i18n="footer_tos">Syarat & Ketentuan</a>
+                        <a href="{{ route('terms') }}" class="hover:text-blue-500 transition-colors" data-i18n="footer_tos">S&K</a>
                         <a href="{{ route('privacy') }}" class="hover:text-blue-500 transition-colors" data-i18n="footer_privacy">Privasi</a>
                     </div>
-                    <p class="text-[9px] md:text-[10px] text-slate-400 font-medium uppercase tracking-tight">Copyright © 2026 <span class="text-blue-500 font-bold">ScholaCBT</span> by <a href="https://codifi.id" target="_blank" class="hover:underline">Codifi.id</a>.</p>
+                    <p class="text-[9px] text-slate-400 font-medium uppercase tracking-tight">Copyright © 2026 <span class="text-blue-500 font-bold">ScholaCBT</span></p>
                 </div>
             </div>
 
             <!-- Right Side: Social Proof -->
             <div class="hidden md:flex w-1/2 flex-col items-center justify-center order-1 md:order-2">
-                <img src="{{ asset('assets/images/illustration.png') }}" class="max-w-[400px] lg:max-w-[480px] h-auto mb-8" loading="lazy">
-                <div class="text-center px-4">
-                    <p class="text-slate-400 dark:text-slate-500 text-sm font-medium" data-i18n="trusted_text">Dipercaya oleh lebih dari <span class="text-blue-500 font-bold">500+</span> instansi pendidikan di seluruh Indonesia.</p>
+                <img src="{{ asset('assets/images/illustration.png') }}" class="max-w-[320px] lg:max-w-[400px] h-auto mb-6" loading="lazy">
+                <div class="text-center px-4 max-w-sm">
+                    <p class="text-slate-400 dark:text-slate-500 text-xs font-medium" data-i18n="trusted_text">Dipercaya oleh lebih dari <span class="text-blue-500 font-bold">500+</span> instansi pendidikan di seluruh Indonesia.</p>
                 </div>
             </div>
         </div>
