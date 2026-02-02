@@ -84,13 +84,24 @@
             
             <div class="relative flex-1 flex flex-col items-center justify-center py-6">
                 <div id="main-radial" class="w-full"></div>
-                <div class="mt-4 w-full px-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-blue-600 font-black text-xs">75%</span>
-                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Server Load</span>
+                <div class="mt-4 w-full px-4 space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">CPU Load</span>
+                            <span class="text-blue-600 font-black text-xs">{{ $stats['server_cpu'] }}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-blue-600 h-full rounded-full transition-all duration-1000" style="width: {{ $stats['server_cpu'] }}%"></div>
+                        </div>
                     </div>
-                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-blue-600 h-full rounded-full" style="width: 75%"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">RAM Usage</span>
+                            <span class="text-emerald-600 font-black text-xs">{{ $stats['server_ram'] }}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-emerald-600 h-full rounded-full transition-all duration-1000" style="width: {{ $stats['server_ram'] }}%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,9 +197,9 @@
             legend: { position: 'top', horizontalAlign: 'right', fontSize: '11px', fontWeight: 700, labels: { colors: '#64748b' } }
         }).render();
 
-        // System Resource Gauge
+        // Main Radial Progress (Average System Load)
         new ApexCharts(document.querySelector("#main-radial"), {
-            series: [75],
+            series: [{{ round(($stats['server_cpu'] + $stats['server_ram']) / 2) }}],
             chart: { height: 300, type: 'radialBar' },
             plotOptions: {
                 radialBar: {
@@ -197,12 +208,12 @@
                     hollow: { size: '70%', },
                     track: { background: '#f1f5f9', strokeWidth: '97%' },
                     dataLabels: {
-                        name: { show: true, fontSize: '11px', fontWeight: 900, color: '#94a3b8', offsetY: -10, text: 'USAGE' },
+                        name: { show: true, fontSize: '11px', fontWeight: 900, color: '#94a3b8', offsetY: -10, text: 'AVG LOAD' },
                         value: { show: true, fontSize: '36px', fontWeight: 900, color: '#1e293b', offsetY: 15, formatter: (v) => v + '%' }
                     }
                 }
             },
-            colors: [primaryColor],
+            colors: ['#3b82f6'],
             fill: { type: 'gradient', gradient: { shade: 'dark', type: 'horizontal', gradientToColors: ['#60a5fa'], stops: [0, 100] } }
         }).render();
     });
