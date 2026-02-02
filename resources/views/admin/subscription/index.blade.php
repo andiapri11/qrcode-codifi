@@ -125,9 +125,13 @@
                         </li>
                     </ul>
 
-                    <button onclick="checkout('{{ $plan['id'] }}')" 
-                        class="w-full py-3 rounded-xl {{ $plan['id'] == 'lifetime' ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-slate-900 text-white shadow-lg shadow-slate-200' }} font-black text-[9px] uppercase tracking-[0.2em] transition-all active:scale-95 hover:brightness-110">
-                        Pilih Paket
+                    @php
+                        $isAlreadyLifetime = $school->subscription_type === 'lifetime';
+                    @endphp
+                    <button onclick="{{ $isAlreadyLifetime ? '' : "checkout('" . $plan['id'] . "')" }}" 
+                        {{ $isAlreadyLifetime ? 'disabled' : '' }}
+                        class="w-full py-3 rounded-xl {{ $isAlreadyLifetime ? 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed' : ($plan['id'] == 'lifetime' ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-slate-900 text-white shadow-lg shadow-slate-200') }} font-black text-[9px] uppercase tracking-[0.2em] transition-all {{ $isAlreadyLifetime ? '' : 'active:scale-95 hover:brightness-110' }}">
+                        {{ $isAlreadyLifetime ? 'Paket Aktif' : 'Pilih Paket' }}
                     </button>
                 </div>
                 @endforeach
