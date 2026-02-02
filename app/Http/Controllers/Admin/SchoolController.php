@@ -29,11 +29,8 @@ class SchoolController extends Controller
                       $query->where('status', 'success');
                   }], 'amount');
         } else {
-            $query->where('id', $user->school_id)
-                  ->withCount('examLinks')
-                  ->withSum(['transactions as total_revenue' => function($query) {
-                      $query->where('status', 'success');
-                  }], 'amount');
+            // If School Admin, redirect immediately to Edit School page
+            return redirect()->route('schools.edit', $user->school_id);
         }
 
         if ($search) {
