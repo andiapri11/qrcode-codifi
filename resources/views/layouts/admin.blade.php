@@ -213,17 +213,22 @@
                     @yield('content')
                 </div>
 
-                <!-- Footer Section -->
-                <footer class="py-12 mt-10 border-t border-slate-100 dark:border-slate-800/50">
-                    <div class="flex flex-col items-center justify-center gap-6">
-                        <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-4">
-                            <a href="{{ route('help') }}" class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] hover:text-blue-600 dark:hover:text-blue-400 transition-all">Bantuan</a>
-                            <a href="{{ route('terms') }}" class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] hover:text-blue-600 dark:hover:text-blue-400 transition-all">Syarat & Ketentuan</a>
-                            <a href="{{ route('privacy') }}" class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] hover:text-blue-600 dark:hover:text-blue-400 transition-all">Privasi</a>
+                <!-- Premium Integrated Footer -->
+                <footer class="mt-auto pt-16 pb-8">
+                    <div class="flex flex-col items-center justify-center space-y-4">
+                        <div class="flex items-center gap-6 md:gap-8">
+                            <a href="{{ route('help') }}" class="text-[9px] font-black text-slate-400 hover:text-indigo-600 dark:hover:text-blue-400 uppercase tracking-[0.2em] transition-all">Bantuan</a>
+                            <span class="w-1 h-1 bg-slate-200 dark:bg-slate-800 rounded-full"></span>
+                            <a href="{{ route('terms') }}" class="text-[9px] font-black text-slate-400 hover:text-indigo-600 dark:hover:text-blue-400 uppercase tracking-[0.2em] transition-all">Syarat</a>
+                            <span class="w-1 h-1 bg-slate-200 dark:bg-slate-800 rounded-full"></span>
+                            <a href="{{ route('privacy') }}" class="text-[9px] font-black text-slate-400 hover:text-indigo-600 dark:hover:text-blue-400 uppercase tracking-[0.2em] transition-all">Privasi</a>
                         </div>
-                        <div class="text-[9px] font-bold text-slate-300 dark:text-slate-700 uppercase tracking-[0.2em] flex items-center gap-2">
-                            <span>Copyright © 2026</span>
-                            <span class="text-blue-600 dark:text-blue-500 font-black tracking-tighter italic">Schola<span class="opacity-80">CBT</span></span>
+                        
+                        <div class="flex items-center gap-2.5 px-6 py-2 bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm rounded-full border border-slate-100 dark:border-slate-800/50 shadow-sm">
+                            <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">© 2026</span>
+                            <div class="w-1 h-1 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+                            <span class="text-[9px] font-black text-slate-800 dark:text-white uppercase tracking-tighter">Schola <span class="text-indigo-600">CBT</span></span>
+                            <span class="text-[8px] font-bold text-slate-300 dark:text-slate-600 uppercase tracking-widest">Enterprise</span>
                         </div>
                     </div>
                 </footer>

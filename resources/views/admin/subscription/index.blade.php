@@ -232,7 +232,7 @@
 
 @if(!$isSuperAdmin)
 <!-- Midtrans Snap Script -->
-<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.client_key') }}"></script>
+<script type="text/javascript" src="{{ config('services.midtrans.is_production') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}" data-client-key="{{ config('services.midtrans.client_key') }}"></script>
 <script>
     function checkout(planId) {
         if (!confirm('Lanjutkan proses pembayaran untuk paket ini?')) return;

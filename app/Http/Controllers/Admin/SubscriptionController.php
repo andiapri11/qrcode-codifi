@@ -147,7 +147,7 @@ class SubscriptionController extends Controller
 
                     // Update School Subscription
                     $school = $transaction->school;
-                    $type = $transaction->type;
+                    $type = $transaction->type; // 6_months, 1_year, lifetime
                     
                     if ($type == 'lifetime') {
                         $school->update([
@@ -158,12 +158,12 @@ class SubscriptionController extends Controller
                     } else {
                         $months = $type == '6_months' ? 6 : 12;
                         $maxLinks = $type == '6_months' ? 10 : 20;
-                        $currentExpiry = $school->subscription_expires_at && $school->subscription_expires_at->isFuture() 
+                        $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
                             ? $school->subscription_expires_at 
                             : now();
                         
                         $school->update([
-                            'subscription_type' => 'year', // We use 'year' as label for non-lifetime
+                            'subscription_type' => 'year', // Standard premium label
                             'subscription_expires_at' => $currentExpiry->addMonths($months),
                             'max_links' => $maxLinks,
                         ]);
@@ -175,6 +175,8 @@ class SubscriptionController extends Controller
                 }
             }
         }
+
+        return response()->json(['status' => 'success'], 200);
 
     }
 
