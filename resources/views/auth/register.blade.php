@@ -191,6 +191,16 @@
                             </div>
                             <p id="error-password" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n="error_password">Kata sandi minimal 8 karakter!</p>
                         </div>
+
+                        <div class="space-y-1">
+                            <div class="input-pill flex items-center p-1 md:p-1.5 group">
+                                <div class="icon-circle mr-3 md:mr-4">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" /></svg>
+                                </div>
+                                <input type="password" name="password_confirmation" id="password_confirmation" required placeholder="Konfirmasi Kata Sandi" data-i18n-placeholder="confirm_password_placeholder" class="bg-transparent w-full outline-none text-slate-600 dark:text-slate-300 font-semibold text-sm md:text-base placeholder:text-slate-400 pr-4 md:pr-6" />
+                            </div>
+                            <p id="error-password-mismatch" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n="error_password_mismatch">Konfirmasi sandi tidak cocok!</p>
+                        </div>
                     </div>
 
                     <div class="pt-6">
@@ -243,10 +253,12 @@
                 email_placeholder: "Alamat Email",
                 school_placeholder: "Nama Sekolah / Instansi",
                 password_placeholder: "Buat Kata Sandi",
+                confirm_password_placeholder: "Konfirmasi Kata Sandi",
                 error_name: "Silakan isi nama lengkap!",
                 error_email: "Alamat email tidak boleh kosong!",
                 error_school: "Nama instansi wajib diisi!",
                 error_password: "Kata sandi minimal 8 karakter!",
+                error_password_mismatch: "Konfirmasi sandi tidak cocok!",
                 reg_btn: "Daftar",
                 has_account: "Sudah memiliki akun?",
                 login_now: "Log in sekarang",
@@ -265,10 +277,12 @@
                 email_placeholder: "Email Address",
                 school_placeholder: "Institution / School Name",
                 password_placeholder: "Create Password",
+                confirm_password_placeholder: "Confirm Password",
                 error_name: "Please enter full name!",
                 error_email: "Email address cannot be empty!",
                 error_school: "Institution name is required!",
                 error_password: "Password min. 8 characters!",
+                error_password_mismatch: "Passwords do not match!",
                 reg_btn: "Sign Up",
                 has_account: "Already have an account?",
                 login_now: "Sign in now",
@@ -330,12 +344,25 @@
         }
         function validateForm() {
             let isValid = true;
-            ['name', 'email', 'school_name', 'password'].forEach(field => {
+            // Clear all errors first
+            document.querySelectorAll('[id^="error-"]').forEach(el => el.classList.add('hidden'));
+            
+            ['name', 'email', 'school_name', 'password', 'password_confirmation'].forEach(field => {
                 if (!document.getElementById(field).value.trim()) {
-                    document.getElementById('error-' + field).classList.remove('hidden');
+                    const errEl = document.getElementById('error-' + field);
+                    if (errEl) errEl.classList.remove('hidden');
                     isValid = false;
                 }
             });
+
+            // Specific check for password match
+            const pass = document.getElementById('password').value;
+            const confirm = document.getElementById('password_confirmation').value;
+            if (pass && confirm && pass !== confirm) {
+                document.getElementById('error-password-mismatch').classList.remove('hidden');
+                isValid = false;
+            }
+
             return isValid;
         }
     </script>
