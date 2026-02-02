@@ -208,11 +208,11 @@
                                 @endif
 
                                 @if($trx->status == 'success')
-                                    <a href="{{ route('subscription.transactions.invoice', $trx->id) }}?download=1" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-lg transition-all border border-slate-200 dark:border-slate-700 group">
-                                        <svg class="w-3.5 h-3.5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                                        <span class="text-[8px] font-black uppercase tracking-widest">Invoice</span>
-                                    </a>
-                                @endif
+                                    <button onclick="downloadInvoice('{{ route('subscription.transactions.invoice', $trx->id) }}?download=1', this)" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-lg transition-all border border-slate-200 dark:border-slate-700 group">
+                                         <svg class="w-3.5 h-3.5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                         <span class="text-[8px] font-black uppercase tracking-widest label-text">Invoice</span>
+                                     </button>
+                                 @endif
 
                                 @if($isSuperAdmin)
                                     <form action="{{ route('subscription.transactions.destroy', $trx->id) }}" method="POST" onsubmit="return confirm('Hapus riwayat transaksi ini?')" class="inline ml-2">
@@ -373,5 +373,44 @@
         });
     }
 </script>
+<iframe id="downloadFrame" class="hidden"></iframe>
+<script>
+        let lastDownloadBtn = null;
+        let originalBtnHtml = '';
+
+        function downloadInvoice(url, btn) {
+            if (lastDownloadBtn) return; // Prevent multiple clicks
+
+            lastDownloadBtn = btn;
+            originalBtnHtml = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.querySelector('.label-text').innerText = 'WAIT...';
+            btn.classList.add('animate-pulse');
+
+            const frame = document.getElementById('downloadFrame');
+            frame.src = url;
+            
+            // Safety timeout to reset button if something goes wrong
+            setTimeout(() => {
+                if (lastDownloadBtn) resetDownloadBtn();
+            }, 8000);
+        }
+
+        function resetDownloadBtn() {
+            if (lastDownloadBtn) {
+                lastDownloadBtn.disabled = false;
+                lastDownloadBtn.innerHTML = originalBtnHtml;
+                lastDownloadBtn.classList.remove('animate-pulse');
+                lastDownloadBtn = null;
+            }
+        }
+
+        window.addEventListener('message', function(event) {
+            if (event.data === 'download-complete') {
+                resetDownloadBtn();
+            }
+        });
+    </script>
 @endif
 @endsection
