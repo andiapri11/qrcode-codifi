@@ -176,6 +176,16 @@ class SubscriptionController extends Controller
             }
         }
 
-        return response()->json(['status' => 'ok']);
+    }
+
+    public function destroyTransaction(Transaction $transaction)
+    {
+        if (Auth::user()->role !== 'superadmin') {
+            return abort(403, 'Unauthorized action.');
+        }
+
+        $transaction->delete();
+
+        return back()->with('success', 'Riwayat transaksi berhasil dihapus.');
     }
 }

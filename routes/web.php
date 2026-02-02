@@ -55,6 +55,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Subscription & Payments
     Route::get('/subscription', [\App\Http\Controllers\Admin\SubscriptionController::class, 'index'])->name('subscription.index');
     Route::post('/subscription/checkout', [\App\Http\Controllers\Admin\SubscriptionController::class, 'checkout'])->name('subscription.checkout');
+    Route::delete('/subscription/transactions/{transaction}', [\App\Http\Controllers\Admin\SubscriptionController::class, 'destroyTransaction'])->name('subscription.transactions.destroy');
 
     // School Management
     Route::resource('schools', SchoolController::class);
