@@ -124,7 +124,7 @@ class GoogleController extends Controller
         // 2. Update User
         $user->update([
             'school_id' => $school->id,
-            'role' => 'admin',
+            'role' => 'school_admin',
             'password' => Hash::make($request->password),
         ]);
 
