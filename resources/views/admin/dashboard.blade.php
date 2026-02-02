@@ -9,7 +9,7 @@
     $isSuperAdmin = $user->role === 'superadmin';
 @endphp
 
-<div class="space-y-8 animate-in fade-in duration-700">
+<div class="space-y-5 animate-in fade-in duration-700">
     
     @if($isSuperAdmin)
     <!-- ========================================================= -->
@@ -80,70 +80,104 @@
     <!-- ========================================================= -->
 
     <!-- Header / Banner Area -->
-    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-[2.5rem] p-8 md:p-10 text-white shadow-xl shadow-blue-900/10 relative overflow-hidden">
-        <!-- Decoration -->
-        <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-            <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/></svg>
+    <div class="bg-gradient-to-br from-[#3b59f8] to-[#4338ca] rounded-[2rem] p-5 md:p-6 text-white shadow-2xl shadow-blue-900/10 relative overflow-hidden">
+        <!-- Background Decorative Shapes -->
+        <div class="absolute top-0 right-0 w-full h-full pointer-events-none opacity-[0.07]">
+            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M50 0 L100 50 L50 100 L0 50 Z" fill="white"/>
+            </svg>
         </div>
         
-        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-                <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md text-[10px] font-black uppercase tracking-widest mb-3 border border-white/20">Dashboard Instansi</span>
-                <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-2">Halo, {{ Str::limit($user->name, 20) }} 👋</h2>
-                <p class="text-blue-100 font-medium text-sm md:text-base opacity-90">{{ $user->school->name ?? 'Belum ada instansi' }}</p>
+        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-10">
+            <div class="flex-1">
+                <div class="inline-flex items-center px-4 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/20 mb-3 shadow-sm">
+                    <span class="text-[8px] font-extrabold uppercase tracking-[0.15em] text-white">Dashboard Instansi</span>
+                </div>
                 
-                <div class="mt-6 flex flex-wrap gap-4">
-                    <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/10">
-                        <span class="text-xs font-bold text-blue-100 uppercase tracking-wider">Status:</span>
-                        @if($user->school && $user->school->is_active)
-                            <span class="text-xs font-black text-emerald-300 uppercase tracking-widest flex items-center gap-1">
-                                <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span> Aktif
+                <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">Halo, {{ strtolower(explode(' ', $user->name)[0]) }} 👋</h2>
+                <p class="text-blue-100 font-bold text-xs opacity-90 mb-4">{{ strtolower($user->school->name ?? 'belum ada instansi') }}</p>
+                
+                <div class="flex flex-wrap gap-2">
+                    <!-- Status -->
+                    <div class="flex items-center gap-2 bg-white/10 backdrop-blur-[10px] rounded-lg px-3 py-1.5 border border-white/10">
+                        <span class="text-[8px] font-black uppercase tracking-widest text-blue-50">Status:</span>
+                        <div class="flex items-center gap-1">
+                            @php
+                                $isActive = $user->school && $user->school->isSubscriptionActive();
+                            @endphp
+                            <span class="w-1.5 h-1.5 rounded-full {{ $isActive ? 'bg-[#34d399]' : 'bg-rose-500' }}"></span>
+                            <span class="text-[8px] font-black uppercase tracking-widest {{ $isActive ? 'text-[#34d399]' : 'text-rose-500' }}">
+                                {{ $isActive ? 'Aktif' : 'Non-Aktif' }}
                             </span>
-                        @else
-                            <span class="text-xs font-black text-red-300 uppercase tracking-widest">Suspend</span>
-                        @endif
+                        </div>
                     </div>
                     
-                    <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/10">
-                        <span class="text-xs font-bold text-blue-100 uppercase tracking-wider">Paket:</span>
-                        <span class="text-xs font-black text-white uppercase tracking-widest">
-                            {{ $user->school->subscription_type === 'year' ? 'Tahunan' : ($user->school->subscription_type === 'lifetime' ? 'Lifetime' : 'Trial 3 Hari') }}
+                    <!-- Paket -->
+                    <div class="flex items-center gap-2 bg-white/10 backdrop-blur-[10px] rounded-lg px-3 py-1.5 border border-white/10">
+                        <span class="text-[8px] font-black uppercase tracking-widest text-blue-50">Paket:</span>
+                        <span class="text-[8px] font-black uppercase tracking-widest text-white">
+                            @if($user->school)
+                                {{ $user->school->subscription_type === 'trial' ? 'Masa Trial' : ($user->school->subscription_type === 'lifetime' ? 'Lifetime' : 'Premium') }}
+                            @else
+                                -
+                            @endif
                         </span>
                     </div>
-
-                    @if($user->school->subscription_type !== 'lifetime')
-                    <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/10">
-                        <span class="text-xs font-bold text-blue-100 uppercase tracking-wider">Exp:</span>
-                        <span class="text-xs font-black text-white">
-                            {{ $user->school->subscription_expires_at ? $user->school->subscription_expires_at->format('d M Y') : 'N/A' }}
+ 
+                    <!-- Exp -->
+                    <div class="flex items-center gap-2 bg-white/10 backdrop-blur-[10px] rounded-lg px-3 py-1.5 border border-white/10">
+                        <span class="text-[8px] font-black uppercase tracking-widest text-blue-50">Exp:</span>
+                        <span class="text-[8px] font-black uppercase tracking-widest text-white">
+                            @if($user->school)
+                                {{ $user->school->subscription_type === 'lifetime' ? '∞' : ($user->school->subscription_expires_at ? $user->school->subscription_expires_at->format('d M y') : '-') }}
+                            @else
+                                -
+                            @endif
                         </span>
                     </div>
-                    @endif
                 </div>
             </div>
             
-            <div class="flex-shrink-0 flex flex-col gap-3">
-               @if($user->school->subscription_type === 'trial')
-               <a href="{{ route('subscription.index') }}" class="group bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:brightness-110 transition-all rounded-2xl px-6 py-4 flex items-center gap-3 shadow-lg shadow-orange-500/30">
-                   <div class="bg-white/20 rounded-xl p-2 transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            <!-- Right-side Buttons -->
+            <div class="flex-shrink-0 flex flex-col gap-3 w-full lg:w-[280px]">
+                <!-- Upgrade Button -->
+               <a href="{{ route('subscription.index') }}" class="group relative bg-gradient-to-r from-[#ffb129] to-[#ff7d1f] rounded-2xl p-3.5 flex items-center gap-3.5 shadow-xl shadow-orange-600/30 border border-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+                   <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:bg-white/30 transition-colors shrink-0">
+                        <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                    </div>
                    <div class="text-left">
-                       <span class="block text-[10px] text-white/80 font-bold uppercase tracking-wider">Masa Trial</span>
-                       <span class="block text-sm font-black uppercase tracking-tight">Upgrade Paket</span>
+                       <span class="block text-[8px] text-white/90 font-black uppercase tracking-widest mb-0.5 leading-none">Masa Trial</span>
+                       <span class="block text-sm font-black uppercase tracking-tight leading-none">Upgrade Paket</span>
+                   </div>
+               </a>
+
+               <!-- Shortcut Button -->
+               @php
+                   $isTrial = Auth::user()->role !== 'superadmin' && Auth::user()->school && Auth::user()->school->subscription_type === 'trial';
+                   $limitReached = $isTrial && $stats['total_links'] >= 1;
+               @endphp
+
+                @if($limitReached)
+               <div class="group relative bg-slate-100 rounded-2xl p-3.5 flex items-center gap-3.5 border border-slate-200 opacity-80 cursor-not-allowed">
+                   <div class="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400 shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                   </div>
+                   <div class="text-left">
+                       <span class="block text-[8px] text-slate-400 font-black uppercase tracking-widest mb-0.5 leading-none">Limit Tercapai</span>
+                       <span class="block text-sm font-black uppercase tracking-tight leading-none text-slate-400">Barcode Terkunci</span>
+                   </div>
+               </div>
+               @else
+               <a href="{{ route('links.create') }}" class="group relative bg-white rounded-2xl p-3.5 flex items-center gap-3.5 shadow-xl shadow-black/5 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-slate-100">
+                   <div class="w-10 h-10 bg-[#eff6ff] rounded-xl flex items-center justify-center group-hover:bg-[#dbeafe] transition-colors shrink-0">
+                        <svg class="w-5 h-5 text-[#3b82f6]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" /></svg>
+                   </div>
+                   <div class="text-left">
+                       <span class="block text-[8px] text-slate-400 font-black uppercase tracking-widest mb-0.5 leading-none">Shortcut</span>
+                       <span class="block text-sm font-black uppercase tracking-tight leading-none text-slate-800">Buat Barcode Baru</span>
                    </div>
                </a>
                @endif
-
-               <a href="{{ route('links.create') }}" class="group bg-white text-blue-600 hover:bg-blue-50 transition-all rounded-2xl px-6 py-4 flex items-center gap-3 shadow-lg shadow-black/5">
-                   <div class="bg-blue-100 rounded-xl p-2 group-hover:bg-blue-200 transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
-                   </div>
-                   <div class="text-left">
-                       <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Shortcut</span>
-                       <span class="block text-sm font-black uppercase tracking-tight">Buat Barcode Baru</span>
-                   </div>
-               </a>
             </div>
         </div>
     </div>
@@ -151,41 +185,42 @@
     <!-- Stats Row User -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Total Links -->
-        <div class="bg-white dark:bg-slate-800 rounded-[2rem] p-8 shadow-sm border border-slate-100 dark:border-slate-700 relative overflow-hidden group">
-            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-indigo-50 dark:bg-indigo-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-            <div class="relative z-10">
-                <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/40 rounded-2xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+        <div class="bg-white dark:bg-slate-800 rounded-[1.5rem] p-5 shadow-sm border border-slate-100 dark:border-slate-700 relative overflow-hidden group">
+            <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-indigo-50 dark:bg-indigo-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+            <div class="relative z-10 flex items-center gap-4">
+                <div class="w-11 h-11 bg-indigo-100 dark:bg-indigo-900/40 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
                 </div>
-                <h3 class="text-3xl font-black text-slate-900 dark:text-white mb-1">{{ $stats['total_links'] }}</h3>
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Barcode Ujian Aktif</p>
-                @if($user->school->subscription_type === 'trial')
-                    <p class="mt-4 text-[10px] text-rose-500 font-bold bg-rose-50 dark:bg-rose-900/20 rounded-lg py-1 px-2 inline-block">Limit: 1 Barcode (Trial)</p>
-                @endif
+                <div>
+                    <h3 class="text-2xl font-black text-slate-900 dark:text-white leading-none">{{ $stats['total_links'] }}</h3>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Barcode Aktif</p>
+                </div>
             </div>
         </div>
 
         <!-- Total Scans -->
-        <div class="bg-white dark:bg-slate-800 rounded-[2rem] p-8 shadow-sm border border-slate-100 dark:border-slate-700 relative overflow-hidden group">
-            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-emerald-50 dark:bg-emerald-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-            <div class="relative z-10">
-                <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/40 rounded-2xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+        <div class="bg-white dark:bg-slate-800 rounded-[1.5rem] p-5 shadow-sm border border-slate-100 dark:border-slate-700 relative overflow-hidden group">
+            <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-emerald-50 dark:bg-emerald-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+            <div class="relative z-10 flex items-center gap-4">
+                <div class="w-11 h-11 bg-emerald-100 dark:bg-emerald-900/40 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                 </div>
-                <h3 class="text-3xl font-black text-slate-900 dark:text-white mb-1">{{ number_format($stats['total_scans']) }}</h3>
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Total Aktivitas Scan</p>
+                <div>
+                    <h3 class="text-2xl font-black text-slate-900 dark:text-white leading-none">{{ number_format($stats['total_scans']) }}</h3>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Total Scan</p>
+                </div>
             </div>
         </div>
         
         <!-- Info Card -->
-        <div class="bg-indigo-900 rounded-[2rem] p-8 shadow-lg relative overflow-hidden text-white flex flex-col justify-between">
+        <div class="bg-indigo-900 rounded-[1.5rem] p-5 shadow-lg relative overflow-hidden text-white flex flex-col justify-between h-full">
             <div class="relative z-10">
-                 <h4 class="font-bold text-lg mb-2">Pusat Bantuan</h4>
-                 <p class="text-xs text-indigo-200 leading-relaxed mb-4">Butuh bantuan atau perpanjangan paket? Hubungi admin pusat kami.</p>
-                 <a href="#" class="inline-block bg-white text-indigo-900 text-[10px] font-black uppercase tracking-widest px-4 py-3 rounded-xl hover:bg-indigo-50 transition-colors">Hubungi Support</a>
+                 <h4 class="font-bold text-sm mb-1 uppercase tracking-tight">Pusat Bantuan</h4>
+                 <p class="text-[10px] text-indigo-200 leading-snug mb-3">Butuh bantuan atau perpanjangan paket?</p>
+                 <a href="#" class="inline-block bg-white text-indigo-900 text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-indigo-50 transition-colors">Hubungi Support</a>
             </div>
-            <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none">
-                <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+            <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none translate-x-4 translate-y-4">
+                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
             </div>
         </div>
     </div>
@@ -194,7 +229,8 @@
     <!-- Middle Row: Analytics (Common for both but simplified visuals for user) -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <!-- Traffic Analysis -->
-        <div class="{{ $isSuperAdmin ? 'lg:col-span-8' : 'lg:col-span-12' }} bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
+        @if($isSuperAdmin)
+        <div class="lg:col-span-8 bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
             <div class="flex items-center justify-between mb-8">
                 <div>
                     <h4 class="text-sm font-black text-slate-800 dark:text-white uppercase tracking-tight">Statistik Aktivitas</h4>
@@ -203,6 +239,7 @@
             </div>
             <div id="mixed-chart" class="w-full h-[350px]"></div>
         </div>
+        @endif
 
         @if($isSuperAdmin)
         <!-- System Utilization (Superadmin Only) -->
@@ -239,48 +276,70 @@
         @endif
     <!-- Guide / Steps Section -->
     @if(!$isSuperAdmin)
-    <!-- Guide / Steps Section (User Only) -->
-    <div class="lg:col-span-12 bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-700 mt-8">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+    <div class="lg:col-span-12 mt-4 mb-4">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 px-1">
             <div>
-                <h4 class="text-lg font-black text-slate-900 dark:text-white tracking-tight">Petunjuk Penggunaan</h4>
-                <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Langkah mudah memulai ujian dengan Schola CBT.</p>
+                <span class="text-[9px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.2em] mb-1.5 block">Quick Start Guide</span>
+                <h4 class="text-xl md:text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-none">Petunjuk Penggunaan</h4>
+                <p class="text-[9px] font-semibold text-slate-400 dark:text-slate-500 mt-1.5 uppercase tracking-widest leading-none">Kelola ujian digital dalam 4 langkah mudah</p>
             </div>
-            <a href="#" class="text-[10px] font-bold text-blue-600 hover:text-blue-700 bg-blue-50 dark:bg-blue-900/20 px-4 py-3 rounded-xl transition-colors text-center whitespace-nowrap">
-                📄 Download Panduan PDF
+            <a href="#" class="inline-flex items-center gap-2 text-[9px] font-black text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 px-4 py-2.5 rounded-xl transition-all shadow-sm">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                UNDUH PANDUAN (PDF)
             </a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Step 1 -->
-            <div class="relative group bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-transparent hover:border-blue-100 dark:hover:border-slate-700 transition-all">
-                <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center font-black text-lg mb-4 shadow-sm group-hover:scale-110 transition-transform">1</div>
-                <h5 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">Buat Barcode</h5>
-                <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">Masuk ke menu "Data Barcode", buat link ujian baru ke Google Forms/CBT.</p>
+            <div class="group relative bg-white dark:bg-slate-800 p-6 rounded-[2rem] border border-slate-50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-500">
+                <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-inner">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-[8px] font-black bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full uppercase tracking-tighter">Mulai</span>
+                </div>
+                <h5 class="text-sm font-black text-slate-900 dark:text-white mb-2 tracking-tight">Konfigurasi Tautan</h5>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed font-bold opacity-80">Daftarkan URL ujian di menu <b>"Data Barcode"</b> untuk generate QR.</p>
             </div>
             
             <!-- Step 2 -->
-            <div class="relative group bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-transparent hover:border-indigo-100 dark:hover:border-slate-700 transition-all">
-                <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center font-black text-lg mb-4 shadow-sm group-hover:scale-110 transition-transform">2</div>
-                <h5 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">Bagikan QR</h5>
-                <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">Tampilkan QR Code di layar kelas atau cetak untuk discan siswa.</p>
+            <div class="group relative bg-white dark:bg-slate-800 p-6 rounded-[2rem] border border-slate-50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-500">
+                <div class="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500 shadow-inner">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" /></svg>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-[8px] font-black bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded-full uppercase tracking-tighter">Distribusi</span>
+                </div>
+                <h5 class="text-sm font-black text-slate-900 dark:text-white mb-2 tracking-tight">Distribusi QR</h5>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed font-bold opacity-80">Cetak atau tampilkan QR Code kepada seluruh siswa peserta ujian.</p>
             </div>
 
             <!-- Step 3 -->
-            <div class="relative group bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-transparent hover:border-emerald-100 dark:hover:border-slate-700 transition-all">
-                <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center font-black text-lg mb-4 shadow-sm group-hover:scale-110 transition-transform">3</div>
-                <h5 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">Scan di App</h5>
-                <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-normal mb-3">Siswa wajib pakai aplikasi "Schola Exambrowser" untuk scan.</p>
-                <a href="#" class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-widest text-emerald-600 hover:text-emerald-700">
-                    Get App <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            <div class="group relative bg-white dark:bg-slate-800 p-6 rounded-[2rem] border border-slate-50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-500">
+                <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500 shadow-inner">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-[8px] font-black bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full uppercase tracking-tighter">Aktivasi</span>
+                </div>
+                <h5 class="text-sm font-black text-slate-900 dark:text-white mb-2 tracking-tight">Aplikasi Client</h5>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed font-bold opacity-80 mb-4">Gunakan <b>Schola ExamBrowser</b> untuk scan & mengerjakan ujian.</p>
+                <a href="#" class="inline-flex items-center justify-between w-full bg-slate-900 dark:bg-slate-700 text-white px-4 py-2 rounded-xl group/btn hover:bg-black transition-colors">
+                    <span class="text-[9px] font-black uppercase tracking-widest">Get App</span>
+                    <svg class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
             </div>
 
             <!-- Step 4 -->
-            <div class="relative group bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-transparent hover:border-amber-100 dark:hover:border-slate-700 transition-all">
-                <div class="w-10 h-10 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center font-black text-lg mb-4 shadow-sm group-hover:scale-110 transition-transform">4</div>
-                <h5 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">Monitoring</h5>
-                <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">Pantau kehadiran dan status ujian siswa secara realtime di sini.</p>
+            <div class="group relative bg-white dark:bg-slate-800 p-6 rounded-[2rem] border border-slate-50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-500">
+                <div class="w-12 h-12 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-amber-600 group-hover:text-white transition-all duration-500 shadow-inner">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                </div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-[8px] font-black bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 px-2 py-0.5 rounded-full uppercase tracking-tighter">Pantau</span>
+                </div>
+                <h5 class="text-sm font-black text-slate-900 dark:text-white mb-2 tracking-tight">Monitoring Realtime</h5>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed font-bold opacity-80">Pantau kehadiran dan progres siswa selama ujian berlangsung.</p>
             </div>
         </div>
     </div>
@@ -293,6 +352,7 @@
         const primaryColor = '#3b82f6';
         const secondaryColor = '#10b981';
         
+        @if($isSuperAdmin)
         // Mixed Activity Chart
         // For User, we might focus more on Activity (Scans/Exams) and less on "Revenue" if it's 0
         new ApexCharts(document.querySelector("#mixed-chart"), {
@@ -301,17 +361,15 @@
                 type: 'column',
                 data: @json($chartData['exams'])
             }, 
-            @if($isSuperAdmin)
             {
                 name: 'Pendapatan (IDR)',
                 type: 'line',
                 data: @json($chartData['revenue'])
             }
-            @endif
             ],
             chart: { height: 350, type: 'line', stacked: false, toolbar: { show: false }, fontFamily: 'Outfit, sans-serif' },
             stroke: { width: [0, 3], curve: 'smooth' },
-            colors: @if($isSuperAdmin) [primaryColor, secondaryColor] @else [primaryColor] @endif,
+            colors: [primaryColor, secondaryColor],
             plotOptions: { bar: { columnWidth: '45%', borderRadius: 8 } },
             fill: { opacity: [0.85, 1], type: ['solid', 'gradient'] },
             labels: @json($chartData['labels']),
@@ -321,18 +379,17 @@
                 {
                     title: { text: "Aktivitas", style: { color: primaryColor, fontWeight: 800, fontSize: '9px', uppercase: true } },
                     labels: { style: { colors: '#94a3b8' } }
-                }
-                @if($isSuperAdmin)
-                , {
+                }, 
+                {
                     opposite: true,
                     title: { text: "Revenue", style: { color: secondaryColor, fontWeight: 800, fontSize: '9px', uppercase: true } },
                     labels: { formatter: function(val) { return 'Rp ' + (val/1000) + 'k' }, style: { colors: '#94a3b8' } }
                 }
-                @endif
             ],
             grid: { borderColor: '#f1f5f9', strokeDashArray: 4 },
             legend: { position: 'top', horizontalAlign: 'right', fontSize: '11px', fontWeight: 700, labels: { colors: '#64748b' } }
         }).render();
+        @endif
 
         @if($isSuperAdmin)
         // Main Radial Progress

@@ -13,9 +13,20 @@
         </button>
         
         <!-- Trigger Modal Create -->
-        <button onclick="openCreateModal()" class="bg-indigo-600 text-white px-6 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition-all flex items-center gap-2">
-            <span>➕</span> Buat Barcode Baru
-        </button>
+        @php
+            $isTrial = Auth::user()->role !== 'superadmin' && Auth::user()->school && Auth::user()->school->subscription_type === 'trial';
+            $limitReached = $isTrial && $links->total() >= 1;
+        @endphp
+
+        @if($limitReached)
+            <button disabled class="bg-slate-100 text-slate-400 px-6 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center gap-2 cursor-not-allowed border border-slate-200" title="Limit Barcode Trial Tercapai">
+                <span class="opacity-50">🔒</span> Limit Tercapai
+            </button>
+        @else
+            <button onclick="openCreateModal()" class="bg-indigo-600 text-white px-6 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition-all flex items-center gap-2">
+                <span>➕</span> Buat Barcode Baru
+            </button>
+        @endif
     </div>
 </div>
 

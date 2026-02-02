@@ -216,6 +216,25 @@
         </div>
     </div>
 
+    <!-- Custom High-Fidelity Modal -->
+    <div id="customModal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-[420px] rounded-[2.5rem] shadow-2xl border border-white dark:border-slate-800 overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+            <div class="p-8 md:p-10 text-center">
+                <!-- Icon Area -->
+                <div id="modalIconContainer" class="w-20 h-20 mx-auto rounded-[2rem] flex items-center justify-center mb-8 shadow-inner border">
+                    <div id="modalIcon" class="text-4xl"></div>
+                </div>
+                
+                <h3 id="modalTitle" class="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-3"></h3>
+                <p id="modalText" class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest leading-loose mb-10 px-4"></p>
+                
+                <button onclick="closeCustomModal()" class="w-full py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black text-[10px] uppercase tracking-[0.3em] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-slate-200 dark:shadow-none">
+                    Tutup Dialog
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const sidebar = document.getElementById('sidebar');
         const mobileToggle = document.getElementById('mobileToggle');
@@ -239,6 +258,51 @@
         function toggleDarkMode() {
             const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('dark-mode', isDark);
+        }
+
+        // Custom Modal Logic
+        function showAlert(title, text, type = 'info') {
+            const modal = document.getElementById('customModal');
+            const content = document.getElementById('modalContent');
+            const iconContainer = document.getElementById('modalIconContainer');
+            const icon = document.getElementById('modalIcon');
+            const titleEl = document.getElementById('modalTitle');
+            const textEl = document.getElementById('modalText');
+
+            // Reset and apply styles
+            iconContainer.className = "w-20 h-20 mx-auto rounded-[2rem] flex items-center justify-center mb-8 shadow-inner border transition-all duration-500";
+            
+            if (type === 'success') {
+                iconContainer.classList.add('bg-emerald-50', 'border-emerald-100', 'text-emerald-500');
+                icon.innerHTML = '✨';
+            } else if (type === 'error') {
+                iconContainer.classList.add('bg-rose-50', 'border-rose-100', 'text-rose-500');
+                icon.innerHTML = '⚠️';
+            } else {
+                iconContainer.classList.add('bg-blue-50', 'border-blue-100', 'text-blue-500');
+                icon.innerHTML = 'ℹ️';
+            }
+
+            titleEl.innerText = title;
+            textEl.innerText = text;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeCustomModal() {
+            const modal = document.getElementById('customModal');
+            const content = document.getElementById('modalContent');
+            
+            content.classList.add('scale-95', 'opacity-0');
+            content.classList.remove('scale-100', 'opacity-100');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
         }
 
         window.addEventListener('profile-photo-updated', (event) => {

@@ -128,7 +128,7 @@
                 };
 
                 qrImage.onerror = () => {
-                    alert('Gagal memproses QR. Cek koneksi atau coba lagi.');
+                    showAlert('Gagal', 'Gagal memproses QR. Cek koneksi atau coba lagi.', 'error');
                     loading.classList.add('hidden');
                     placeholder.classList.remove('hidden');
                 };
@@ -136,13 +136,13 @@
                 qrImage.src = qrUrl;
                 
             } else {
-                alert(data.message || 'Error creating link');
+                showAlert('Akses Terbatas', data.message || 'Gagal membuat tautan.', 'error');
                 loading.classList.add('hidden');
                 placeholder.classList.remove('hidden');
             }
         } catch (err) {
             console.error(err);
-            alert('Terjadi kesalahan sistem. Silakan coba beberapa saat lagi.');
+            showAlert('Sistem Sibuk', 'Terjadi kesalahan sistem. Silakan coba beberapa saat lagi.', 'error');
             loading.classList.add('hidden');
             placeholder.classList.remove('hidden');
         }
@@ -186,7 +186,7 @@
             })
             .catch(err => {
                 console.error('Download error:', err);
-                alert('Gagal mendownload sebagai PNG. Coba klik kanan gambar untuk simpan.');
+                showAlert('Unduhan Gagal', 'Gagal mendownload sebagai PNG. Coba klik kanan gambar untuk simpan.', 'error');
             });
     });
 </script>
