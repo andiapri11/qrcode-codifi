@@ -17,8 +17,8 @@ class UserController extends Controller
             abort(403, 'Akses Terbatas: Hanya Administrator Pusat yang dapat mengelola akun.');
         }
 
-        // Only Internal Admins (Super Admins) for System Central
-        $users = User::where('role', 'superadmin')->with('school')->latest()->get();
+        // Superadmin can see everyone
+        $users = User::with('school')->latest()->get();
         $schools = School::all();
 
         return view('admin.users.index', [

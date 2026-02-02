@@ -58,6 +58,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // School Management
     Route::resource('schools', SchoolController::class);
+    Route::post('schools/{school}/toggle-status', [SchoolController::class, 'toggleStatus'])->name('schools.toggle-status');
+
+    // System Settings (Placeholder)
+    Route::get('/settings', function() {
+        return view('admin.settings', ['title' => 'Pengaturan Sistem']);
+    })->name('admin.settings');
 
 
 

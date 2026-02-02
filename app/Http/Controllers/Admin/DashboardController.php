@@ -18,8 +18,10 @@ class DashboardController extends Controller
                 'total_schools' => School::count(),
                 'total_links' => ExamLink::count(),
                 'active_links' => ExamLink::where('is_active', true)->count(),
+                'total_revenue' => \App\Models\Transaction::where('status', 'success')->sum('amount'),
             ];
             $latestSchools = School::withCount('examLinks')->latest()->take(5)->get();
+            $latestTransactions = \App\Models\Transaction::with('school')->where('status', 'success')->latest()->take(5)->get();
         } else {
             $schoolId = $user->school_id;
             $stats = [
@@ -28,12 +30,14 @@ class DashboardController extends Controller
                 'active_links' => ExamLink::where('school_id', $schoolId)->where('is_active', true)->count(),
             ];
             $latestSchools = School::where('id', $schoolId)->withCount('examLinks')->get();
+            $latestTransactions = collect();
         }
 
         return view('admin.dashboard', [
             'title' => 'Dashboard Overview',
             'stats' => $stats,
-            'latestSchools' => $latestSchools
+            'latestSchools' => $latestSchools,
+            'latestTransactions' => $latestTransactions
         ]);
     }
 }

@@ -22,8 +22,16 @@ class SubscriptionController extends Controller
 
     public function index()
     {
-        $school = Auth::user()->school;
-        $transactions = Transaction::where('school_id', $school->id)->latest()->get();
+        $user = Auth::user();
+        $isSuperAdmin = $user->role === 'superadmin';
+        
+        if ($isSuperAdmin) {
+            $transactions = Transaction::with('school')->latest()->get();
+            $school = null;
+        } else {
+            $school = $user->school;
+            $transactions = Transaction::where('school_id', $school->id)->latest()->get();
+        }
         
         $plans = [
             [

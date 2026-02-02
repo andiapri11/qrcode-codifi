@@ -1,164 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Admin' }} | Schola CBT</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
+                            500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .sidebar-item-active { background-color: #EEF2FF; color: #4F46E5; }
-        .sidebar-item-hover:hover { background-color: #F8FAFC; }
+        
+        /* Sidebar Active State Customization */
+        .sidebar-item-active { 
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+        .sidebar-item-active svg { color: white !important; }
+        
+        .dark .sidebar-item-active {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(241, 245, 249, 1);
+        }
+        .dark .glass-header {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(30, 41, 59, 1);
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
     <!-- Page Wrapper -->
     <div class="flex h-screen overflow-hidden">
 
-        <!-- Sidebar (Light Premium Style) -->
-        <aside id="sidebar" class="absolute left-0 top-0 z-50 flex h-screen w-72 border-r border-slate-200 bg-white duration-300 ease-linear lg:static lg:translate-x-0 -translate-x-full">
+        <!-- Sidebar (Premium Minimalist) -->
+        <aside id="sidebar" class="absolute left-0 top-0 z-50 flex h-screen w-72 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f172a] duration-300 ease-in-out lg:static lg:translate-x-0 -translate-x-full">
             <div class="flex flex-col h-full w-full">
                 <!-- Sidebar Header -->
-                <div class="flex items-center justify-between px-6 py-8">
+                <div class="flex items-center justify-between px-8 py-10">
                     <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="w-10 h-10">
-                        <span class="text-slate-900 text-xl font-extrabold tracking-tight uppercase">Schola <span class="text-indigo-600">CBT</span></span>
+                        <div class="leading-none">
+                            <span class="text-slate-900 dark:text-white text-xl font-black tracking-tighter uppercase block">Schola <span class="text-blue-600 italic">CBT</span></span>
+                            <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 tracking-[0.2em] uppercase mt-1">Admin Panel</span>
+                        </div>
                     </a>
                 </div>
 
                 <!-- Sidebar Content -->
-                <div class="flex-1 overflow-y-auto no-scrollbar px-4 py-4">
-                    <nav class="space-y-1">
+                <div class="flex-1 overflow-y-auto no-scrollbar px-6 py-4">
+                    <nav class="space-y-2">
                         <!-- Dashboard -->
-                        <a href="{{ route('dashboard') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all {{ request()->is('dashboard') ? 'sidebar-item-active' : 'text-slate-600 sidebar-item-hover' }}">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 {{ request()->is('dashboard') ? 'text-indigo-600' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                </svg>
-                                <span class="font-semibold text-sm">Dashboard</span>
-                            </div>
-                            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all {{ request()->is('dashboard') ? 'sidebar-item-active' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-blue-600' }}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                            </svg>
+                            <span class="font-bold text-sm tracking-tight">Dashboard</span>
                         </a>
 
                         <!-- AI / Schools -->
                         @if(Auth::user()->role === 'superadmin')
-                        <a href="{{ route('schools.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all text-slate-600 sidebar-item-hover {{ request()->is('schools*') ? 'sidebar-item-active' : '' }}">
+                        <a href="{{ route('schools.index') }}" class="flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all {{ request()->is('schools*') ? 'sidebar-item-active' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-blue-600' }}">
                             <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 {{ request()->is('schools*') ? 'text-indigo-600' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                 </svg>
-                                <span class="font-semibold text-sm">Data Instansi</span>
+                                <span class="font-bold text-sm tracking-tight">Data Instansi</span>
                             </div>
-                            <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">New</span>
+                            <span class="bg-blue-600 text-white text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-tighter">New</span>
                         </a>
                         @endif
 
-
-
                         <div class="pt-6 pb-2 px-4">
-                            <span class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Support Tools</span>
+                            <span class="text-slate-400 dark:text-slate-600 text-[10px] font-black uppercase tracking-[0.2em]">CBT Tools</span>
                         </div>
 
                         <!-- Secure QR -->
-                        <a href="{{ route('links.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all text-slate-600 sidebar-item-hover {{ request()->is('links*') ? 'sidebar-item-active' : '' }}">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 {{ request()->is('links*') ? 'text-indigo-600' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                </svg>
-                                <span class="font-semibold text-sm">Data Barcode Ujian</span>
-                            </div>
+                        <a href="{{ route('links.index') }}" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all {{ request()->is('links*') ? 'sidebar-item-active' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-blue-600' }}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            <span class="font-bold text-sm tracking-tight">Barcode Ujian</span>
                         </a>
 
                         <div class="pt-6 pb-2 px-4">
-                            <span class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Pengaturan Sistem</span>
+                            <span class="text-slate-400 dark:text-slate-600 text-[10px] font-black uppercase tracking-[0.2em]">Management</span>
                         </div>
 
                         <!-- Users -->
-                        <a href="{{ route('users.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all text-slate-600 sidebar-item-hover {{ request()->is('users*') ? 'sidebar-item-active' : '' }}">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 {{ request()->is('users*') ? 'text-indigo-600' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                                </svg>
-                                <span class="font-semibold text-sm">Manajemen Admin</span>
-                            </div>
+                        <a href="{{ route('users.index') }}" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all {{ request()->is('users*') ? 'sidebar-item-active' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-blue-600' }}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                            <span class="font-bold text-sm tracking-tight">Manajemen Admin</span>
                         </a>
 
                         <!-- My Profile -->
-                        <a href="{{ route('profile.edit') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all text-slate-600 sidebar-item-hover {{ request()->is('profile*') ? 'sidebar-item-active' : '' }}">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 {{ request()->is('profile*') ? 'text-indigo-600' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span class="font-semibold text-sm">Profil Saya</span>
-                            </div>
+                        <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all {{ request()->is('profile*') ? 'sidebar-item-active' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-blue-600' }}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="font-bold text-sm tracking-tight">Profil Saya</span>
                         </a>
 
                         <!-- Subscription & Billing -->
-                        <a href="{{ route('subscription.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all text-slate-600 sidebar-item-hover {{ request()->is('subscription*') ? 'sidebar-item-active' : '' }}">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 {{ request()->is('subscription*') ? 'text-indigo-600' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                </svg>
-                                <span class="font-semibold text-sm">Langganan & Billing</span>
-                            </div>
+                        <a href="{{ route('subscription.index') }}" class="flex items-gap-3 px-4 py-3.5 rounded-2xl transition-all {{ request()->is('subscription*') ? 'sidebar-item-active' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-blue-600' }}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                            </svg>
+                            <span class="font-bold text-sm tracking-tight">Langganan & Billing</span>
                         </a>
+
+                        @if(Auth::user()->role === 'superadmin')
+                        <!-- System Settings -->
+                        <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all {{ request()->is('settings*') ? 'sidebar-item-active' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-blue-600' }}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span class="font-bold text-sm tracking-tight">Pengaturan Sistem</span>
+                        </a>
+                        @endif
                     </nav>
                 </div>
 
+                <!-- Sidebar Footer -->
+                <div class="p-6 border-t border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-4 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-2xl">
+                        <div class="h-10 w-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-black text-xs uppercase">
+                            {{ substr(Auth::user()->name, 0, 1) }}
+                        </div>
+                        <div class="overflow-hidden">
+                            <p class="text-xs font-black text-slate-800 dark:text-white truncate uppercase">{{ Auth::user()->name }}</p>
+                            <p class="text-[9px] font-bold text-slate-400 dark:text-slate-500 tracking-wider uppercase mt-0.5">{{ Auth::user()->role }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </aside>
 
         <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
-            <header class="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between">
-                <button id="mobileToggle" class="lg:hidden p-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-500">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-                <div class="flex items-center gap-4">
-                    <div class="hidden md:flex items-center bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 w-96 group focus-within:border-indigo-300 focus-within:bg-white transition-all">
+            <header class="glass-header px-8 py-5 flex items-center justify-between z-40">
+                <div class="flex items-center gap-6">
+                    <button id="mobileToggle" class="lg:hidden p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <div class="hidden md:flex items-center bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl px-5 py-2.5 w-96 group focus-within:border-blue-300 dark:focus-within:border-blue-500 focus-within:bg-white dark:focus-within:bg-slate-800 transition-all">
                         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                        <input type="text" placeholder="Cari data instansi atau link..." class="bg-transparent border-none outline-none ml-2 text-sm w-full font-medium">
+                        <input type="text" placeholder="Cari data instansi atau barcode..." class="bg-transparent border-none outline-none ml-2 text-sm w-full font-bold text-slate-600 dark:text-slate-300 placeholder:text-slate-400">
                     </div>
                 </div>
-                <div class="flex items-center gap-6">
-                    <!-- User Profile & Logout in Header -->
-                    <div class="flex items-center gap-4 border-l border-slate-200 pl-6 h-10">
-                        <div class="flex flex-col text-right hidden sm:flex">
-                            <span class="text-slate-900 text-sm font-bold leading-none mb-1">{{ Auth::user()->name }}</span>
-                            <span class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{{ Auth::user()->role }}</span>
-                        </div>
-                        
-                        @php
-                            $user = Auth::user();
-                            $profileLogo = ($user->role === 'school_admin' && $user->school) ? $user->school->logo_url : null;
-                        @endphp
+                
+                <div class="flex items-center gap-4">
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all text-slate-500">
+                        <svg id="moonIcon" class="w-5 h-5 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="sunIcon" class="w-5 h-5 text-yellow-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
 
-                        <div id="header-profile-box" class="h-10 w-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold shadow-indigo-100 shadow-md overflow-hidden border border-slate-100">
-                            @if($profileLogo)
-                                <img id="header-profile-img" src="{{ $profileLogo }}" class="w-full h-full object-cover">
-                            @else
-                                <span id="header-profile-initials">{{ ($user->role === 'school_admin' && $user->school) ? $user->school->initials : substr($user->name, 0, 1) }}</span>
-                            @endif
-                        </div>
-                        
-                        <a href="{{ route('logout.get') }}" class="p-2.5 bg-slate-100 text-slate-600 rounded-xl hover:bg-red-50 hover:text-red-600 transition-all shadow-sm border border-slate-200 group" title="Sign Out">
-                            <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-800 mx-1"></div>
+
+                    <!-- User Actions -->
+                    <div class="flex items-center gap-3">
+                        <a href="{{ route('logout.get') }}" class="flex items-center gap-2 p-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all border border-slate-200 dark:border-slate-700 group" title="Keluar">
+                            <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>
+                            <span class="text-xs font-black tracking-tight uppercase hidden sm:inline">Keluar</span>
                         </a>
                     </div>
                 </div>
             </header>
 
             <!-- Main Content Scroll -->
-            <main class="flex-1 overflow-y-auto no-scrollbar p-8">
-                <div class="max-w-screen-2xl mx-auto">
+            <main class="flex-1 overflow-y-auto no-scrollbar p-6 md:p-8">
+                <div class="max-w-screen-2xl mx-auto pb-10">
                     @yield('content')
                 </div>
             </main>
@@ -180,25 +227,26 @@
             }
         });
 
-        // Event listener for profile photo updates
-        window.addEventListener('profile-photo-updated', (event) => {
-            const headerImg = document.getElementById('header-profile-img');
-            const headerInitials = document.getElementById('header-profile-initials');
-            const profileBox = document.getElementById('header-profile-box');
+        // Dark Mode Logic
+        if (localStorage.getItem('dark-mode') === 'true' || (!localStorage.getItem('dark-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
 
-            if (event.detail.url) {
-                if (headerImg) {
-                    headerImg.src = event.detail.url + '?t=' + new Date().getTime();
-                } else {
-                    const img = document.createElement('img');
-                    img.id = 'header-profile-img';
-                    img.src = event.detail.url + '?t=' + new Date().getTime();
-                    img.className = 'w-full h-full object-cover';
-                    if (headerInitials) headerInitials.remove();
-                    profileBox.appendChild(img);
-                }
-            }
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('dark-mode', isDark);
+        }
+
+        window.addEventListener('profile-photo-updated', (event) => {
+            // Refreshes profile parts if needed
+            location.reload(); 
         });
+
+        // Language placeholder for future scalability
+        function changeLanguage(lang) {
+            localStorage.setItem('app-lang', lang);
+            location.reload();
+        }
     </script>
 </body>
 </html>
