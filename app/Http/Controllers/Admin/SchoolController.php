@@ -197,7 +197,7 @@ class SchoolController extends Controller
             $data['logo'] = $request->file('logo')->store('schools', 'public');
         }
 
-        if ($user->role === 'superadmin') {
+        if (strtolower($user->role) === 'superadmin') {
             $data['is_active'] = $request->is_active;
             $prevType = $school->subscription_type;
             $newType = $request->subscription_type;
