@@ -24,8 +24,10 @@ Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController
 
 // Custom Secure Migration Link (For Dokploy Ease of Use)
 Route::get('/system-auth-migrate-codifi', function () {
-    // Basic Security: Only allow if logged in as Admin (ID 1)
-    if (auth()->check() && auth()->id() == 1) {
+    // Multi-factor Security: Auth + Secret Key in ENV
+    $masterKey = env('MASTER_MIGRATE_KEY');
+    
+    if (auth()->check() && auth()->id() == 1 && request('key') === $masterKey) {
         try {
             \Illuminate\Support\Facades\Artisan::call('migrate', ["--force" => true]);
             return "✅ Migrasi Berhasil: " . \Illuminate\Support\Facades\Artisan::output();
@@ -34,20 +36,22 @@ Route::get('/system-auth-migrate-codifi', function () {
         }
     }
     return abort(404);
+})->middleware('throttle:5,1'); // Strictly limited attempts
+
+// Google Socialite Routes (Throttled)
+Route::middleware(['throttle:10,1'])->group(function () {
+    Route::get('auth/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google.login');
+    Route::get('auth/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
 });
 
-// Google Socialite Routes
-Route::get('auth/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('auth/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
-
 // Onboarding Routes for Google Users (Session Based or Auth Based)
-Route::middleware(['web'])->group(function () {
+Route::middleware(['web', 'auth', 'throttle:20,1'])->group(function () {
     Route::get('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'onboarding'])->name('auth.onboarding');
     Route::post('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'completeOnboarding'])->name('auth.onboarding.store');
 });
 
-// Midtrans Callback (Public)
-Route::post('/payments/midtrans/callback', [\App\Http\Controllers\Admin\SubscriptionController::class, 'callback']);
+// Midtrans Callback (Public - Heavily Throttled)
+Route::post('/payments/midtrans/callback', [\App\Http\Controllers\Admin\SubscriptionController::class, 'callback'])->middleware('throttle:10,1');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

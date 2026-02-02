@@ -12,9 +12,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->append(\App\Http\Middleware\SecurityHeadersMiddleware::class);
+        
         $middleware->validateCsrfTokens(except: [
             '/payments/midtrans/callback',
         ]);
+        
+        $middleware->throttleApi('api', 60); // Default API throttle
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

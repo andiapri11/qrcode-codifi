@@ -31,5 +31,13 @@ class AppServiceProvider extends ServiceProvider
                 // Silent error
             }
         }
+
+        // Global Password Hardening
+        \Illuminate\Validation\Rules\Password::defaults(function () {
+            return \Illuminate\Validation\Rules\Password::min(8)
+                ->letters()
+                ->numbers()
+                ->symbols();
+        });
     }
 }
