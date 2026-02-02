@@ -26,11 +26,11 @@ class SubscriptionController extends Controller
         $isSuperAdmin = $user->role === 'superadmin';
         
         if ($isSuperAdmin) {
-            $transactions = Transaction::with('school')->latest()->get();
+            $transactions = Transaction::with('school')->latest()->paginate(50);
             $school = null;
         } else {
             $school = $user->school;
-            $transactions = Transaction::where('school_id', $school->id)->latest()->get();
+            $transactions = Transaction::where('school_id', $school->id)->latest()->paginate(50);
         }
         
         $plans = [

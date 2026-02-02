@@ -18,7 +18,7 @@ class UserController extends Controller
         }
 
         // Only Internal Admins (Super Admins)
-        $users = User::where('role', 'superadmin')->latest()->get();
+        $users = User::where('role', 'superadmin')->latest()->paginate(25);
         $schools = []; // No school selection needed for internal admin usually
 
         return view('admin.users.index', [

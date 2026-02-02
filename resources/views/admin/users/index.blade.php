@@ -85,6 +85,11 @@
             </tbody>
         </table>
     </div>
+    @if($users->hasPages())
+        <div class="px-8 py-4 border-t border-slate-50 dark:border-slate-800">
+            {!! $users->links() !!}
+        </div>
+    @endif
 </div>
 
 <!-- CREATE USER MODAL -->

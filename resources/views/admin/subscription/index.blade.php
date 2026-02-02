@@ -233,6 +233,11 @@
                     </tbody>
                 </table>
             </div>
+            @if($transactions->hasPages())
+                <div class="px-8 py-4 border-t border-slate-50 dark:border-slate-800">
+                    {!! $transactions->links() !!}
+                </div>
+            @endif
         </div>
     </div>
 </div>
