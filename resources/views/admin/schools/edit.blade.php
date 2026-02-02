@@ -64,6 +64,7 @@
                 <div class="md:col-span-1">
                     <label class="block text-sm font-bold text-slate-700 mb-2 font-jakarta">Tipe Langganan</label>
                     <select name="subscription_type" id="subscription_type" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-bold text-slate-700">
+                        <option value="trial" {{ $school->subscription_type === 'trial' ? 'selected' : '' }}>TRIAL (3 Hari)</option>
                         <option value="year" {{ $school->subscription_type === 'year' ? 'selected' : '' }}>1 TAHUN / DURASI</option>
                         <option value="lifetime" {{ $school->subscription_type === 'lifetime' ? 'selected' : '' }}>LIFE TIME (FOREVER)</option>
                     </select>

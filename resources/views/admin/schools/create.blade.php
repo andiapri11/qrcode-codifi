@@ -110,7 +110,7 @@
                         <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-2 uppercase tracking-wide">Jenis Paket</label>
                         <div class="relative">
                             <select name="subscription_type" id="subscription_type" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm font-black text-slate-800 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500/50">
-                                <option value="trial" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">TRIAL (7 Hari)</option>
+                                <option value="trial" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">TRIAL (3 Hari)</option>
                                 <option value="year" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">TAHUNAN</option>
                                 <option value="lifetime" class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200">LIFETIME (Permanen)</option>
                             </select>
