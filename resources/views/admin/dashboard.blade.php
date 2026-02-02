@@ -8,60 +8,80 @@
     <!-- Top Row: Functional Stats -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Subscribed Schools -->
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:border-blue-200 transition-all hover:shadow-md">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Mitra Berlangganan</p>
-                <div class="flex items-center gap-2">
-                    <span class="text-emerald-500 text-xs">▲</span>
-                    <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ $stats['subscribed_schools'] }}</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase ml-1">Mitra</span>
+        <div class="group relative bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-200/50 overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-50/50 rounded-full blur-2xl group-hover:bg-blue-100/50 transition-colors"></div>
+            <div class="relative flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Mitra Berlangganan</p>
+                    <div class="flex items-center gap-2">
+                        <span class="text-emerald-500 text-xs font-black">▲</span>
+                        <span class="text-3xl font-black text-slate-800 tracking-tighter">{{ $stats['subscribed_schools'] }}</span>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Mitra</span>
+                    </div>
                 </div>
-            </div>
-            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shadow-sm border border-blue-100/50">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xlt shadow-lg shadow-blue-200 flex items-center justify-center text-white transform group-hover:rotate-6 transition-transform">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                </div>
             </div>
         </div>
 
         <!-- Total Link / Asset -->
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:border-indigo-200 transition-all hover:shadow-md">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Total Link QR Asset</p>
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ $stats['total_links'] }}</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase ml-1">Aset</span>
+        <div class="group relative bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/5 hover:border-indigo-200/50 overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-indigo-50/50 rounded-full blur-2xl group-hover:bg-indigo-100/50 transition-colors"></div>
+            <div class="relative flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Total Link QR Asset</p>
+                    <div class="flex items-center gap-2">
+                        <span class="text-3xl font-black text-slate-800 tracking-tighter">{{ $stats['total_links'] }}</span>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Aset</span>
+                    </div>
                 </div>
-            </div>
-            <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center shadow-sm border border-indigo-100/50">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h2M4 8h2m12 0h2M4 6h18M4 18h2m0-12v12m8-12v12m8-12v12M4 6h18M4 18h18" /></svg>
+                <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xlt shadow-lg shadow-indigo-200 flex items-center justify-center text-white transform group-hover:rotate-6 transition-transform">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h2M4 8h2m12 0h2M4 6h18M4 18h2m0-12v12m8-12v12m8-12v12M4 6h18M4 18h18" />
+                    </svg>
+                </div>
             </div>
         </div>
 
         <!-- Revenue Total -->
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:border-amber-200 transition-all hover:shadow-md">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Total Pendapatan</p>
-                <div class="flex items-center">
-                    <span class="text-[11px] font-black text-slate-400 mr-1">Rp</span>
-                    <span class="text-xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_revenue'], 0, ',', '.') }}</span>
+        <div class="group relative bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-500/5 hover:border-rose-200/50 overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-rose-50/50 rounded-full blur-2xl group-hover:bg-rose-100/50 transition-colors"></div>
+            <div class="relative flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Total Pendapatan</p>
+                    <div class="flex items-center">
+                        <span class="text-[12px] font-black text-slate-400 mr-1.5">Rp</span>
+                        <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_revenue'], 0, ',', '.') }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center shadow-sm border border-amber-100/50">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-12c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3m0-12V3m0 18v-3" /></svg>
+                <div class="w-14 h-14 bg-gradient-to-br from-rose-500 to-rose-600 rounded-2xlt shadow-lg shadow-rose-200 flex items-center justify-center text-white transform group-hover:rotate-6 transition-transform">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-12c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3m0-12V3m0 18v-3" />
+                    </svg>
+                </div>
             </div>
         </div>
 
         <!-- Total Users (Partner Admins) -->
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:border-emerald-200 transition-all hover:shadow-md">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Total User Mitra</p>
-                <div class="flex items-center gap-2">
-                    <span class="text-emerald-500 text-xs">+</span>
-                    <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ $stats['total_users'] }}</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase ml-1">Akun</span>
+        <div class="group relative bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/5 hover:border-emerald-200/50 overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-emerald-50/50 rounded-full blur-2xl group-hover:bg-emerald-100/50 transition-colors"></div>
+            <div class="relative flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Total User Mitra</p>
+                    <div class="flex items-center gap-2">
+                        <span class="text-emerald-500 text-xs font-black">+</span>
+                        <span class="text-3xl font-black text-slate-800 tracking-tighter">{{ $stats['total_users'] }}</span>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Akun</span>
+                    </div>
                 </div>
-            </div>
-            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center shadow-sm border border-emerald-100/50">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xlt shadow-lg shadow-emerald-200 flex items-center justify-center text-white transform group-hover:rotate-6 transition-transform">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
