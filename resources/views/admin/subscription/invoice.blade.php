@@ -128,18 +128,23 @@
         function downloadPdf() {
             const element = document.getElementById('invoice-content');
             const opt = {
-                margin:       0,
+                margin:       [0.2, 0],
                 filename:     'Invoice-{{ $transaction->reference }}.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true,
+                    scrollY: 0,
+                    windowWidth: 1100
+                },
                 jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
 
             // Show loading state
-            const btn = event.currentTarget;
+            const btn = document.querySelector('button[onclick="downloadPdf()"]');
             const originalContent = btn.innerHTML;
             btn.disabled = true;
-            btn.innerHTML = 'Generating PDF...';
+            btn.innerHTML = '<span class="animate-pulse">GENERATING PDF...</span>';
 
             html2pdf().set(opt).from(element).save().then(() => {
                 btn.disabled = false;
