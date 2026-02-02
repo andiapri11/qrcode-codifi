@@ -17,11 +17,15 @@ class School extends Model
         'is_active',
         'subscription_type',
         'subscription_expires_at',
+        'max_links',
+        'theme_color',
+        'supervisor_password',
     ];
 
     protected $casts = [
         'subscription_expires_at' => 'datetime',
         'is_active' => 'boolean',
+        'max_links' => 'integer',
     ];
 
     public function users()
@@ -45,6 +49,15 @@ class School extends Model
         }
 
         return $this->subscription_expires_at->isFuture();
+    }
+
+    public function canCreateMoreLinks()
+    {
+        if ($this->subscription_type === 'lifetime') {
+            return true;
+        }
+
+        return $this->examLinks()->count() < $this->max_links;
     }
 
     public function getLogoUrlAttribute()

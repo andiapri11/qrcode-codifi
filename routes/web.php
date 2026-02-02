@@ -41,9 +41,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'completeOnboarding'])->name('auth.onboarding.store');
 });
 
+// Midtrans Callback (Public)
+Route::post('/payments/midtrans/callback', [\App\Http\Controllers\Admin\SubscriptionController::class, 'callback']);
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
+    // Subscription & Payments
+    Route::get('/subscription', [\App\Http\Controllers\Admin\SubscriptionController::class, 'index'])->name('subscription.index');
+    Route::post('/subscription/checkout', [\App\Http\Controllers\Admin\SubscriptionController::class, 'checkout'])->name('subscription.checkout');
+
     // School Management
     Route::resource('schools', SchoolController::class);
 

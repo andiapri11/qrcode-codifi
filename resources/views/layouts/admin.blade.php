@@ -95,6 +95,16 @@
                                 <span class="font-semibold text-sm">Profil Saya</span>
                             </div>
                         </a>
+
+                        <!-- Subscription & Billing -->
+                        <a href="{{ route('subscription.index') }}" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all text-slate-600 sidebar-item-hover {{ request()->is('subscription*') ? 'sidebar-item-active' : '' }}">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 {{ request()->is('subscription*') ? 'text-indigo-600' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                </svg>
+                                <span class="font-semibold text-sm">Langganan & Billing</span>
+                            </div>
+                        </a>
                     </nav>
                 </div>
 
