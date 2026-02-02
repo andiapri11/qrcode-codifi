@@ -63,6 +63,11 @@ class SubscriptionController extends Controller
         return view('admin.subscription.index', compact('school', 'transactions', 'plans'));
     }
 
+    public function success()
+    {
+        return view('admin.subscription.success');
+    }
+
     public function checkout(Request $request)
     {
         $request->validate([

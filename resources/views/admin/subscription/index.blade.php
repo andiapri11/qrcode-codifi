@@ -351,7 +351,7 @@
             closeReviewModal();
             if (data.token) {
                 window.snap.pay(data.token, {
-                    onSuccess: function(result) { location.reload(); },
+                    onSuccess: function(result) { window.location.href = "{{ route('subscription.success') }}"; },
                     onPending: function(result) { location.reload(); },
                     onError: function(result) { 
                         showAlert('Error', 'Pembayaran gagal! Silakan coba kembali.', 'error');
