@@ -62,7 +62,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <span class="text-slate-900 dark:text-white font-black text-sm uppercase tracking-tight">{{ $school->name }}</span>
-                                <span class="text-slate-400 dark:text-slate-500 text-[9px] font-bold tracking-[0.1em] uppercase mt-0.5">ID: SCH-{{ str_pad($school->id, 4, '0', STR_PAD_LEFT) }}</span>
+                                <span class="text-slate-400 dark:text-slate-500 text-[9px] font-black tracking-[0.2em] uppercase mt-0.5">KODE: {{ $school->school_code }}</span>
                             </div>
                         </div>
                     </td>

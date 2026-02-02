@@ -109,6 +109,12 @@
                 <p class="text-blue-100 font-bold text-xs opacity-90 mb-4">{{ strtolower($user->school->name ?? 'belum ada instansi') }}</p>
                 
                 <div class="flex flex-wrap gap-2">
+                    <!-- Kode Instansi -->
+                    <div class="flex items-center gap-2 bg-white/20 backdrop-blur-[12px] rounded-lg px-3 py-1.5 border border-white/20 shadow-sm">
+                        <span class="text-[8px] font-black uppercase tracking-widest text-[#cbd5e1]">Kode Instansi:</span>
+                        <span class="text-[9px] font-black uppercase tracking-[0.1em] text-white">{{ $user->school->school_code ?? '-' }}</span>
+                    </div>
+
                     <!-- Status -->
                     <div class="flex items-center gap-2 bg-white/10 backdrop-blur-[10px] rounded-lg px-3 py-1.5 border border-white/10">
                         <span class="text-[8px] font-black uppercase tracking-widest text-blue-50">Status:</span>

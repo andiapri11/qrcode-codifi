@@ -15,6 +15,7 @@ class School extends Model
         'email',
         'logo',
         'slug',
+        'school_code',
         'domain_whitelist',
         'api_key',
         'is_active',
@@ -24,6 +25,18 @@ class School extends Model
         'theme_color',
         'supervisor_password',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($school) {
+            if (!$school->school_code) {
+                do {
+                    $code = strtoupper(\Illuminate\Support\Str::random(5));
+                } while (static::where('school_code', $code)->exists());
+                $school->school_code = $code;
+            }
+        });
+    }
 
     protected $casts = [
         'subscription_expires_at' => 'datetime',
