@@ -122,7 +122,19 @@
                 </div>
             </div>
             
-            <div class="flex-shrink-0">
+            <div class="flex-shrink-0 flex flex-col gap-3">
+               @if($user->school->subscription_type === 'trial')
+               <a href="{{ route('subscription.index') }}" class="group bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:brightness-110 transition-all rounded-2xl px-6 py-4 flex items-center gap-3 shadow-lg shadow-orange-500/30">
+                   <div class="bg-white/20 rounded-xl p-2 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                   </div>
+                   <div class="text-left">
+                       <span class="block text-[10px] text-white/80 font-bold uppercase tracking-wider">Masa Trial</span>
+                       <span class="block text-sm font-black uppercase tracking-tight">Upgrade Paket</span>
+                   </div>
+               </a>
+               @endif
+
                <a href="{{ route('links.create') }}" class="group bg-white text-blue-600 hover:bg-blue-50 transition-all rounded-2xl px-6 py-4 flex items-center gap-3 shadow-lg shadow-black/5">
                    <div class="bg-blue-100 rounded-xl p-2 group-hover:bg-blue-200 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
