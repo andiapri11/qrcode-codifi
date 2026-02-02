@@ -8,58 +8,70 @@
     <!-- Top Row: Functional Stats -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Total Omzet -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
-            <div class="flex items-center justify-between">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Total Omzet</p>
-            </div>
-            <div class="flex items-baseline gap-1.5">
-                <span class="text-sm font-black text-slate-800">Rp</span>
-                <span class="text-3xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_revenue'], 0, ',', '.') }}</span>
-            </div>
-            <div class="absolute -bottom-1 -right-1 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
-                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-12c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3m0-12V3m0 18v-3" /></svg>
+        <div class="group relative bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/5 hover:border-emerald-200/50 overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-emerald-50/50 rounded-full blur-2xl group-hover:bg-emerald-100/50 transition-colors"></div>
+            <div class="relative flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Total Omzet</p>
+                    <div class="flex items-center gap-1">
+                        <span class="text-[12px] font-black text-slate-400 mr-1">Rp</span>
+                        <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_revenue'], 0, ',', '.') }}</span>
+                    </div>
+                </div>
+                <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl shadow-lg shadow-emerald-200 flex items-center justify-center text-white transform group-hover:rotate-6 transition-transform">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-12c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3m0-12V3m0 18v-3" /></svg>
+                </div>
             </div>
         </div>
 
         <!-- Total Scan Berhasil -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
-            <div class="flex items-center justify-between">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Total Scan Berhasil</p>
-            </div>
-            <div class="flex items-baseline gap-1.5">
-                <span class="text-3xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_scans'], 0, ',', '.') }}</span>
-                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Scan</span>
-            </div>
-            <div class="absolute -bottom-1 -right-1 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
-                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h2M4 8h2m12 0h2M4 6h18M4 18h2m0-12v12m8-12v12m8-12v12M4 6h18M4 18h18" /></svg>
+        <div class="group relative bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-200/50 overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-50/50 rounded-full blur-2xl group-hover:bg-blue-100/50 transition-colors"></div>
+            <div class="relative flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Total Scan Berhasil</p>
+                    <div class="flex items-center gap-1">
+                        <span class="text-3xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_scans'], 0, ',', '.') }}</span>
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Scan</span>
+                    </div>
+                </div>
+                <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg shadow-blue-200 flex items-center justify-center text-white transform group-hover:rotate-6 transition-transform">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h2M4 8h2m12 0h2M4 6h18M4 18h2m0-12v12m8-12v12m8-12v12M4 6h18M4 18h18" /></svg>
+                </div>
             </div>
         </div>
 
         <!-- Biaya Ops -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
-            <div class="flex items-center justify-between">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Biaya Ops (Est)</p>
-            </div>
-            <div class="flex items-baseline gap-1.5 text-rose-500">
-                <span class="text-sm font-black text-rose-400">Rp</span>
-                <span class="text-3xl font-black tracking-tighter">{{ number_format($stats['operational_cost'], 0, ',', '.') }}</span>
-            </div>
-            <div class="absolute -bottom-1 -right-1 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
-                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" /></svg>
+        <div class="group relative bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-500/5 hover:border-rose-200/50 overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-rose-50/50 rounded-full blur-2xl group-hover:bg-rose-100/50 transition-colors"></div>
+            <div class="relative flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Biaya Ops (Est)</p>
+                    <div class="flex items-center gap-1">
+                        <span class="text-[12px] font-black text-slate-400 mr-1">Rp</span>
+                        <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['operational_cost'], 0, ',', '.') }}</span>
+                    </div>
+                </div>
+                <div class="w-14 h-14 bg-gradient-to-br from-rose-500 to-rose-600 rounded-2xl shadow-lg shadow-rose-200 flex items-center justify-center text-white transform group-hover:rotate-6 transition-transform">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                </div>
             </div>
         </div>
 
         <!-- Surplus Sistem -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
-            <div class="flex items-center justify-between">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Surplus Sistem</p>
-            </div>
-            <div class="flex items-baseline gap-1.5 text-emerald-600">
-                <span class="text-sm font-black text-emerald-400">Rp</span>
-                <span class="text-3xl font-black tracking-tighter">{{ number_format($stats['surplus'], 0, ',', '.') }}</span>
-            </div>
-            <div class="absolute -bottom-1 -right-1 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
-                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" /></svg>
+        <div class="group relative bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-500/5 hover:border-amber-200/50 overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-amber-50/50 rounded-full blur-2xl group-hover:bg-amber-100/50 transition-colors"></div>
+            <div class="relative flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Surplus Sistem</p>
+                    <div class="flex items-center gap-1">
+                        <span class="text-[12px] font-black text-slate-400 mr-1">Rp</span>
+                        <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['surplus'], 0, ',', '.') }}</span>
+                    </div>
+                </div>
+                <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl shadow-lg shadow-amber-200 flex items-center justify-center text-white transform group-hover:rotate-6 transition-transform">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
             </div>
         </div>
     </div>
