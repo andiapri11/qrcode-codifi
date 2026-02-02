@@ -208,10 +208,25 @@
             </header>
 
             <!-- Main Content Scroll -->
-            <main class="flex-1 overflow-y-auto no-scrollbar p-6 md:p-8">
-                <div class="max-w-screen-2xl mx-auto pb-10">
+            <main class="flex-1 overflow-y-auto no-scrollbar flex flex-col p-6 md:p-8">
+                <div class="max-w-screen-2xl mx-auto flex-1 w-full">
                     @yield('content')
                 </div>
+
+                <!-- Footer Section -->
+                <footer class="py-12 mt-10 border-t border-slate-100 dark:border-slate-800/50">
+                    <div class="flex flex-col items-center justify-center gap-6">
+                        <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-4">
+                            <a href="{{ route('help') }}" class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] hover:text-blue-600 dark:hover:text-blue-400 transition-all">Bantuan</a>
+                            <a href="{{ route('terms') }}" class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] hover:text-blue-600 dark:hover:text-blue-400 transition-all">Syarat & Ketentuan</a>
+                            <a href="{{ route('privacy') }}" class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] hover:text-blue-600 dark:hover:text-blue-400 transition-all">Privasi</a>
+                        </div>
+                        <div class="text-[9px] font-bold text-slate-300 dark:text-slate-700 uppercase tracking-[0.2em] flex items-center gap-2">
+                            <span>Copyright © 2026</span>
+                            <span class="text-blue-600 dark:text-blue-500 font-black tracking-tighter italic">Schola<span class="opacity-80">CBT</span></span>
+                        </div>
+                    </div>
+                </footer>
             </main>
         </div>
     </div>
