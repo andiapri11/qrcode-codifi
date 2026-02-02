@@ -40,8 +40,8 @@ Route::get('/system-auth-migrate-codifi', function () {
 Route::get('auth/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
 
-// Onboarding Routes for Google Users
-Route::middleware(['auth'])->group(function () {
+// Onboarding Routes for Google Users (Session Based or Auth Based)
+Route::middleware(['web'])->group(function () {
     Route::get('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'onboarding'])->name('auth.onboarding');
     Route::post('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'completeOnboarding'])->name('auth.onboarding.store');
 });
