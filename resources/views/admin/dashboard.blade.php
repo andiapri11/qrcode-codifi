@@ -7,13 +7,13 @@
 <div class="space-y-8 animate-in fade-in duration-700">
     <!-- Top Row: Functional Stats -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- New Schools -->
+        <!-- Subscribed Schools -->
         <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:border-blue-200 transition-colors">
             <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Instansi Mitra</p>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Mitra Berlangganan</p>
                 <div class="flex items-center gap-2">
                     <span class="text-emerald-500 text-xs">▲</span>
-                    <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ $stats['total_schools'] }}</span>
+                    <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ $stats['subscribed_schools'] }}</span>
                     <span class="text-[10px] font-bold text-slate-400 uppercase ml-1">Mitra</span>
                 </div>
             </div>
@@ -32,22 +32,22 @@
             <div id="radial-2" class="w-16 h-16"></div>
         </div>
 
-        <!-- Revenue Bulanan -->
+        <!-- Revenue Total -->
         <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:border-amber-200 transition-colors">
             <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Revenue Bulanan</p>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Total Pendapatan</p>
                 <div class="flex items-center">
                     <span class="text-[11px] font-black text-slate-400 mr-1">Rp</span>
-                    <span class="text-xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['monthly_revenue'], 0, ',', '.') }}</span>
+                    <span class="text-xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_revenue'], 0, ',', '.') }}</span>
                 </div>
             </div>
             <div id="radial-3" class="w-16 h-16"></div>
         </div>
 
-        <!-- Total Users (Admins) -->
+        <!-- Total Users (Partner Admins) -->
         <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between group hover:border-emerald-200 transition-colors">
             <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Total User Admin</p>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Total User Mitra</p>
                 <div class="flex items-center gap-2">
                     <span class="text-emerald-500 text-xs">+</span>
                     <span class="text-2xl font-black text-slate-800 tracking-tighter">{{ $stats['total_users'] }}</span>

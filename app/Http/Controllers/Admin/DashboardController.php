@@ -16,15 +16,14 @@ class DashboardController extends Controller
         if ($user->role === 'superadmin') {
             $stats = [
                 'total_schools' => School::count(),
+                'subscribed_schools' => School::whereNotNull('subscription_expires_at')
+                                        ->where('subscription_expires_at', '>', now())
+                                        ->count(),
                 'total_links' => ExamLink::count(),
                 'active_links' => ExamLink::where('is_active', true)->count(),
                 'total_revenue' => \App\Models\Transaction::where('status', 'success')->sum('amount'),
-                'monthly_revenue' => \App\Models\Transaction::where('status', 'success')
-                                    ->whereMonth('created_at', date('m'))
-                                    ->whereYear('created_at', date('Y'))
-                                    ->sum('amount'),
-                'total_users' => \App\Models\User::count(),
-                'total_scans' => ExamLink::sum('scan_count') ?? 2450, // Assuming scan_count column exists or dummy
+                'total_users' => \App\Models\User::where('role', 'school_admin')->count(),
+                'total_scans' => ExamLink::sum('scan_count') ?? 0,
             ];
             $latestSchools = School::withCount('examLinks')->latest()->take(5)->get();
             $latestTransactions = \App\Models\Transaction::with('school')->where('status', 'success')->latest()->take(5)->get();
@@ -32,15 +31,12 @@ class DashboardController extends Controller
             $schoolId = $user->school_id;
             $stats = [
                 'total_schools' => 1,
+                'subscribed_schools' => ($user->school && $user->school->isSubscriptionActive()) ? 1 : 0,
                 'total_links' => ExamLink::where('school_id', $schoolId)->count(),
                 'active_links' => ExamLink::where('school_id', $schoolId)->where('is_active', true)->count(),
                 'total_revenue' => \App\Models\Transaction::where('school_id', $schoolId)->where('status', 'success')->sum('amount'),
-                'monthly_revenue' => \App\Models\Transaction::where('school_id', $schoolId)->where('status', 'success')
-                                    ->whereMonth('created_at', date('m'))
-                                    ->whereYear('created_at', date('Y'))
-                                    ->sum('amount'),
                 'total_users' => \App\Models\User::where('school_id', $schoolId)->count(),
-                'total_scans' => ExamLink::where('school_id', $schoolId)->sum('scan_count') ?? 120,
+                'total_scans' => ExamLink::where('school_id', $schoolId)->sum('scan_count') ?? 0,
             ];
             $latestSchools = School::where('id', $schoolId)->withCount('examLinks')->get();
             $latestTransactions = collect();
