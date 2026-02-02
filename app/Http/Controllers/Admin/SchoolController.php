@@ -20,9 +20,19 @@ class SchoolController extends Controller
     {
         $user = Auth::user();
         if ($user->role === 'superadmin') {
-            $schools = School::withCount('examLinks')->latest()->get();
+            $schools = School::withCount('examLinks')
+                ->withSum(['transactions as total_revenue' => function($query) {
+                    $query->where('status', 'success');
+                }], 'amount')
+                ->latest()
+                ->get();
         } else {
-            $schools = School::where('id', $user->school_id)->withCount('examLinks')->get();
+            $schools = School::where('id', $user->school_id)
+                ->withCount('examLinks')
+                ->withSum(['transactions as total_revenue' => function($query) {
+                    $query->where('status', 'success');
+                }], 'amount')
+                ->get();
         }
 
         return view('admin.schools.index', [
@@ -51,6 +61,9 @@ class SchoolController extends Controller
         $request->validate([
             // School Data
             'name' => 'required|string|max:255',
+            'address' => 'nullable|string',
+            'phone' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
             'is_active' => 'required|boolean',
             'subscription_type' => ['required', Rule::in(['year', 'lifetime', 'trial'])],
             'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:1',
@@ -79,6 +92,9 @@ class SchoolController extends Controller
             // 1. Create School
             $school = School::create([
                 'name' => $request->name,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'email' => $request->email,
                 'slug' => Str::slug($request->name),
                 'domain_whitelist' => 'docs.google.com, forms.gle', // Default fallback
                 'api_key' => 'SK-' . strtoupper(Str::random(16)),
@@ -132,6 +148,9 @@ class SchoolController extends Controller
 
         $data = [
             'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
             'slug' => Str::slug($request->name),
         ];
 

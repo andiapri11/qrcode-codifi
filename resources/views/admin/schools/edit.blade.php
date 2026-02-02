@@ -43,6 +43,23 @@
                         class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-medium text-slate-900">
                 </div>
 
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-bold text-slate-700 mb-2 font-jakarta">Alamat Lengkap</label>
+                    <textarea name="address" rows="2" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-medium text-slate-900 resize-none">{{ old('address', $school->address) }}</textarea>
+                </div>
+
+                <div class="md:col-span-1">
+                    <label class="block text-sm font-bold text-slate-700 mb-2 font-jakarta">No. Telp Instansi</label>
+                    <input type="text" name="phone" value="{{ old('phone', $school->phone) }}"
+                        class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-medium text-slate-900">
+                </div>
+
+                <div class="md:col-span-1">
+                    <label class="block text-sm font-bold text-slate-700 mb-2 font-jakarta">Email Instansi</label>
+                    <input type="email" name="email" value="{{ old('email', $school->email) }}"
+                        class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none transition font-medium text-slate-900">
+                </div>
+
                 @if(Auth::user()->role === 'superadmin')
                 <div class="md:col-span-1">
                     <label class="block text-sm font-bold text-slate-700 mb-2 font-jakarta">Tipe Langganan</label>

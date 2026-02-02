@@ -10,6 +10,9 @@ class School extends Model
 {
     protected $fillable = [
         'name',
+        'address',
+        'phone',
+        'email',
         'logo',
         'slug',
         'domain_whitelist',
@@ -36,6 +39,11 @@ class School extends Model
     public function examLinks()
     {
         return $this->hasMany(ExamLink::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 
     public function isSubscriptionActive()

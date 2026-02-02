@@ -46,6 +46,22 @@
                     <input type="text" name="name" value="{{ old('name') }}" required placeholder="Contoh: SMK Codifi Indonesia" class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-xs font-bold text-slate-900 outline-none focus:ring-2 focus:ring-indigo-600 transition shadow-inner">
                 </div>
 
+                <div>
+                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2 ml-1">Alamat Lengkap</label>
+                    <textarea name="address" rows="2" placeholder="Jl. Raya Utama No. 123..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-xs font-bold text-slate-900 outline-none focus:ring-2 focus:ring-indigo-600 transition shadow-inner resize-none">{{ old('address') }}</textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2 ml-1">No. Telp Instansi</label>
+                        <input type="text" name="phone" value="{{ old('phone') }}" placeholder="021-xxxxxx" class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-xs font-bold text-slate-900 outline-none focus:ring-2 focus:ring-indigo-600 transition shadow-inner">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2 ml-1">Email Instansi</label>
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="info@sekolah.sch.id" class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-xs font-bold text-slate-900 outline-none focus:ring-2 focus:ring-indigo-600 transition shadow-inner">
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2 ml-1">Paket</label>
