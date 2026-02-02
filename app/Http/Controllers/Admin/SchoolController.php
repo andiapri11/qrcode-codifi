@@ -189,44 +189,40 @@ class SchoolController extends Controller
 
         if ($user->role === 'superadmin') {
             $data['is_active'] = $request->is_active;
-            $data['subscription_type'] = $request->subscription_type;
-            
-            // Auto-calculate based on type if it's changed or specifically requested
-            if ($request->subscription_type === '6_months') {
-                $maxLinks = 10;
-                $months = (int)($request->subscription_months ?: 6);
-                $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
-                    ? $school->subscription_expires_at 
-                    : Carbon::now();
-                
-                $data['max_links'] = $school->subscription_type === '6_months' ? $school->max_links : $maxLinks;
-                $data['subscription_expires_at'] = $currentExpiry->addMonths($months);
-            } elseif ($request->subscription_type === '1_year') {
-                $maxLinks = 20;
-                $months = (int)($request->subscription_months ?: 12);
-                $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
-                    ? $school->subscription_expires_at 
-                    : Carbon::now();
-                
-                $data['max_links'] = $school->subscription_type === '1_year' ? $school->max_links : $maxLinks;
-                $data['subscription_expires_at'] = $currentExpiry->addMonths($months);
-            } elseif ($request->subscription_type === 'year') {
+            $prevType = $school->subscription_type;
+            $newType = $request->subscription_type;
+            $data['subscription_type'] = $newType;
+
+            // 1. Handle "Type Change" Defaults
+            if ($newType !== $prevType) {
+                if ($newType === 'trial') {
+                    $data['subscription_expires_at'] = Carbon::now()->addDays(3);
+                    $data['max_links'] = 1;
+                } elseif ($newType === 'lifetime') {
+                    $data['subscription_expires_at'] = null;
+                    $data['max_links'] = 999999;
+                } elseif ($newType === '6_months') {
+                    $data['max_links'] = 10;
+                } elseif ($newType === '1_year') {
+                    $data['max_links'] = 20;
+                }
+            }
+
+            // 2. Handle "Adding Time" (If subscription_months is filled)
+            if ($request->filled('subscription_months') && (int)$request->subscription_months > 0) {
                 $months = (int)$request->subscription_months;
                 $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
                     ? $school->subscription_expires_at 
                     : Carbon::now();
                 $data['subscription_expires_at'] = $currentExpiry->addMonths($months);
-                // Keep existing max_links or set default if not existing
-                $data['max_links'] = $school->max_links ?: 20;
-            } elseif ($request->subscription_type === 'trial') {
-                $data['subscription_expires_at'] = Carbon::now()->addDays(3);
-                $data['max_links'] = 1; // Reset to trial limit
-            } elseif ($request->subscription_type === 'lifetime') {
-                $data['subscription_expires_at'] = null;
-                $data['max_links'] = 999999;
+            } 
+            // 3. Fallback Initial Expiry on Type Change to timed plan (if months not provided)
+            elseif ($newType !== $prevType && ($newType === '6_months' || $newType === '1_year')) {
+                 $defaultMonths = ($newType === '6_months') ? 6 : 12;
+                 $data['subscription_expires_at'] = Carbon::now()->addMonths($defaultMonths);
             }
 
-            // Manual override for max_links if provided
+            // 4. Manual Overrides (if admin specifically wants a custom number)
             if ($request->filled('max_links')) {
                 $data['max_links'] = $request->max_links;
             }

@@ -65,17 +65,17 @@ class LinkController extends Controller
             ], 403);
         }
 
-        // Limit for Trial Accounts (Max 1 Barcode)
+        // Subscription & Quota Check
         $school = School::find($request->school_id);
-        if ($school->subscription_type === 'trial') {
-            $existingCount = ExamLink::where('school_id', $school->id)->count();
-            // User requested "only can make 1 barcode", so count >= 1 means they already have 1.
-            if ($existingCount >= 1) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Akun Trial hanya diperbolehkan membuat maksimal 1 barcode. Silakan upgrade paket untuk akses unlimited.'
-                ], 403);
-            }
+        if (!$school->canCreateMoreLinks()) {
+            $msg = $school->subscription_type === 'trial' 
+                ? 'Akun Trial hanya diperbolehkan membuat maksimal 1 barcode.' 
+                : 'Kuota barcode instansi Anda sudah penuh atau masa aktif telah habis.';
+            
+            return response()->json([
+                'success' => false,
+                'message' => $msg . ' Silakan perpanjang atau upgrade paket Anda.'
+            ], 403);
         }
 
         // Generate a random 5-character alphanumeric token (uppercase)

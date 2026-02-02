@@ -61,6 +61,10 @@ class School extends Model
 
     public function canCreateMoreLinks()
     {
+        if (!$this->isSubscriptionActive()) {
+            return false;
+        }
+
         if ($this->subscription_type === 'lifetime') {
             return true;
         }

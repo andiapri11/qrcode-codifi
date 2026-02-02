@@ -172,7 +172,8 @@ class SubscriptionController extends Controller
                     $school = $transaction->school;
                     $type = $transaction->type; // 6_months, 1_year, lifetime
                     
-                    if ($type == 'lifetime') {
+                    // Lifetime Protection: If already lifetime, keep it lifetime
+                    if ($type == 'lifetime' || $school->subscription_type == 'lifetime') {
                         $school->update([
                             'subscription_type' => 'lifetime',
                             'subscription_expires_at' => null,
