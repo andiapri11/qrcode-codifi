@@ -35,7 +35,7 @@ COPY composer.json composer.lock ./
 # Install dependencies with unlimited memory and allow superuser
 ENV COMPOSER_MEMORY_LIMIT=-1
 ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer install --no-dev --optimize-autoloader --no-scripts --ignore-platform-reqs
+RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 # Copy the rest of the application
 COPY . .
