@@ -20,7 +20,7 @@ class SchoolController extends Controller
     {
         $user = Auth::user();
         
-        if ($user->role !== 'superadmin') {
+        if (strtolower($user->role) !== 'superadmin') {
             return redirect()->route('schools.edit', $user->school_id);
         }
 
@@ -51,7 +51,7 @@ class SchoolController extends Controller
 
     public function create()
     {
-        if (Auth::user()->role !== 'superadmin') {
+        if (strtolower(Auth::user()->role) !== 'superadmin') {
             abort(403, 'Unauthorized action.');
         }
 
@@ -62,7 +62,7 @@ class SchoolController extends Controller
 
     public function store(Request $request)
     {
-        if (Auth::user()->role !== 'superadmin') {
+        if (strtolower(Auth::user()->role) !== 'superadmin') {
             abort(403, 'Unauthorized action.');
         }
 
@@ -142,7 +142,7 @@ class SchoolController extends Controller
     public function edit(School $school)
     {
         $user = Auth::user();
-        if ($user->role !== 'superadmin' && $user->school_id !== $school->id) {
+        if (strtolower($user->role) !== 'superadmin' && $user->school_id !== $school->id) {
             abort(403);
         }
 
@@ -155,7 +155,7 @@ class SchoolController extends Controller
     public function update(Request $request, School $school)
     {
         $user = Auth::user();
-        if ($user->role !== 'superadmin' && $user->school_id !== $school->id) {
+        if (strtolower($user->role) !== 'superadmin' && $user->school_id !== $school->id) {
             abort(403);
         }
 
@@ -164,14 +164,14 @@ class SchoolController extends Controller
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
-            'is_active' => $user->role === 'superadmin' ? 'required|boolean' : 'nullable',
-            'subscription_type' => $user->role === 'superadmin' ? ['required', Rule::in(['year', '6_months', '1_year', 'lifetime', 'trial'])] : 'nullable',
+            'is_active' => strtolower($user->role) === 'superadmin' ? 'required|boolean' : 'nullable',
+            'subscription_type' => strtolower($user->role) === 'superadmin' ? ['required', Rule::in(['year', '6_months', '1_year', 'lifetime', 'trial'])] : 'nullable',
             'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:0',
-            'max_links' => $user->role === 'superadmin' ? 'nullable|integer|min:1' : 'nullable',
+            'max_links' => strtolower($user->role) === 'superadmin' ? 'nullable|integer|min:1' : 'nullable',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        if ($user->role === 'superadmin') {
+        if (strtolower($user->role) === 'superadmin') {
             $request->validate([
                 'school_code' => ['nullable', 'string', 'max:5', Rule::unique('schools', 'school_code')->ignore($school->id)],
             ]);
@@ -185,7 +185,7 @@ class SchoolController extends Controller
             'slug' => Str::slug($request->name),
         ];
 
-        if ($user->role === 'superadmin' && $request->filled('school_code')) {
+        if (strtolower($user->role) === 'superadmin' && $request->filled('school_code')) {
             $data['school_code'] = strtoupper($request->school_code);
         }
 

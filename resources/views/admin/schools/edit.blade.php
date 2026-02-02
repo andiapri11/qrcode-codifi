@@ -69,7 +69,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="sm:col-span-1">
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Kode Instansi (5 Karakter)</label>
-                            @if(Auth::user()->role === 'superadmin')
+                            @if(strtolower(Auth::user()->role) === 'superadmin')
                                 <input type="text" name="school_code" value="{{ old('school_code', $school->school_code) }}" maxlength="5" placeholder="Contoh: SMKN1" style="text-transform: uppercase;"
                                     class="w-full bg-slate-50 border border-slate-200 py-3.5 px-6 rounded-xl font-black text-slate-700 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
                             @else
