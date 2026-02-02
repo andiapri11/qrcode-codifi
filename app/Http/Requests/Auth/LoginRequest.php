@@ -50,6 +50,23 @@ class LoginRequest extends FormRequest
         }
 
         RateLimiter::clear($this->throttleKey());
+
+        $user = Auth::user();
+        if ($user && $user->role === 'school_admin' && $user->school) {
+            if (!$user->school->is_active) {
+                Auth::logout();
+                throw ValidationException::withMessages([
+                    'email' => 'Akun instansi Anda dinonaktifkan. Silakan hubungi admin.',
+                ]);
+            }
+
+            if (!$user->school->isSubscriptionActive()) {
+                Auth::logout();
+                throw ValidationException::withMessages([
+                    'email' => 'Masa berlangganan/trial instansi Anda telah habis. Akun ditangguhkan.',
+                ]);
+            }
+        }
     }
 
     /**

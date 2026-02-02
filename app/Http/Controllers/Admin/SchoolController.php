@@ -97,7 +97,7 @@ class SchoolController extends Controller
             if ($request->subscription_type === 'year') {
                 $expiresAt = Carbon::now()->addMonths((int)$request->subscription_months);
             } elseif ($request->subscription_type === 'trial') {
-                $expiresAt = Carbon::now()->addDays(7); // Default 7 days for manual trial
+                $expiresAt = Carbon::now()->addDays(3); // Default 3 days for manual trial
             }
 
             // 1. Create School
@@ -181,7 +181,9 @@ class SchoolController extends Controller
                 if ($request->filled('subscription_months')) {
                     $data['subscription_expires_at'] = Carbon::now()->addMonths((int)$request->subscription_months);
                 }
-            } else {
+            } elseif ($request->subscription_type === 'trial') {
+                $data['subscription_expires_at'] = Carbon::now()->addDays(3);
+            } else { // lifetime
                 $data['subscription_expires_at'] = null;
             }
         }

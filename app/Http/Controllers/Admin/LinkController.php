@@ -69,10 +69,11 @@ class LinkController extends Controller
         $school = School::find($request->school_id);
         if ($school->subscription_type === 'trial') {
             $existingCount = ExamLink::where('school_id', $school->id)->count();
+            // User requested "only can make 1 barcode", so count >= 1 means they already have 1.
             if ($existingCount >= 1) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Akun Trial hanya diperbolehkan membuat maksimal 1 barcode.'
+                    'message' => 'Akun Trial hanya diperbolehkan membuat maksimal 1 barcode. Silakan upgrade paket untuk akses unlimited.'
                 ], 403);
             }
         }
