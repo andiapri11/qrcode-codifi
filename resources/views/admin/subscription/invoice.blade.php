@@ -180,16 +180,19 @@
             const element = document.getElementById('invoice-content');
             
             // Configuration optimized for A5 (148mm x 210mm)
+            // 148mm is approximately 559px at 96dpi
             const opt = {
                 margin: 0,
                 filename: 'Invoice-{{ $transaction->reference }}.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { 
-                    scale: 2, // Reduced from 4 to fix file size and processing load
+                    scale: 2, 
                     useCORS: true,
                     logging: false,
                     letterRendering: true,
-                    windowWidth: 800
+                    scrollX: 0,
+                    scrollY: 0,
+                    windowWidth: 559 // Exact width of the A5 container in px
                 },
                 jsPDF: { unit: 'mm', format: 'a5', orientation: 'portrait' }
             };
