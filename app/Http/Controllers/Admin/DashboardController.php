@@ -16,28 +16,38 @@ class DashboardController extends Controller
         $schoolId = $user->school_id;
         
         if ($isSuperAdmin) {
+            $revenue = \App\Models\Transaction::where('status', 'success')->sum('amount');
+            $scans = ExamLink::sum('scan_count') ?? 0;
+            $opsCost = $revenue * 0.05; // 5% Estimated Operational/Gateway Cost
+            
             $stats = [
                 'total_schools' => School::count(),
                 'subscribed_schools' => School::whereNotNull('subscription_expires_at')
                                         ->where('subscription_expires_at', '>', now())
                                         ->count(),
                 'total_links' => ExamLink::count(),
-                'active_links' => ExamLink::where('is_active', true)->count(),
-                'total_revenue' => \App\Models\Transaction::where('status', 'success')->sum('amount'),
+                'total_revenue' => $revenue,
                 'total_users' => \App\Models\User::where('role', 'school_admin')->count(),
-                'total_scans' => ExamLink::sum('scan_count') ?? 0,
+                'total_scans' => $scans,
+                'operational_cost' => $opsCost,
+                'surplus' => $revenue - $opsCost,
             ];
             $latestSchools = School::withCount('examLinks')->latest()->take(5)->get();
             $latestTransactions = \App\Models\Transaction::with('school')->where('status', 'success')->latest()->take(5)->get();
         } else {
+            $revenue = \App\Models\Transaction::where('school_id', $schoolId)->where('status', 'success')->sum('amount');
+            $scans = ExamLink::where('school_id', $schoolId)->sum('scan_count') ?? 0;
+            $opsCost = $revenue * 0.05;
+
             $stats = [
                 'total_schools' => 1,
                 'subscribed_schools' => ($user->school && $user->school->isSubscriptionActive()) ? 1 : 0,
                 'total_links' => ExamLink::where('school_id', $schoolId)->count(),
-                'active_links' => ExamLink::where('school_id', $schoolId)->where('is_active', true)->count(),
-                'total_revenue' => \App\Models\Transaction::where('school_id', $schoolId)->where('status', 'success')->sum('amount'),
+                'total_revenue' => $revenue,
                 'total_users' => \App\Models\User::where('school_id', $schoolId)->count(),
-                'total_scans' => ExamLink::where('school_id', $schoolId)->sum('scan_count') ?? 0,
+                'total_scans' => $scans,
+                'operational_cost' => $opsCost,
+                'surplus' => $revenue - $opsCost,
             ];
             $latestSchools = School::where('id', $schoolId)->withCount('examLinks')->get();
             $latestTransactions = collect();

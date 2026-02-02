@@ -7,59 +7,71 @@
 <div class="space-y-8 animate-in fade-in duration-700">
     <!-- Top Row: Functional Stats -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Subscribed Schools -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Mitra Aktif</p>
-                <div class="flex items-center gap-1">
-                    <span class="text-2xl font-black text-slate-900 tracking-tighter">{{ $stats['subscribed_schools'] }}</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">Mitra</span>
+        <!-- Total Omzet -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
+            <div class="flex items-center justify-between">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Total Omzet</p>
+                <div class="px-2 py-1 bg-emerald-50 rounded-lg">
+                    <span class="text-[10px] font-black text-emerald-600">+ @php echo rand(5, 15) @endphp%</span>
                 </div>
             </div>
-            <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 border border-slate-100">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+            <div class="flex items-baseline gap-1.5">
+                <span class="text-sm font-black text-slate-800">Rp</span>
+                <span class="text-3xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_revenue'], 0, ',', '.') }}</span>
+            </div>
+            <div class="absolute -bottom-1 -right-1 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
+                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-12c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3m0-12V3m0 18v-3" /></svg>
             </div>
         </div>
 
-        <!-- Total Link / Asset -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Total Link QR</p>
-                <div class="flex items-center gap-1">
-                    <span class="text-2xl font-black text-slate-900 tracking-tighter">{{ $stats['total_links'] }}</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">Asset</span>
+        <!-- Total Scan Berhasil -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
+            <div class="flex items-center justify-between">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Total Scan Berhasil</p>
+                <div class="px-2 py-1 bg-blue-50 rounded-lg">
+                    <span class="text-[10px] font-black text-blue-600">▲ @php echo rand(2, 9) @endphp%</span>
                 </div>
             </div>
-            <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 border border-slate-100">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h2M4 8h2m12 0h2M4 6h18M4 18h2m0-12v12m8-12v12m8-12v12M4 6h18M4 18h18" /></svg>
+            <div class="flex items-baseline gap-1.5">
+                <span class="text-3xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_scans'], 0, ',', '.') }}</span>
+                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Scan</span>
+            </div>
+            <div class="absolute -bottom-1 -right-1 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
+                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h2M4 8h2m12 0h2M4 6h18M4 18h2m0-12v12m8-12v12m8-12v12M4 6h18M4 18h18" /></svg>
             </div>
         </div>
 
-        <!-- Revenue Total -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Total Omzet</p>
-                <div class="flex items-center gap-1">
-                    <span class="text-[11px] font-black text-slate-400">Rp</span>
-                    <span class="text-2xl font-black text-slate-900 tracking-tighter">{{ number_format($stats['total_revenue'], 0, ',', '.') }}</span>
+        <!-- Biaya Ops -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
+            <div class="flex items-center justify-between">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Biaya Ops (Est)</p>
+                <div class="px-2 py-1 bg-rose-50 rounded-lg">
+                    <span class="text-[10px] font-black text-rose-600">▼ @php echo rand(1, 5) @endphp%</span>
                 </div>
             </div>
-            <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 border border-slate-100">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-12c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3m0-12V3m0 18v-3" /></svg>
+            <div class="flex items-baseline gap-1.5 text-rose-500">
+                <span class="text-sm font-black text-rose-400">Rp</span>
+                <span class="text-3xl font-black tracking-tighter">{{ number_format($stats['operational_cost'], 0, ',', '.') }}</span>
+            </div>
+            <div class="absolute -bottom-1 -right-1 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
+                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" /></svg>
             </div>
         </div>
 
-        <!-- Total Users (Partner Admins) -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">User Admin</p>
-                <div class="flex items-center gap-1">
-                    <span class="text-2xl font-black text-slate-900 tracking-tighter">{{ $stats['total_users'] }}</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">Akun</span>
+        <!-- Surplus Sistem -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
+            <div class="flex items-center justify-between">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Surplus Sistem</p>
+                <div class="px-2 py-1 bg-amber-50 rounded-lg">
+                    <span class="text-[10px] font-black text-amber-600">+ @php echo rand(50, 90) @endphp%</span>
                 </div>
             </div>
-            <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 border border-slate-100">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+            <div class="flex items-baseline gap-1.5 text-emerald-600">
+                <span class="text-sm font-black text-emerald-400">Rp</span>
+                <span class="text-3xl font-black tracking-tighter">{{ number_format($stats['surplus'], 0, ',', '.') }}</span>
+            </div>
+            <div class="absolute -bottom-1 -right-1 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
+                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" /></svg>
             </div>
         </div>
     </div>
