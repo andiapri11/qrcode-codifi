@@ -113,4 +113,53 @@ class HandshakeController extends Controller
             ]
         ]);
     }
+
+    /**
+     * Fetch School Info by School Code (for branding)
+     */
+    public function fetchBranding(Request $request)
+    {
+        $code = strtoupper($request->input('school_code'));
+
+        if (!$code) {
+            return response()->json(['success' => false, 'message' => 'Kode instansi wajib diisi'], 400);
+        }
+
+        // APP AUTHENTICATION (Same security as verify)
+        $userAgent = $request->header('User-Agent');
+        $appKey = $request->header('X-Schola-Key');
+        
+        if (!str_contains($userAgent, 'ScholaSecureBrowser') || $appKey !== 'Schola-Secret-Hash-2024') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Akses ditolak.'
+            ], 401);
+        }
+
+        $school = School::where('school_code', $code)->first();
+
+        if (!$school) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Instansi tidak ditemukan. Pastikan kode benar.'
+            ], 404);
+        }
+
+        if (!$school->is_active) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Instansi sedang dinonaktifkan.'
+            ], 403);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'name' => $school->name,
+                'logo' => $school->logo_url,
+                'school_id' => $school->id,
+                'school_code' => $school->school_code,
+            ]
+        ]);
+    }
 }
