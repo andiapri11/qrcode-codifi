@@ -240,7 +240,7 @@
     <!-- Guide / Steps Section -->
     @if(!$isSuperAdmin)
     <!-- Guide / Steps Section (User Only) -->
-    <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-700 mt-8">
+    <div class="lg:col-span-12 bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-700 mt-8">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
                 <h4 class="text-lg font-black text-slate-900 dark:text-white tracking-tight">Petunjuk Penggunaan</h4>
