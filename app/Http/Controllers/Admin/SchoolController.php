@@ -171,6 +171,12 @@ class SchoolController extends Controller
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        if ($user->role === 'superadmin') {
+            $request->validate([
+                'school_code' => ['nullable', 'string', 'max:5', Rule::unique('schools', 'school_code')->ignore($school->id)],
+            ]);
+        }
+
         $data = [
             'name' => $request->name,
             'address' => $request->address,
@@ -178,6 +184,10 @@ class SchoolController extends Controller
             'email' => $request->email,
             'slug' => Str::slug($request->name),
         ];
+
+        if ($user->role === 'superadmin' && $request->filled('school_code')) {
+            $data['school_code'] = strtoupper($request->school_code);
+        }
 
         if ($request->hasFile('logo')) {
             // Delete old logo
