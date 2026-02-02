@@ -42,11 +42,31 @@ class DashboardController extends Controller
             $latestTransactions = collect();
         }
 
-        // Dummy Daily Data for ApexCharts (Professional Look)
+        // Fetch Real Daily Data for Chart (Last 12 Days)
+        $labels = [];
+        $examsTrend = [];
+        $revenueTrend = [];
+        
+        for ($i = 11; $i >= 0; $i--) {
+            $date = now()->subDays($i);
+            $labels[] = $date->format('d M');
+            
+            // Real Activity: Barcode Creation (as proxy for activity)
+            $examCount = ExamLink::whereDate('created_at', $date->toDateString());
+            if (!$isSuperAdmin) $examCount->where('school_id', $schoolId);
+            $examsTrend[] = $examCount->count();
+            
+            // Real Revenue: Daily Success Transactions
+            $revCount = \App\Models\Transaction::where('status', 'success')
+                        ->whereDate('paid_at', $date->toDateString());
+            if (!$isSuperAdmin) $revCount->where('school_id', $schoolId);
+            $revenueTrend[] = (float)$revCount->sum('amount');
+        }
+
         $chartData = [
-            'labels' => ['01 Feb', '02 Feb', '03 Feb', '04 Feb', '05 Feb', '06 Feb', '07 Feb', '08 Feb', '09 Feb', '10 Feb', '11 Feb', '12 Feb'],
-            'exams' => [40, 50, 41, 67, 22, 41, 20, 35, 75, 32, 25, 16],
-            'revenue' => [380000, 700000, 580000, 450000, 720000, 360000, 280000, 520000, 360000, 360000, 200000, 270000]
+            'labels' => $labels,
+            'exams' => $examsTrend,
+            'revenue' => $revenueTrend
         ];
 
         // Real Server Utilization (Windows specific as per environment)

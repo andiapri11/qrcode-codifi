@@ -166,11 +166,11 @@
         // Mixed Activity Chart (Scan Activity vs Revenue Trend)
         new ApexCharts(document.querySelector("#mixed-chart"), {
             series: [{
-                name: 'Scan QR Activity',
+                name: 'Pembuatan Link QR',
                 type: 'column',
                 data: @json($chartData['exams'])
             }, {
-                name: 'Payment Inflow',
+                name: 'Pendapatan Berhasil',
                 type: 'line',
                 data: @json($chartData['revenue'])
             }],
