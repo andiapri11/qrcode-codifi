@@ -64,6 +64,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/settings', function() {
         return view('admin.settings', ['title' => 'Pengaturan Sistem']);
     })->name('admin.settings');
+    
+    Route::post('/settings', function() {
+        return back()->with('success', 'Pengaturan placeholder berhasil disimpan (simulasi).');
+    });
 
 
 
