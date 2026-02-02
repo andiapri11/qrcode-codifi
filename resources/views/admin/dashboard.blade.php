@@ -110,37 +110,6 @@
         </div>
     </div>
 
-    <!-- Bottom Row: Financial & Usage Summary -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Omzet</p>
-                <span class="font-black text-slate-800 tracking-tight">Rp {{ number_format($stats['total_revenue'], 0, ',', '.') }}</span>
-            </div>
-            <span class="text-emerald-500 font-bold text-[10px]">+14%</span>
-        </div>
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Scan Berhasil</p>
-                <span class="font-black text-slate-800 tracking-tight">{{ number_format($stats['total_scans'], 0, ',', '.') }} Scan</span>
-            </div>
-            <span class="text-blue-500 font-bold text-[10px]">▲ 8%</span>
-        </div>
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Biaya Ops (Est)</p>
-                <span class="font-black text-slate-800 tracking-tight">Rp {{ number_format($stats['total_revenue'] * 0.05, 0, ',', '.') }}</span>
-            </div>
-            <span class="text-rose-500 font-bold text-[10px]">▼ 5%</span>
-        </div>
-        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 flex items-center justify-between">
-            <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Surplus Sistem</p>
-                <span class="font-black text-emerald-600 tracking-tight">Rp {{ number_format($stats['total_revenue'] * 0.95, 0, ',', '.') }}</span>
-            </div>
-            <span class="text-amber-500 font-bold text-[10px]">+82%</span>
-        </div>
-    </div>
 </div>
 
 <script>
