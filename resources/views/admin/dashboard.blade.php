@@ -11,9 +11,6 @@
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
             <div class="flex items-center justify-between">
                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Total Omzet</p>
-                <div class="px-2 py-1 bg-emerald-50 rounded-lg">
-                    <span class="text-[10px] font-black text-emerald-600">+ @php echo rand(5, 15) @endphp%</span>
-                </div>
             </div>
             <div class="flex items-baseline gap-1.5">
                 <span class="text-sm font-black text-slate-800">Rp</span>
@@ -28,9 +25,6 @@
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
             <div class="flex items-center justify-between">
                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Total Scan Berhasil</p>
-                <div class="px-2 py-1 bg-blue-50 rounded-lg">
-                    <span class="text-[10px] font-black text-blue-600">▲ @php echo rand(2, 9) @endphp%</span>
-                </div>
             </div>
             <div class="flex items-baseline gap-1.5">
                 <span class="text-3xl font-black text-slate-800 tracking-tighter">{{ number_format($stats['total_scans'], 0, ',', '.') }}</span>
@@ -45,9 +39,6 @@
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
             <div class="flex items-center justify-between">
                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Biaya Ops (Est)</p>
-                <div class="px-2 py-1 bg-rose-50 rounded-lg">
-                    <span class="text-[10px] font-black text-rose-600">▼ @php echo rand(1, 5) @endphp%</span>
-                </div>
             </div>
             <div class="flex items-baseline gap-1.5 text-rose-500">
                 <span class="text-sm font-black text-rose-400">Rp</span>
@@ -62,9 +53,6 @@
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between h-32 relative group overflow-hidden">
             <div class="flex items-center justify-between">
                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Surplus Sistem</p>
-                <div class="px-2 py-1 bg-amber-50 rounded-lg">
-                    <span class="text-[10px] font-black text-amber-600">+ @php echo rand(50, 90) @endphp%</span>
-                </div>
             </div>
             <div class="flex items-baseline gap-1.5 text-emerald-600">
                 <span class="text-sm font-black text-emerald-400">Rp</span>
