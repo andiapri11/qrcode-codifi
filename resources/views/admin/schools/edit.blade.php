@@ -103,19 +103,29 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
+                    <div class="flex flex-col">
                         <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Tipe Langganan</label>
                         <select name="subscription_type" id="subscription_type" class="w-full bg-slate-50 border border-slate-200 py-3 px-5 rounded-xl font-bold text-slate-700 text-xs outline-none focus:ring-2 focus:ring-indigo-500 transition">
                             <option value="trial" {{ $school->subscription_type === 'trial' ? 'selected' : '' }}>TRIAL (3 Hari)</option>
                             <option value="year" {{ $school->subscription_type === 'year' ? 'selected' : '' }}>1 TAHUN</option>
                             <option value="lifetime" {{ $school->subscription_type === 'lifetime' ? 'selected' : '' }}>LIFE TIME</option>
                         </select>
+                        @if($school->subscription_expires_at)
+                            <p class="text-[8px] font-bold text-indigo-500 uppercase mt-2 ml-1 tracking-widest italic">Exp: {{ $school->subscription_expires_at->format('d M Y') }}</p>
+                        @endif
                     </div>
 
                     <div id="duration_box" style="{{ $school->subscription_type === 'lifetime' ? 'opacity: 0.3; pointer-events: none;' : '' }}">
-                        <label class="block text-[9px] font-black text-indigo-600 uppercase tracking-[0.2em] mb-2.5 ml-1">Perpanjang (Bulan)</label>
+                        <label class="block text-[9px] font-black text-indigo-600 uppercase tracking-[0.2em] mb-2.5 ml-1">Tambah Masa Aktif (Bulan)</label>
                         <input type="number" name="subscription_months" value="0" min="0"
                             class="w-full bg-white border-2 border-indigo-100 py-3 px-5 rounded-xl font-black text-indigo-600 text-xs outline-none focus:ring-4 focus:ring-indigo-500/20">
+                    </div>
+
+                    <div>
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Link Quota (Max)</label>
+                        <input type="number" name="max_links" value="{{ old('max_links', $school->max_links) }}" min="1"
+                            class="w-full bg-slate-50 border border-slate-200 py-3 px-5 rounded-xl font-bold text-slate-700 text-xs outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                        <p class="text-[8px] font-bold text-slate-400 uppercase mt-2 ml-1 tracking-widest">Saat ini: {{ $school->examLinks()->count() }} link terpakai</p>
                     </div>
 
                     <div class="md:col-span-2 pt-2">

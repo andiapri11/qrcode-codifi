@@ -19,19 +19,19 @@ class SchoolController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        
+        if ($user->role !== 'superadmin') {
+            return redirect()->route('schools.edit', $user->school_id);
+        }
+
         $query = School::query();
         $search = $request->input('q');
         $perPage = $request->input('per_page', 10);
 
-        if ($user->role === 'superadmin') {
-            $query->withCount('examLinks')
-                  ->withSum(['transactions as total_revenue' => function($query) {
-                      $query->where('status', 'success');
-                  }], 'amount');
-        } else {
-            // If School Admin, redirect immediately to Edit School page
-            return redirect()->route('schools.edit', $user->school_id);
-        }
+        $query->withCount('examLinks')
+              ->withSum(['transactions as total_revenue' => function($query) {
+                  $query->where('status', 'success');
+              }], 'amount');
 
         if ($search) {
             $query->where(function($q) use ($search) {
@@ -148,9 +148,13 @@ class SchoolController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string',
             'is_active' => $user->role === 'superadmin' ? 'required|boolean' : 'nullable',
-            'subscription_type' => $user->role === 'superadmin' ? ['required', Rule::in(['year', 'lifetime'])] : 'nullable',
-            'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:1',
+            'subscription_type' => $user->role === 'superadmin' ? ['required', Rule::in(['year', 'lifetime', 'trial'])] : 'nullable',
+            'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:0',
+            'max_links' => $user->role === 'superadmin' ? 'nullable|integer|min:1' : 'nullable',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -174,20 +178,35 @@ class SchoolController extends Controller
             $data['is_active'] = $request->is_active;
             $data['subscription_type'] = $request->subscription_type;
             
+            if ($request->filled('max_links')) {
+                $data['max_links'] = $request->max_links;
+            }
+            
             if ($request->subscription_type === 'year') {
-                if ($request->filled('subscription_months')) {
-                    $data['subscription_expires_at'] = Carbon::now()->addMonths((int)$request->subscription_months);
+                if ($request->filled('subscription_months') && (int)$request->subscription_months > 0) {
+                    $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
+                        ? $school->subscription_expires_at 
+                        : Carbon::now();
+                    $data['subscription_expires_at'] = $currentExpiry->addMonths((int)$request->subscription_months);
                 }
             } elseif ($request->subscription_type === 'trial') {
-                $data['subscription_expires_at'] = Carbon::now()->addDays(3);
+                // Only set trial expiry if not already set or expired
+                if (!$school->subscription_expires_at || $school->subscription_expires_at->isPast()) {
+                    $data['subscription_expires_at'] = Carbon::now()->addDays(3);
+                }
             } else { // lifetime
                 $data['subscription_expires_at'] = null;
+                $data['max_links'] = 999999;
             }
         }
 
         $school->update($data);
 
-        return redirect()->route('schools.index')->with('success', 'Data sekolah berhasil diperbarui.');
+        if ($user->role === 'superadmin') {
+            return redirect()->route('schools.index')->with('success', 'Data sekolah berhasil diperbarui.');
+        }
+
+        return redirect()->route('schools.edit', $school->id)->with('success', 'Profil instansi berhasil diperbarui.');
     }
 
     public function destroy(School $school)

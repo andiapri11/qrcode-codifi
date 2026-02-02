@@ -50,7 +50,11 @@ class DashboardController extends Controller
                 'surplus' => $revenue - $opsCost,
             ];
             $latestSchools = School::where('id', $schoolId)->withCount('examLinks')->get();
-            $latestTransactions = collect();
+            $latestTransactions = \App\Models\Transaction::where('school_id', $schoolId)
+                                    ->where('status', 'success')
+                                    ->latest()
+                                    ->take(5)
+                                    ->get();
         }
 
         // Fetch Real Daily Data for Chart (Last 12 Days)
