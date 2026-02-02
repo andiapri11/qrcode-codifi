@@ -125,41 +125,52 @@ class HandshakeController extends Controller
             return response()->json(['success' => false, 'message' => 'Kode instansi wajib diisi'], 400);
         }
 
-        // APP AUTHENTICATION (Same security as verify)
+        // APP AUTHENTICATION (Strict matching with verify endpoint)
         $userAgent = $request->header('User-Agent');
         $appKey = $request->header('X-Schola-Key');
+        $timestamp = $request->header('X-Timestamp');
         
         if (!str_contains($userAgent, 'ScholaSecureBrowser') || $appKey !== 'Schola-Secret-Hash-2024') {
             return response()->json([
                 'success' => false,
-                'message' => 'Akses ditolak.'
+                'message' => 'Akses ditolak. Gunakan aplikasi resmi.'
             ], 401);
         }
 
-        $school = School::where('school_code', $code)->first();
+        try {
+            // Cari berdasarkan school_code (5 char) atau numeric ID (untuk fallback)
+            $school = School::where('school_code', $code)
+                ->orWhere('id', $code)
+                ->first();
 
-        if (!$school) {
+            if (!$school) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Instansi tidak ditemukan'
+                ], 404);
+            }
+
+            if (!$school->is_active) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Instansi sedang dinonaktifkan.'
+                ], 403);
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'name' => $school->name,
+                    'logo' => $school->logo_url,
+                    'school_id' => $school->id,
+                    'school_code' => $school->school_code,
+                ]
+            ]);
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Instansi tidak ditemukan. Pastikan kode benar.'
-            ], 404);
+                'message' => 'Server Error: ' . $e->getMessage()
+            ], 500);
         }
-
-        if (!$school->is_active) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Instansi sedang dinonaktifkan.'
-            ], 403);
-        }
-
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'name' => $school->name,
-                'logo' => $school->logo_url,
-                'school_id' => $school->id,
-                'school_code' => $school->school_code,
-            ]
-        ]);
     }
 }
