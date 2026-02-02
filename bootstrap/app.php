@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
             '/payments/midtrans/callback',
         ]);
         
-        $middleware->throttleApi('api', 60); // Default API throttle
+        // $middleware->throttleApi('api', 60); // Default API throttle
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

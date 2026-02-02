@@ -48,19 +48,19 @@ Route::get('/force-update-system-v1', function () {
 
 
 // Google Socialite Routes (Throttled)
-Route::middleware(['throttle:10,1'])->group(function () {
+Route::group([], function () {
     Route::get('auth/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google.login');
     Route::get('auth/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
 });
 
 // Onboarding Routes for Google Users (Session Based or Auth Based)
-Route::middleware(['web', 'auth', 'throttle:20,1'])->group(function () {
+Route::middleware(['web', 'auth'])->group(function () {
     Route::get('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'onboarding'])->name('auth.onboarding');
     Route::post('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'completeOnboarding'])->name('auth.onboarding.store');
 });
 
 // Midtrans Callback (Public - Heavily Throttled)
-Route::post('/payments/midtrans/callback', [\App\Http\Controllers\Admin\SubscriptionController::class, 'callback'])->middleware('throttle:10,1');
+Route::post('/payments/midtrans/callback', [\App\Http\Controllers\Admin\SubscriptionController::class, 'callback']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
