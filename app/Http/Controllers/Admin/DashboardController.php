@@ -12,8 +12,10 @@ class DashboardController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $isSuperAdmin = $user->role === 'superadmin';
+        $schoolId = $user->school_id;
         
-        if ($user->role === 'superadmin') {
+        if ($isSuperAdmin) {
             $stats = [
                 'total_schools' => School::count(),
                 'subscribed_schools' => School::whereNotNull('subscription_expires_at')
@@ -28,7 +30,6 @@ class DashboardController extends Controller
             $latestSchools = School::withCount('examLinks')->latest()->take(5)->get();
             $latestTransactions = \App\Models\Transaction::with('school')->where('status', 'success')->latest()->take(5)->get();
         } else {
-            $schoolId = $user->school_id;
             $stats = [
                 'total_schools' => 1,
                 'subscribed_schools' => ($user->school && $user->school->isSubscriptionActive()) ? 1 : 0,

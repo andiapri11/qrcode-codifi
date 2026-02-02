@@ -67,10 +67,6 @@
                     <h4 class="text-sm font-black text-slate-800 uppercase tracking-tight">Monitoring Aktivitas Sistem</h4>
                     <p class="text-[10px] font-bold text-slate-400 uppercase mt-1 tracking-widest">Aktivitas Scan QR vs Transaksi Masuk</p>
                 </div>
-                <div class="flex gap-2">
-                    <button class="bg-slate-50 text-slate-500 px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-widest hover:bg-slate-100 transition-colors">Export</button>
-                    <button class="bg-amber-400 text-white px-5 py-2 rounded-lg text-[9px] font-black uppercase tracking-widest hover:bg-amber-500 transition-colors">Global View</button>
-                </div>
             </div>
             <div id="mixed-chart" class="w-full h-[350px]"></div>
         </div>
