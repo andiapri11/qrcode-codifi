@@ -14,6 +14,11 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
+// Static Legal & Help Pages
+Route::get('/help', function () { return view('legal.help'); })->name('help');
+Route::get('/terms', function () { return view('legal.terms'); })->name('terms');
+Route::get('/privacy', function () { return view('legal.privacy'); })->name('privacy');
+
 // GET Logout to prevent 419 Page Expired
 Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout.get');
 
