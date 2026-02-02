@@ -104,7 +104,7 @@ class SchoolController extends Controller
                 $maxLinks = 20;
             } elseif ($request->subscription_type === 'trial') {
                 $expiresAt = Carbon::now()->addDays(3);
-                $maxLinks = 5; // Trial default
+                $maxLinks = 1; // Trial default
             } elseif ($request->subscription_type === 'lifetime') {
                 $maxLinks = 999999;
             }
@@ -220,7 +220,7 @@ class SchoolController extends Controller
                 $data['max_links'] = $school->max_links ?: 20;
             } elseif ($request->subscription_type === 'trial') {
                 $data['subscription_expires_at'] = Carbon::now()->addDays(3);
-                $data['max_links'] = 5; // Reset to trial limit
+                $data['max_links'] = 1; // Reset to trial limit
             } elseif ($request->subscription_type === 'lifetime') {
                 $data['subscription_expires_at'] = null;
                 $data['max_links'] = 999999;
