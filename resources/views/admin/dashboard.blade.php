@@ -237,6 +237,46 @@
             </div>
         </div>
         @endif
+    <!-- Guide / Steps Section -->
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm border border-slate-100 dark:border-slate-700 mt-8">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h4 class="text-lg font-black text-slate-900 dark:text-white tracking-tight">Petunjuk Penggunaan</h4>
+                <p class="text-sm font-medium text-slate-500 dark:text-slate-400 mt-1">Langkah mudah memulai ujian dengan Schola CBT.</p>
+            </div>
+            <a href="#" class="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 dark:bg-blue-900/20 px-4 py-2 rounded-xl transition-colors">Download Panduan PDF</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Step 1 -->
+            <div class="relative group">
+                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center font-black text-xl mb-4 group-hover:scale-110 transition-transform">1</div>
+                <h5 class="font-bold text-slate-800 dark:text-slate-200 mb-2">Buat Barcode Ujian</h5>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Masuk ke menu "Data Barcode" dan buat link ujian baru yang mengarah ke Google Forms atau CBT lain.</p>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="relative group">
+                <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center font-black text-xl mb-4 group-hover:scale-110 transition-transform">2</div>
+                <h5 class="font-bold text-slate-800 dark:text-slate-200 mb-2">Bagikan QR Code</h5>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Cetak atau tampilkan QR Code yang telah digenerate kepada siswa di kelas.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative group">
+                <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center font-black text-xl mb-4 group-hover:scale-110 transition-transform">3</div>
+                <h5 class="font-bold text-slate-800 dark:text-slate-200 mb-2">Siswa Scan di App</h5>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Siswa membuka aplikasi Android "Schola Exambrowser", scan QR, dan mulai ujian dengan aman.</p>
+                <a href="#" class="inline-block mt-3 text-[10px] uppercase font-black tracking-widest text-emerald-600 hover:underline">Download App Siswa →</a>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative group">
+                <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-2xl flex items-center justify-center font-black text-xl mb-4 group-hover:scale-110 transition-transform">4</div>
+                <h5 class="font-bold text-slate-800 dark:text-slate-200 mb-2">Monitoring Realtime</h5>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Pantau aktivitas scan siswa melalui dashboard ini untuk memastikan kehadiran.</p>
+            </div>
+        </div>
     </div>
 
 </div>
