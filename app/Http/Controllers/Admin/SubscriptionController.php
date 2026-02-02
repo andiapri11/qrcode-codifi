@@ -130,6 +130,24 @@ class SubscriptionController extends Controller
         }
     }
 
+    public function showInvoice(Transaction $transaction)
+    {
+        $user = Auth::user();
+        
+        // Authorization check: only school owner or superadmin
+        if ($user->role !== 'superadmin' && $user->school->id !== $transaction->school_id) {
+            abort(403, 'Unauthorized access to invoice.');
+        }
+
+        if ($transaction->status !== 'success') {
+            return back()->with('error', 'Invoice hanya tersedia untuk transaksi yang sudah lunas.');
+        }
+
+        $transaction->load('school');
+        
+        return view('admin.subscription.invoice', compact('transaction'));
+    }
+
     public function callback(Request $request)
     {
         $serverKey = $this->midtrans_server_key;

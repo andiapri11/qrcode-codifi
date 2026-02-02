@@ -207,8 +207,15 @@
                                     <button onclick="window.snap.pay('{{ $trx->snap_token }}')" class="bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">Bayar</button>
                                 @endif
 
+                                @if($trx->status == 'success')
+                                    <a href="{{ route('subscription.transactions.invoice', $trx->id) }}" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-lg transition-all border border-slate-200 dark:border-slate-700 group">
+                                        <svg class="w-3.5 h-3.5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                        <span class="text-[8px] font-black uppercase tracking-widest">Invoice</span>
+                                    </a>
+                                @endif
+
                                 @if($isSuperAdmin)
-                                    <form action="{{ route('subscription.transactions.destroy', $trx->id) }}" method="POST" onsubmit="return confirm('Hapus riwayat transaksi ini?')" class="inline">
+                                    <form action="{{ route('subscription.transactions.destroy', $trx->id) }}" method="POST" onsubmit="return confirm('Hapus riwayat transaksi ini?')" class="inline ml-2">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-rose-500 hover:text-rose-700 transition-colors p-2" title="Hapus Riwayat">
@@ -231,36 +238,138 @@
 </div>
 
 @if(!$isSuperAdmin)
+<!-- Review Modal -->
+<div id="reviewModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
+    <div class="bg-white dark:bg-slate-900 w-full max-w-[420px] rounded-[2.5rem] shadow-2xl border border-white dark:border-slate-800 overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="reviewModalContent">
+        <div class="p-8 md:p-10">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-inner">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+                </div>
+                <div>
+                    <h3 class="text-lg font-black text-slate-900 dark:text-white tracking-tight uppercase">Konfirmasi Order</h3>
+                    <p class="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] mt-0.5">Review paket yang Anda pilih</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 mb-10">
+                <div class="p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800/50">
+                    <div class="flex justify-between items-center mb-4 pb-4 border-b border-slate-200/50 dark:border-slate-700/50">
+                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Detail Paket</span>
+                        <span id="reviewPlanName" class="text-[10px] font-black text-indigo-600 dark:text-blue-400 uppercase"></span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Durasi</span>
+                            <span id="reviewDuration" class="text-[9px] font-black text-slate-700 dark:text-slate-300 uppercase"></span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Link Barcode</span>
+                            <span id="reviewLinks" class="text-[9px] font-black text-slate-700 dark:text-slate-300 uppercase italic"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center px-4">
+                    <span class="text-[10px] font-black text-slate-800 dark:text-white uppercase tracking-widest">Total Bayar</span>
+                    <span id="reviewPrice" class="text-xl font-black text-slate-900 dark:text-white tracking-tighter"></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="closeReviewModal()" class="py-4 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 font-black text-[9px] uppercase tracking-[0.3em] hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                    Batal
+                </button>
+                <button id="confirmPayBtn" class="py-4 rounded-2xl bg-blue-600 text-white font-black text-[9px] uppercase tracking-[0.3em] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-blue-200 dark:shadow-none">
+                    Bayar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Midtrans Snap Script -->
 <script type="text/javascript" src="{{ config('services.midtrans.is_production') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}" data-client-key="{{ config('services.midtrans.client_key') }}"></script>
 <script>
+    const plansData = @json($plans);
+    let currentSelectedPlanId = null;
+
     function checkout(planId) {
-        if (!confirm('Lanjutkan proses pembayaran untuk paket ini?')) return;
+        currentSelectedPlanId = planId;
+        const plan = plansData.find(p => p.id === planId);
         
+        if (!plan) return;
+
+        // Populate Modal
+        document.getElementById('reviewPlanName').innerText = plan.name;
+        document.getElementById('reviewDuration').innerText = plan.duration;
+        document.getElementById('reviewLinks').innerText = plan.links + (plan.id == 'lifetime' ? '' : ' LINK');
+        document.getElementById('reviewPrice').innerText = 'Rp' + new Intl.NumberFormat('id-ID').format(plan.price);
+        
+        // Show Modal
+        const modal = document.getElementById('reviewModal');
+        const content = document.getElementById('reviewModalContent');
+        
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            content.classList.remove('scale-95', 'opacity-0');
+            content.classList.add('scale-100', 'opacity-100');
+        }, 10);
+
+        // Update Button Click
+        document.getElementById('confirmPayBtn').onclick = processPayment;
+    }
+
+    function closeReviewModal() {
+        const modal = document.getElementById('reviewModal');
+        const content = document.getElementById('reviewModalContent');
+        
+        content.classList.add('scale-95', 'opacity-0');
+        content.classList.remove('scale-100', 'opacity-100');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+
+    function processPayment() {
+        const btn = document.getElementById('confirmPayBtn');
+        const originalText = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = 'WAIT...';
+
         fetch("{{ route('subscription.checkout') }}", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({ plan: planId })
+            body: JSON.stringify({ plan: currentSelectedPlanId })
         })
         .then(response => response.json())
         .then(data => {
+            closeReviewModal();
             if (data.token) {
                 window.snap.pay(data.token, {
                     onSuccess: function(result) { location.reload(); },
                     onPending: function(result) { location.reload(); },
-                    onError: function(result) { alert('Pembayaran gagal! Silakan coba kembali.'); },
+                    onError: function(result) { 
+                        showAlert('Error', 'Pembayaran gagal! Silakan coba kembali.', 'error');
+                    },
                     onClose: function() { }
                 });
             } else {
-                alert(data.error || 'Terjadi gangguan pada sistem pembayaran.');
+                showAlert('Error', data.error || 'Terjadi gangguan pada sistem pembayaran.', 'error');
             }
         })
         .catch(error => {
+            closeReviewModal();
             console.error('Error:', error);
-            alert('Koneksi terputus. Gagal memproses permintaan.');
+            showAlert('Error', 'Koneksi terputus. Gagal memproses permintaan.', 'error');
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerText = originalText;
         });
     }
 </script>
