@@ -31,6 +31,12 @@ class DashboardController extends Controller
                 'total_scans' => $scans,
                 'operational_cost' => $opsCost,
                 'surplus' => $revenue - $opsCost,
+                
+                // Subscription Type Stats
+                'trial_count' => School::where('subscription_type', 'trial')->count(),
+                'six_months_count' => School::where('subscription_type', '6_months')->count(),
+                'one_year_count' => School::whereIn('subscription_type', ['1_year', 'year'])->count(),
+                'lifetime_count' => School::where('subscription_type', 'lifetime')->count(),
             ];
             $latestSchools = School::withCount('examLinks')->latest()->take(5)->get();
             $latestTransactions = \App\Models\Transaction::with('school')->where('status', 'success')->latest()->take(5)->get();

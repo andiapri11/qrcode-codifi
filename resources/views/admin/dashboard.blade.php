@@ -73,6 +73,65 @@
             </div>
         </div>
     </div>
+
+    <!-- Second Row: Subscription Breakdown -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Akun Trial -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Total Akun Trial</p>
+                <div class="flex items-center gap-1">
+                    <span class="text-2xl font-black text-amber-500 tracking-tighter">{{ $stats['trial_count'] }}</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Akun</span>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-amber-50 dark:bg-amber-900/20 rounded-xl flex items-center justify-center text-amber-500 border border-amber-100 dark:border-amber-900/30">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+        </div>
+
+        <!-- Akun 6 Bulan -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Berlangganan 6 Bulan</p>
+                <div class="flex items-center gap-1">
+                    <span class="text-2xl font-black text-indigo-500 tracking-tighter">{{ $stats['six_months_count'] }}</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Akun</span>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl flex items-center justify-center text-indigo-500 border border-indigo-100 dark:border-indigo-900/30">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            </div>
+        </div>
+
+        <!-- Akun 1 Tahun -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Berlangganan 1 Tahun</p>
+                <div class="flex items-center gap-1">
+                    <span class="text-2xl font-black text-emerald-500 tracking-tighter">{{ $stats['one_year_count'] }}</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Akun</span>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl flex items-center justify-center text-emerald-500 border border-emerald-100 dark:border-emerald-900/30">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            </div>
+        </div>
+
+        <!-- Akun Lifetime -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Total Life Time</p>
+                <div class="flex items-center gap-1">
+                    <span class="text-2xl font-black text-rose-500 tracking-tighter">{{ $stats['lifetime_count'] }}</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Akun</span>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-rose-50 dark:bg-rose-900/20 rounded-xl flex items-center justify-center text-rose-500 border border-rose-100 dark:border-rose-900/30">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+            </div>
+        </div>
+    </div>
     @else
     
     <!-- ========================================================= -->
