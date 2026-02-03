@@ -64,7 +64,8 @@ class GoogleController extends Controller
                 return redirect()->route('auth.onboarding');
             }
         } catch (Exception $e) {
-            return redirect('login')->with('error', 'Gagal login dengan Google: ' . $e->getMessage());
+            \Log::error('Google Login Error: ' . $e->getMessage());
+            return redirect('login')->with('error', 'Gagal login: ' . $e->getMessage() . '. Pastikan redirect URL di Google Console sudah benar.');
         }
     }
 

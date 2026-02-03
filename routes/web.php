@@ -31,7 +31,7 @@ Route::group([], function () {
 });
 
 // Onboarding Routes for Google Users (Session Based or Auth Based)
-Route::middleware(['web', 'auth'])->group(function () {
+Route::middleware(['web'])->group(function () {
     Route::get('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'onboarding'])->name('auth.onboarding');
     Route::post('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'completeOnboarding'])->name('auth.onboarding.store');
 });
