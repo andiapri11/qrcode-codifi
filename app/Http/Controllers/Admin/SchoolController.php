@@ -87,7 +87,7 @@ class SchoolController extends Controller
         return DB::transaction(function() use ($request) {
             $logoPath = null;
             if ($request->hasFile('logo')) {
-                $logoPath = $request->file('logo')->store('schools', 'public');
+                $logoPath = $this->processLogo($request->file('logo'));
             }
 
             $expiresAt = null;
@@ -204,7 +204,7 @@ class SchoolController extends Controller
             if ($school->logo) {
                 Storage::disk('public')->delete($school->logo);
             }
-            $data['logo'] = $request->file('logo')->store('schools', 'public');
+            $data['logo'] = $this->processLogo($request->file('logo'));
         }
 
         if (strtolower($user->role) === 'superadmin') {
@@ -287,5 +287,80 @@ class SchoolController extends Controller
 
         $status = $school->is_active ? 'diaktifkan' : 'dinonaktifkan';
         return redirect()->back()->with('success', "Instansi {$school->name} berhasil {$status}.");
+    }
+
+    private function processLogo($file)
+    {
+        try {
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.webp';
+            $path = 'schools/' . $filename;
+            
+            $image = null;
+            $realPath = $file->getRealPath();
+            
+            switch (strtolower($extension)) {
+                case 'jpeg':
+                case 'jpg':
+                    $image = @imagecreatefromjpeg($realPath);
+                    break;
+                case 'png':
+                    $image = @imagecreatefrompng($realPath);
+                    if ($image) {
+                        imagepalettetotruecolor($image);
+                        imagealphablending($image, true);
+                        imagesavealpha($image, true);
+                    }
+                    break;
+                case 'webp':
+                    $image = @imagecreatefromwebp($realPath);
+                    break;
+            }
+
+            if (!$image) {
+                return $file->store('schools', 'public');
+            }
+
+            // Resize (Max 600px)
+            $width = imagesx($image);
+            $height = imagesy($image);
+            $maxSize = 600;
+
+            if ($width > $maxSize || $height > $maxSize) {
+                if ($width > $height) {
+                    $newWidth = $maxSize;
+                    $newHeight = (int)($height * ($maxSize / $width));
+                } else {
+                    $newHeight = $maxSize;
+                    $newWidth = (int)($width * ($maxSize / $height));
+                }
+
+                $newImage = imagecreatetruecolor($newWidth, $newHeight);
+                imagealphablending($newImage, false);
+                imagesavealpha($newImage, true);
+                
+                // Set background transparent
+                $transparent = imagecolorallocatealpha($newImage, 255, 255, 255, 127);
+                imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
+                
+                imagecopyresampled($newImage, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+                imagedestroy($image);
+                $image = $newImage;
+            }
+
+            ob_start();
+            imagewebp($image, null, 80);
+            $binaryData = ob_get_clean();
+            imagedestroy($image);
+
+            if ($binaryData) {
+                Storage::disk('public')->put($path, $binaryData);
+                return $path;
+            }
+        } catch (\Exception $e) {
+            // Fallback
+        }
+
+        return $file->store('schools', 'public');
     }
 }
