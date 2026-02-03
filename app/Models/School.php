@@ -26,6 +26,7 @@ class School extends Model
         'supervisor_password',
         'exit_password',
         'violation_password',
+        'custom_background',
     ];
 
     protected static function booted()
@@ -97,6 +98,14 @@ class School extends Model
             return asset('storage/' . $this->logo);
         }
         
+        return null;
+    }
+
+    public function getBackgroundUrlAttribute()
+    {
+        if ($this->custom_background) {
+            return asset('storage/' . $this->custom_background);
+        }
         return null;
     }
 

@@ -176,6 +176,7 @@ class SchoolController extends Controller
             'violation_password' => 'nullable|string|max:50',
             'domain_whitelist' => 'nullable|string',
             'theme_color' => 'nullable|string|max:7',
+            'custom_background' => 'nullable|image|mimes:jpeg,png,jpg|max:3072',
         ]);
 
         if (strtolower($user->role) === 'superadmin' || $school->subscription_type === 'lifetime') {
@@ -207,6 +208,13 @@ class SchoolController extends Controller
                 Storage::disk('public')->delete($school->logo);
             }
             $data['logo'] = $this->processLogo($request->file('logo'));
+        }
+
+        if ($request->hasFile('custom_background') && (strtolower($user->role) === 'superadmin' || $school->subscription_type === 'lifetime')) {
+            if ($school->custom_background) {
+                Storage::disk('public')->delete($school->custom_background);
+            }
+            $data['custom_background'] = $this->processBackground($request->file('custom_background'));
         }
 
         if (strtolower($user->role) === 'superadmin') {
@@ -378,5 +386,63 @@ class SchoolController extends Controller
         }
 
         return $file->store('schools', 'public');
+    }
+
+    private function processBackground($file)
+    {
+        try {
+            $realPath = $file->getRealPath();
+            $imageInfo = @getimagesize($realPath);
+            
+            if (!$imageInfo) {
+                return $file->store('backgrounds', 'public');
+            }
+
+            $width = $imageInfo[0];
+            $height = $imageInfo[1];
+            $type = $imageInfo[2];
+            $extension = $file->getClientOriginalExtension();
+            
+            $image = null;
+            if ($type == IMAGETYPE_JPEG) $image = @imagecreatefromjpeg($realPath);
+            elseif ($type == IMAGETYPE_PNG) $image = @imagecreatefrompng($realPath);
+
+            if (!$image) return $file->store('backgrounds', 'public');
+
+            // Resize (Max 1200px for background)
+            $maxSize = 1200;
+            if ($width > $maxSize || $height > $maxSize) {
+                if ($width > $height) {
+                    $newWidth = $maxSize;
+                    $newHeight = (int)($height * ($maxSize / $width));
+                } else {
+                    $newHeight = $maxSize;
+                    $newWidth = (int)($width * ($maxSize / $height));
+                }
+                $newImage = imagecreatetruecolor($newWidth, $newHeight);
+                imagecopyresampled($newImage, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+                imagedestroy($image);
+                $image = $newImage;
+            }
+
+            $filename = Str::random(40) . '.' . $extension;
+            $path = 'backgrounds/' . $filename;
+
+            ob_start();
+            if ($type == IMAGETYPE_PNG) imagepng($image, null, 8);
+            else imagejpeg($image, null, 80);
+            
+            $binaryData = ob_get_clean();
+            imagedestroy($image);
+
+            if ($binaryData) {
+                Storage::disk('public')->put($path, $binaryData);
+                return $path;
+            }
+        } catch (\Exception $e) {
+            Log::error('Background processing error: ' . $e->getMessage());
+        }
+
+        return $file->store('backgrounds', 'public');
     }
 }

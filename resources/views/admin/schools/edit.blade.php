@@ -32,42 +32,85 @@
             
             <div class="grid grid-cols-12 gap-8">
                 <!-- Left Side: Logo Section -->
-                <div class="col-span-12 lg:col-span-4">
-                    <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Logo Instansi</label>
-                    @php
-                        $isTrial = $school->subscription_type === 'trial';
-                    @endphp
+                <div class="col-span-12 lg:col-span-4 space-y-8">
+                    <div>
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Logo Instansi</label>
+                        @php
+                            $isTrial = $school->subscription_type === 'trial';
+                            $isLifetime = $school->subscription_type === 'lifetime';
+                        @endphp
 
-                    <div class="relative group">
-                        <div id="preview-box" class="aspect-square bg-slate-50/50 rounded-[2rem] border-2 border-dashed {{ $school->logo ? 'border-indigo-100' : 'border-slate-200' }} flex flex-col items-center justify-center transition-all overflow-hidden relative shadow-inner {{ $isTrial ? 'opacity-70 bg-slate-100 cursor-not-allowed' : 'hover:bg-white hover:border-indigo-300' }}">
-                            @if($school->logo)
-                                <img id="preview-img" src="{{ Storage::disk('public')->url($school->logo) }}" class="w-full h-full object-cover">
-                            @else
-                                <div id="preview-placeholder" class="text-center p-4">
-                                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-slate-300 mx-auto mb-3 border border-slate-100 shadow-sm">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        <div class="relative group">
+                            <div id="preview-box" class="aspect-square bg-slate-50/50 rounded-[2rem] border-2 border-dashed {{ $school->logo ? 'border-indigo-100' : 'border-slate-200' }} flex flex-col items-center justify-center transition-all overflow-hidden relative shadow-inner {{ $isTrial ? 'opacity-70 bg-slate-100 cursor-not-allowed' : 'hover:bg-white hover:border-indigo-300' }}">
+                                @if($school->logo)
+                                    <img id="preview-img" src="{{ Storage::disk('public')->url($school->logo) }}" class="w-full h-full object-cover">
+                                @else
+                                    <div id="preview-placeholder" class="text-center p-4">
+                                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-slate-300 mx-auto mb-3 border border-slate-100 shadow-sm">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                        </div>
+                                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Upload logo</p>
+                                        <p class="text-[8px] text-slate-300 mt-0.5 uppercase tracking-tight">Gunakan format PNG Tanpa Background</p>
                                     </div>
-                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Upload logo</p>
-                                    <p class="text-[8px] text-slate-300 mt-0.5 uppercase tracking-tight">Gunakan format PNG Tanpa Background</p>
-                                </div>
-                                <img id="preview-img" class="hidden w-full h-full object-cover">
-                            @endif
+                                    <img id="preview-img" class="hidden w-full h-full object-cover">
+                                @endif
 
-                            @if(!$isTrial)
-                            <input type="file" name="logo" id="logo-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewLogo(this)">
+                                @if(!$isTrial)
+                                <input type="file" name="logo" id="logo-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewLogo(this)">
+                                @endif
+                            </div>
+
+                            @if($isTrial)
+                            <div class="absolute inset-x-0 bottom-4 flex justify-center z-20">
+                                <span class="bg-slate-900 text-white text-[8px] font-black px-5 py-3 rounded-2xl uppercase tracking-[0.2em] shadow-2xl flex flex-col items-center gap-3 text-center leading-relaxed border border-white/10 backdrop-blur-sm">
+                                    <svg class="w-5 h-5 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                    <span>UPGRADE PAKET UNTUK<br>KUSTOMISASI LOGO BRANDING</span>
+                                </span>
+                            </div>
                             @endif
                         </div>
+                    </div>
 
-                        @if($isTrial)
-                        <div class="absolute inset-x-0 bottom-4 flex justify-center z-20">
-                            <span class="bg-slate-900 text-white text-[8px] font-black px-5 py-3 rounded-2xl uppercase tracking-[0.2em] shadow-2xl flex flex-col items-center gap-3 text-center leading-relaxed border border-white/10 backdrop-blur-sm">
-                                <svg class="w-5 h-5 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                                <span>UPGRADE PAKET UNTUK<br>KUSTOMISASI LOGO BRANDING</span>
-                            </span>
+                    <!-- Custom Background Section -->
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Custom Background App</label>
+                            @if($isLifetime)
+                                <span class="bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded text-[7px] font-black uppercase tracking-widest">Lifetime Only</span>
+                            @endif
                         </div>
-                        @endif
+                        
+                        <div class="relative group">
+                            <div id="bg-preview-box" class="aspect-video bg-slate-50/50 rounded-[1.5rem] border-2 border-dashed {{ $school->custom_background ? 'border-indigo-100' : 'border-slate-200' }} flex flex-col items-center justify-center transition-all overflow-hidden relative shadow-inner {{ !$isLifetime && strtolower(Auth::user()->role) !== 'superadmin' ? 'opacity-70 bg-slate-100 cursor-not-allowed' : 'hover:bg-white hover:border-indigo-300' }}">
+                                @if($school->custom_background)
+                                    <img id="bg-preview-img" src="{{ Storage::disk('public')->url($school->custom_background) }}" class="w-full h-full object-cover">
+                                @else
+                                    <div id="bg-preview-placeholder" class="text-center p-4">
+                                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-300 mx-auto mb-2 border border-slate-100 shadow-sm">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                        </div>
+                                        <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Upload Background</p>
+                                    </div>
+                                    <img id="bg-preview-img" class="hidden w-full h-full object-cover">
+                                @endif
+
+                                @if($isLifetime || strtolower(Auth::user()->role) === 'superadmin')
+                                <input type="file" name="custom_background" id="bg-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewBg(this)">
+                                @endif
+                            </div>
+
+                            @if(!$isLifetime && strtolower(Auth::user()->role) !== 'superadmin')
+                            <div class="absolute inset-0 flex items-center justify-center bg-slate-900/40 backdrop-blur-[2px] rounded-[1.5rem] z-20">
+                                <span class="bg-white text-slate-900 text-[7px] font-black px-4 py-2 rounded-lg uppercase tracking-widest shadow-xl flex items-center gap-2">
+                                    <svg class="w-3 h-3 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" /></svg>
+                                    LIFETIME ONLY
+                                </span>
+                            </div>
+                            @endif
+                        </div>
+                        <p class="text-[7px] text-slate-400 mt-2 ml-1 italic font-bold uppercase tracking-tight">* Rekomendasi: 1080x1920 (Portrait)</p>
                     </div>
                 </div>
 
@@ -261,6 +304,24 @@
             const img = document.getElementById('preview-img');
             const placeholder = document.getElementById('preview-placeholder');
             const box = document.getElementById('preview-box');
+
+            reader.onload = function(e) {
+                img.src = e.target.result;
+                img.classList.remove('hidden');
+                if (placeholder) placeholder.classList.add('hidden');
+                box.classList.remove('border-slate-200');
+                box.classList.add('border-indigo-500', 'bg-white');
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function previewBg(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            const img = document.getElementById('bg-preview-img');
+            const placeholder = document.getElementById('bg-preview-placeholder');
+            const box = document.getElementById('bg-preview-box');
 
             reader.onload = function(e) {
                 img.src = e.target.result;
