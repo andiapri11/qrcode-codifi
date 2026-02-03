@@ -10,7 +10,14 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                 </div>
                 <div>
-                    <h2 class="text-lg font-black text-slate-900 tracking-tight uppercase">Profil Instansi</h2>
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-lg font-black text-slate-900 tracking-tight uppercase">Profil Instansi</h2>
+                        @if($school->subscription_type === 'lifetime')
+                            <span class="px-3 py-1 bg-amber-100 border border-amber-200 text-amber-600 text-[8px] font-black rounded-full uppercase tracking-widest shadow-sm shadow-amber-50 animate-pulse">
+                                ⚡ Priority Tier
+                            </span>
+                        @endif
+                    </div>
                     <p class="text-[9px] text-slate-400 font-bold uppercase tracking-[0.2em] mt-1">Identitas dan kontak sekolah</p>
                 </div>
             </div>
@@ -68,16 +75,23 @@
                 <div class="col-span-12 lg:col-span-8">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="sm:col-span-1">
-                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Kode Instansi (5 Karakter)</label>
-                            @if(strtolower(Auth::user()->role) === 'superadmin')
-                                <input type="text" name="school_code" value="{{ old('school_code', $school->school_code) }}" maxlength="5" placeholder="Contoh: SMKN1" style="text-transform: uppercase;"
+                            @php
+                                $canEditCode = strtolower(Auth::user()->role) === 'superadmin' || $school->subscription_type === 'lifetime';
+                                $codeLength = $school->subscription_type === 'lifetime' ? 10 : 5;
+                            @endphp
+                            
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Kode Instansi (Hingga {{ $codeLength }} Char)</label>
+                            @if($canEditCode)
+                                <input type="text" name="school_code" value="{{ old('school_code', $school->school_code) }}" maxlength="{{ $codeLength }}" placeholder="Contoh: SMKN1" style="text-transform: uppercase;"
                                     class="w-full bg-slate-50 border border-slate-200 py-3.5 px-6 rounded-xl font-black text-slate-700 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                <p class="text-[8px] text-slate-400 mt-2 ml-1 italic tracking-tight">* Kode unik untuk diinput siswa di aplikasi.</p>
                             @else
                                 <div class="w-full bg-slate-100/50 border border-slate-200 py-3.5 px-6 rounded-xl font-black text-slate-500 text-sm cursor-not-allowed flex items-center gap-2">
                                     <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                                     {{ $school->school_code ?? 'BELUM DISET' }}
                                     <span class="ml-auto text-[8px] opacity-70">FIXED</span>
                                 </div>
+                                <p class="text-[8px] text-rose-400 mt-2 ml-1 italic font-bold uppercase tracking-widest">Upgrade ke Lifetime untuk ganti kode</p>
                             @endif
                         </div>
 

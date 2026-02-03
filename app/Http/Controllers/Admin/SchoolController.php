@@ -178,9 +178,10 @@ class SchoolController extends Controller
             'theme_color' => 'nullable|string|max:7',
         ]);
 
-        if (strtolower($user->role) === 'superadmin') {
+        if (strtolower($user->role) === 'superadmin' || $school->subscription_type === 'lifetime') {
+            $maxLength = $school->subscription_type === 'lifetime' ? 10 : 5;
             $request->validate([
-                'school_code' => ['nullable', 'string', 'max:5', Rule::unique('schools', 'school_code')->ignore($school->id)],
+                'school_code' => ['nullable', 'string', 'max:'.$maxLength, Rule::unique('schools', 'school_code')->ignore($school->id)],
             ]);
         }
 
@@ -196,7 +197,7 @@ class SchoolController extends Controller
             'theme_color' => $request->theme_color ?? '#3C50E0',
         ];
 
-        if (strtolower($user->role) === 'superadmin' && $request->filled('school_code')) {
+        if ((strtolower($user->role) === 'superadmin' || $school->subscription_type === 'lifetime') && $request->filled('school_code')) {
             $data['school_code'] = strtoupper($request->school_code);
         }
 
