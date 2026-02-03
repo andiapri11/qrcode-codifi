@@ -119,6 +119,39 @@
             </div>
         </div>
 
+        <!-- Section: Branding & Akses Web -->
+        <div class="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div class="px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/30">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-black text-slate-800 dark:text-slate-100 text-sm uppercase tracking-wider">Branding & Akses Web</h3>
+                        <p class="text-xs text-slate-500 font-medium">Pengaturan whitelist website dan warna tema aplikasi</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Whitelist Domain (Pisahkan Koma)</label>
+                    <textarea name="domain_whitelist" rows="2" placeholder="Contoh: docs.google.com, forms.gle"
+                        class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all shadow-inner resize-none"></textarea>
+                    <p class="text-[9px] text-slate-400 mt-2 italic font-medium">* Daftar website sekolah/ujian yang boleh diakses.</p>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Warna Tema Aplikasi</label>
+                    <div class="flex gap-4">
+                        <input type="color" name="theme_color" value="#3C50E0" class="w-16 h-12 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer p-1">
+                        <input type="text" readonly value="#3C50E0" class="flex-1 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-xs font-mono text-slate-400 cursor-not-allowed">
+                    </div>
+                    <p class="text-[9px] text-slate-400 mt-2 italic font-medium">* Warna dominan pada aplikasi mobile siswa.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Section 2: Layanan & Akses -->
         <div class="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
             <div class="px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/30">

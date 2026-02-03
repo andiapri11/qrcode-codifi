@@ -131,7 +131,6 @@
                     </div>
                 </div>
             </div>
-            </div>
 
             <!-- Branding & Web Access -->
             <div class="mt-12 pt-10 border-t border-slate-100">
