@@ -152,6 +152,16 @@
                                     </p>
                                 </li>
                             </ul>
+
+                            @if(!$isLifetime && strtolower(Auth::user()->role) !== 'superadmin')
+                            <div class="mt-6 pt-5 border-t border-amber-200/50">
+                                <p class="text-[8px] text-amber-900/60 font-bold uppercase tracking-tight mb-3">Ingin menggunakan background custom & branding instansi?</p>
+                                <a href="{{ route('subscription.index') }}" class="inline-flex items-center gap-3 bg-amber-600 hover:bg-amber-700 text-white px-5 py-3 rounded-xl text-[9px] font-black uppercase tracking-[0.2em] transition-all shadow-lg shadow-amber-200">
+                                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" /></svg>
+                                    Upgrade ke Lifetime
+                                </a>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
