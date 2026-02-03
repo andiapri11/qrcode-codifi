@@ -100,7 +100,10 @@ class HandshakeController extends Controller
         }
         $whitelist = implode(', ', array_unique($baseWhitelist));
 
-        // 5. SUCCESS RESPOND
+        // 5. INCREMENT SCAN COUNT
+        $examLink->increment('scan_count');
+
+        // 6. SUCCESS RESPOND
         return response()->json([
             'success' => true,
             'data' => [
