@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class SchoolController extends Controller
 {
@@ -292,19 +293,27 @@ class SchoolController extends Controller
     private function processLogo($file)
     {
         try {
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.webp';
-            $path = 'schools/' . $filename;
+            if (!$file->isValid()) {
+                return $file->store('schools', 'public');
+            }
+
+            $realPath = $file->getRealPath();
+            $imageInfo = @getimagesize($realPath);
+            
+            if (!$imageInfo) {
+                return $file->store('schools', 'public');
+            }
+
+            $width = $imageInfo[0];
+            $height = $imageInfo[1];
+            $type = $imageInfo[2];
             
             $image = null;
-            $realPath = $file->getRealPath();
-            
-            switch (strtolower($extension)) {
-                case 'jpeg':
-                case 'jpg':
+            switch ($type) {
+                case IMAGETYPE_JPEG:
                     $image = @imagecreatefromjpeg($realPath);
                     break;
-                case 'png':
+                case IMAGETYPE_PNG:
                     $image = @imagecreatefrompng($realPath);
                     if ($image) {
                         imagepalettetotruecolor($image);
@@ -312,8 +321,10 @@ class SchoolController extends Controller
                         imagesavealpha($image, true);
                     }
                     break;
-                case 'webp':
-                    $image = @imagecreatefromwebp($realPath);
+                case IMAGETYPE_WEBP:
+                    if (function_exists('imagecreatefromwebp')) {
+                        $image = @imagecreatefromwebp($realPath);
+                    }
                     break;
             }
 
@@ -321,11 +332,8 @@ class SchoolController extends Controller
                 return $file->store('schools', 'public');
             }
 
-            // Resize (Max 600px)
-            $width = imagesx($image);
-            $height = imagesy($image);
-            $maxSize = 600;
-
+            // Resize (Max 800px)
+            $maxSize = 800;
             if ($width > $maxSize || $height > $maxSize) {
                 if ($width > $height) {
                     $newWidth = $maxSize;
@@ -339,7 +347,6 @@ class SchoolController extends Controller
                 imagealphablending($newImage, false);
                 imagesavealpha($newImage, true);
                 
-                // Set background transparent
                 $transparent = imagecolorallocatealpha($newImage, 255, 255, 255, 127);
                 imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
                 
@@ -348,17 +355,30 @@ class SchoolController extends Controller
                 $image = $newImage;
             }
 
+            $filename = Str::random(40) . '.webp';
+            $path = 'schools/' . $filename;
+
             ob_start();
-            imagewebp($image, null, 80);
+            $success = false;
+            if (function_exists('imagewebp')) {
+                $success = @imagewebp($image, null, 80);
+            }
+            
+            if (!$success) {
+                $filename = Str::random(40) . '.jpg';
+                $path = 'schools/' . $filename;
+                $success = @imagejpeg($image, null, 85);
+            }
+            
             $binaryData = ob_get_clean();
             imagedestroy($image);
 
-            if ($binaryData) {
+            if ($success && $binaryData) {
                 Storage::disk('public')->put($path, $binaryData);
                 return $path;
             }
         } catch (\Exception $e) {
-            // Fallback
+            Log::error('Logo processing error: ' . $e->getMessage());
         }
 
         return $file->store('schools', 'public');
