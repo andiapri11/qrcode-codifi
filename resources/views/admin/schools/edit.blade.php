@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="max-w-4xl mx-auto px-4">
+<div class="max-w-7xl mx-auto px-4">
     <div class="bg-gradient-to-b from-white to-slate-50/20 rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden">
         <!-- Compact Header -->
         <div class="px-8 py-8 border-b border-slate-100 flex justify-between items-center bg-white">
@@ -108,11 +108,15 @@
                 </div>
             </div>
 
-            <!-- Security Settings (Dynamic Passwords) -->
             <div class="mt-12 pt-10 border-t border-slate-100">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="w-7 h-7 bg-indigo-500 text-white rounded-lg flex items-center justify-center text-[10px] font-black">🔐</span>
-                    <h3 class="text-xs font-black text-slate-900 uppercase tracking-tight">Sesi & Keamanan App</h3>
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-8 h-8 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shadow-inner">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-black text-slate-900 uppercase tracking-widest">Sesi & Keamanan App</h3>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-tight mt-1">Konfigurasi password mandiri instansi</p>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -134,9 +138,14 @@
 
             <!-- Branding & Web Access -->
             <div class="mt-12 pt-10 border-t border-slate-100">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="w-7 h-7 bg-emerald-500 text-white rounded-lg flex items-center justify-center text-[10px] font-black">🌍</span>
-                    <h3 class="text-xs font-black text-slate-900 uppercase tracking-tight">Branding & Akses Web</h3>
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-8 h-8 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shadow-inner">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-black text-slate-900 uppercase tracking-widest">Branding & Akses Web</h3>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-tight mt-1">Identitas warna dan pembatasan akses website</p>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
