@@ -307,6 +307,7 @@ class SchoolController extends Controller
             $width = $imageInfo[0];
             $height = $imageInfo[1];
             $type = $imageInfo[2];
+            $extension = $file->getClientOriginalExtension();
             
             $image = null;
             switch ($type) {
@@ -319,11 +320,6 @@ class SchoolController extends Controller
                         imagepalettetotruecolor($image);
                         imagealphablending($image, true);
                         imagesavealpha($image, true);
-                    }
-                    break;
-                case IMAGETYPE_WEBP:
-                    if (function_exists('imagecreatefromwebp')) {
-                        $image = @imagecreatefromwebp($realPath);
                     }
                     break;
             }
@@ -344,29 +340,28 @@ class SchoolController extends Controller
                 }
 
                 $newImage = imagecreatetruecolor($newWidth, $newHeight);
-                imagealphablending($newImage, false);
-                imagesavealpha($newImage, true);
                 
-                $transparent = imagecolorallocatealpha($newImage, 255, 255, 255, 127);
-                imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
+                if ($type == IMAGETYPE_PNG) {
+                    imagealphablending($newImage, false);
+                    imagesavealpha($newImage, true);
+                    $transparent = imagecolorallocatealpha($newImage, 255, 255, 255, 127);
+                    imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
+                }
                 
                 imagecopyresampled($newImage, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
                 imagedestroy($image);
                 $image = $newImage;
             }
 
-            $filename = Str::random(40) . '.webp';
+            $filename = Str::random(40) . '.' . $extension;
             $path = 'schools/' . $filename;
 
             ob_start();
             $success = false;
-            if (function_exists('imagewebp')) {
-                $success = @imagewebp($image, null, 80);
-            }
             
-            if (!$success) {
-                $filename = Str::random(40) . '.jpg';
-                $path = 'schools/' . $filename;
+            if ($type == IMAGETYPE_PNG) {
+                $success = @imagepng($image, null, 8); // PNG compression 0-9
+            } else {
                 $success = @imagejpeg($image, null, 85);
             }
             
