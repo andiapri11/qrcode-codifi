@@ -36,43 +36,49 @@ class SubscriptionController extends Controller
         $plans = [
             [
                 'id' => '6_months',
-                'name' => 'Paket 6 Bulan',
+                'name' => '6 Bulan Berlangganan',
                 'price' => 350000,
-                'duration' => '6 Bulan',
+                'duration' => 'Sekali bayar per 6 bulan',
                 'links' => 10,
-                'description' => 'Cocok untuk 1 semester ujian.',
+                'description' => 'Solusi hemat untuk kelancaran Ujian Semester Anda.',
                 'features' => [
-                    '10 Barcode Secure',
-                    'Standard Branding',
-                    'Priority Support'
+                    '10 Barcode Secure (Anti-Screenshot)',
+                    'Custom Logo & Nama Sekolah',
+                    'Dukungan Update Berkala',
+                    'Akses ke Dashboard Admin',
+                    'Support Teknis Prioritas'
                 ]
             ],
             [
                 'id' => '1_year',
-                'name' => 'Paket 1 Tahun',
+                'name' => '1 Tahun Berlangganan',
                 'price' => 650000,
-                'duration' => '1 Tahun',
+                'duration' => 'Sekali bayar per tahun',
                 'links' => 20,
-                'description' => 'Lebih hemat untuk 2 semester.',
+                'description' => 'Pilihan cerdas untuk manajemen ujian setahun penuh.',
                 'features' => [
-                    '20 Barcode Secure',
-                    'Advanced Branding',
-                    'Priority Support'
+                    '20 Barcode Secure (Anti-Screenshot)',
+                    'Custom Logo & Nama Sekolah',
+                    'Statistik Hasil Ujian (Basic)',
+                    'Dukungan Update Prioritas',
+                    'Hemat Rp50.000 dibanding 6 bln',
+                    'Support Teknis Prioritas'
                 ]
             ],
             [
                 'id' => 'lifetime',
-                'name' => 'Paket Lifetime',
+                'name' => 'Paket Lifetime Access',
                 'price' => 2500000,
-                'duration' => 'Selamanya',
+                'duration' => 'Bayar sekali, pakai selamanya',
                 'links' => 'Unlimited',
-                'description' => 'Investasi sekali untuk selamanya.',
+                'description' => 'Investasi branding sekolah terbaik & permanen tanpa pusing perpanjangan.',
                 'features' => [
                     'Unlimited Barcode Secure',
-                    'Full Whitelabel (Tanpa Branding)',
-                    'Kustom Kode Sekolah (10 Char)',
-                    'Custom Background App (Mobile)',
-                    'Priority Server Access'
+                    'Full Whitelabel (Hapus Branding Schola)',
+                    'Kustom Kode Sekolah (Sesuai Nama Sekolah)',
+                    'Upload Custom Background App',
+                    'Dedicated Server Access (Lebih Cepat)',
+                    'Prioritas Fitur Baru Selamanya'
                 ]
             ],
         ];
