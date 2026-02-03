@@ -13,6 +13,7 @@
             <div class="w-full xl:w-[450px]">
                 <form id="qrForm" class="space-y-6">
                     @csrf
+                    @if(Auth::user()->role === 'superadmin')
                     <div>
                         <label class="mb-2.5 block font-black text-slate-400 text-[9px] uppercase tracking-[0.2em] ml-1">Pilih Sekolah Mitra</label>
                         <select name="school_id" id="school_id" required class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 px-6 font-bold text-slate-900 outline-none focus:ring-2 focus:ring-indigo-500 transition text-xs shadow-sm shadow-inner">
@@ -21,6 +22,13 @@
                             @endforeach
                         </select>
                     </div>
+                    @else
+                        <input type="hidden" name="school_id" id="school_id" value="{{ Auth::user()->school_id }}">
+                        <div>
+                            <label class="mb-2.5 block font-black text-slate-400 text-[9px] uppercase tracking-[0.2em] ml-1">Instansi Anda</label>
+                            <input type="text" value="{{ Auth::user()->school->name }}" disabled class="w-full rounded-2xl border border-slate-200 bg-slate-50/50 py-4 px-6 font-bold text-slate-400 outline-none transition text-xs shadow-sm shadow-inner cursor-not-allowed">
+                        </div>
+                    @endif
 
                     <div>
                         <label class="mb-2.5 block font-black text-slate-400 text-[9px] uppercase tracking-[0.2em] ml-1">Judul / Nama Ujian</label>
