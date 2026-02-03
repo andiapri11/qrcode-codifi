@@ -121,14 +121,37 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="mt-8 bg-amber-50 rounded-xl p-4 border border-amber-100">
-                            <h6 class="text-[9px] font-black text-amber-700 uppercase tracking-widest flex items-center gap-2 mb-2">
-                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
-                                Smart Convert Aktif
+                        <div class="mt-8 bg-amber-50 rounded-[1.5rem] p-5 border border-amber-100 shadow-sm shadow-amber-200/20">
+                            <h6 class="text-[10px] font-black text-amber-700 uppercase tracking-widest flex items-center gap-2 mb-3">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+                                PANDUAN UKURAN & SMART CONVERT
                             </h6>
-                            <p class="text-[8px] text-amber-600/80 leading-relaxed font-bold uppercase tracking-tight">
-                                Anda bisa upload foto ukuran apapun. Sistem akan otomatis memotong (crop) dan menyesuaikan ke rasio layar handphone secara presisi.
-                            </p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1 shrink-0"></div>
+                                    <p class="text-[8px] text-amber-800/80 leading-relaxed font-bold uppercase tracking-tight">
+                                        <b class="text-amber-900">Rasio Ideal:</b> 9:16 (Portrait / Tegak).
+                                    </p>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1 shrink-0"></div>
+                                    <p class="text-[8px] text-amber-800/80 leading-relaxed font-bold uppercase tracking-tight">
+                                        <b class="text-amber-900">Resolusi:</b> 1080 x 1920 Pixel (Full HD) untuk hasil tajam.
+                                    </p>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1 shrink-0"></div>
+                                    <p class="text-[8px] text-amber-800/80 leading-relaxed font-bold uppercase tracking-tight">
+                                        <b class="text-amber-900">File Size:</b> Maksimal 3MB agar aplikasi tetap ringan.
+                                    </p>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1 shrink-0"></div>
+                                    <p class="text-[8px] text-amber-800/80 leading-relaxed font-bold uppercase tracking-tight">
+                                        <b class="text-amber-900">Smart Auto-Crop:</b> Jika Anda upload foto Landscape, sistem akan otomatis mengambil bagian tengahnya secara presisi.
+                                    </p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
