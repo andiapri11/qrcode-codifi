@@ -82,7 +82,7 @@ class SchoolController extends Controller
             'admin_name' => 'required|string|max:255',
             'admin_email' => 'required|string|email|max:255|unique:users,email',
             'admin_phone' => 'required|string|max:20',
-            'admin_password' => ['required', 'string', 'min:8'],
+            'admin_password' => ['required', \Illuminate\Validation\Rules\Password::defaults()],
         ]);
 
         return DB::transaction(function() use ($request) {

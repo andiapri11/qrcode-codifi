@@ -36,8 +36,7 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Validation\Rules\Password::defaults(function () {
             return \Illuminate\Validation\Rules\Password::min(8)
                 ->letters()
-                ->numbers()
-                ->symbols();
+                ->numbers();
         });
     }
 }

@@ -196,11 +196,8 @@
                                 <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
                                     <span class="w-1 h-1 bg-blue-500 rounded-full"></span> Huruf & Angka
                                 </span>
-                                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
-                                    <span class="w-1 h-1 bg-blue-500 rounded-full"></span> Simbol (@#$!)
-                                </span>
                             </div>
-                            <p id="error-password" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n-error-password>Sandi harus 8+ karakter dengan kombinasi angka & simbol!</p>
+                            <p id="error-password" class="hidden text-[10px] text-red-500 font-bold ml-6 uppercase tracking-wider" data-i18n-error-password>Sandi harus 8+ karakter dengan kombinasi huruf & angka!</p>
                         </div>
 
                         <div class="space-y-1">
