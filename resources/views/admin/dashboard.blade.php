@@ -318,10 +318,80 @@
             <div class="relative z-10">
                  <h4 class="font-bold text-sm mb-1 uppercase tracking-tight">Pusat Bantuan</h4>
                  <p class="text-[10px] text-indigo-200 leading-snug mb-3">Butuh bantuan atau perpanjangan paket?</p>
-                 <a href="#" class="inline-block bg-white text-indigo-900 text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-indigo-50 transition-colors">Hubungi Support</a>
+                 <a href="https://wa.me/628123456789" class="inline-block bg-white text-indigo-900 text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-indigo-50 transition-colors">Hubungi Support</a>
             </div>
             <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none translate-x-4 translate-y-4">
                 <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lifetime Promotion/Guide Row (Visible if not lifetime OR as a settings guide if lifetime) -->
+    <div class="bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm mt-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+            <!-- Left: Info -->
+            <div class="lg:col-span-8 p-8 md:p-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-amber-50 dark:bg-amber-900/20 rounded-xl flex items-center justify-center text-amber-500 shadow-inner">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">Panduan Kustomisasi Eksklusif</h3>
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Maksimalkan branding instansi Anda di aplikasi mobile</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Guide 1 -->
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 group">
+                            <span class="w-5 h-5 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-[9px] font-black text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">1</span>
+                            <h5 class="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-tight">Custom School Code</h5>
+                        </div>
+                        <p class="text-[9px] leading-relaxed text-slate-400 font-bold uppercase opacity-80">Ubah kode instansi acak menjadi nama sekolah Anda (Eksklusif Lifetime). Memudahkan siswa saat scan pertama.</p>
+                    </div>
+                    <!-- Guide 2 -->
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 group">
+                            <span class="w-5 h-5 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-[9px] font-black text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">2</span>
+                            <h5 class="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-tight">Whitelabel App</h5>
+                        </div>
+                        <p class="text-[9px] leading-relaxed text-slate-400 font-bold uppercase opacity-80">Hilangkan semua footer branding Schola. Aplikasi akan tampil 100% sebagai milik sekolah Anda kepada siswa.</p>
+                    </div>
+                    <!-- Guide 3 -->
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 group">
+                            <span class="w-5 h-5 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-[9px] font-black text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">3</span>
+                            <h5 class="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-tight">Custom Background</h5>
+                        </div>
+                        <p class="text-[9px] leading-relaxed text-slate-400 font-bold uppercase opacity-80">Unggah desain atau foto gerbang sekolah sebagai latar belakang aplikasi untuk pengalaman yang lebih personall.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex items-center gap-4">
+                    <a href="{{ route('schools.edit', $user->school_id) }}" class="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-6 py-3 rounded-xl text-[9px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-lg shadow-black/10">
+                        Buka Pengaturan Profil
+                    </a>
+                    @if($user->school->subscription_type !== 'lifetime')
+                    <a href="{{ route('subscription.index') }}" class="text-indigo-600 dark:text-indigo-400 text-[9px] font-black uppercase tracking-widest hover:underline decoration-2 underline-offset-4 flex items-center gap-2">
+                        <span>Dapatkan Akses Lifetime</span>
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                    @endif
+                </div>
+            </div>
+            <!-- Right: Visual Asset -->
+            <div class="lg:col-span-4 bg-slate-50 dark:bg-slate-900/50 p-8 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-full h-full opacity-20 pointer-events-none">
+                    <svg class="w-full h-full rotate-12 scale-150" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.5" fill="none" class="text-slate-300 dark:text-slate-700"/></svg>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="w-20 h-20 bg-white dark:bg-slate-800 rounded-3xl shadow-2xl flex items-center justify-center text-3xl mb-4 mx-auto border border-slate-100 dark:border-slate-700">
+                        ✨
+                    </div>
+                    <span class="block text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest leading-none">Branding</span>
+                    <span class="block text-[8px] font-bold text-slate-400 uppercase tracking-tighter mt-1">Eksklusif & Professional</span>
+                </div>
             </div>
         </div>
     </div>
