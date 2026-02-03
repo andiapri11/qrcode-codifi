@@ -97,41 +97,52 @@
                 <h2 class="text-[10px] font-black text-slate-800 dark:text-white uppercase tracking-widest">Pilih Paket Perpanjangan</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @foreach($plans as $plan)
-                <div class="relative border {{ $plan['id'] == 'lifetime' ? 'border-blue-600 bg-blue-50/10' : 'border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/20' }} rounded-[1.5rem] p-5 flex flex-col group hover:scale-[1.02] transition-all">
-                    @if($plan['id'] == 'lifetime')
-                        <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[7px] font-black px-3 py-1 rounded-full uppercase tracking-[0.2em] shadow-lg shadow-blue-100">Best Value</div>
+                @php
+                    $isLifetime = $plan['id'] == 'lifetime';
+                    $isSelected = $school->subscription_type === $plan['id'];
+                @endphp
+                <div class="relative border {{ $isLifetime ? 'border-indigo-500 bg-indigo-50/10' : 'border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/20' }} rounded-[2.5rem] p-6 flex flex-col group transition-all duration-500 {{ $isLifetime ? 'shadow-2xl shadow-indigo-100 hover:scale-[1.03]' : 'hover:scale-[1.02]' }}">
+                    @if($isLifetime)
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-[8px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-xl shadow-indigo-200 animate-pulse z-10">Best Value</div>
                     @endif
                     
-                    <div class="mb-4">
-                        <div class="text-[8px] font-black text-slate-400 uppercase tracking-widest">{{ $plan['name'] }}</div>
-                        <div class="text-xl font-black text-slate-900 dark:text-white mt-1 tracking-tight">Rp{{ number_format($plan['price'], 0, ',', '.') }}</div>
-                        <div class="text-[7px] font-bold text-blue-600 dark:text-blue-400 mt-0.5 uppercase tracking-widest">{{ $plan['duration'] }}</div>
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest">{{ $plan['name'] }}</div>
+                            @if($isSelected)
+                                <span class="bg-emerald-100 text-emerald-600 px-2 py-0.5 rounded-full text-[7px] font-black uppercase tracking-widest">Aktif</span>
+                            @endif
+                        </div>
+                        <div class="text-2xl font-black text-slate-900 dark:text-white mt-1 tracking-tighter">
+                            <span class="text-xs font-bold text-slate-400 mr-0.5">Rp</span>{{ number_format($plan['price'], 0, ',', '.') }}
+                        </div>
+                        <div class="text-[8px] font-black text-indigo-600 dark:text-blue-400 mt-1 uppercase tracking-[0.15em]">{{ $plan['duration'] }}</div>
                     </div>
                     
-                    <ul class="text-[8px] space-y-3 mb-6 flex-grow font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400 opacity-80">
-                        <li class="flex items-center gap-2">
-                            <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                            {{ $plan['links'] }} Barcode Secure
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                            Custom Branding
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                            Priority Support
-                        </li>
-                    </ul>
+                    <div class="space-y-4 mb-8 flex-grow">
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-tight leading-relaxed">{{ $plan['description'] }}</p>
+                        <ul class="space-y-3">
+                            @foreach($plan['features'] as $feature)
+                            <li class="flex items-start gap-3">
+                                <span class="w-4 h-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                                    <svg class="w-2.5 h-2.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </span>
+                                <span class="text-[9px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-tight leading-tight">{{ $feature }}</span>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
 
                     @php
                         $isAlreadyLifetime = $school->subscription_type === 'lifetime';
+                        $canChoose = !$isAlreadyLifetime && !$isSelected;
                     @endphp
-                    <button onclick="{{ $isAlreadyLifetime ? '' : "checkout('" . $plan['id'] . "')" }}" 
-                        {{ $isAlreadyLifetime ? 'disabled' : '' }}
-                        class="w-full py-3 rounded-xl {{ $isAlreadyLifetime ? 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed' : ($plan['id'] == 'lifetime' ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-slate-900 text-white shadow-lg shadow-slate-200') }} font-black text-[9px] uppercase tracking-[0.2em] transition-all {{ $isAlreadyLifetime ? '' : 'active:scale-95 hover:brightness-110' }}">
-                        {{ $isAlreadyLifetime ? 'Paket Aktif' : 'Pilih Paket' }}
+                    <button onclick="{{ $canChoose ? "checkout('" . $plan['id'] . "')" : "" }}" 
+                        {{ !$canChoose ? 'disabled' : '' }}
+                        class="w-full py-4 rounded-2xl {{ !$canChoose ? 'bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed' : ($isLifetime ? 'bg-indigo-600 text-white shadow-xl shadow-indigo-100 hover:bg-indigo-700' : 'bg-slate-900 text-white shadow-xl shadow-slate-200 hover:bg-black') }} font-bold text-[10px] uppercase tracking-[0.2em] transition-all transform {{ $canChoose ? 'hover:scale-[1.02] active:scale-95' : '' }}">
+                        {{ $isSelected ? 'Paket Saat Ini' : ($isAlreadyLifetime ? 'Lifetime Aktif' : 'Pilih Paket') }}
                     </button>
                 </div>
                 @endforeach
@@ -312,7 +323,7 @@
         // Populate Modal
         document.getElementById('reviewPlanName').innerText = plan.name;
         document.getElementById('reviewDuration').innerText = plan.duration;
-        document.getElementById('reviewLinks').innerText = plan.links + (plan.id == 'lifetime' ? '' : ' LINK');
+        document.getElementById('reviewLinks').innerText = plan.id == 'lifetime' ? 'UNLIMITED' : plan.links + ' LINK';
         document.getElementById('reviewPrice').innerText = 'Rp' + new Intl.NumberFormat('id-ID').format(plan.price);
         
         // Show Modal

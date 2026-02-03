@@ -40,7 +40,12 @@ class SubscriptionController extends Controller
                 'price' => 350000,
                 'duration' => '6 Bulan',
                 'links' => 10,
-                'description' => 'Cocok untuk 1 semester ujian.'
+                'description' => 'Cocok untuk 1 semester ujian.',
+                'features' => [
+                    '10 Barcode Secure',
+                    'Standard Branding',
+                    'Priority Support'
+                ]
             ],
             [
                 'id' => '1_year',
@@ -48,7 +53,12 @@ class SubscriptionController extends Controller
                 'price' => 650000,
                 'duration' => '1 Tahun',
                 'links' => 20,
-                'description' => 'Lebih hemat untuk 2 semester.'
+                'description' => 'Lebih hemat untuk 2 semester.',
+                'features' => [
+                    '20 Barcode Secure',
+                    'Advanced Branding',
+                    'Priority Support'
+                ]
             ],
             [
                 'id' => 'lifetime',
@@ -56,7 +66,14 @@ class SubscriptionController extends Controller
                 'price' => 2500000,
                 'duration' => 'Selamanya',
                 'links' => 'Unlimited',
-                'description' => 'Investasi sekali untuk selamanya.'
+                'description' => 'Investasi sekali untuk selamanya.',
+                'features' => [
+                    'Unlimited Barcode Secure',
+                    'Full Whitelabel (Tanpa Branding)',
+                    'Kustom Kode Sekolah (10 Char)',
+                    'Custom Background App (Mobile)',
+                    'Priority Server Access'
+                ]
             ],
         ];
 
