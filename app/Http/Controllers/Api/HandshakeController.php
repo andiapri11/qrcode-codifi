@@ -113,6 +113,8 @@ class HandshakeController extends Controller
                 'exam_url' => $examLink->exam_url,
                 'domain_whitelist' => $whitelist,
                 'theme_color' => $examLink->school->theme_color ?? '#3C50E0',
+                'is_trial' => $examLink->school->subscription_type === 'trial',
+                'subscription_type' => $examLink->school->subscription_type,
                 'authorized_at' => now()->toIso8601String(),
                 'exit_password' => $examLink->school->exit_password ?? 'admin123',
                 'violation_password' => $examLink->school->violation_password ?? 'admin123',
@@ -171,6 +173,8 @@ class HandshakeController extends Controller
                     'school_id' => $school->id,
                     'school_code' => $school->school_code,
                     'theme_color' => $school->theme_color ?? '#3C50E0',
+                    'is_trial' => $school->subscription_type === 'trial',
+                    'subscription_type' => $school->subscription_type,
                     'exit_password' => $school->exit_password ?? 'admin123',
                     'violation_password' => $school->violation_password ?? 'admin123',
                 ]
