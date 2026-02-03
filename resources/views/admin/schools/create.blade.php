@@ -87,6 +87,37 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Section: Sesi & Keamanan -->
+        <div class="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+            <div class="px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/30">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-black text-slate-800 dark:text-slate-100 text-sm uppercase tracking-wider">Sesi & Keamanan App</h3>
+                        <p class="text-xs text-slate-500 font-medium">Password pengawas untuk kontrol akses aplikasi</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Password Keluar Ujian</label>
+                    <input type="text" name="exit_password" value="admin123" placeholder="Contoh: 123456"
+                        class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all shadow-inner">
+                    <p class="text-[9px] text-slate-400 mt-2 italic font-medium">* Digunakan siswa untuk keluar sesi ujian.</p>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Password Buka Pelanggaran</label>
+                    <input type="text" name="violation_password" value="admin123" placeholder="Contoh: 654321"
+                        class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all shadow-inner">
+                    <p class="text-[9px] text-slate-400 mt-2 italic font-medium">* Digunakan saat unpin aplikasi terdeteksi.</p>
+                </div>
+            </div>
+        </div>
 
         <!-- Section 2: Layanan & Akses -->
         <div class="bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">

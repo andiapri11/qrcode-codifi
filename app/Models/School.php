@@ -24,6 +24,8 @@ class School extends Model
         'max_links',
         'theme_color',
         'supervisor_password',
+        'exit_password',
+        'violation_password',
     ];
 
     protected static function booted()

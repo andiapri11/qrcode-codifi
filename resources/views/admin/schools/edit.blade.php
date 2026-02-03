@@ -108,6 +108,61 @@
                 </div>
             </div>
 
+            <!-- Security Settings (Dynamic Passwords) -->
+            <div class="mt-12 pt-10 border-t border-slate-100">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="w-7 h-7 bg-indigo-500 text-white rounded-lg flex items-center justify-center text-[10px] font-black">🔐</span>
+                    <h3 class="text-xs font-black text-slate-900 uppercase tracking-tight">Sesi & Keamanan App</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Password Keluar Ujian</label>
+                        <input type="text" name="exit_password" value="{{ old('exit_password', $school->exit_password) }}" placeholder="Default: admin123"
+                            class="w-full bg-slate-50 border border-slate-100 py-3.5 px-6 rounded-xl font-bold text-slate-900 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                        <p class="text-[8px] text-slate-400 mt-2 ml-1 italic tracking-tight">* Diminta saat siswa ingin keluar dari mode Webview.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Password Buka Pelanggaran</label>
+                        <input type="text" name="violation_password" value="{{ old('violation_password', $school->violation_password) }}" placeholder="Default: admin123"
+                            class="w-full bg-slate-50 border border-slate-100 py-3.5 px-6 rounded-xl font-bold text-slate-900 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                        <p class="text-[8px] text-slate-400 mt-2 ml-1 italic tracking-tight">* Diminta saat siswa terdeteksi melakukan pelanggaran (Unpin).</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Branding & Web Access -->
+            <div class="mt-12 pt-10 border-t border-slate-100">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="w-7 h-7 bg-emerald-500 text-white rounded-lg flex items-center justify-center text-[10px] font-black">🌍</span>
+                    <h3 class="text-xs font-black text-slate-900 uppercase tracking-tight">Branding & Akses Web</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="md:col-span-1">
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Whitelist Domain (Pisahkan koma)</label>
+                        <textarea name="domain_whitelist" rows="2" placeholder="Contoh: docs.google.com, forms.gle, sekolah.sch.id"
+                            class="w-full bg-slate-50 border border-slate-100 py-3.5 px-6 rounded-xl font-bold text-slate-900 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner resize-none">{{ old('domain_whitelist', $school->domain_whitelist) }}</textarea>
+                        <p class="text-[8px] text-slate-400 mt-2 ml-1 italic tracking-tight">* Alamat website selain ujian yang boleh diakses siswa.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Warna Tema Aplikasi</label>
+                        <div class="flex gap-4 items-center">
+                            <input type="color" name="theme_color" value="{{ old('theme_color', $school->theme_color ?? '#3C50E0') }}"
+                                class="w-16 h-12 bg-slate-50 border border-slate-100 rounded-xl cursor-pointer p-1">
+                            <div class="flex-1">
+                                <input type="text" readonly value="{{ $school->theme_color ?? '#3C50E0' }}"
+                                    class="w-full bg-slate-100 border border-slate-100 py-3.5 px-6 rounded-xl font-mono text-xs text-slate-500 cursor-not-allowed">
+                            </div>
+                        </div>
+                        <p class="text-[8px] text-slate-400 mt-2 ml-1 italic tracking-tight">* Warna utama dashboard di aplikasi mobile siswa.</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- SuperAdmin Settings (Only visible to Superadmin) -->
             @if(Auth::user()->role === 'superadmin')
             <div class="mt-12 pt-10 border-t border-slate-100">

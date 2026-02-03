@@ -123,6 +123,8 @@ class SchoolController extends Controller
                 'subscription_expires_at' => $expiresAt,
                 'max_links' => $maxLinks,
                 'logo' => $logoPath,
+                'exit_password' => $request->exit_password ?? 'admin123',
+                'violation_password' => $request->violation_password ?? 'admin123',
             ]);
 
             // 2. Create User (School Admin)
@@ -169,6 +171,10 @@ class SchoolController extends Controller
             'subscription_months' => 'required_if:subscription_type,year|nullable|integer|min:0',
             'max_links' => strtolower($user->role) === 'superadmin' ? 'nullable|integer|min:1' : 'nullable',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'exit_password' => 'nullable|string|max:50',
+            'violation_password' => 'nullable|string|max:50',
+            'domain_whitelist' => 'nullable|string',
+            'theme_color' => 'nullable|string|max:7',
         ]);
 
         if (strtolower($user->role) === 'superadmin') {
@@ -183,6 +189,10 @@ class SchoolController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'slug' => Str::slug($request->name),
+            'exit_password' => $request->exit_password,
+            'violation_password' => $request->violation_password,
+            'domain_whitelist' => $request->domain_whitelist,
+            'theme_color' => $request->theme_color ?? '#3C50E0',
         ];
 
         if (strtolower($user->role) === 'superadmin' && $request->filled('school_code')) {
