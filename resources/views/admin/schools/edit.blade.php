@@ -82,35 +82,54 @@
                             @endif
                         </div>
                         
-                        <div class="relative group">
-                            <div id="bg-preview-box" class="aspect-video bg-slate-50/50 rounded-[1.5rem] border-2 border-dashed {{ $school->custom_background ? 'border-indigo-100' : 'border-slate-200' }} flex flex-col items-center justify-center transition-all overflow-hidden relative shadow-inner {{ !$isLifetime && strtolower(Auth::user()->role) !== 'superadmin' ? 'opacity-70 bg-slate-100 cursor-not-allowed' : 'hover:bg-white hover:border-indigo-300' }}">
-                                @if($school->custom_background)
-                                    <img id="bg-preview-img" src="{{ Storage::disk('public')->url($school->custom_background) }}" class="w-full h-full object-cover">
-                                @else
-                                    <div id="bg-preview-placeholder" class="text-center p-4">
-                                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-300 mx-auto mb-2 border border-slate-100 shadow-sm">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        <div class="flex justify-center">
+                            <div class="relative group w-[180px]">
+                                <!-- Phone Frame Decorator -->
+                                <div class="absolute -inset-2 border-[6px] border-slate-900 rounded-[2.5rem] shadow-2xl z-0 pointer-events-none"></div>
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-slate-900 rounded-b-2xl z-20 pointer-events-none"></div>
+                                
+                                <div id="bg-preview-box" class="aspect-[9/16] bg-slate-100 rounded-[2rem] border-2 border-dashed {{ $school->custom_background ? 'border-transparent' : 'border-slate-300' }} flex flex-col items-center justify-center transition-all overflow-hidden relative shadow-inner z-10 {{ !$isLifetime && strtolower(Auth::user()->role) !== 'superadmin' ? 'opacity-70 bg-slate-200 cursor-not-allowed' : 'hover:bg-slate-50 hover:border-indigo-300' }}">
+                                    @if($school->custom_background)
+                                        <img id="bg-preview-img" src="{{ Storage::disk('public')->url($school->custom_background) }}" class="w-full h-full object-cover animate-in fade-in zoom-in duration-500">
+                                    @else
+                                        <div id="bg-preview-placeholder" class="text-center p-4">
+                                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-300 mx-auto mb-2 border border-slate-100 shadow-sm">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                                            </div>
+                                            <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest leading-tight">Klik untuk<br>Pilih Foto</p>
                                         </div>
-                                        <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Upload Background</p>
+                                        <img id="bg-preview-img" class="hidden w-full h-full object-cover">
+                                    @endif
+
+                                    @if($isLifetime || strtolower(Auth::user()->role) === 'superadmin')
+                                    <input type="file" name="custom_background" id="bg-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-30" onchange="previewBg(this)">
+                                    @endif
+
+                                    <!-- Subtle Mobile Overlay Preview -->
+                                    <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/80 to-transparent z-20 flex flex-col items-center justify-end pb-4 font-black text-[6px] text-slate-400 uppercase tracking-widest opacity-50">
+                                        Schola Client v5.1
                                     </div>
-                                    <img id="bg-preview-img" class="hidden w-full h-full object-cover">
-                                @endif
+                                </div>
 
-                                @if($isLifetime || strtolower(Auth::user()->role) === 'superadmin')
-                                <input type="file" name="custom_background" id="bg-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewBg(this)">
+                                @if(!$isLifetime && strtolower(Auth::user()->role) !== 'superadmin')
+                                <div class="absolute inset-0 flex items-center justify-center bg-slate-900/60 backdrop-blur-[4px] rounded-[2rem] z-40">
+                                    <span class="bg-white text-slate-900 text-[8px] font-black px-4 py-2 rounded-lg uppercase tracking-widest shadow-xl flex items-center gap-2">
+                                        <svg class="w-3 h-3 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" /></svg>
+                                        LIFETIME
+                                    </span>
+                                </div>
                                 @endif
                             </div>
-
-                            @if(!$isLifetime && strtolower(Auth::user()->role) !== 'superadmin')
-                            <div class="absolute inset-0 flex items-center justify-center bg-slate-900/40 backdrop-blur-[2px] rounded-[1.5rem] z-20">
-                                <span class="bg-white text-slate-900 text-[7px] font-black px-4 py-2 rounded-lg uppercase tracking-widest shadow-xl flex items-center gap-2">
-                                    <svg class="w-3 h-3 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" /></svg>
-                                    LIFETIME ONLY
-                                </span>
-                            </div>
-                            @endif
                         </div>
-                        <p class="text-[7px] text-slate-400 mt-2 ml-1 italic font-bold uppercase tracking-tight">* Rekomendasi: 1080x1920 (Portrait)</p>
+                        <div class="mt-8 bg-amber-50 rounded-xl p-4 border border-amber-100">
+                            <h6 class="text-[9px] font-black text-amber-700 uppercase tracking-widest flex items-center gap-2 mb-2">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+                                Smart Convert Aktif
+                            </h6>
+                            <p class="text-[8px] text-amber-600/80 leading-relaxed font-bold uppercase tracking-tight">
+                                Anda bisa upload foto ukuran apapun. Sistem akan otomatis memotong (crop) dan menyesuaikan ke rasio layar handphone secara presisi.
+                            </p>
+                        </div>
                     </div>
                 </div>
 

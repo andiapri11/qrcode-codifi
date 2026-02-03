@@ -409,20 +409,56 @@ class SchoolController extends Controller
 
             if (!$image) return $file->store('backgrounds', 'public');
 
-            // Resize (Max 1200px for background)
-            $maxSize = 1200;
-            if ($width > $maxSize || $height > $maxSize) {
-                if ($width > $height) {
-                    $newWidth = $maxSize;
-                    $newHeight = (int)($height * ($maxSize / $width));
-                } else {
-                    $newHeight = $maxSize;
-                    $newWidth = (int)($width * ($maxSize / $height));
+            // 1. CROP TO 9:16 ASPECT RATIO
+            $targetAspect = 9 / 16;
+            $currentAspect = $width / $height;
+
+            if ($currentAspect > $targetAspect) {
+                // Image is too wide, crop sides
+                $newWidth = (int)($height * $targetAspect);
+                $xOffset = (int)(($width - $newWidth) / 2);
+                $finalWidth = $newWidth;
+                $finalHeight = $height;
+                $startX = $xOffset;
+                $startY = 0;
+            } else {
+                // Image is too tall, crop top/bottom
+                $newHeight = (int)($width / $targetAspect);
+                $yOffset = (int)(($height - $newHeight) / 2);
+                $finalWidth = $width;
+                $finalHeight = $newHeight;
+                $startX = 0;
+                $startY = $yOffset;
+            }
+
+            $croppedImage = imagecreatetruecolor($finalWidth, $finalHeight);
+            
+            // Handle transparency for PNG
+            if ($type == IMAGETYPE_PNG) {
+                imagealphablending($croppedImage, false);
+                imagesavealpha($croppedImage, true);
+                $transparent = imagecolorallocatealpha($croppedImage, 255, 255, 255, 127);
+                imagefilledrectangle($croppedImage, 0, 0, $finalWidth, $finalHeight, $transparent);
+            }
+
+            imagecopy($croppedImage, $image, 0, 0, $startX, $startY, $finalWidth, $finalHeight);
+            imagedestroy($image);
+            $image = $croppedImage;
+
+            // 2. RESIZE (Max 1200px Height for optimization)
+            $maxHeight = 1200;
+            if ($finalHeight > $maxHeight) {
+                $resizeWidth = (int)($finalWidth * ($maxHeight / $finalHeight));
+                $resizeHeight = $maxHeight;
+
+                $resizedImage = imagecreatetruecolor($resizeWidth, $resizeHeight);
+                if ($type == IMAGETYPE_PNG) {
+                    imagealphablending($resizedImage, false);
+                    imagesavealpha($resizedImage, true);
                 }
-                $newImage = imagecreatetruecolor($newWidth, $newHeight);
-                imagecopyresampled($newImage, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+                imagecopyresampled($resizedImage, $image, 0, 0, 0, 0, $resizeWidth, $resizeHeight, $finalWidth, $finalHeight);
                 imagedestroy($image);
-                $image = $newImage;
+                $image = $resizedImage;
             }
 
             $filename = Str::random(40) . '.' . $extension;
