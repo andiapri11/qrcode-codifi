@@ -64,7 +64,7 @@
             <div>
                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Total Akun Mitra</p>
                 <div class="flex items-center gap-1">
-                    <span class="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">{{ $stats['total_users'] }}</span>
+                    <span class="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">{{ $stats['total_schools'] }}</span>
                     <span class="text-[10px] font-bold text-slate-400 uppercase">Akun</span>
                 </div>
             </div>

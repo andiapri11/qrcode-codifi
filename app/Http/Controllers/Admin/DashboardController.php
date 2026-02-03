@@ -22,12 +22,11 @@ class DashboardController extends Controller
             
             $stats = [
                 'total_schools' => School::count(),
-                'subscribed_schools' => School::whereNotNull('subscription_expires_at')
-                                        ->where('subscription_expires_at', '>', now())
-                                        ->count(),
+                'subscribed_schools' => School::whereIn('subscription_type', ['6_months', '1_year', 'year', 'lifetime'])->count(),
                 'total_links' => ExamLink::count(),
                 'total_revenue' => $revenue,
-                'total_users' => \App\Models\User::where('role', 'school_admin')->count(),
+                'total_users' => School::count(), // Label says Akun Mitra, so we use school count here too
+                'total_admins' => \App\Models\User::where('role', 'school_admin')->count(),
                 'total_scans' => $scans,
                 'operational_cost' => $opsCost,
                 'surplus' => $revenue - $opsCost,
