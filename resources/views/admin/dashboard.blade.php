@@ -121,7 +121,7 @@
         <!-- Akun Lifetime -->
         <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
             <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Total Life Time</p>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Total Exclusive (3Y)</p>
                 <div class="flex items-center gap-1">
                     <span class="text-2xl font-black text-rose-500 tracking-tighter">{{ $stats['lifetime_count'] }}</span>
                     <span class="text-[10px] font-bold text-slate-400 uppercase">Akun</span>
@@ -193,7 +193,7 @@
                         <span class="text-[8px] font-black uppercase tracking-widest text-blue-50">Paket:</span>
                         <span class="text-[8px] font-black uppercase tracking-widest text-white">
                             @if($user->school)
-                                {{ $user->school->subscription_type === 'trial' ? 'Masa Trial' : ($user->school->subscription_type === 'lifetime' ? 'Lifetime' : 'Premium') }}
+                                {{ $user->school->subscription_type === 'trial' ? 'Masa Trial' : ($user->school->subscription_type === 'lifetime' ? 'Exclusive (3Y)' : 'Premium') }}
                             @else
                                 -
                             @endif
@@ -205,7 +205,7 @@
                         <span class="text-[8px] font-black uppercase tracking-widest text-blue-50">Exp:</span>
                         <span class="text-[8px] font-black uppercase tracking-widest text-white">
                             @if($user->school)
-                                {{ $user->school->subscription_type === 'lifetime' ? '∞' : ($user->school->subscription_expires_at ? $user->school->subscription_expires_at->format('d M y') : '-') }}
+                                {{ $user->school->subscription_expires_at ? $user->school->subscription_expires_at->format('d M y') : '-' }}
                             @else
                                 -
                             @endif
@@ -240,7 +240,7 @@
                          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                     </div>
                     <div class="text-left">
-                        <span class="block text-[8px] text-white/90 font-black uppercase tracking-widest mb-0.5 leading-none">{{ $subType === 'lifetime' ? 'Lifetime Access' : ($isActive ? 'Paket Aktif' : 'Paket Expired') }}</span>
+                        <span class="block text-[8px] text-white/90 font-black uppercase tracking-widest mb-0.5 leading-none">{{ $subType === 'lifetime' ? 'Exclusive Access (3Y)' : ($isActive ? 'Paket Aktif' : 'Paket Expired') }}</span>
                         <span class="block text-sm font-black uppercase tracking-tight leading-none">{{ !$isActive ? 'Perbarui Paket' : 'Atur Layanan' }}</span>
                     </div>
                     <!-- Indicator Dot -->
@@ -374,7 +374,7 @@
                     </a>
                     @if($user->school->subscription_type !== 'lifetime')
                     <a href="{{ route('subscription.index') }}" class="text-indigo-600 dark:text-indigo-400 text-[9px] font-black uppercase tracking-widest hover:underline decoration-2 underline-offset-4 flex items-center gap-2">
-                        <span>Dapatkan Akses Lifetime</span>
+                        <span>Dapatkan Akses Exclusive</span>
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
                     @endif

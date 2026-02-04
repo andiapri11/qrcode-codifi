@@ -67,18 +67,18 @@ class SubscriptionController extends Controller
             ],
             [
                 'id' => 'lifetime',
-                'name' => 'Paket Lifetime Access',
-                'price' => 2500000,
-                'duration' => 'Bayar sekali, pakai selamanya',
-                'links' => 'Unlimited',
-                'description' => 'Investasi branding sekolah terbaik & permanen tanpa pusing perpanjangan.',
+                'name' => '3 Tahun Berlangganan (Exclusive)',
+                'price' => 1500000,
+                'duration' => 'Sekali bayar untuk 3 tahun',
+                'links' => 100,
+                'description' => 'Investasi branding sekolah terbaik & jangka panjang untuk efisiensi maksimal.',
                 'features' => [
-                    'Unlimited Barcode Secure',
+                    '100 Barcode Secure (Anti-Screenshot)',
                     'Full Whitelabel (Hapus Branding Schola)',
                     'Kustom Kode Sekolah (Sesuai Nama Sekolah)',
                     'Upload Custom Background App',
-                    'Dedicated Server Access (Lebih Cepat)',
-                    'Prioritas Fitur Baru Selamanya'
+                    'Akses Dashboard Admin Premium',
+                    'Dukungan Update 3 Tahun Penuh'
                 ]
             ],
         ];
@@ -100,7 +100,7 @@ class SubscriptionController extends Controller
         $plans = [
             '6_months' => ['name' => 'Paket 6 Bulan', 'price' => 350000],
             '1_year' => ['name' => 'Paket 1 Tahun', 'price' => 650000],
-            'lifetime' => ['name' => 'Paket Lifetime', 'price' => 2500000],
+            'lifetime' => ['name' => 'Paket 3 Tahun', 'price' => 1500000],
         ];
 
         $plan = $plans[$request->plan];
@@ -195,12 +195,15 @@ class SubscriptionController extends Controller
                     $school = $transaction->school;
                     $type = $transaction->type; // 6_months, 1_year, lifetime
                     
-                    // Lifetime Protection: If already lifetime, keep it lifetime
-                    if ($type == 'lifetime' || $school->subscription_type == 'lifetime') {
+                    if ($type == 'lifetime') {
+                         $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
+                            ? $school->subscription_expires_at 
+                            : now();
+                            
                         $school->update([
                             'subscription_type' => 'lifetime',
-                            'subscription_expires_at' => null,
-                            'max_links' => 999999, // Unlimited
+                            'subscription_expires_at' => $currentExpiry->addMonths(36),
+                            'max_links' => 100, 
                         ]);
                     } else {
                         $months = $type == '6_months' ? 6 : 12;

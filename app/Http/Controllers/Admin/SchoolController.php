@@ -229,8 +229,8 @@ class SchoolController extends Controller
                     $data['subscription_expires_at'] = Carbon::now()->addDays(3);
                     $data['max_links'] = 1;
                 } elseif ($newType === 'lifetime') {
-                    $data['subscription_expires_at'] = null;
-                    $data['max_links'] = 999999;
+                    $data['subscription_expires_at'] = Carbon::now()->addMonths(36);
+                    $data['max_links'] = 100;
                 } elseif ($newType === '6_months') {
                     $data['max_links'] = 10;
                 } elseif ($newType === '1_year') {

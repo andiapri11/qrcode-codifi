@@ -44,7 +44,7 @@
                                 @if($school->subscription_type === 'trial')
                                     TRIAL ACCESS
                                 @elseif($school->subscription_type === 'lifetime')
-                                    ∞ LIFETIME
+                                    EXCLUSIVE (3Y)
                                 @else
                                     PREMIUM ANNUAL
                                 @endif
@@ -59,7 +59,7 @@
                         <div>
                             <div class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Berlaku Hingga</div>
                             <div class="text-xs font-black text-slate-700 dark:text-slate-300 mt-0.5 uppercase tracking-tight">
-                                {{ $school->subscription_type == 'lifetime' ? 'SELAMANYA' : ($school->subscription_expires_at ? $school->subscription_expires_at->format('d M Y') : 'EXPIRED') }}
+                                {{ $school->subscription_expires_at ? $school->subscription_expires_at->format('d M Y') : 'EXPIRED' }}
                             </div>
                         </div>
                         <div class="h-10 w-10 bg-white dark:bg-slate-700 rounded-xl flex items-center justify-center text-slate-400">
@@ -73,15 +73,15 @@
                             <div class="text-[10px] font-black text-slate-900 dark:text-white">
                                 @php
                                     $currentLinks = $school->examLinks()->count();
-                                    $maxLinks = $school->subscription_type === 'lifetime' ? '∞' : ($school->subscription_type === 'trial' ? 1 : $school->max_links);
+                                    $maxLinks = $school->subscription_type === 'trial' ? 1 : $school->max_links;
                                 @endphp
                                 {{ $currentLinks }} / {{ $maxLinks }}
                             </div>
                         </div>
                         <div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
                             @php
-                                $denominator = $school->subscription_type === 'lifetime' ? 1 : ($school->subscription_type === 'trial' ? 1 : max(1, $school->max_links));
-                                $usage = $school->subscription_type === 'lifetime' ? 0 : ($currentLinks / $denominator) * 100;
+                                $denominator = ($school->subscription_type === 'trial' ? 1 : max(1, $school->max_links));
+                                $usage = ($currentLinks / $denominator) * 100;
                             @endphp
                             <div class="bg-indigo-600 h-full rounded-full transition-all duration-1000" style="width: {{ min(100, $usage) }}%"></div>
                         </div>
@@ -105,7 +105,7 @@
                 @endphp
                 <div class="relative border {{ $isLifetime ? 'border-indigo-500 bg-indigo-50/10' : 'border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/20' }} rounded-[2.5rem] p-6 flex flex-col group transition-all duration-500 {{ $isLifetime ? 'shadow-2xl shadow-indigo-100 hover:scale-[1.03]' : 'hover:scale-[1.02]' }}">
                     @if($isLifetime)
-                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-[8px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-xl shadow-indigo-200 animate-pulse z-10">Best Value</div>
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-[8px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-xl shadow-indigo-200 animate-pulse z-10">PRO CHOICE</div>
                     @endif
                     
                     <div class="mb-6">
@@ -142,7 +142,7 @@
                     <button onclick="{{ $canChoose ? "checkout('" . $plan['id'] . "')" : "" }}" 
                         {{ !$canChoose ? 'disabled' : '' }}
                         class="w-full py-4 rounded-2xl {{ !$canChoose ? 'bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed' : ($isLifetime ? 'bg-indigo-600 text-white shadow-xl shadow-indigo-100 hover:bg-indigo-700' : 'bg-slate-900 text-white shadow-xl shadow-slate-200 hover:bg-black') }} font-bold text-[10px] uppercase tracking-[0.2em] transition-all transform {{ $canChoose ? 'hover:scale-[1.02] active:scale-95' : '' }}">
-                        {{ $isSelected ? 'Paket Saat Ini' : ($isAlreadyLifetime ? 'Lifetime Aktif' : 'Pilih Paket') }}
+                        {{ $isSelected ? 'Paket Saat Ini' : 'Pilih Paket' }}
                     </button>
                 </div>
                 @endforeach

@@ -115,7 +115,7 @@
                                 <div class="absolute inset-0 flex items-center justify-center bg-slate-900/60 backdrop-blur-[4px] rounded-[2rem] z-40">
                                     <span class="bg-white text-slate-900 text-[8px] font-black px-4 py-2 rounded-lg uppercase tracking-widest shadow-xl flex items-center gap-2">
                                         <svg class="w-3 h-3 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" /></svg>
-                                        LIFETIME
+                                        EXCLUSIVE 3Y
                                     </span>
                                 </div>
                                 @endif
@@ -158,7 +158,7 @@
                                 <p class="text-[8px] text-amber-900/60 font-bold uppercase tracking-tight mb-3">Ingin menggunakan background custom & branding instansi?</p>
                                 <a href="{{ route('subscription.index') }}" class="inline-flex items-center gap-3 bg-amber-600 hover:bg-amber-700 text-white px-5 py-3 rounded-xl text-[9px] font-black uppercase tracking-[0.2em] transition-all shadow-lg shadow-amber-200">
                                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" /></svg>
-                                    Upgrade ke Lifetime
+                                    Upgrade Paket 3 Tahun
                                 </a>
                             </div>
                             @endif
@@ -186,7 +186,7 @@
                                     {{ $school->school_code ?? 'BELUM DISET' }}
                                     <span class="ml-auto text-[8px] opacity-70">FIXED</span>
                                 </div>
-                                <p class="text-[8px] text-rose-400 mt-2 ml-1 italic font-bold uppercase tracking-widest">Upgrade ke Lifetime untuk ganti kode</p>
+                                <p class="text-[8px] text-rose-400 mt-2 ml-1 italic font-bold uppercase tracking-widest">Upgrade paket untuk ganti kode</p>
                             @endif
                         </div>
 
@@ -296,7 +296,7 @@
                             <option value="6_months" {{ $school->subscription_type === '6_months' ? 'selected' : '' }}>6 BULAN</option>
                             <option value="1_year" {{ $school->subscription_type === '1_year' ? 'selected' : '' }}>1 TAHUN</option>
                             <option value="year" {{ $school->subscription_type === 'year' ? 'selected' : '' }}>ANNUAL (Custom)</option>
-                            <option value="lifetime" {{ $school->subscription_type === 'lifetime' ? 'selected' : '' }}>LIFE TIME</option>
+                            <option value="lifetime" {{ $school->subscription_type === 'lifetime' ? 'selected' : '' }}>EXCLUSIVE (3 Tahun)</option>
                         </select>
                         @if($school->subscription_expires_at)
                             <p class="text-[8px] font-bold text-indigo-500 uppercase mt-2 ml-1 tracking-widest italic">Exp: {{ $school->subscription_expires_at->format('d M Y') }}</p>
