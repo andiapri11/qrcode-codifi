@@ -162,7 +162,7 @@ class SchoolController extends Controller
             abort(403);
         }
 
-        $request->validate([
+        $validationData = [
             'name' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
@@ -177,7 +177,15 @@ class SchoolController extends Controller
             'domain_whitelist' => 'nullable|string',
             'theme_color' => 'nullable|string|max:7',
             'custom_background' => 'nullable|image|mimes:jpeg,png,jpg|max:3072',
-        ]);
+        ];
+
+        // Ensure subscription_type is available for the next validation check
+        $inputData = $request->all();
+        if (strtolower($user->role) !== 'superadmin') {
+            $inputData['subscription_type'] = $school->subscription_type;
+        }
+
+        $request->validate($validationData);
 
         if (strtolower($user->role) === 'superadmin' || $school->subscription_type === 'lifetime') {
             $maxLength = $school->subscription_type === 'lifetime' ? 10 : 5;
