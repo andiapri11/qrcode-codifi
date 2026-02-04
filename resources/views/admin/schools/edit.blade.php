@@ -32,16 +32,16 @@
             
             <div class="grid grid-cols-12 gap-8">
                 <!-- Left Side: Logo Section -->
-                <div class="col-span-12 lg:col-span-4 space-y-8 flex flex-col items-center lg:items-stretch">
-                    <div class="w-full">
-                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 text-center lg:text-left">Logo Instansi</label>
+                <div class="col-span-12 lg:col-span-4 space-y-6 flex flex-col items-center">
+                    <div class="w-full max-w-[280px]">
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 text-center">Logo Instansi</label>
                         @php
                             $isTrial = $school->subscription_type === 'trial';
                             $isLifetime = $school->subscription_type === 'lifetime';
                         @endphp
 
-                        <div class="relative group flex justify-center lg:justify-start">
-                            <div id="preview-box" class="aspect-square w-full max-w-[160px] md:max-w-[240px] bg-slate-50/50 rounded-[2rem] border-2 border-dashed {{ $school->logo ? 'border-indigo-100' : 'border-slate-200' }} flex flex-col items-center justify-center transition-all overflow-hidden relative shadow-inner {{ $isTrial ? 'opacity-70 bg-slate-100 cursor-not-allowed' : 'hover:bg-white hover:border-indigo-300' }}">
+                        <div class="relative group flex justify-center">
+                            <div id="preview-box" class="aspect-square w-full max-w-[120px] md:max-w-[240px] bg-slate-50/50 rounded-[2rem] border-2 border-dashed {{ $school->logo ? 'border-indigo-100' : 'border-slate-200' }} flex flex-col items-center justify-center transition-all overflow-hidden relative shadow-inner {{ $isTrial ? 'opacity-70 bg-slate-100 cursor-not-allowed' : 'hover:bg-white hover:border-indigo-300' }}">
                                 @if($school->logo)
                                     <img id="preview-img" src="{{ Storage::disk('public')->url($school->logo) }}" class="w-full h-full object-cover">
                                 @else
@@ -74,16 +74,16 @@
                     </div>
 
                     <!-- Custom Background Section -->
-                    <div class="w-full">
-                        <div class="flex items-center justify-center lg:justify-between mb-4 px-2">
-                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] text-center lg:text-left">Custom Background App</label>
+                    <div class="w-full max-w-[280px] mt-8">
+                        <div class="flex items-center justify-center mb-4 px-2">
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">Custom Background App</label>
                             @if($isLifetime)
                                 <span class="bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded text-[7px] font-black uppercase tracking-widest">Lifetime Only</span>
                             @endif
                         </div>
                         
-                        <div class="flex justify-center lg:justify-start">
-                            <div class="relative group w-[130px] md:w-[180px] mx-auto lg:mx-0">
+                        <div class="flex justify-center">
+                            <div class="relative group w-[110px] md:w-[180px] mx-auto">
                                 <!-- Phone Frame Decorator -->
                                 <div class="absolute -inset-2 border-[6px] border-slate-900 rounded-[2.5rem] shadow-2xl z-0 pointer-events-none"></div>
                                 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-slate-900 rounded-b-2xl z-20 pointer-events-none"></div>
@@ -121,7 +121,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="mt-8 bg-amber-50 rounded-[1.5rem] p-5 border border-amber-100 shadow-sm shadow-amber-200/20">
+                        <div class="mt-8 bg-amber-50 rounded-[1.5rem] p-4 md:p-5 border border-amber-100 shadow-sm shadow-amber-200/20 w-full max-w-[280px] mx-auto">
                             <h6 class="text-[10px] font-black text-amber-700 uppercase tracking-widest flex items-center gap-2 mb-3">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
                                 PANDUAN UKURAN & SMART CONVERT
@@ -167,18 +167,18 @@
                 </div>
 
                 <!-- Right Side: Contact Information -->
-                <div class="col-span-12 lg:col-span-8 bg-white md:bg-transparent p-4 md:p-0 rounded-3xl border border-slate-100 md:border-0 shadow-sm md:shadow-none">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="col-span-12 lg:col-span-8 bg-white md:bg-transparent p-0 rounded-3xl md:border-0 shadow-none flex flex-col items-center lg:block">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-[280px] sm:max-w-full">
                         <div class="sm:col-span-1">
                             @php
                                 $canEditCode = strtolower(Auth::user()->role) === 'superadmin' || $school->subscription_type === 'lifetime';
                                 $codeLength = $school->subscription_type === 'lifetime' ? 10 : 5;
                             @endphp
                             
-                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Kode Instansi (Hingga {{ $codeLength }} Char)</label>
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1 text-center sm:text-left">Kode Instansi (Hingga {{ $codeLength }} Char)</label>
                             @if($canEditCode)
                                 <input type="text" name="school_code" value="{{ old('school_code', $school->school_code) }}" maxlength="{{ $codeLength }}" placeholder="Contoh: SMKN1" style="text-transform: uppercase;"
-                                    class="w-full bg-slate-50 border border-slate-200 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-black text-slate-700 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                    class="w-full bg-slate-50 border border-slate-200 py-3 px-3 md:py-3.5 md:px-6 rounded-xl font-black text-slate-700 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner text-center sm:text-left">
                                 <p class="text-[8px] text-slate-400 mt-2 ml-1 italic tracking-tight">* Kode unik untuk diinput siswa di aplikasi.</p>
                             @else
                                 <div class="w-full bg-slate-100/50 border border-slate-200 py-3.5 px-6 rounded-xl font-black text-slate-500 text-sm cursor-not-allowed flex items-center gap-2">
@@ -190,34 +190,34 @@
                             @endif
                         </div>
 
-                        <div class="sm:col-span-1">
+                        <div class="sm:col-span-1 text-center sm:text-left">
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Nama Instansi</label>
                             <input type="text" name="name" required value="{{ old('name', $school->name) }}" placeholder="Contoh: SMA Negeri 1 Jakarta"
-                                class="w-full bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                class="w-full bg-slate-50 border border-slate-100 py-3 px-3 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner text-center sm:text-left">
                         </div>
 
-                        <div>
+                        <div class="text-center sm:text-left">
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Email Resmi</label>
                             <input type="email" name="email" value="{{ old('email', $school->email) }}" placeholder="info@sekolah.sch.id"
-                                class="w-full bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                class="w-full bg-slate-50 border border-slate-100 py-3 px-3 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner text-center sm:text-left">
                         </div>
 
-                        <div>
+                        <div class="text-center sm:text-left">
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Nomor Telepon</label>
                             <input type="text" name="phone" value="{{ old('phone', $school->phone) }}" placeholder="(021) 1234567"
-                                class="w-full bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                class="w-full bg-slate-50 border border-slate-100 py-3 px-3 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner text-center sm:text-left">
                         </div>
 
-                        <div class="sm:col-span-2">
+                        <div class="sm:col-span-2 text-center sm:text-left">
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Alamat Lengkap</label>
                             <textarea name="address" rows="2" placeholder="Jl. Jenderal Sudirman No..."
-                                class="w-full bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner resize-none">{{ old('address', $school->address) }}</textarea>
+                                class="w-full bg-slate-50 border border-slate-100 py-3 px-3 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner resize-none text-center sm:text-left">{{ old('address', $school->address) }}</textarea>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-8 md:mt-12 pt-8 md:pt-10 border-t border-slate-100 bg-slate-50/30 md:bg-transparent -mx-6 md:mx-0 px-6 md:px-0 rounded-3xl md:rounded-none">
+            <div class="mt-8 md:mt-12 pt-8 md:pt-10 border-t border-slate-100 bg-slate-50/30 md:bg-transparent px-4 md:px-0 rounded-3xl md:rounded-none flex flex-col items-center lg:block">
                 <div class="flex items-center gap-4 mb-8">
                     <div class="w-8 h-8 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shadow-inner">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
@@ -228,7 +228,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-[280px] sm:max-w-full">
                     <div>
                         <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Password Keluar Ujian</label>
                         <input type="text" name="exit_password" value="{{ old('exit_password', $school->exit_password) }}" placeholder="Default: admin123"
@@ -246,7 +246,7 @@
             </div>
 
             <!-- Branding & Web Access -->
-            <div class="mt-8 md:mt-12 pt-8 md:pt-10 border-t border-slate-100 bg-emerald-50/10 md:bg-transparent -mx-6 md:mx-0 px-6 md:px-0 rounded-3xl md:rounded-none">
+            <div class="mt-8 md:mt-12 pt-8 md:pt-10 border-t border-slate-100 bg-emerald-50/10 md:bg-transparent px-4 md:px-0 rounded-3xl md:rounded-none flex flex-col items-center lg:block">
                 <div class="flex items-center gap-4 mb-8">
                     <div class="w-8 h-8 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shadow-inner">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
@@ -257,7 +257,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 md:pb-0">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 md:pb-0 w-full max-w-[280px] sm:max-w-full">
                     <div class="md:col-span-1">
                         <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Whitelist Domain (Pisahkan koma)</label>
                         <textarea name="domain_whitelist" rows="2" placeholder="Contoh: docs.google.com, forms.gle, sekolah.sch.id"
