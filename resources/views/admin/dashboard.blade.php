@@ -342,8 +342,8 @@
             <!-- Left: Info -->
             <div class="lg:col-span-8 p-8 md:p-10">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl flex items-center justify-center shadow-inner">
-                        <img src="{{ asset('assets/images/manual-book.png') }}" class="w-7 h-7 object-contain" alt="Guide">
+                    <div class="w-10 h-10 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl flex items-center justify-center shadow-inner overflow-hidden p-1">
+                        <img src="{{ asset('assets/images/logo.png') }}" class="w-full h-full object-contain" alt="Logo">
                     </div>
                     <div>
                         <h3 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">Panduan Kustomisasi Eksklusif</h3>
@@ -396,8 +396,8 @@
                     <svg class="w-full h-full rotate-12 scale-150" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.5" fill="none" class="text-slate-300 dark:text-slate-700"/></svg>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="w-20 h-20 bg-white dark:bg-slate-800 rounded-3xl shadow-2xl flex items-center justify-center mb-4 mx-auto border border-slate-100 dark:border-slate-700 overflow-hidden">
-                        <img src="{{ asset('assets/images/manual-book.png') }}" class="w-14 h-14 object-contain" alt="Manual">
+                    <div class="w-20 h-20 bg-white dark:bg-slate-800 rounded-3xl shadow-2xl flex items-center justify-center mb-4 mx-auto border border-slate-100 dark:border-slate-700 overflow-hidden p-3">
+                        <img src="{{ asset('assets/images/logo.png') }}" class="w-full h-full object-contain" alt="Logo">
                     </div>
                     <span class="block text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest leading-none">Branding</span>
                     <span class="block text-[8px] font-bold text-slate-400 uppercase tracking-tighter mt-1">Eksklusif & Professional</span>
