@@ -29,10 +29,10 @@ class HandshakeController extends Controller
         $timestamp = $request->header('X-Timestamp');
         
         // Perketat: Hanya terima dari App Schola resmi
-        if (!str_contains($userAgent, 'ScholaSecureBrowser') || $appKey !== 'Schola-Secret-Hash-2024') {
+        if (!str_contains($userAgent, 'ScholaExambro') || $appKey !== 'Schola-Secret-Hash-2024') {
             return response()->json([
                 'success' => false,
-                'message' => 'Akses ditolak. Silakan gunakan Aplikasi Schola CBT resmi (v5.1)'
+                'message' => 'Akses Ditolak! Gunakan aplikasi resmi Schola Exambro.'
             ], 401);
         }
 
@@ -139,10 +139,10 @@ class HandshakeController extends Controller
         $appKey = $request->header('X-Schola-Key');
         $timestamp = $request->header('X-Timestamp');
         
-        if (!str_contains($userAgent, 'ScholaSecureBrowser') || $appKey !== 'Schola-Secret-Hash-2024') {
+        if (!str_contains($userAgent, 'ScholaExambro') || $appKey !== 'Schola-Secret-Hash-2024') {
             return response()->json([
                 'success' => false,
-                'message' => 'Akses ditolak. Gunakan aplikasi resmi.'
+                'message' => 'Akses Ditolak! Gunakan aplikasi resmi Schola Exambro.'
             ], 401);
         }
 
