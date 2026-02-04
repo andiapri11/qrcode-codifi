@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png?v=2') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -65,7 +65,7 @@
                 <!-- Sidebar Header -->
                 <div class="flex items-center justify-between px-8 py-10">
                     <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="w-10 h-10">
+                        <img src="{{ asset('assets/images/logo.png?v=2') }}" alt="Logo" class="w-10 h-10">
                         <div class="leading-none">
                             <span class="text-slate-900 dark:text-white text-xl font-black tracking-tighter uppercase block">Schola <span class="text-blue-600 italic">Exambro</span></span>
                             <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 tracking-[0.2em] uppercase mt-1">Admin Panel</span>

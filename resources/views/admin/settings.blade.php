@@ -47,7 +47,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                         <div class="p-4 bg-slate-50 dark:bg-slate-800/30 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700 text-center">
                             <div class="w-12 h-12 bg-white dark:bg-slate-900 rounded-xl mx-auto mb-3 flex items-center justify-center shadow-sm border border-slate-100 dark:border-slate-800">
-                                 <img src="{{ asset('assets/images/logo.png') }}" class="w-8">
+                                 <img src="{{ asset('assets/images/logo.png?v=2') }}" class="w-8">
                             </div>
                             <div class="text-[9px] font-black text-slate-900 dark:text-white uppercase tracking-widest mb-1">Logo Sistem</div>
                             <button type="button" class="text-[8px] font-bold text-blue-600 uppercase hover:underline">Ganti</button>
