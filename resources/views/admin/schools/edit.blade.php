@@ -26,15 +26,15 @@
             </div>
         </div>
 
-        <form action="{{ route('schools.update', $school->id) }}" method="POST" enctype="multipart/form-data" class="p-5 md:p-8 lg:p-10">
+        <form action="{{ route('schools.update', $school->id) }}" method="POST" enctype="multipart/form-data" class="p-4 md:p-8 lg:p-10">
             @csrf
             @method('PUT')
             
             <div class="grid grid-cols-12 gap-8">
                 <!-- Left Side: Logo Section -->
-                <div class="col-span-12 lg:col-span-4 space-y-8">
-                    <div>
-                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Logo Instansi</label>
+                <div class="col-span-12 lg:col-span-4 space-y-8 flex flex-col items-center lg:items-stretch">
+                    <div class="w-full">
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 text-center lg:text-left">Logo Instansi</label>
                         @php
                             $isTrial = $school->subscription_type === 'trial';
                             $isLifetime = $school->subscription_type === 'lifetime';
@@ -74,16 +74,16 @@
                     </div>
 
                     <!-- Custom Background Section -->
-                    <div>
-                        <div class="flex items-center justify-center lg:justify-between mb-4">
-                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Custom Background App</label>
+                    <div class="w-full">
+                        <div class="flex items-center justify-center lg:justify-between mb-4 px-2">
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] text-center lg:text-left">Custom Background App</label>
                             @if($isLifetime)
                                 <span class="bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded text-[7px] font-black uppercase tracking-widest">Lifetime Only</span>
                             @endif
                         </div>
                         
                         <div class="flex justify-center lg:justify-start">
-                            <div class="relative group w-[160px] md:w-[180px]">
+                            <div class="relative group w-[160px] md:w-[180px] mx-auto lg:mx-0">
                                 <!-- Phone Frame Decorator -->
                                 <div class="absolute -inset-2 border-[6px] border-slate-900 rounded-[2.5rem] shadow-2xl z-0 pointer-events-none"></div>
                                 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-slate-900 rounded-b-2xl z-20 pointer-events-none"></div>
@@ -178,7 +178,7 @@
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Kode Instansi (Hingga {{ $codeLength }} Char)</label>
                             @if($canEditCode)
                                 <input type="text" name="school_code" value="{{ old('school_code', $school->school_code) }}" maxlength="{{ $codeLength }}" placeholder="Contoh: SMKN1" style="text-transform: uppercase;"
-                                    class="w-full bg-white md:bg-slate-50 border border-slate-200 py-3.5 px-6 rounded-xl font-black text-slate-700 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                    class="w-full bg-white md:bg-slate-50 border border-slate-200 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-black text-slate-700 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
                                 <p class="text-[8px] text-slate-400 mt-2 ml-1 italic tracking-tight">* Kode unik untuk diinput siswa di aplikasi.</p>
                             @else
                                 <div class="w-full bg-slate-100/50 border border-slate-200 py-3.5 px-6 rounded-xl font-black text-slate-500 text-sm cursor-not-allowed flex items-center gap-2">
@@ -193,25 +193,25 @@
                         <div class="sm:col-span-1">
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Nama Instansi</label>
                             <input type="text" name="name" required value="{{ old('name', $school->name) }}" placeholder="Contoh: SMA Negeri 1 Jakarta"
-                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3.5 px-6 rounded-xl font-bold text-slate-900 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
                         </div>
 
                         <div>
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Email Resmi</label>
                             <input type="email" name="email" value="{{ old('email', $school->email) }}" placeholder="info@sekolah.sch.id"
-                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3.5 px-6 rounded-xl font-bold text-slate-900 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
                         </div>
 
                         <div>
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Nomor Telepon</label>
                             <input type="text" name="phone" value="{{ old('phone', $school->phone) }}" placeholder="(021) 1234567"
-                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3.5 px-6 rounded-xl font-bold text-slate-900 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
                         </div>
 
                         <div class="sm:col-span-2">
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Alamat Lengkap</label>
                             <textarea name="address" rows="2" placeholder="Jl. Jenderal Sudirman No..."
-                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3.5 px-6 rounded-xl font-bold text-slate-900 text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner resize-none">{{ old('address', $school->address) }}</textarea>
+                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner resize-none">{{ old('address', $school->address) }}</textarea>
                         </div>
                     </div>
                 </div>
