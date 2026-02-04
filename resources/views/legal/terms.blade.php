@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syarat & Ketentuan | Schola CBT</title>
+    <title>Syarat & Ketentuan | Schola Exambro</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -47,13 +47,13 @@
 
         <section>
             <h2>1. Penerimaan Ketentuan</h2>
-            <p>Dengan mengakses dan menggunakan layanan Schola CBT, Anda setuju untuk terikat oleh syarat dan ketentuan ini. Jika Anda tidak setuju, harap jangan melanjutkan penggunaan layanan kami.</p>
+            <p>Dengan mengakses dan menggunakan layanan Schola Exambro, Anda setuju untuk terikat oleh syarat dan ketentuan ini. Jika Anda tidak setuju, harap jangan melanjutkan penggunaan layanan kami.</p>
             
             <h2>2. Pendaftaran Akun</h2>
             <p>Pengguna wajib memberikan informasi yang akurat dan lengkap saat pendaftaran. Keamanan kata sandi adalah tanggung jawab penuh masing-masing instansi pengguna.</p>
 
             <h2>3. Penggunaan Layanan</h2>
-            <p>Schola CBT dilarang digunakan untuk kegiatan ilegal, penipuan, atau tindakan yang dapat merusak integritas sistem ujian digital.</p>
+            <p>Schola Exambro dilarang digunakan untuk kegiatan ilegal, penipuan, atau tindakan yang dapat merusak integritas sistem ujian digital.</p>
 
             <h2>4. Pembatalan & Pengembalian Dana</h2>
             <p>Kebijakan langganan bersifat final. Instansi yang ingin berhenti dapat membatalkan langganan sebelum periode berikutnya dimulai.</p>

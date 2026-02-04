@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kebijakan Privasi | Schola CBT</title>
+    <title>Kebijakan Privasi | Schola Exambro</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@
             <p>Kami mengimplementasikan enkripsi SSL dan protokol keamanan server yang ketat untuk melindungi data Anda dari akses yang tidak sah.</p>
 
             <h2>4. Cookies</h2>
-            <p>Schola CBT menggunakan cookies fungsional untuk menyimpan preferensi sesi login dan pilihan bahasa Anda agar pengalaman pengguna menjadi lebih cepat dan mulus.</p>
+            <p>Schola Exambro menggunakan cookies fungsional untuk menyimpan preferensi sesi login dan pilihan bahasa Anda agar pengalaman pengguna menjadi lebih cepat dan mulus.</p>
         </section>
 
         <div class="mt-20 pt-10 border-t border-slate-100 dark:border-slate-900 flex justify-between items-center">

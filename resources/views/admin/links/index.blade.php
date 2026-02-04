@@ -157,7 +157,7 @@
             <img id="modalQrImg" class="w-64 h-64 mx-auto hidden bg-white rounded-2xl p-4 border border-slate-100 mb-6">
             <p id="modalToken" class="font-mono text-lg font-black text-indigo-600 tracking-widest mb-8"></p>
             <button id="modalDownloadBtn" class="w-full bg-emerald-500 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-emerald-100 flex items-center justify-center gap-2 hover:bg-emerald-600 active:scale-95 transition-all"><span>💾</span> Simpan Gambar</button>
-            <p class="text-[8px] text-slate-400 font-bold uppercase tracking-widest mt-4 italic">Scannable only via Schola CBT App</p>
+            <p class="text-[8px] text-slate-400 font-bold uppercase tracking-widest mt-4 italic">Scannable only via Schola Exambro App</p>
         </div>
     </div>
 </div>

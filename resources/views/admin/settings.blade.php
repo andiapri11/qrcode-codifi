@@ -11,7 +11,7 @@
                 </div>
                 <div>
                     <h2 class="text-base font-black text-slate-900 tracking-tight uppercase">Pengaturan Sistem</h2>
-                    <p class="text-[8px] text-slate-400 font-bold uppercase tracking-[0.2em] mt-0.5">Konfigurasi parameter global Schola CBT</p>
+                    <p class="text-[8px] text-slate-400 font-bold uppercase tracking-[0.2em] mt-0.5">Konfigurasi parameter global Schola Exambro</p>
                 </div>
             </div>
             
@@ -36,7 +36,7 @@
                     @csrf
                     <div>
                         <label class="mb-2 block font-black text-slate-400 dark:text-slate-500 text-[8px] uppercase tracking-[0.2em] ml-1">Nama Aplikasi</label>
-                        <input type="text" value="Schola CBT Secure" class="w-full rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 py-3 px-5 font-bold text-slate-900 dark:text-white outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition text-xs shadow-inner">
+                        <input type="text" value="Schola Exambro Secure" class="w-full rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 py-3 px-5 font-bold text-slate-900 dark:text-white outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition text-xs shadow-inner">
                     </div>
 
                     <div>
