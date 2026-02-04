@@ -134,7 +134,7 @@
                     <div class="flex items-center gap-3 mb-4">
                         <img src="{{ asset('assets/images/logo.png?v=2') }}" alt="Logo" class="w-8 h-8 md:w-10 md:h-10">
                         <div class="border-l border-slate-200 dark:border-slate-700 pl-3">
-                            <h2 class="text-sm md:text-base font-black text-slate-800 dark:text-white uppercase tracking-tighter leading-none">Schola <span class="text-blue-600 italic">Exambro</span></h2>
+                            <h2 class="text-sm md:text-base font-black text-slate-800 dark:text-white uppercase tracking-tighter leading-none whitespace-nowrap">Schola <span class="text-blue-600 italic">Exambro</span></h2>
                             <p class="text-[7px] md:text-[8px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.2em] mt-0.5" data-i18n="slogan">Secure Examination System</p>
                         </div>
                     </div>

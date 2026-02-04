@@ -66,9 +66,11 @@
                 <div class="flex items-center justify-between px-8 py-10">
                     <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
                         <img src="{{ asset('assets/images/logo.png?v=2') }}" alt="Logo" class="w-10 h-10">
-                        <div class="leading-none">
-                            <span class="text-slate-900 dark:text-white text-xl font-black tracking-tighter uppercase block">Schola <span class="text-blue-600 italic">Exambro</span></span>
-                            <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 tracking-[0.2em] uppercase mt-1">Admin Panel</span>
+                        <div class="leading-none flex flex-col justify-center">
+                            <h1 class="text-slate-900 dark:text-white text-lg font-black tracking-tighter uppercase whitespace-nowrap">
+                                Schola <span class="text-blue-600 italic">Exambro</span>
+                            </h1>
+                            <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 tracking-[0.2em] uppercase mt-0.5">Admin Panel</span>
                         </div>
                     </a>
                 </div>
