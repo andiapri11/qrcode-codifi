@@ -402,19 +402,35 @@
     const schoolForm = document.querySelector('form[action*="schools"]');
 
     if (schoolForm) {
-        // Deteksi perubahan input
         schoolForm.addEventListener('input', () => isFormDirty = true);
         schoolForm.addEventListener('change', () => isFormDirty = true);
-
-        // Reset flag saat simpan/kirim
         schoolForm.addEventListener('submit', () => isFormDirty = false);
     }
 
-    // Munculkan popup saat mencoba meninggalkan halaman
+    // Intercept Klik Link Internal (Custom Popup)
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (isFormDirty && href && href !== '#' && !href.startsWith('javascript:')) {
+                e.preventDefault();
+                showAlert(
+                    'Leave site?', 
+                    'Changes you made may not be saved.', 
+                    'warning', 
+                    () => {
+                        isFormDirty = false;
+                        window.location.href = href;
+                    }
+                );
+            }
+        });
+    });
+
+    // Browser Level Protection (Default Popup)
     window.addEventListener('beforeunload', (event) => {
         if (isFormDirty) {
             event.preventDefault();
-            event.returnValue = "Ada perubahan yang belum disimpan. Anda yakin meninggalkan halaman ini?";
+            event.returnValue = "Ada perubahan yang belum disimpan.";
             return event.returnValue;
         }
     });

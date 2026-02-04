@@ -236,20 +236,20 @@
     </div>
 
     <!-- Custom High-Fidelity Modal -->
-    <div id="customModal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
-        <div class="bg-white dark:bg-slate-900 w-full max-w-[420px] rounded-[2.5rem] shadow-2xl border border-white dark:border-slate-800 overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
-            <div class="p-8 md:p-10 text-center">
-                <!-- Icon Area -->
-                <div id="modalIconContainer" class="w-20 h-20 mx-auto rounded-[2rem] flex items-center justify-center mb-8 shadow-inner border">
-                    <div id="modalIcon" class="text-4xl"></div>
+    <div id="customModal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-slate-950/60 backdrop-blur-md animate-in fade-in duration-300">
+        <div class="bg-[#1a1617] w-full max-w-[400px] rounded-[1.5rem] shadow-2xl border border-white/5 overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+            <div class="p-8 text-left">
+                <h3 id="modalTitle" class="text-lg font-bold text-white tracking-tight mb-4"></h3>
+                <p id="modalText" class="text-sm font-medium text-slate-300 leading-relaxed mb-8"></p>
+                
+                <div class="flex flex-row-reverse items-center gap-3">
+                    <button id="modalPrimaryBtn" class="px-8 py-3 rounded-full bg-[#ffc1cf] text-[#6d2d3e] font-black text-xs uppercase tracking-widest hover:bg-[#ffb1c2] transition-all">
+                        Tetap Keluar
+                    </button>
+                    <button id="modalSecondaryBtn" onclick="closeCustomModal()" class="px-8 py-3 rounded-full bg-[#4a232e] text-white font-black text-xs uppercase tracking-widest hover:bg-[#5a2d39] transition-all">
+                        Batal
+                    </button>
                 </div>
-                
-                <h3 id="modalTitle" class="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-3"></h3>
-                <p id="modalText" class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest leading-loose mb-10 px-4"></p>
-                
-                <button onclick="closeCustomModal()" class="w-full py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black text-[10px] uppercase tracking-[0.3em] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-slate-200 dark:shadow-none">
-                    Tutup Dialog
-                </button>
             </div>
         </div>
     </div>
@@ -282,30 +282,32 @@
         }
 
         // Custom Modal Logic
-        function showAlert(title, text, type = 'info') {
+        function showAlert(title, text, type = 'info', onConfirm = null) {
             const modal = document.getElementById('customModal');
             const content = document.getElementById('modalContent');
-            const iconContainer = document.getElementById('modalIconContainer');
-            const icon = document.getElementById('modalIcon');
             const titleEl = document.getElementById('modalTitle');
             const textEl = document.getElementById('modalText');
-
-            // Reset and apply styles
-            iconContainer.className = "w-20 h-20 mx-auto rounded-[2rem] flex items-center justify-center mb-8 shadow-inner border transition-all duration-500";
-            
-            if (type === 'success') {
-                iconContainer.classList.add('bg-emerald-50', 'border-emerald-100', 'text-emerald-500');
-                icon.innerHTML = '✨';
-            } else if (type === 'error') {
-                iconContainer.classList.add('bg-rose-50', 'border-rose-100', 'text-rose-500');
-                icon.innerHTML = '⚠️';
-            } else {
-                iconContainer.classList.add('bg-blue-50', 'border-blue-100', 'text-blue-500');
-                icon.innerHTML = 'ℹ️';
-            }
+            const primaryBtn = document.getElementById('modalPrimaryBtn');
+            const secondaryBtn = document.getElementById('modalSecondaryBtn');
 
             titleEl.innerText = title;
             textEl.innerText = text;
+
+            if (onConfirm) {
+                primaryBtn.style.display = 'block';
+                secondaryBtn.style.display = 'block';
+                primaryBtn.innerText = 'Leave';
+                secondaryBtn.innerText = 'Cancel';
+                primaryBtn.onclick = function() {
+                    onConfirm();
+                    closeCustomModal();
+                };
+            } else {
+                primaryBtn.style.display = 'block';
+                secondaryBtn.style.display = 'none';
+                primaryBtn.innerText = 'OK';
+                primaryBtn.onclick = closeCustomModal;
+            }
 
             modal.classList.remove('hidden');
             setTimeout(() => {
