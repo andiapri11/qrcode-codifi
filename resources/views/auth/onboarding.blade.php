@@ -133,8 +133,8 @@
                     <div class="flex items-center gap-4 mb-6 md:mb-8">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="w-10 h-10 md:w-12 md:h-12">
                         <div class="border-l border-slate-200 dark:border-slate-700 pl-4">
-                            <h2 class="text-base md:text-lg font-black text-slate-800 dark:text-white uppercase tracking-tighter leading-none">Schola <span class="text-blue-600 italic">CBT</span></h2>
-                            <p class="text-[8px] md:text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.2em] mt-1" data-i18n="slogan">Smart Examination System</p>
+                            <h2 class="text-base md:text-lg font-black text-slate-800 dark:text-white uppercase tracking-tighter leading-none">Schola <span class="text-blue-600 italic">Exambro</span></h2>
+                            <p class="text-[8px] md:text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.2em] mt-1" data-i18n="slogan">Secure Examination System</p>
                         </div>
                     </div>
                     <h1 class="text-2xl md:text-3xl font-bold text-[#111827] dark:text-white tracking-tight" data-i18n="onboarding_title">Setup Profil</h1>
@@ -209,7 +209,7 @@
                         <a href="{{ route('terms') }}" class="hover:text-blue-500 transition-colors" data-i18n="footer_tos">Syarat & Ketentuan</a>
                         <a href="{{ route('privacy') }}" class="hover:text-blue-500 transition-colors" data-i18n="footer_privacy">Privasi</a>
                     </div>
-                    <p class="text-[9px] md:text-[10px] text-slate-400 font-medium uppercase tracking-tight">Copyright © 2026 <span class="text-blue-500 font-bold">ScholaCBT</span> by <a href="https://codifi.id" target="_blank" class="hover:underline">Codifi.id</a>.</p>
+                    <p class="text-[9px] md:text-[10px] text-slate-400 font-medium uppercase tracking-tight">Copyright © 2026 <span class="text-blue-500 font-bold">Schola Exambro</span> by <a href="https://codifi.id" target="_blank" class="hover:underline">Codifi.id</a>.</p>
                 </div>
             </div>
 
@@ -233,7 +233,7 @@
         // Dictionary
         const translations = {
             id: {
-                slogan: "Smart Examination System",
+                slogan: "Secure Examination System",
                 onboarding_title: "Setup Profil",
                 onboarding_subtitle: "Langkah terakhir! Lengkapi identitas instansi untuk memulai.",
                 school_placeholder: "Nama Sekolah / Instansi",

@@ -150,8 +150,8 @@
                     <div class="flex items-center gap-3 mb-4">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="w-8 h-8 md:w-10 md:h-10" fetchpriority="high">
                         <div class="border-l border-slate-200 dark:border-slate-700 pl-3">
-                            <h2 class="text-sm md:text-base font-black text-slate-800 dark:text-white uppercase tracking-tighter leading-none">Schola <span class="text-blue-600 italic">CBT</span></h2>
-                            <p class="text-[7px] md:text-[8px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.2em] mt-0.5" data-i18n="slogan">Smart Examination System</p>
+                            <h2 class="text-sm md:text-base font-black text-slate-800 dark:text-white uppercase tracking-tighter leading-none">Schola <span class="text-blue-600 italic">Exambro</span></h2>
+                            <p class="text-[7px] md:text-[8px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.2em] mt-0.5" data-i18n="slogan">Secure Examination System</p>
                         </div>
                     </div>
                     <h1 class="text-xl md:text-2xl font-bold text-[#111827] dark:text-white tracking-tight leading-none" data-i18n="login_title">Masuk</h1>
@@ -238,7 +238,7 @@
                         <a href="{{ route('terms') }}" class="hover:text-blue-500 transition-colors" data-i18n="footer_tos">S&K</a>
                         <a href="{{ route('privacy') }}" class="hover:text-blue-500 transition-colors" data-i18n="footer_privacy">Privasi</a>
                     </div>
-                    <p class="text-[9px] text-slate-400 font-medium uppercase tracking-tight">Copyright © 2026 <span class="text-blue-500 font-bold">ScholaCBT</span></p>
+                    <p class="text-[9px] text-slate-400 font-medium uppercase tracking-tight">Copyright © 2026 <span class="text-blue-500 font-bold">Schola Exambro</span></p>
                 </div>
             </div>
 
@@ -263,7 +263,7 @@
         // Dictionary
         const translations = {
             id: {
-                slogan: "Smart Examination System",
+                slogan: "Secure Examination System",
                 login_title: "Masuk",
                 login_subtitle: "Selamat datang kembali! Silakan masuk ke akun Anda.",
                 email_placeholder: "Alamat Email",
