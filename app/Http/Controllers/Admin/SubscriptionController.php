@@ -36,46 +36,46 @@ class SubscriptionController extends Controller
         $plans = [
             [
                 'id' => '6_months',
-                'name' => '6 Bulan Berlangganan',
+                'name' => 'Basic Semester',
                 'price' => 350000,
-                'duration' => 'Sekali bayar per 6 bulan',
+                'duration' => 'Langganan 6 Bulan',
                 'links' => 10,
-                'description' => 'Solusi hemat untuk kelancaran Ujian Semester Anda.',
+                'description' => 'Solusi hemat untuk kelancaran satu kali periode Ujian Semester.',
                 'features' => [
                     '10 Barcode Secure (Anti-Screenshot)',
                     'Custom Logo & Nama Sekolah',
                     'Dukungan Update Berkala',
                     'Akses ke Dashboard Admin',
-                    'Support Teknis Prioritas'
+                    'Support Teknis Standar'
                 ]
             ],
             [
                 'id' => '1_year',
-                'name' => '1 Tahun Berlangganan',
+                'name' => 'Basic Annual',
                 'price' => 650000,
-                'duration' => 'Sekali bayar per tahun',
+                'duration' => 'Langganan 1 Tahun',
                 'links' => 20,
-                'description' => 'Pilihan cerdas untuk manajemen ujian setahun penuh.',
+                'description' => 'Pilihan cerdas untuk manajemen ujian satu tahun ajaran penuh.',
                 'features' => [
                     '20 Barcode Secure (Anti-Screenshot)',
                     'Custom Logo & Nama Sekolah',
                     'Statistik Hasil Ujian (Basic)',
                     'Dukungan Update Prioritas',
-                    'Hemat Rp50.000 dibanding 6 bln',
+                    'Lebih Hemat dibanding 6 bln',
                     'Support Teknis Prioritas'
                 ]
             ],
             [
                 'id' => 'lifetime',
-                'name' => '3 Tahun Berlangganan (Exclusive)',
+                'name' => 'Exclusive Pro (3Y)',
                 'price' => 1500000,
                 'duration' => 'Sekali bayar untuk 3 tahun',
                 'links' => 100,
                 'description' => 'Investasi branding sekolah terbaik & jangka panjang untuk efisiensi maksimal.',
                 'features' => [
                     '100 Barcode Secure (Anti-Screenshot)',
-                    'Full Whitelabel (Hapus Branding Schola)',
-                    'Kustom Kode Sekolah (Sesuai Nama Sekolah)',
+                    'Full Whitelabel (Tanpa Nama Schola)',
+                    'Kustom Kode Sekolah (Sesuai Instansi)',
                     'Upload Custom Background App',
                     'Akses Dashboard Admin Premium',
                     'Dukungan Update 3 Tahun Penuh'
@@ -98,9 +98,9 @@ class SubscriptionController extends Controller
         ]);
 
         $plans = [
-            '6_months' => ['name' => 'Paket 6 Bulan', 'price' => 350000],
-            '1_year' => ['name' => 'Paket 1 Tahun', 'price' => 650000],
-            'lifetime' => ['name' => 'Paket 3 Tahun', 'price' => 1500000],
+            '6_months' => ['name' => 'Basic Semester', 'price' => 350000],
+            '1_year' => ['name' => 'Basic Annual', 'price' => 650000],
+            'lifetime' => ['name' => 'Exclusive Pro (3Y)', 'price' => 1500000],
         ];
 
         $plan = $plans[$request->plan];
