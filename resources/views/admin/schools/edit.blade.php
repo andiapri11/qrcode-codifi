@@ -396,5 +396,27 @@
             durationBox.style.pointerEvents = 'auto';
         }
     });
+
+    // Proteksi Perubahan Belum Disimpan
+    let isFormDirty = false;
+    const schoolForm = document.querySelector('form[action*="schools"]');
+
+    if (schoolForm) {
+        // Deteksi perubahan input
+        schoolForm.addEventListener('input', () => isFormDirty = true);
+        schoolForm.addEventListener('change', () => isFormDirty = true);
+
+        // Reset flag saat simpan/kirim
+        schoolForm.addEventListener('submit', () => isFormDirty = false);
+    }
+
+    // Munculkan popup saat mencoba meninggalkan halaman
+    window.addEventListener('beforeunload', (event) => {
+        if (isFormDirty) {
+            event.preventDefault();
+            event.returnValue = "Ada perubahan yang belum disimpan. Anda yakin meninggalkan halaman ini?";
+            return event.returnValue;
+        }
+    });
 </script>
 @endsection
