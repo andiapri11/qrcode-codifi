@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Admin' }} | Schola CBT</title>
+    <title>{{ $title ?? 'Admin' }} | Schola Exambro</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +67,7 @@
                     <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="w-10 h-10">
                         <div class="leading-none">
-                            <span class="text-slate-900 dark:text-white text-xl font-black tracking-tighter uppercase block">Schola <span class="text-blue-600 italic">CBT</span></span>
+                            <span class="text-slate-900 dark:text-white text-xl font-black tracking-tighter uppercase block">Schola <span class="text-blue-600 italic">Exambro</span></span>
                             <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 tracking-[0.2em] uppercase mt-1">Admin Panel</span>
                         </div>
                     </a>
