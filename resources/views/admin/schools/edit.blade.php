@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4">
+<div class="max-w-7xl mx-auto px-2 md:px-4">
     <div class="bg-gradient-to-b from-white to-slate-50/20 rounded-3xl md:rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden">
         <!-- Compact Header -->
         <div class="px-6 md:px-8 py-6 md:py-8 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white">
@@ -40,8 +40,8 @@
                             $isLifetime = $school->subscription_type === 'lifetime';
                         @endphp
 
-                        <div class="relative group">
-                            <div id="preview-box" class="aspect-square max-w-[240px] mx-auto lg:mx-0 bg-slate-50/50 rounded-[2rem] border-2 border-dashed {{ $school->logo ? 'border-indigo-100' : 'border-slate-200' }} flex flex-col items-center justify-center transition-all overflow-hidden relative shadow-inner {{ $isTrial ? 'opacity-70 bg-slate-100 cursor-not-allowed' : 'hover:bg-white hover:border-indigo-300' }}">
+                        <div class="relative group flex justify-center lg:justify-start">
+                            <div id="preview-box" class="aspect-square w-full max-w-[160px] md:max-w-[240px] bg-slate-50/50 rounded-[2rem] border-2 border-dashed {{ $school->logo ? 'border-indigo-100' : 'border-slate-200' }} flex flex-col items-center justify-center transition-all overflow-hidden relative shadow-inner {{ $isTrial ? 'opacity-70 bg-slate-100 cursor-not-allowed' : 'hover:bg-white hover:border-indigo-300' }}">
                                 @if($school->logo)
                                     <img id="preview-img" src="{{ Storage::disk('public')->url($school->logo) }}" class="w-full h-full object-cover">
                                 @else
@@ -83,7 +83,7 @@
                         </div>
                         
                         <div class="flex justify-center lg:justify-start">
-                            <div class="relative group w-[160px] md:w-[180px] mx-auto lg:mx-0">
+                            <div class="relative group w-[130px] md:w-[180px] mx-auto lg:mx-0">
                                 <!-- Phone Frame Decorator -->
                                 <div class="absolute -inset-2 border-[6px] border-slate-900 rounded-[2.5rem] shadow-2xl z-0 pointer-events-none"></div>
                                 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-slate-900 rounded-b-2xl z-20 pointer-events-none"></div>
@@ -167,7 +167,7 @@
                 </div>
 
                 <!-- Right Side: Contact Information -->
-                <div class="col-span-12 lg:col-span-8 bg-slate-50/50 p-6 md:p-0 md:bg-transparent rounded-3xl border border-slate-100 md:border-0 shadow-sm md:shadow-none">
+                <div class="col-span-12 lg:col-span-8 bg-white md:bg-transparent p-4 md:p-0 rounded-3xl border border-slate-100 md:border-0 shadow-sm md:shadow-none">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="sm:col-span-1">
                             @php
@@ -178,7 +178,7 @@
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Kode Instansi (Hingga {{ $codeLength }} Char)</label>
                             @if($canEditCode)
                                 <input type="text" name="school_code" value="{{ old('school_code', $school->school_code) }}" maxlength="{{ $codeLength }}" placeholder="Contoh: SMKN1" style="text-transform: uppercase;"
-                                    class="w-full bg-white md:bg-slate-50 border border-slate-200 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-black text-slate-700 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                    class="w-full bg-slate-50 border border-slate-200 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-black text-slate-700 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
                                 <p class="text-[8px] text-slate-400 mt-2 ml-1 italic tracking-tight">* Kode unik untuk diinput siswa di aplikasi.</p>
                             @else
                                 <div class="w-full bg-slate-100/50 border border-slate-200 py-3.5 px-6 rounded-xl font-black text-slate-500 text-sm cursor-not-allowed flex items-center gap-2">
@@ -193,25 +193,25 @@
                         <div class="sm:col-span-1">
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Nama Instansi</label>
                             <input type="text" name="name" required value="{{ old('name', $school->name) }}" placeholder="Contoh: SMA Negeri 1 Jakarta"
-                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                class="w-full bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
                         </div>
 
                         <div>
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Email Resmi</label>
                             <input type="email" name="email" value="{{ old('email', $school->email) }}" placeholder="info@sekolah.sch.id"
-                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                class="w-full bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
                         </div>
 
                         <div>
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Nomor Telepon</label>
                             <input type="text" name="phone" value="{{ old('phone', $school->phone) }}" placeholder="(021) 1234567"
-                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
+                                class="w-full bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner">
                         </div>
 
                         <div class="sm:col-span-2">
                             <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 ml-1">Alamat Lengkap</label>
                             <textarea name="address" rows="2" placeholder="Jl. Jenderal Sudirman No..."
-                                class="w-full bg-white md:bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner resize-none">{{ old('address', $school->address) }}</textarea>
+                                class="w-full bg-slate-50 border border-slate-100 py-3 px-4 md:py-3.5 md:px-6 rounded-xl font-bold text-slate-900 text-xs md:text-sm outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-inner resize-none">{{ old('address', $school->address) }}</textarea>
                         </div>
                     </div>
                 </div>
