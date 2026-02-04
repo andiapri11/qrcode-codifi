@@ -8,13 +8,13 @@
 <div class="space-y-6 animate-in fade-in duration-700">
     <!-- Compact Header -->
     <div class="bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden">
-        <div class="px-8 py-5 flex justify-between items-center">
+        <div class="px-6 md:px-8 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div class="flex items-center gap-4">
                 <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500 shadow-inner shrink-0">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
                 </div>
                 <div>
-                    <h2 class="text-base font-black text-slate-900 tracking-tight uppercase">
+                    <h2 class="text-base font-black text-slate-900 tracking-tight uppercase leading-tight">
                         {{ $isSuperAdmin ? 'Manajemen Billing Global' : 'Langganan & Billing' }}
                     </h2>
                     <p class="text-[8px] text-slate-400 font-bold uppercase tracking-[0.2em] mt-0.5">
@@ -22,6 +22,12 @@
                     </p>
                 </div>
             </div>
+            @if(!$isSuperAdmin)
+            <div class="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 md:ml-auto">
+                <span class="w-2 h-2 rounded-full {{ $school->isSubscriptionActive() ? 'bg-emerald-500' : 'bg-rose-500' }} animate-pulse"></span>
+                <span class="text-[8px] font-black uppercase tracking-widest text-slate-500">Service {{ $school->isSubscriptionActive() ? 'Active' : 'Inactive' }}</span>
+            </div>
+            @endif
         </div>
     </div>
 
@@ -97,39 +103,39 @@
                 <h2 class="text-[10px] font-black text-slate-800 dark:text-white uppercase tracking-widest">Pilih Paket Perpanjangan</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($plans as $plan)
                 @php
                     $isLifetime = $plan['id'] == 'lifetime';
                     $isSelected = $school->subscription_type === $plan['id'];
                 @endphp
-                <div class="relative border {{ $isLifetime ? 'border-indigo-500 bg-indigo-50/10' : 'border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/20' }} rounded-[2.5rem] p-6 flex flex-col group transition-all duration-500 {{ $isLifetime ? 'shadow-2xl shadow-indigo-100 hover:scale-[1.03]' : 'hover:scale-[1.02]' }}">
+                <div class="relative border {{ $isLifetime ? 'border-indigo-500 bg-indigo-50/10' : 'border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/20' }} rounded-[2.5rem] p-7 md:p-6 flex flex-col group transition-all duration-500 {{ $isLifetime ? 'shadow-2xl shadow-indigo-100 hover:scale-[1.03]' : 'hover:scale-[1.02]' }}">
                     @if($isLifetime)
                         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-[8px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-xl shadow-indigo-200 animate-pulse z-10">PRO CHOICE</div>
                     @endif
                     
                     <div class="mb-6">
-                        <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center justify-between mb-3">
                             <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest">{{ $plan['name'] }}</div>
                             @if($isSelected)
-                                <span class="bg-emerald-100 text-emerald-600 px-2 py-0.5 rounded-full text-[7px] font-black uppercase tracking-widest">Aktif</span>
+                                <span class="bg-emerald-100 text-emerald-600 px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest">Aktif</span>
                             @endif
                         </div>
-                        <div class="text-2xl font-black text-slate-900 dark:text-white mt-1 tracking-tighter">
-                            <span class="text-xs font-bold text-slate-400 mr-0.5">Rp</span>{{ number_format($plan['price'], 0, ',', '.') }}
+                        <div class="text-3xl font-black text-slate-900 dark:text-white mt-1 tracking-tighter">
+                            <span class="text-sm font-bold text-slate-400 mr-1">Rp</span>{{ number_format($plan['price'], 0, ',', '.') }}
                         </div>
-                        <div class="text-[8px] font-black text-indigo-600 dark:text-blue-400 mt-1 uppercase tracking-[0.15em]">{{ $plan['duration'] }}</div>
+                        <div class="text-[9px] font-black text-indigo-600 dark:text-blue-400 mt-2 uppercase tracking-[0.15em]">{{ $plan['duration'] }}</div>
                     </div>
                     
                     <div class="space-y-4 mb-8 flex-grow">
-                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-tight leading-relaxed">{{ $plan['description'] }}</p>
-                        <ul class="space-y-3">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-tight leading-relaxed opacity-80">{{ $plan['description'] }}</p>
+                        <ul class="space-y-3.5">
                             @foreach($plan['features'] as $feature)
                             <li class="flex items-start gap-3">
-                                <span class="w-4 h-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg class="w-2.5 h-2.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                <span class="w-5 h-5 bg-emerald-50 dark:bg-emerald-900/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                                    <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                                 </span>
-                                <span class="text-[9px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-tight leading-tight">{{ $feature }}</span>
+                                <span class="text-[10px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-tight leading-tight">{{ $feature }}</span>
                             </li>
                             @endforeach
                         </ul>

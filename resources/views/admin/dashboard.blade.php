@@ -142,7 +142,7 @@
         $isPremium = $user->school && $user->school->subscription_type !== 'trial';
     @endphp
     <!-- Header / Banner Area -->
-    <div class="{{ $isPremium ? 'bg-gradient-to-br from-[#1e1b4b] via-[#312e81] to-[#4338ca]' : 'bg-gradient-to-br from-[#3b59f8] to-[#4338ca]' }} rounded-[2rem] p-5 md:p-6 text-white shadow-2xl shadow-blue-900/10 relative overflow-hidden">
+    <div class="{{ $isPremium ? 'bg-gradient-to-br from-[#1e1b4b] via-[#312e81] to-[#4338ca]' : 'bg-gradient-to-br from-[#3b59f8] to-[#4338ca]' }} rounded-[2rem] p-6 md:p-8 text-white shadow-2xl shadow-blue-900/10 relative overflow-hidden">
         <!-- Background Decorative Shapes -->
         <div class="absolute top-0 right-0 w-full h-full pointer-events-none opacity-[0.07]">
             <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -156,7 +156,7 @@
                     <span class="text-[8px] font-extrabold uppercase tracking-[0.15em] text-white">Dashboard Instansi</span>
                 </div>
                 
-                <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1 flex items-center gap-3">
+                <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-2 flex items-center gap-3">
                     Halo, {{ strtolower(explode(' ', $user->name)[0]) }} 👋
                     @if($user->school && $user->school->subscription_type !== 'trial')
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-400/20 backdrop-blur-sm border border-emerald-400/30 rounded-full text-[10px] font-black uppercase tracking-widest text-emerald-300 shadow-lg shadow-emerald-500/10">
@@ -165,7 +165,7 @@
                         </span>
                     @endif
                 </h2>
-                <p class="text-blue-100 font-bold text-xs opacity-90 mb-4">{{ strtolower($user->school->name ?? 'belum ada instansi') }}</p>
+                <p class="text-blue-100 font-bold text-sm md:text-base opacity-90 mb-6">{{ strtolower($user->school->name ?? 'belum ada instansi') }}</p>
                 
                 <div class="flex flex-wrap gap-2">
                     <!-- Kode Instansi -->
@@ -342,8 +342,8 @@
             <!-- Left: Info -->
             <div class="lg:col-span-8 p-8 md:p-10">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-amber-50 dark:bg-amber-900/20 rounded-xl flex items-center justify-center text-amber-500 shadow-inner">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    <div class="w-10 h-10 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl flex items-center justify-center shadow-inner">
+                        <img src="{{ asset('assets/images/manual-book.png') }}" class="w-7 h-7 object-contain" alt="Guide">
                     </div>
                     <div>
                         <h3 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">Panduan Kustomisasi Eksklusif</h3>
@@ -353,7 +353,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Guide 1 -->
-                    <div class="space-y-3">
+                    <div class="space-y-3 bg-slate-50 dark:bg-slate-900/30 p-5 md:p-0 md:bg-transparent rounded-2xl border border-slate-100 md:border-0 dark:border-slate-700/50">
                         <div class="flex items-center gap-2 group">
                             <span class="w-5 h-5 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-[9px] font-black text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">1</span>
                             <h5 class="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-tight">Custom School Code</h5>
@@ -361,7 +361,7 @@
                         <p class="text-[9px] leading-relaxed text-slate-400 font-bold uppercase opacity-80">Ubah kode instansi acak menjadi nama sekolah Anda (Eksklusif Lifetime). Memudahkan siswa saat scan pertama.</p>
                     </div>
                     <!-- Guide 2 -->
-                    <div class="space-y-3">
+                    <div class="space-y-3 bg-slate-50 dark:bg-slate-900/30 p-5 md:p-0 md:bg-transparent rounded-2xl border border-slate-100 md:border-0 dark:border-slate-700/50">
                         <div class="flex items-center gap-2 group">
                             <span class="w-5 h-5 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-[9px] font-black text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">2</span>
                             <h5 class="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-tight">Whitelabel App</h5>
@@ -369,7 +369,7 @@
                         <p class="text-[9px] leading-relaxed text-slate-400 font-bold uppercase opacity-80">Hilangkan semua footer branding Schola. Aplikasi akan tampil 100% sebagai milik sekolah Anda kepada siswa.</p>
                     </div>
                     <!-- Guide 3 -->
-                    <div class="space-y-3">
+                    <div class="space-y-3 bg-slate-50 dark:bg-slate-900/30 p-5 md:p-0 md:bg-transparent rounded-2xl border border-slate-100 md:border-0 dark:border-slate-700/50">
                         <div class="flex items-center gap-2 group">
                             <span class="w-5 h-5 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center text-[9px] font-black text-slate-500 group-hover:bg-indigo-600 group-hover:text-white transition-colors">3</span>
                             <h5 class="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-tight">Custom Background</h5>
@@ -396,8 +396,8 @@
                     <svg class="w-full h-full rotate-12 scale-150" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.5" fill="none" class="text-slate-300 dark:text-slate-700"/></svg>
                 </div>
                 <div class="relative z-10 text-center">
-                    <div class="w-20 h-20 bg-white dark:bg-slate-800 rounded-3xl shadow-2xl flex items-center justify-center text-3xl mb-4 mx-auto border border-slate-100 dark:border-slate-700">
-                        ✨
+                    <div class="w-20 h-20 bg-white dark:bg-slate-800 rounded-3xl shadow-2xl flex items-center justify-center mb-4 mx-auto border border-slate-100 dark:border-slate-700 overflow-hidden">
+                        <img src="{{ asset('assets/images/manual-book.png') }}" class="w-14 h-14 object-contain" alt="Manual">
                     </div>
                     <span class="block text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest leading-none">Branding</span>
                     <span class="block text-[8px] font-bold text-slate-400 uppercase tracking-tighter mt-1">Eksklusif & Professional</span>
