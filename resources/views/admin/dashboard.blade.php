@@ -313,15 +313,25 @@
             </div>
         </div>
         
-        <!-- Info Card -->
-        <div class="bg-indigo-900 rounded-[1.5rem] p-5 shadow-lg relative overflow-hidden text-white flex flex-col justify-between h-full">
+        <!-- Info Card: Pusat Bantuan -->
+        <div class="bg-[#1e1b4b] rounded-[1.5rem] p-6 shadow-lg relative overflow-hidden text-white flex flex-col justify-between h-full group">
             <div class="relative z-10">
-                 <h4 class="font-bold text-sm mb-1 uppercase tracking-tight">Pusat Bantuan</h4>
-                 <p class="text-[10px] text-indigo-200 leading-snug mb-3">Butuh bantuan atau perpanjangan paket?</p>
-                 <a href="https://wa.me/628123456789" class="inline-block bg-white text-indigo-900 text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-indigo-50 transition-colors">Hubungi Support</a>
+                 <h4 class="font-black text-lg mb-1 uppercase tracking-tight">Pusat Bantuan</h4>
+                 <p class="text-[11px] text-indigo-200 font-bold leading-snug mb-5 opacity-90 uppercase tracking-wide">Butuh bantuan atau perpanjangan paket?</p>
+                 
+                 @php
+                    $waNumber = '6285768441485';
+                    $waMessage = "Halo Support Schola, Saya " . $user->name . " dari " . ($user->school->name ?? 'Instansi') . ". Saya butuh bantuan mengenai...";
+                    $waUrl = "https://wa.me/" . $waNumber . "?text=" . urlencode($waMessage);
+                 @endphp
+
+                 <a href="{{ $waUrl }}" target="_blank" class="inline-block bg-white text-[#1e1b4b] text-[10px] font-black uppercase tracking-[0.2em] px-6 py-3.5 rounded-xl hover:bg-slate-50 transition-all shadow-xl shadow-black/10 active:scale-95">
+                    Hubungi Support
+                 </a>
             </div>
-            <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none translate-x-4 translate-y-4">
-                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+            <!-- Decorative Icon -->
+            <div class="absolute -right-2 -bottom-2 opacity-[0.08] pointer-events-none transform group-hover:scale-110 transition-transform duration-500">
+                <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
             </div>
         </div>
     </div>
