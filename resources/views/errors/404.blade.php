@@ -37,23 +37,23 @@
             </div>
 
             <!-- 404 Text -->
-            <h1 class="text-7xl md:text-[10rem] font-black text-gradient tracking-tighter leading-none mb-4">404</h1>
+            <h1 class="text-6xl md:text-8xl font-black text-gradient tracking-tighter leading-none mb-2">404</h1>
 
             <!-- Content Area -->
-            <div class="space-y-6">
-                <div class="space-y-2">
-                    <h2 class="text-2xl md:text-4xl font-black text-slate-800 tracking-tight uppercase leading-tight">
+            <div class="space-y-4">
+                <div class="space-y-1">
+                    <h2 class="text-lg md:text-xl font-black text-slate-800 tracking-tight uppercase leading-tight">
                         Sepertinya Anda Sedang Tersesat...
                     </h2>
-                    <p class="text-slate-400 font-bold text-xs md:text-sm leading-relaxed max-w-lg mx-auto uppercase tracking-[0.15em] opacity-80">
+                    <p class="text-slate-400 font-bold text-[10px] md:text-xs leading-relaxed max-w-sm mx-auto uppercase tracking-[0.1em] opacity-80">
                         Tenang, jangan panik. Halaman yang Anda cari mungkin sedang bersembunyi atau sudah pindah ke alamat baru. Mari kami bantu Anda menemukan jalan pulang.
                     </p>
                 </div>
 
                 <!-- Action Button -->
-                <div class="pt-4">
-                    <a href="{{ url('/') }}" class="inline-flex items-center gap-4 bg-white border border-slate-200 px-10 py-5 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.3em] text-slate-600 hover:text-indigo-600 hover:border-indigo-200 hover:bg-slate-50 transition-all shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] active:scale-95 group">
-                        <svg class="w-5 h-5 text-slate-300 group-hover:text-indigo-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="pt-2">
+                    <a href="{{ url('/') }}" class="inline-flex items-center gap-3 bg-white border border-slate-200 px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 hover:text-indigo-600 hover:border-indigo-200 hover:bg-slate-50 transition-all shadow-sm active:scale-95 group">
+                        <svg class="w-4 h-4 text-slate-300 group-hover:text-indigo-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                         </svg>
                         Kembali ke Beranda
