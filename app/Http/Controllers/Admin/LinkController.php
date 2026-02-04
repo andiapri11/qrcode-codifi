@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class LinkController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
+        $search = $request->input('q');
         
         $query = ExamLink::with('school')->latest();
         
@@ -23,8 +24,17 @@ class LinkController extends Controller
         } else {
             $schools = School::where('is_active', true)->get();
         }
+
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhereHas('school', function($sq) use ($search) {
+                      $sq->where('name', 'like', "%{$search}%");
+                  });
+            });
+        }
         
-        $links = $query->paginate(25);
+        $links = $query->paginate(25)->withQueryString();
         
         return view('admin.links.index', [
             'title' => 'Data Barcode Ujian',

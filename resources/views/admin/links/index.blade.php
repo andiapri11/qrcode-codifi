@@ -1,39 +1,58 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="mb-8 flex items-center justify-between">
-    <div>
-        <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight uppercase">Daftar Barcode Ujian</h2>
-        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mt-1">Manajemen Link & Riwayat QR Code yang Telah Dibuat</p>
-    </div>
-    <div class="flex items-center gap-3">
-        <!-- Bulk Delete Button (Hidden initially) -->
-        <button id="bulkDeleteBtn" onclick="openBulkDeleteModal()" class="hidden bg-rose-500 text-white px-6 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-rose-100 hover:bg-rose-600 transition-all flex items-center gap-2">
-            <span>🗑️</span> Hapus Terpilih (<span id="selectedCount">0</span>)
-        </button>
-        
-        <!-- Trigger Modal Create -->
-        @php
-            $isTrial = Auth::user()->role !== 'superadmin' && Auth::user()->school && Auth::user()->school->subscription_type === 'trial';
-            $limitReached = $isTrial && $links->total() >= 1;
-        @endphp
+<div class="mb-8 space-y-4">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+            <h2 class="text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight uppercase">Daftar Barcode Ujian</h2>
+            <p class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mt-1">Manajemen Link & Riwayat QR Code yang Telah Dibuat</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+            <!-- Bulk Delete Button (Hidden initially) -->
+            <button id="bulkDeleteBtn" onclick="openBulkDeleteModal()" class="hidden bg-rose-500 text-white px-5 py-3.5 md:px-6 md:py-4 rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shadow-xl shadow-rose-100 hover:bg-rose-600 transition-all flex items-center gap-2">
+                <span>🗑️</span> <span class="hidden sm:inline">Hapus Terpilih</span> (<span id="selectedCount">0</span>)
+            </button>
+            
+            <!-- Trigger Modal Create -->
+            @php
+                $isTrial = Auth::user()->role !== 'superadmin' && Auth::user()->school && Auth::user()->school->subscription_type === 'trial';
+                $limitReached = $isTrial && $links->total() >= 1;
+            @endphp
 
-        @if($limitReached)
-            <button disabled class="bg-slate-100 text-slate-400 px-6 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center gap-2 cursor-not-allowed border border-slate-200" title="Limit Barcode Trial Tercapai">
-                <span class="opacity-50">🔒</span> Limit Tercapai
-            </button>
-        @else
-            <button onclick="openCreateModal()" class="bg-indigo-600 text-white px-6 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition-all flex items-center gap-2">
-                <span>➕</span> Buat Barcode Baru
-            </button>
-        @endif
+            @if($limitReached)
+                <button disabled class="bg-slate-100 text-slate-400 px-5 py-3.5 md:px-6 md:py-4 rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest flex items-center gap-2 cursor-not-allowed border border-slate-200" title="Limit Barcode Trial Tercapai">
+                    <span class="opacity-50">🔒</span> <span class="hidden sm:inline">Limit Tercapai</span>
+                </button>
+            @else
+                <button onclick="openCreateModal()" class="flex-1 md:flex-none justify-center bg-indigo-600 text-white px-5 py-3.5 md:px-6 md:py-4 rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition-all flex items-center gap-2">
+                    <span>➕</span> Buat <span class="hidden sm:inline">Barcode Baru</span><span class="sm:hidden">Barcode</span>
+                </button>
+            @endif
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="max-w-md">
+        <form action="{{ route('links.index') }}" method="GET" class="relative group">
+            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama ujian atau instansi..." 
+                class="w-full bg-white border border-slate-200 py-3.5 pl-12 pr-6 rounded-2xl font-bold text-slate-700 text-xs outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition shadow-sm">
+            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            @if(request('q'))
+                <a href="{{ route('links.index') }}" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                </a>
+            @endif
+        </form>
     </div>
 </div>
 
 <div class="bg-white rounded-[2.5rem] border border-slate-200 shadow-sm overflow-hidden">
     <form id="bulkForm" action="{{ route('links.bulk-delete') }}" method="POST">
         @csrf
-        <div class="overflow-x-auto">
+        <!-- Desktop Table View -->
+        <div class="hidden md:block overflow-x-auto">
             <table class="w-full text-left">
                 <thead>
                     <tr class="bg-slate-50/50 border-b border-slate-100">
@@ -56,10 +75,10 @@
                         <td class="px-4 py-6">
                             <div class="flex items-center gap-3">
                                 <div class="w-8 h-8 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 font-black text-[9px] border border-indigo-100 overflow-hidden shrink-0">
-                                    @if($link->school->logo_url)
-                                        <img src="{{ $link->school->logo_url }}" class="w-full h-full object-cover">
+                                    @if($link->school->logo)
+                                        <img src="{{ Storage::disk('public')->url($link->school->logo) }}" class="w-full h-full object-cover">
                                     @else
-                                        {{ $link->school->initials }}
+                                        <span class="uppercase">{{ substr($link->school->name, 0, 2) }}</span>
                                     @endif
                                 </div>
                                 <span class="text-[11px] font-bold text-slate-600 truncate max-w-[120px]">{{ $link->school->name }}</span>
@@ -95,6 +114,52 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+
+        <!-- Mobile Card View -->
+        <div class="md:hidden divide-y divide-slate-100">
+            @forelse($links as $link)
+            <div class="p-5 space-y-4 hover:bg-slate-50/50 transition-colors">
+                <div class="flex items-start justify-between">
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" name="ids[]" value="{{ $link->id }}" class="row-checkbox w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer">
+                        <div class="w-8 h-8 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 font-black text-[9px] border border-indigo-100 overflow-hidden shrink-0">
+                            @if($link->school->logo)
+                                <img src="{{ Storage::disk('public')->url($link->school->logo) }}" class="w-full h-full object-cover">
+                            @else
+                                <span class="uppercase">{{ substr($link->school->name, 0, 2) }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-black text-slate-900 leading-tight uppercase">{{ $link->title }}</div>
+                            <div class="text-[8px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">{{ $link->school->name }}</div>
+                        </div>
+                    </div>
+                    <code class="bg-indigo-50 text-indigo-600 px-2 py-1 rounded text-[9px] font-black tracking-widest">
+                        {{ $link->secure_token }}
+                    </code>
+                </div>
+                
+                <div class="flex items-center justify-between gap-4 pt-2">
+                    <div class="flex-1 truncate">
+                        <p class="text-[8px] text-slate-300 uppercase font-black tracking-tighter truncate">{{ $link->exam_url }}</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button type="button" onclick="showQR('{{ $link->secure_token }}', {{ $link->school_id }})" class="p-2.5 bg-indigo-50 text-indigo-600 rounded-xl border border-indigo-100 active:scale-95 transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" /></svg>
+                        </button>
+                        <button type="button" onclick="confirmDelete({{ $link->id }})" class="p-2.5 text-rose-500 bg-rose-50 rounded-xl border border-rose-100 active:scale-95 transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            @empty
+            <div class="px-8 py-20 text-center">
+                <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">📭</div>
+                <p class="text-slate-400 font-bold text-[10px] uppercase tracking-widest">Data tidak ditemukan.</p>
+            </div>
+            @endforelse
         </div>
     </form>
 
