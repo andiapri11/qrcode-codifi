@@ -188,21 +188,23 @@
                 <h2 class="text-[10px] font-black text-slate-800 dark:text-white uppercase tracking-widest">Riwayat Transaksi</h2>
             </div>
             <div class="overflow-x-auto no-scrollbar">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-slate-50/50 dark:bg-slate-800/30 border-b border-slate-100 dark:border-slate-800">
-                            <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">No. Referensi</th>
-                            @if($isSuperAdmin)
-                            <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">Nama Instansi</th>
-                            @endif
-                            <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">Paket</th>
-                            <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">Nominal</th>
-                            <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em] text-center">Status</th>
-                            <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">Tanggal</th>
-                            <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em] text-right">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                <!-- Desktop Table View -->
+                <div class="hidden md:block">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50/50 dark:bg-slate-800/30 border-b border-slate-100 dark:border-slate-800">
+                                <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">No. Referensi</th>
+                                @if($isSuperAdmin)
+                                <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">Nama Instansi</th>
+                                @endif
+                                <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">Paket</th>
+                                <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">Nominal</th>
+                                <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em] text-center">Status</th>
+                                <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em]">Tanggal</th>
+                                <th class="px-8 py-4 text-[9px] font-black uppercase text-slate-400 tracking-[0.2em] text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
                         @forelse($transactions as $trx)
                         <tr class="hover:bg-slate-50/30 dark:hover:bg-slate-800/10 transition-colors">
                             <td class="px-8 py-4 text-[10px] font-black text-slate-700 dark:text-slate-300 tracking-tight uppercase">{{ $trx->reference }}</td>
@@ -253,6 +255,67 @@
                         @endforelse
                     </tbody>
                 </table>
+                </div>
+
+                <!-- Mobile Card View -->
+                <div class="md:hidden divide-y divide-slate-100 dark:divide-slate-800">
+                    @forelse($transactions as $trx)
+                    <div class="p-5 space-y-4 hover:bg-slate-50/30 dark:hover:bg-slate-800/10 transition-colors">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase leading-none">{{ $trx->reference }}</div>
+                                <div class="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-1.5">{{ $trx->created_at->format('d M Y, H:i') }}</div>
+                                @if($isSuperAdmin)
+                                    <div class="text-[9px] font-black text-indigo-600 dark:text-blue-400 uppercase mt-2">{{ $trx->school->name }}</div>
+                                @endif
+                            </div>
+                            <div class="shrink-0">
+                                @if($trx->status == 'success')
+                                    <span class="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-500 rounded-lg text-[7px] font-black uppercase tracking-widest border border-emerald-100 dark:border-emerald-900/30">LUNAS</span>
+                                @elseif($trx->status == 'pending')
+                                    <span class="px-2.5 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-500 rounded-lg text-[7px] font-black uppercase tracking-widest border border-amber-100 dark:border-amber-900/30">PENDING</span>
+                                @else
+                                    <span class="px-2.5 py-1 bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-500 rounded-lg text-[7px] font-black uppercase tracking-widest border border-rose-100 dark:border-rose-900/30">GAGAL</span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-0.5">
+                            <div>
+                                <div class="text-[9px] font-bold text-slate-500 uppercase tracking-tight">{{ str_replace('_', ' ', $trx->type) }}</div>
+                                <div class="text-xs font-black text-slate-900 dark:text-white mt-0.5">Rp{{ number_format($trx->amount, 0, ',', '.') }}</div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                @if(!$isSuperAdmin && $trx->status == 'pending' && $trx->snap_token)
+                                    <button onclick="window.snap.pay('{{ $trx->snap_token }}')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-100">Bayar</button>
+                                @endif
+
+                                @if($trx->status == 'success')
+                                    <button onclick="downloadInvoice('{{ route('subscription.transactions.invoice', $trx->id) }}?download=1', this)" class="inline-flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl transition-all border border-slate-200 dark:border-slate-700 active:scale-95">
+                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                         <span class="text-[7px] font-black uppercase tracking-widest label-text">Invoice</span>
+                                     </button>
+                                 @endif
+
+                                @if($isSuperAdmin)
+                                    <form action="{{ route('subscription.transactions.destroy', $trx->id) }}" method="POST" onsubmit="return confirm('Hapus riwayat transaksi ini?')" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="p-2.5 text-rose-500 bg-rose-50 dark:bg-rose-900/20 rounded-xl border border-rose-100 dark:border-rose-900/30 active:scale-95 transition-all">
+                                            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="px-8 py-16 text-center">
+                        <div class="w-16 h-16 bg-slate-50 dark:bg-slate-800/50 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">📭</div>
+                        <p class="text-slate-400 dark:text-slate-600 font-bold text-[10px] uppercase tracking-widest italic">Belum ada riwayat transaksi.</p>
+                    </div>
+                    @endforelse
+                </div>
             </div>
             @if($transactions->hasPages())
                 <div class="px-8 py-4 border-t border-slate-50 dark:border-slate-800">
