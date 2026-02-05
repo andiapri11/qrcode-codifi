@@ -80,12 +80,12 @@
 <body class="font-sans antialiased text-slate-900 bg-slate-50 overflow-x-hidden">
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <div class="w-11 h-11 flex items-center justify-center">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+                <div class="w-10 h-10 flex items-center justify-center">
                     <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo" class="w-full h-full object-contain">
                 </div>
-                <div class="text-[20px] font-black flex items-center gap-1.5 leading-none">
+                <div class="text-[19px] font-black flex items-center gap-1 leading-none">
                     <span class="text-slate-900 uppercase tracking-tighter">SCHOLA</span>
                     <div class="flex items-center">
                         <span class="text-emerald-600 uppercase tracking-tighter">EXAM</span>
@@ -116,7 +116,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-40 pb-20 overflow-hidden">
+    <section class="relative pt-32 pb-16 overflow-hidden">
         <div class="absolute inset-0 hero-pattern z-0"></div>
         <div class="absolute top-40 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-[120px] -mr-48"></div>
         <div class="absolute bottom-20 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] -ml-48"></div>
@@ -124,28 +124,22 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="flex-1 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-3 px-4 py-2 bg-brand-50 border border-brand-100 rounded-full mb-8">
+                    <div class="inline-flex items-center gap-3 px-4 py-2 bg-brand-50 border border-brand-100 rounded-full mb-6">
                         <span class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
                         <span class="text-[10px] font-black text-brand-600 uppercase tracking-widest">Platform Exambro #1 di Indonesia</span>
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-8 uppercase tracking-tighter">
+                    <h1 class="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.05] mb-6 uppercase tracking-tighter">
                         Amankan Ujian Digital <br> Dengan <span class="text-emerald-500">Eksklusivitas</span>
                     </h1>
-                    <p class="text-lg text-slate-500 font-medium mb-12 max-w-2xl leading-relaxed">
+                    <p class="text-lg text-slate-500 font-medium mb-8 max-w-2xl leading-relaxed">
                         Schola Exambro memberikan perlindungan maksimal untuk ujian online sekolah Anda. Kustomisasi penuh branding instansi, anti-curang tingkat tinggi, dan kemudahan manajemen QR Code.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                         <a href="{{ route('register') }}" class="w-full sm:w-auto px-10 py-5 bg-slate-900 border border-slate-900 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-2xl">
                             Mulai Sekarang
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="w-full sm:w-auto px-8 py-3.5 bg-black text-white rounded-xl flex items-center gap-3 transition-all hover:scale-105 shadow-xl border border-white/10 group">
-                            <svg class="w-6 h-6 group-hover:text-emerald-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L18.05,15.81C19.33,16.55 19.33,18.41 18.05,19.15L14.53,21.16L13.69,20.31L16.81,15.12M14.53,2.84L18.05,4.85C19.33,5.59 19.33,7.45 18.05,8.19L16.81,8.88L13.69,3.69L14.53,2.84M13.69,12L20.31,15.12C21.15,15.52 21.65,16.26 21.65,17.1C21.65,17.94 21.15,18.68 20.31,19.08L6.81,3.12L13.69,12Z"/>
-                            </svg>
-                            <div class="text-left leading-tight">
-                                <p class="text-[8px] font-bold uppercase tracking-widest text-white/60">Download on</p>
-                                <p class="text-sm font-black uppercase">Play Store</p>
-                            </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="w-full sm:w-auto h-[60px] transition-all hover:scale-105 active:scale-95">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-full object-contain">
                         </a>
                     </div>
                     <div class="mt-12 flex items-center justify-center lg:justify-start gap-8 opacity-60">
