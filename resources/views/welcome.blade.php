@@ -156,10 +156,10 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-24 lg:pt-48 pb-12 lg:pb-24 overflow-hidden">
+    <section class="relative pt-24 lg:pt-40 pb-12 lg:pb-24 overflow-hidden">
         <div class="absolute inset-0 hero-pattern z-0"></div>
-        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[120px] -mr-48"></div>
-        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] -ml-48"></div>
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[100px] -mr-48"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] -ml-48"></div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
@@ -168,12 +168,12 @@
                         <span class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
                         <span class="text-[9px] sm:text-[10px] font-black text-brand-600 uppercase tracking-widest">Platform Exambro #1 di Indonesia</span>
                     </div>
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[84px] font-black text-slate-900 leading-[1] mb-6 uppercase tracking-tighter">
+                    <h1 class="text-4xl sm:text-5xl lg:text-[64px] font-black text-slate-900 leading-[1.05] mb-6 uppercase tracking-tighter">
                         Amankan <br class="hidden sm:block"> 
                         Ujian Digital <br> 
                         Dengan <span class="text-emerald-500">Eksklusivitas</span>
                     </h1>
-                    <p class="text-base sm:text-lg lg:text-xl text-slate-500 font-medium mb-10 max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                    <p class="text-base sm:text-lg lg:text-lg text-slate-500 font-medium mb-10 max-w-2xl leading-relaxed mx-auto lg:mx-0">
                         Platform CBT Nomor #1 dengan keamanan tingkat tinggi, Whitelist Domain, dan fitur Branding Instansi untuk pengalaman ujian yang lebih profesional.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-2">
