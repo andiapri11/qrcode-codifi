@@ -114,9 +114,9 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-16 overflow-hidden">
+    <section class="relative pt-20 pb-16 overflow-hidden">
         <div class="absolute inset-0 hero-pattern z-0"></div>
-        <div class="absolute top-40 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-[120px] -mr-48"></div>
+        <div class="absolute top-20 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-[120px] -mr-48"></div>
         <div class="absolute bottom-20 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] -ml-48"></div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10">
