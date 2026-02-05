@@ -208,7 +208,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-[10px] font-black text-brand-500 uppercase tracking-[0.4em] mb-4">Fitur Unggulan</h2>
-                <h3 class="text-4xl lg:text-5xl font-black text-slate-900 uppercase tracking-tight">Lebih Dari Sekadar <br> Browser Ujian</h3>
+                <h3 class="text-3xl lg:text-5xl font-black text-slate-900 uppercase tracking-tighter">Sistem Ujian Digital Paling Aman & Eksklusif</h3>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
