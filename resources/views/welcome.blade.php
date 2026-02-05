@@ -348,27 +348,27 @@
 
 
     <!-- Footer -->
-    <footer class="py-16 bg-white border-t border-slate-100">
+    <footer class="py-8 bg-white border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
-                <div class="flex items-center gap-0.5">
-                    <div class="w-8 h-8 flex items-center justify-center">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex items-center gap-1">
+                    <div class="w-7 h-7 flex items-center justify-center">
                         <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo Icon" class="w-full h-full object-contain">
                     </div>
-                    <div class="text-[17px] font-black flex items-center leading-none uppercase tracking-[-0.07em]">
+                    <div class="text-[15px] font-black flex items-center leading-none uppercase tracking-[-0.07em]">
                         <span class="text-slate-900">SCHOLA</span>
                         <span class="text-emerald-600 ml-0.5">EXAM</span>
                         <span class="text-slate-900">BRO</span>
                     </div>
                 </div>
                 
-                <div class="flex items-center gap-8">
-                    <a href="{{ route('terms') }}" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-500 transition-colors">Syarat & Ketentuan</a>
-                    <a href="{{ route('privacy') }}" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-500 transition-colors">Kebijakan Privasi</a>
+                <div class="flex items-center gap-6">
+                    <a href="{{ route('terms') }}" class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 hover:text-emerald-600 transition-colors">Syarat & Ketentuan</a>
+                    <a href="{{ route('privacy') }}" class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 hover:text-emerald-600 transition-colors">Kebijakan Privasi</a>
                 </div>
 
-                <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                    &copy; 2025 CODIFI.ID. All Rights Reserved.
+                <div class="text-[9px] font-bold uppercase tracking-widest text-slate-400">
+                    &copy; 2025 <span class="text-slate-500">CODIFI.ID</span>. All Rights Reserved.
                 </div>
             </div>
         </div>
