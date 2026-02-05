@@ -59,6 +59,7 @@
                             @php
                                 $isTrial = $school->subscription_type === 'trial';
                                 $isLifetime = $school->subscription_type === 'lifetime';
+                                $isSubscriptionActive = Auth::user()->role === 'superadmin' || ($school->isSubscriptionActive());
                             @endphp
                         </div>
                         
@@ -76,7 +77,7 @@
                                     <img id="preview-img" class="hidden w-full h-full object-cover">
                                 @endif
 
-                                @if(!$isTrial)
+                                @if(!$isTrial && $isSubscriptionActive)
                                 <input type="file" name="logo" id="logo-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewLogo(this)">
                                 @endif
                             </div>
@@ -123,7 +124,7 @@
                                     <img id="bg-preview-img" class="hidden w-full h-full object-cover">
                                 @endif
 
-                                @if($isLifetime || strtolower(Auth::user()->role) === 'superadmin')
+                                @if(($isLifetime || strtolower(Auth::user()->role) === 'superadmin') && $isSubscriptionActive)
                                 <input type="file" name="custom_background" id="bg-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-30" onchange="previewBg(this)">
                                 @endif
 
@@ -379,10 +380,17 @@
                             <h4 class="text-[11px] font-black text-slate-900 uppercase tracking-widest">Siap untuk menyimpan?</h4>
                             <p class="text-[9px] text-slate-400 font-bold uppercase tracking-tight mt-1">Perubahan akan langsung diterapkan ke semua aplikasi mobile siswa.</p>
                         </div>
+                        @if($isSubscriptionActive)
                         <button type="submit" class="w-full sm:w-auto px-10 py-5 bg-slate-900 hover:bg-black text-white rounded-[1.2rem] font-black text-[11px] uppercase tracking-[0.3em] transition-all transform hover:scale-[1.05] hover:shadow-2xl hover:shadow-slate-300 active:scale-[0.98] flex items-center justify-center gap-4">
                             Simpan Perubahan
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                         </button>
+                        @else
+                        <button type="button" disabled class="w-full sm:w-auto px-10 py-5 bg-slate-200 text-slate-400 rounded-[1.2rem] font-black text-[11px] uppercase tracking-[0.3em] cursor-not-allowed flex items-center justify-center gap-4">
+                            Simpan Terkunci
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        </button>
+                        @endif
                     </div>
                 </div>
             </div>

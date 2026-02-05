@@ -16,10 +16,15 @@
             <!-- Trigger Modal Create -->
             @php
                 $isTrial = Auth::user()->role !== 'superadmin' && Auth::user()->school && Auth::user()->school->subscription_type === 'trial';
+                $isSubscriptionActive = Auth::user()->role === 'superadmin' || (Auth::user()->school && Auth::user()->school->isSubscriptionActive());
                 $limitReached = $isTrial && $links->total() >= 1;
             @endphp
 
-            @if($limitReached)
+            @if(!$isSubscriptionActive)
+                <button disabled class="bg-slate-100 text-slate-400 px-5 py-3.5 md:px-6 md:py-4 rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest flex items-center gap-2 cursor-not-allowed border border-slate-200">
+                    <span class="opacity-50">🔒</span> <span class="hidden sm:inline">Akses Terkunci</span>
+                </button>
+            @elseif($limitReached)
                 <button disabled class="bg-slate-100 text-slate-400 px-5 py-3.5 md:px-6 md:py-4 rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest flex items-center gap-2 cursor-not-allowed border border-slate-200" title="Limit Barcode Trial Tercapai">
                     <span class="opacity-50">🔒</span> <span class="hidden sm:inline">Limit Tercapai</span>
                 </button>
@@ -99,9 +104,15 @@
                             </button>
                         </td>
                         <td class="px-8 py-6 text-right">
+                            @if($isSubscriptionActive)
                             <button type="button" onclick="confirmDelete({{ $link->id }})" class="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                             </button>
+                            @else
+                            <button type="button" disabled class="p-2.5 text-slate-300 cursor-not-allowed" title="Update required">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                            </button>
+                            @endif
                         </td>
                     </tr>
                     @empty
@@ -148,9 +159,11 @@
                         <button type="button" onclick="showQR('{{ $link->secure_token }}', {{ $link->school_id }})" class="p-2.5 bg-indigo-50 text-indigo-600 rounded-xl border border-indigo-100 active:scale-95 transition-all">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" /></svg>
                         </button>
+                        @if($isSubscriptionActive)
                         <button type="button" onclick="confirmDelete({{ $link->id }})" class="p-2.5 text-rose-500 bg-rose-50 rounded-xl border border-rose-100 active:scale-95 transition-all">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                         </button>
+                        @endif
                     </div>
                 </div>
             </div>
