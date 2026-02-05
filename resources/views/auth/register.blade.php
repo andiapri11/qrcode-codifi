@@ -125,7 +125,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="h-screen flex items-center justify-center p-4 overflow-hidden">
+    <div class="min-h-screen flex items-center justify-center p-4 md:p-8 lg:p-12">
         <div class="max-w-6xl w-full flex flex-col md:flex-row items-center gap-8 md:gap-24">
             
             <!-- Left Side: Form -->

@@ -105,32 +105,55 @@
                 <div class="w-10 h-10 flex items-center justify-center">
                     <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo" class="w-full h-full object-contain">
                 </div>
-                <div class="text-[20px] font-black flex items-center leading-none tracking-[-0.07em]">
+                <div class="text-[18px] sm:text-[20px] font-black flex items-center leading-none tracking-[-0.07em]">
                     <span class="text-slate-900 uppercase">SCHOLA</span>
                     <span class="text-emerald-600 uppercase ml-0.5">EXAM</span>
                     <span class="text-slate-900 uppercase">BRO</span>
                 </div>
             </div>
 
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#features" class="text-sm font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Fitur</a>
-                <a href="#how-it-works" class="text-sm font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Petunjuk</a>
-                <a href="#solutions" class="text-sm font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Solusi</a>
-                <a href="#pricing" class="text-sm font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Harga</a>
+            <!-- Main Nav (Hidden on Mobile) -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#features" class="text-[10px] font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Fitur Utama</a>
+                <a href="#how-it-works" class="text-[10px] font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Cara Kerja</a>
+                <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="text-[10px] font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Download App</a>
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 sm:gap-4">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="px-6 py-2.5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-black transition-all">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="hidden sm:inline-block px-6 py-2.5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-black transition-all">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-brand-500 transition-colors">Masuk</a>
+                        <a href="{{ route('login') }}" class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-brand-500 transition-colors pr-2">Masuk</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="px-6 py-2.5 bg-brand-500 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-brand-600 shadow-lg shadow-brand-500/20 transition-all">Daftar Sekarang</a>
+                            <a href="{{ route('register') }}" class="hidden sm:inline-block px-5 sm:px-6 py-2.5 bg-brand-500 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-brand-600 shadow-lg shadow-brand-500/20 transition-all">Daftar</a>
                         @endif
                     @endauth
                 @endif
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center text-slate-900 bg-slate-100 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 p-6 animate-in slide-in-from-top duration-300">
+            <div class="flex flex-col gap-5">
+                <a href="#features" onclick="toggleMobileMenu()" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">✨ Fitur Utama</a>
+                <a href="#how-it-works" onclick="toggleMobileMenu()" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">🚀 Cara Kerja</a>
+                <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">📱 Download App</a>
+                <hr class="border-slate-100">
+                @guest
+                    <a href="{{ route('register') }}" class="w-full py-4 bg-brand-500 text-white text-center rounded-2xl text-[11px] font-black uppercase tracking-[0.3em]">Daftar Akun Baru</a>
+                @else
+                    <a href="{{ url('/dashboard') }}" class="w-full py-4 bg-slate-900 text-white text-center rounded-2xl text-[11px] font-black uppercase tracking-[0.3em]">Buka Dashboard</a>
+                @endguest
+            </div>
+        </div>
         </div>
     </nav>
 
@@ -145,19 +168,19 @@
                 <div class="flex-1 text-center lg:text-left">
                     <div class="inline-flex items-center gap-3 px-4 py-2 bg-brand-50 border border-brand-100 rounded-full mb-6">
                         <span class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
-                        <span class="text-[10px] font-black text-brand-600 uppercase tracking-widest">Platform Exambro #1 di Indonesia</span>
+                        <span class="text-[9px] sm:text-[10px] font-black text-brand-600 uppercase tracking-widest">Platform Exambro #1 di Indonesia</span>
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-black text-slate-900 leading-[1] mb-2 uppercase tracking-tighter">
-                        Amankan Ujian Digital <br> Dengan <span class="text-emerald-500">Eksklusivitas</span>
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-4 uppercase tracking-tighter">
+                        Amankan <span class="lg:block">Ujian Digital</span> <br class="hidden lg:block"> Dengan <span class="text-emerald-500">Eksklusivitas</span>
                     </h1>
-                    <p class="text-lg text-slate-500 font-medium mb-5 max-w-2xl leading-relaxed">
+                    <p class="text-sm sm:text-base lg:text-lg text-slate-500 font-medium mb-8 max-w-2xl leading-relaxed mx-auto lg:mx-0">
                         Schola Exambro memberikan perlindungan maksimal untuk ujian online sekolah Anda. Kustomisasi penuh branding instansi, anti-curang tingkat tinggi, dan kemudahan manajemen QR Code.
                     </p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4">
-                        <a href="{{ route('register') }}" class="w-full sm:w-auto px-10 py-5 bg-slate-900 border border-slate-900 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-2xl">
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-2">
+                        <a href="{{ route('register') }}" class="w-full sm:w-auto px-10 py-5 bg-slate-800 border border-slate-800 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-xl">
                             Mulai Sekarang
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="w-full sm:w-auto h-[60px] transition-all hover:scale-105 active:scale-95 -ml-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="w-full sm:w-auto h-[60px] transition-all hover:scale-105 active:scale-95 sm:-ml-4 flex items-center justify-center">
                             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-full object-contain">
                         </a>
                     </div>
@@ -307,10 +330,10 @@
         </div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 px-4">
                 <span class="text-[10px] font-black text-emerald-400 uppercase tracking-[0.3em] mb-4 block">Alur Kerja</span>
-                <h2 class="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tight">4 Langkah Mudah Memulai</h2>
-                <p class="text-slate-400 font-medium max-w-2xl mx-auto">Kelola ujian digital dengan standar keamanan tinggi dalam hitungan menit.</p>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tight">4 Langkah Mudah</h2>
+                <p class="text-slate-400 font-medium max-w-2xl mx-auto text-sm sm:text-base">Kelola ujian digital dengan standar keamanan tinggi dalam hitungan menit secara mandiri.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -393,5 +416,20 @@
             </div>
         </div>
     </footer>
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            const isHidden = menu.classList.contains('hidden');
+            
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            }
+        }
+    </script>
 </body>
 </html>
