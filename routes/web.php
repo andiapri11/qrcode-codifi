@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 // Basic Root Route
 Route::get('/', function () {
-    return redirect()->route('dashboard');
+    return view('welcome');
 });
 
 // Static Legal & Help Pages
