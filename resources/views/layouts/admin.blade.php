@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="W2cgEcBUfDyFXgYD7cgWT_b-ZnF0E5H0vYpPJfKxIys" />
     <title>{{ $title ?? 'Admin' }} | Schola Exambro</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
