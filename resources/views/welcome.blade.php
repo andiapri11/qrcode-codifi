@@ -99,13 +99,13 @@
 </head>
 <body class="font-sans antialiased text-slate-900 bg-slate-50 overflow-x-hidden">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-0.5">
-                <div class="w-10 h-10 flex items-center justify-center">
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/50 transition-all duration-300">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 h-16 lg:h-24 flex items-center justify-between">
+            <div class="flex items-center gap-1.5 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo" class="w-full h-full object-contain">
                 </div>
-                <div class="text-[18px] sm:text-[20px] font-black flex items-center leading-none tracking-[-0.07em]">
+                <div class="text-[18px] lg:text-[22px] font-black flex items-center leading-none tracking-[-0.07em]">
                     <span class="text-slate-900 uppercase">SCHOLA</span>
                     <span class="text-emerald-600 uppercase ml-0.5">EXAM</span>
                     <span class="text-slate-900 uppercase">BRO</span>
@@ -113,26 +113,26 @@
             </div>
 
             <!-- Main Nav (Hidden on Mobile) -->
-            <div class="hidden lg:flex items-center gap-8">
-                <a href="#features" class="text-[10px] font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Fitur Utama</a>
-                <a href="#how-it-works" class="text-[10px] font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Cara Kerja</a>
-                <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="text-[10px] font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Download App</a>
+            <div class="hidden lg:flex items-center gap-1">
+                <a href="#features" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Fitur Utama</a>
+                <a href="#how-it-works" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Cara Kerja</a>
+                <a href="https://wa.me/6285768441485" target="_blank" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Hubungi Sales</a>
             </div>
 
-            <div class="flex items-center gap-2 sm:gap-4">
+            <div class="flex items-center gap-3 sm:gap-5">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="hidden sm:inline-block px-6 py-2.5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-black transition-all">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="hidden sm:inline-flex px-8 py-3.5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-black hover:shadow-xl hover:shadow-slate-200 transition-all">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-brand-500 transition-colors pr-2">Masuk</a>
+                        <a href="{{ route('login') }}" class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 hover:text-brand-500 transition-colors pr-2">Masuk</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="hidden sm:inline-block px-5 sm:px-6 py-2.5 bg-brand-500 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-brand-600 shadow-lg shadow-brand-500/20 transition-all">Daftar</a>
+                            <a href="{{ route('register') }}" class="hidden sm:inline-flex px-8 py-3.5 bg-brand-500 text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-brand-600 shadow-xl shadow-brand-500/20 transition-all">Daftar Akun</a>
                         @endif
                     @endauth
                 @endif
 
                 <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center text-slate-900 bg-slate-100 rounded-xl">
+                <button onclick="toggleMobileMenu()" class="lg:hidden w-11 h-11 flex items-center justify-center text-slate-900 bg-slate-100 rounded-2xl">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
@@ -152,16 +152,14 @@
                 @else
                     <a href="{{ url('/dashboard') }}" class="w-full py-4 bg-slate-900 text-white text-center rounded-2xl text-[11px] font-black uppercase tracking-[0.3em]">Buka Dashboard</a>
                 @endguest
-            </div>
-        </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-20 pb-8 overflow-hidden">
+    <section class="relative pt-24 lg:pt-48 pb-12 lg:pb-24 overflow-hidden">
         <div class="absolute inset-0 hero-pattern z-0"></div>
-        <div class="absolute top-20 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-[120px] -mr-48"></div>
-        <div class="absolute bottom-20 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] -ml-48"></div>
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[120px] -mr-48"></div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] -ml-48"></div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
@@ -170,11 +168,13 @@
                         <span class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
                         <span class="text-[9px] sm:text-[10px] font-black text-brand-600 uppercase tracking-widest">Platform Exambro #1 di Indonesia</span>
                     </div>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-4 uppercase tracking-tighter">
-                        Amankan <span class="lg:block">Ujian Digital</span> <br class="hidden lg:block"> Dengan <span class="text-emerald-500">Eksklusivitas</span>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[84px] font-black text-slate-900 leading-[1] mb-6 uppercase tracking-tighter">
+                        Amankan <br class="hidden sm:block"> 
+                        Ujian Digital <br> 
+                        Dengan <span class="text-emerald-500">Eksklusivitas</span>
                     </h1>
-                    <p class="text-sm sm:text-base lg:text-lg text-slate-500 font-medium mb-8 max-w-2xl leading-relaxed mx-auto lg:mx-0">
-                        Schola Exambro memberikan perlindungan maksimal untuk ujian online sekolah Anda. Kustomisasi penuh branding instansi, anti-curang tingkat tinggi, dan kemudahan manajemen QR Code.
+                    <p class="text-base sm:text-lg lg:text-xl text-slate-500 font-medium mb-10 max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                        Platform CBT Nomor #1 dengan keamanan tingkat tinggi, Whitelist Domain, dan fitur Branding Instansi untuk pengalaman ujian yang lebih profesional.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-2">
                         <a href="{{ route('register') }}" class="w-full sm:w-auto px-10 py-5 bg-slate-800 border border-slate-800 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-xl">
