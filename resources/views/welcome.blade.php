@@ -115,7 +115,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-20 pb-16 overflow-hidden">
+    <section class="relative pt-20 pb-8 overflow-hidden">
         <div class="absolute inset-0 hero-pattern z-0"></div>
         <div class="absolute top-20 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-[120px] -mr-48"></div>
         <div class="absolute bottom-20 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] -ml-48"></div>
@@ -204,9 +204,9 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-32 bg-white">
+    <section id="features" class="py-12 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24">
+            <div class="text-center mb-12">
                 <h2 class="text-[10px] font-black text-brand-500 uppercase tracking-[0.4em] mb-4">Fitur Unggulan</h2>
                 <h3 class="text-4xl lg:text-5xl font-black text-slate-900 uppercase tracking-tight">Lebih Dari Sekadar <br> Browser Ujian</h3>
             </div>
@@ -279,7 +279,7 @@
     </section>
 
     <!-- How it Works Section -->
-    <section id="how-it-works" class="py-24 bg-slate-900 relative overflow-hidden">
+    <section id="how-it-works" class="py-12 bg-slate-900 relative overflow-hidden">
         <!-- Background Decor -->
         <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
             <div class="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-brand-500 rounded-full blur-[150px]"></div>
