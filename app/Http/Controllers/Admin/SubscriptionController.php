@@ -37,7 +37,7 @@ class SubscriptionController extends Controller
             [
                 'id' => '6_months',
                 'name' => 'Basic Semester',
-                'price' => 350000,
+                'price' => 200000,
                 'duration' => 'Langganan 6 Bulan',
                 'links' => 10,
                 'description' => 'Solusi hemat untuk kelancaran satu kali periode Ujian Semester.',
@@ -52,7 +52,7 @@ class SubscriptionController extends Controller
             [
                 'id' => '1_year',
                 'name' => 'Basic Annual',
-                'price' => 650000,
+                'price' => 350000,
                 'duration' => 'Langganan 1 Tahun',
                 'links' => 20,
                 'description' => 'Pilihan cerdas untuk manajemen ujian satu tahun ajaran penuh.',
@@ -68,7 +68,7 @@ class SubscriptionController extends Controller
             [
                 'id' => 'lifetime',
                 'name' => 'Exclusive Pro (3Y)',
-                'price' => 1500000,
+                'price' => 700000,
                 'duration' => 'Sekali bayar untuk 3 tahun',
                 'links' => 100,
                 'description' => 'Investasi branding sekolah terbaik & jangka panjang untuk efisiensi maksimal.',
@@ -98,9 +98,9 @@ class SubscriptionController extends Controller
         ]);
 
         $plans = [
-            '6_months' => ['name' => 'Basic Semester', 'price' => 350000],
-            '1_year' => ['name' => 'Basic Annual', 'price' => 650000],
-            'lifetime' => ['name' => 'Exclusive Pro (3Y)', 'price' => 1500000],
+            '6_months' => ['name' => 'Basic Semester', 'price' => 200000],
+            '1_year' => ['name' => 'Basic Annual', 'price' => 350000],
+            'lifetime' => ['name' => 'Exclusive Pro (3Y)', 'price' => 700000],
         ];
 
         $plan = $plans[$request->plan];

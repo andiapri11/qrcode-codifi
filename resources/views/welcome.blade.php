@@ -116,6 +116,7 @@
             <div class="hidden lg:flex items-center gap-1">
                 <a href="#features" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Fitur Utama</a>
                 <a href="#how-it-works" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Cara Kerja</a>
+                <a href="#pricing" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Harga Layanan</a>
                 <a href="https://wa.me/6285768441485" target="_blank" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Hubungi Sales</a>
             </div>
 
@@ -145,6 +146,7 @@
             <div class="flex flex-col gap-5">
                 <a href="#features" onclick="toggleMobileMenu()" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">✨ Fitur Utama</a>
                 <a href="#how-it-works" onclick="toggleMobileMenu()" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">🚀 Cara Kerja</a>
+                <a href="#pricing" onclick="toggleMobileMenu()" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">💰 Harga Layanan</a>
                 <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">📱 Download App</a>
                 <hr class="border-slate-100">
                 @guest
@@ -156,7 +158,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-24 lg:pt-40 pb-12 lg:pb-24 overflow-hidden">
+    <section class="relative pt-24 lg:pt-32 pb-12 lg:pb-24 overflow-hidden">
         <div class="absolute inset-0 hero-pattern z-0"></div>
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[100px] -mr-48"></div>
         <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] -ml-48"></div>
@@ -383,6 +385,116 @@
                         <h4 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Monitoring</h4>
                         <p class="text-sm text-slate-400 leading-relaxed font-bold opacity-80">Pantau aktivitas login dan progres siswa secara realtime dari dashboard Anda.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-12 lg:py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 px-4">
+                <span class="text-[10px] font-black text-brand-500 uppercase tracking-[0.4em] mb-4 block">Pilihan Paket</span>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 uppercase tracking-tight">Investasi Keamanan Ujian</h2>
+                <p class="text-slate-500 font-medium max-w-2xl mx-auto text-sm sm:text-base">Pilih paket yang paling sesuai dengan kebutuhan instansi Anda. Nikmati fitur premium tanpa kompromi.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Basic Semester -->
+                <div class="bg-slate-50 rounded-[2.5rem] p-10 border border-slate-100 hover:border-brand-500/30 transition-all group">
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">6 Bulan</div>
+                    <h3 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">Basic Semester</h3>
+                    <div class="mb-6">
+                        <div class="text-[10px] font-bold text-slate-400 line-through opacity-50 mb-1">Rp 400.000</div>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-lg font-bold text-slate-400">Rp</span>
+                            <span class="text-4xl font-black text-slate-900 tracking-tighter">200rb</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-10 opacity-70">
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            10 Barcode Secure
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            Custom Branding
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            Admin Dashboard
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            Standard Support
+                        </li>
+                    </ul>
+                    <a href="{{ route('register') }}" class="block w-full py-4 bg-white border border-slate-200 text-slate-900 text-center rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-slate-900 hover:text-white transition-all">Pilih Paket</a>
+                </div>
+
+                <!-- Basic Annual -->
+                <div class="bg-slate-900 rounded-[2.5rem] p-10 border border-slate-800 relative shadow-2xl scale-105 z-10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-emerald-500 text-white rounded-full text-[8px] font-black uppercase tracking-[0.2em]">Paling Populer</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">12 Bulan</div>
+                    <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-2 italic">Basic Annual</h3>
+                    <div class="mb-6">
+                        <div class="text-[10px] font-bold text-slate-500 line-through opacity-50 mb-1">Rp 700.000</div>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-lg font-bold text-slate-400 text-white/50">Rp</span>
+                            <span class="text-4xl font-black text-white tracking-tighter">350rb</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-300">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            20 Barcode Secure
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-300">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            Fitur Whitelist Domain
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-300">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            Update Prioritas
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-300">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            Hemat 50% (Flash Sale)
+                        </li>
+                    </ul>
+                    <a href="{{ route('register') }}" class="block w-full py-4 bg-brand-500 text-white text-center rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/20">Daftar Sekarang</a>
+                </div>
+
+                <!-- Exclusive Pro -->
+                <div class="bg-slate-50 rounded-[2.5rem] p-10 border border-slate-100 hover:border-brand-500/30 transition-all group">
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">3 Tahun (36 Bln)</div>
+                    <h3 class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">Exclusive Pro</h3>
+                    <div class="mb-6">
+                        <div class="text-[10px] font-bold text-slate-400 line-through opacity-50 mb-1">Rp 1.500.000</div>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-lg font-bold text-slate-400">Rp</span>
+                            <span class="text-4xl font-black text-slate-900 tracking-tighter">700rb</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-10 opacity-70">
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            100 Barcode Secure
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            Full Whitelabel
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            Custom Background App
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            Dukungan 3 Tahun Penuh
+                        </li>
+                    </ul>
+                    <a href="{{ route('register') }}" class="block w-full py-4 bg-white border border-slate-200 text-slate-900 text-center rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-slate-900 hover:text-white transition-all">Pilih Paket</a>
                 </div>
             </div>
         </div>
