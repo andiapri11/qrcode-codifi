@@ -292,28 +292,27 @@
                     <!-- section: SuperAdmin Settings -->
                     @if(Auth::user()->role === 'superadmin')
                     <div class="space-y-10 pt-10 border-t-4 border-slate-900/10">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-5">
-                                <div class="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-lg transform rotate-12">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-black text-slate-900 uppercase tracking-widest leading-none italic">S.ADMIN CONSOLE</h3>
-                                    <p class="text-[10px] text-rose-500 font-bold uppercase tracking-tight mt-2 flex items-center gap-2">
-                                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-                                        HANYA DAPAT DIUBAH OLEH PUSAT
-                                    </p>
-                                </div>
+                        <div class="flex items-center gap-5">
+                            <div class="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-lg transform -rotate-12">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-black text-slate-900 uppercase tracking-widest leading-none italic">S.ADMIN CONSOLE</h3>
+                                <p class="text-[10px] text-rose-500 font-bold uppercase tracking-tight mt-2 flex items-center gap-2">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                                    HANYA DAPAT DIUBAH OLEH PUSAT
+                                </p>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 bg-slate-900 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 bg-slate-900 p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden border-2 border-slate-800">
                             <!-- Background Decor -->
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 opacity-10 blur-[50px]"></div>
+                            <div class="absolute -top-24 -right-24 w-64 h-64 bg-indigo-500 opacity-10 blur-[80px]"></div>
+                            <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-rose-500 opacity-5 blur-[80px]"></div>
                             
-                            <div class="relative z-10">
-                                <label class="block text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3 ml-1">Tipe Langganan</label>
-                                <select name="subscription_type" id="subscription_type" class="w-full bg-slate-800 border-2 border-slate-700 py-4 px-6 rounded-2xl font-black text-white text-sm outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all shadow-xl">
+                            <div class="relative z-10 space-y-3">
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Tipe Langganan</label>
+                                <select name="subscription_type" id="subscription_type" class="w-full bg-slate-800 border-2 border-slate-700 py-4 px-6 rounded-2xl font-black text-white text-sm outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all shadow-xl appearance-none cursor-pointer">
                                     <option value="trial" {{ $school->subscription_type === 'trial' ? 'selected' : '' }}>TRIAL (3 Hari)</option>
                                     <option value="6_months" {{ $school->subscription_type === '6_months' ? 'selected' : '' }}>6 BULAN</option>
                                     <option value="1_year" {{ $school->subscription_type === '1_year' ? 'selected' : '' }}>1 TAHUN</option>
@@ -322,22 +321,32 @@
                                 </select>
                             </div>
 
-                            <div class="relative z-10" id="duration_box">
-                                <label class="block text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3 ml-1">Masa Aktif (Bulan)</label>
+                            <div class="relative z-10 space-y-3" id="duration_box">
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Masa Aktif (Bulan)</label>
                                 <input type="number" name="subscription_months" value="0" min="0"
-                                    class="w-full bg-slate-800 border-2 border-slate-700 py-4 px-6 rounded-2xl font-black text-indigo-400 text-sm outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all shadow-xl">
+                                    class="w-full bg-slate-800 border-2 border-slate-700 py-4 px-6 rounded-2xl font-black text-white text-sm outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all shadow-xl">
                             </div>
 
-                            <div class="sm:col-span-2 space-y-4">
-                                <label class="block text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">Status Keaktifan Instansi</label>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <label class="relative flex items-center justify-center p-5 bg-slate-800 border-2 border-slate-700 rounded-2xl cursor-pointer hover:border-emerald-500/50 transition-all has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500/10 group">
+                            <div class="sm:col-span-2 space-y-5">
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Status Keaktifan Instansi</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <label class="relative flex items-center justify-between p-5 bg-slate-800/50 border-2 border-slate-700 rounded-2xl cursor-pointer hover:border-emerald-500/30 transition-all has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500/10 group">
                                         <input type="radio" name="is_active" value="1" {{ $school->is_active ? 'checked' : '' }} class="hidden">
-                                        <span class="font-black text-slate-400 group-has-[:checked]:text-emerald-400 uppercase tracking-widest text-[11px]"> AKTIF </span>
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-has-[:checked]:bg-emerald-500 group-has-[:checked]:text-white transition-all">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                            </div>
+                                            <span class="font-black text-slate-400 group-has-[:checked]:text-white uppercase tracking-widest text-[11px]"> AKTIF </span>
+                                        </div>
                                     </label>
-                                    <label class="relative flex items-center justify-center p-5 bg-slate-800 border-2 border-slate-700 rounded-2xl cursor-pointer hover:border-rose-500/50 transition-all has-[:checked]:border-rose-500 has-[:checked]:bg-rose-500/10 group">
+                                    <label class="relative flex items-center justify-between p-5 bg-slate-800/50 border-2 border-slate-700 rounded-2xl cursor-pointer hover:border-rose-500/30 transition-all has-[:checked]:border-rose-500 has-[:checked]:bg-rose-500/10 group">
                                         <input type="radio" name="is_active" value="0" {{ !$school->is_active ? 'checked' : '' }} class="hidden">
-                                        <span class="font-black text-slate-400 group-has-[:checked]:text-rose-400 uppercase tracking-widest text-[11px]"> DIBLOKIR </span>
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-8 h-8 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-500 group-has-[:checked]:bg-rose-500 group-has-[:checked]:text-white transition-all">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                            </div>
+                                            <span class="font-black text-slate-400 group-has-[:checked]:text-white uppercase tracking-widest text-[11px]"> DIBLOKIR </span>
+                                        </div>
                                     </label>
                                 </div>
                             </div>
