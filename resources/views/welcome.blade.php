@@ -368,7 +368,7 @@
                 </div>
 
                 <div class="text-[9px] font-bold uppercase tracking-widest text-slate-400">
-                    &copy; 2025 <span class="text-slate-500">CODIFI.ID</span>. All Rights Reserved.
+                    &copy; 2026 <span class="text-slate-500">CODIFI.ID</span>. All Rights Reserved.
                 </div>
             </div>
         </div>
