@@ -6,7 +6,27 @@
     <meta name="google-site-verification" content="W2cgEcBUfDyFXgYD7cgWT_b-ZnF0E5H0vYpPJfKxIys" />
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png?v=3') }}">
 
-    <title>Schola Exambro | Premium Exam Browser Management</title>
+    <title>Schola Exambro - Aplikasi Exambro & Management Ujian Digital Paling Aman</title>
+    <meta name="description" content="Schola Exambro adalah aplikasi management ujian digital (CBT) paling aman dan eksklusif. Mencegah kecurangan siswa, fitur whitelist domain, dan instant QR generator.">
+    <meta name="keywords" content="exambro, schola exambro, aplikasi ujian online, browser ujian aman, cbt indonesia, safe exam browser android, kelola ujian sekolah, anti cheat ujian, download exambro">
+    <meta name="author" content="CODIFI.ID">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Schola Exambro - Aplikasi Exambro & Management Ujian Digital Paling Aman">
+    <meta property="og:description" content="Solusi ujian digital anti-curang dengan branding eksklusif sekolah. Kelola link ujian Google Forms, Quizizz, atau Moodle dengan sistem keamanan tinggi.">
+    <meta property="og:image" content="{{ asset('assets/images/logo.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="Schola Exambro - Aplikasi Exambro & Management Ujian Digital Paling Aman">
+    <meta property="twitter:description" content="Solusi ujian digital anti-curang dengan branding eksklusif sekolah. Kelola link ujian Google Forms, Quizizz, atau Moodle dengan sistem keamanan tinggi.">
+    <meta property="twitter:image" content="{{ asset('assets/images/logo.png') }}">
+
+    <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
