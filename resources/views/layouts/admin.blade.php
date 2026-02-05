@@ -18,7 +18,7 @@
                     colors: {
                         brand: {
                             50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
-                            500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a',
+                            500: '#3C50E0', 600: '#2b39cc', 700: '#222ca3', 800: '#1e2685', 900: '#1d236b',
                         }
                     }
                 }
@@ -65,11 +65,18 @@
             <div class="flex flex-col h-full w-full">
                 <!-- Sidebar Header -->
                 <div class="flex items-center justify-between px-8 py-10">
-                    <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
-                        <img src="{{ asset('assets/images/logo.png?v=2') }}" alt="Logo" class="w-10 h-10">
+                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 group">
+                        <div class="w-10 h-10 bg-brand-500 rounded-[12px] flex items-center justify-center text-white shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L4 5V11C4 16.1 7.4 20.9 12 22C16.6 20.9 20 16.1 20 11V5L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 14V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
                         <div class="leading-none flex flex-col justify-center">
-                            <h1 class="text-slate-900 dark:text-white text-lg font-black tracking-tighter uppercase whitespace-nowrap">
-                                Schola <span class="text-blue-600 italic">Exambro</span>
+                            <h1 class="text-slate-900 dark:text-white text-lg font-black tracking-tighter uppercase whitespace-nowrap flex items-center">
+                                <span>SCHOLA</span>
+                                <span class="text-brand-500 ml-1">EXAMBRO</span>
                             </h1>
                             <span class="text-[8px] font-bold text-slate-400 dark:text-slate-500 tracking-[0.2em] uppercase mt-0.5">Admin Panel</span>
                         </div>

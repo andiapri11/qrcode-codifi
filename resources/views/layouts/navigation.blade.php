@@ -5,8 +5,12 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5">
+                        <x-application-logo class="w-9 h-9" />
+                        <div class="hidden lg:flex items-center text-sm font-black tracking-tight">
+                            <span class="text-slate-900 uppercase">SCHOLA</span>
+                            <span class="text-[#3C50E0] uppercase ml-1">EXAMBRO</span>
+                        </div>
                     </a>
                 </div>
 

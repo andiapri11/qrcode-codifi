@@ -80,11 +80,18 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 0012 21a9.994 9.994 0 007.457-3.328m-1.218-4.064l1.218 4.064m-9.642-14.1l1.218 4.064m-4.223 3.565l4.064 1.218m11.397-1.218l-4.064 1.218M7.5 11.5a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z" /></svg>
+            <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 bg-brand-500 rounded-[12px] flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L4 5V11C4 16.1 7.4 20.9 12 22C16.6 20.9 20 16.1 20 11V5L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 14V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
                 </div>
-                <span class="text-xl font-black tracking-tight text-slate-900 uppercase">Schola <span class="text-brand-500">Exambro</span></span>
+                <div class="text-xl font-black tracking-tight flex items-center">
+                    <span class="text-slate-900 uppercase">SCHOLA</span>
+                    <span class="text-brand-500 uppercase ml-1.5">EXAMBRO</span>
+                </div>
             </div>
 
             <div class="hidden md:flex items-center gap-8">
@@ -295,11 +302,17 @@
     <footer class="py-16 bg-white border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 0012 21a9.994 9.994 0 007.457-3.328m-1.218-4.064l1.218 4.064m-9.642-14.1l1.218 4.064m-4.223 3.565l4.064 1.218m11.397-1.218l-4.064 1.218M7.5 11.5a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z" /></svg>
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 bg-brand-500 rounded-[10px] flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
+                        <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L4 5V11C4 16.1 7.4 20.9 12 22C16.6 20.9 20 16.1 20 11V5L12 2Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2.5"/>
+                        </svg>
                     </div>
-                    <span class="text-lg font-black tracking-tight text-slate-900 uppercase">Schola <span class="text-brand-500">Exambro</span></span>
+                    <div class="text-base font-black tracking-tight flex items-center">
+                        <span class="text-slate-900 uppercase">SCHOLA</span>
+                        <span class="text-brand-500 uppercase ml-1">EXAMBRO</span>
+                    </div>
                 </div>
                 
                 <div class="flex items-center gap-8">
