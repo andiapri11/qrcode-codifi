@@ -93,9 +93,10 @@
             </div>
 
             <div class="hidden md:flex items-center gap-8">
-                <a href="#features" class="text-[11px] font-black uppercase tracking-widest text-slate-500 hover:text-brand-500 transition-colors">Fitur</a>
-                <a href="#solutions" class="text-[11px] font-black uppercase tracking-widest text-slate-500 hover:text-brand-500 transition-colors">Solusi</a>
-                <a href="#pricing" class="text-[11px] font-black uppercase tracking-widest text-slate-500 hover:text-brand-500 transition-colors">Harga</a>
+                <a href="#features" class="text-sm font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Fitur</a>
+                <a href="#how-it-works" class="text-sm font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Petunjuk</a>
+                <a href="#solutions" class="text-sm font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Solusi</a>
+                <a href="#pricing" class="text-sm font-black text-slate-600 hover:text-brand-500 uppercase tracking-widest transition-colors">Harga</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -272,6 +273,73 @@
                             Real-time Edit Link
                         </li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section id="how-it-works" class="py-24 bg-slate-900 relative overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <div class="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-brand-500 rounded-full blur-[150px]"></div>
+            <div class="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-emerald-500 rounded-full blur-[150px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-[10px] font-black text-emerald-400 uppercase tracking-[0.3em] mb-4 block">Alur Kerja</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tight">4 Langkah Mudah Memulai</h2>
+                <p class="text-slate-400 font-medium max-w-2xl mx-auto">Kelola ujian digital dengan standar keamanan tinggi dalam hitungan menit.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="relative group">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-xl font-black text-white/20 group-hover:text-emerald-400 transition-colors z-20 backdrop-blur-sm">01</div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:bg-white/10 transition-all duration-500 h-full relative overflow-hidden group">
+                        <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                        </div>
+                        <h4 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Konfigurasi</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-bold opacity-80">Daftarkan URL ujian sekolah Anda di dashboard untuk membuat Barcode aman.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative group">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-xl font-black text-white/20 group-hover:text-emerald-400 transition-colors z-20 backdrop-blur-sm">02</div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:bg-white/10 transition-all duration-500 h-full relative overflow-hidden group">
+                        <div class="w-14 h-14 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" /></svg>
+                        </div>
+                        <h4 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Distribusi QR</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-bold opacity-80">Cetak Barcode atau tampilkan lewat proyektor untuk di-scan oleh para siswa.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative group">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-xl font-black text-white/20 group-hover:text-emerald-400 transition-colors z-20 backdrop-blur-sm">03</div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:bg-white/10 transition-all duration-500 h-full relative overflow-hidden group">
+                        <div class="w-14 h-14 bg-purple-500/20 text-purple-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                        </div>
+                        <h4 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Aplikasi Client</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-bold opacity-80">Siswa menggunakan Mobile App untuk scan QR & mengerjakan soal ujian.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative group">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-xl font-black text-white/20 group-hover:text-emerald-400 transition-colors z-20 backdrop-blur-sm">04</div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:bg-white/10 transition-all duration-500 h-full relative overflow-hidden group">
+                        <div class="w-14 h-14 bg-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                        </div>
+                        <h4 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Monitoring</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-bold opacity-80">Pantau aktivitas login dan progres siswa secara realtime dari dashboard Anda.</p>
+                    </div>
                 </div>
             </div>
         </div>
