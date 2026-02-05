@@ -5,11 +5,12 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5">
-                        <x-application-logo class="w-9 h-9" />
+                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2">
+                        <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo" class="w-9 h-9 object-contain">
                         <div class="hidden lg:flex items-center text-sm font-black tracking-tight">
                             <span class="text-slate-900 uppercase">SCHOLA</span>
-                            <span class="text-[#3C50E0] uppercase ml-1">EXAMBRO</span>
+                            <span class="text-emerald-500 uppercase ml-1">EXAM</span>
+                            <span class="text-slate-900 uppercase">BRO</span>
                         </div>
                     </a>
                 </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="W2cgEcBUfDyFXgYD7cgWT_b-ZnF0E5H0vYpPJfKxIys" />
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png?v=3') }}">
 
     <title>Schola Exambro | Premium Exam Browser Management</title>
 
@@ -81,17 +81,14 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-                <div class="w-10 h-10 bg-brand-500 rounded-[12px] flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L4 5V11C4 16.1 7.4 20.9 12 22C16.6 20.9 20 16.1 20 11V5L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 14V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center">
+                    <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo" class="w-full h-full object-contain">
                 </div>
-                <div class="text-xl font-black tracking-tight flex items-center">
+                <div class="text-xl font-black tracking-tighter flex items-center drop-shadow-sm">
                     <span class="text-slate-900 uppercase">SCHOLA</span>
-                    <span class="text-brand-500 uppercase ml-1.5">EXAMBRO</span>
+                    <span class="text-emerald-500 uppercase ml-1">EXAM</span>
+                    <span class="text-slate-900 uppercase">BRO</span>
                 </div>
             </div>
 
@@ -130,7 +127,7 @@
                         <span class="text-[10px] font-black text-brand-600 uppercase tracking-widest">Platform Exambro #1 di Indonesia</span>
                     </div>
                     <h1 class="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-8 uppercase tracking-tighter">
-                        Amankan Ujian Digital <br> Dengan <span class="gradient-text">Eksklusivitas</span>
+                        Amankan Ujian Digital <br> Dengan <span class="text-emerald-500">Eksklusivitas</span>
                     </h1>
                     <p class="text-lg text-slate-500 font-medium mb-12 max-w-2xl leading-relaxed">
                         Schola Exambro memberikan perlindungan maksimal untuk ujian online sekolah Anda. Kustomisasi penuh branding instansi, anti-curang tingkat tinggi, dan kemudahan manajemen QR Code.
@@ -304,15 +301,13 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 bg-brand-500 rounded-[10px] flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
-                        <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L4 5V11C4 16.1 7.4 20.9 12 22C16.6 20.9 20 16.1 20 11V5L12 2Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2.5"/>
-                        </svg>
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo Icon" class="w-full h-full object-contain">
                     </div>
-                    <div class="text-base font-black tracking-tight flex items-center">
-                        <span class="text-slate-900 uppercase">SCHOLA</span>
-                        <span class="text-brand-500 uppercase ml-1">EXAMBRO</span>
+                    <div class="text-base font-black tracking-tighter flex items-center uppercase">
+                        <span class="text-slate-900">SCHOLA</span>
+                        <span class="text-emerald-500 ml-1">EXAM</span>
+                        <span class="text-slate-900">BRO</span>
                     </div>
                 </div>
                 

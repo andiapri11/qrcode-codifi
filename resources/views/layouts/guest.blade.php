@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="google-site-verification" content="W2cgEcBUfDyFXgYD7cgWT_b-ZnF0E5H0vYpPJfKxIys" />
-        <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+        <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png?v=3') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
@@ -38,10 +38,13 @@
 
             <div class="z-10 mb-8 transform hover:scale-105 transition-transform duration-500">
                 <a href="/" class="flex flex-col items-center gap-4">
-                    <x-application-logo class="w-16 h-16 shadow-2xl shadow-brand-500/20 rounded-2xl" />
-                    <div class="text-2xl font-black tracking-tight flex items-center">
-                        <span class="text-slate-900 uppercase">SCHOLA</span>
-                        <span class="text-brand-500 uppercase ml-2">EXAMBRO</span>
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo" class="w-full h-full object-contain drop-shadow-2xl">
+                    </div>
+                    <div class="text-2xl font-black tracking-tighter flex items-center uppercase">
+                        <span class="text-slate-900">SCHOLA</span>
+                        <span class="text-emerald-500 ml-2">EXAM</span>
+                        <span class="text-slate-900">BRO</span>
                     </div>
                 </a>
             </div>
