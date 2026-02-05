@@ -81,14 +81,16 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 flex items-center justify-center">
+            <div class="flex items-center gap-2">
+                <div class="w-11 h-11 flex items-center justify-center">
                     <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo" class="w-full h-full object-contain">
                 </div>
-                <div class="text-xl font-black tracking-tighter flex items-center drop-shadow-sm">
-                    <span class="text-slate-900 uppercase">SCHOLA</span>
-                    <span class="text-emerald-500 uppercase ml-1">EXAM</span>
-                    <span class="text-slate-900 uppercase">BRO</span>
+                <div class="text-[20px] font-black flex items-center gap-1.5 leading-none">
+                    <span class="text-slate-900 uppercase tracking-tighter">SCHOLA</span>
+                    <div class="flex items-center">
+                        <span class="text-emerald-600 uppercase tracking-tighter">EXAM</span>
+                        <span class="text-slate-900 uppercase tracking-tighter">BRO</span>
+                    </div>
                 </div>
             </div>
 
@@ -132,12 +134,18 @@
                     <p class="text-lg text-slate-500 font-medium mb-12 max-w-2xl leading-relaxed">
                         Schola Exambro memberikan perlindungan maksimal untuk ujian online sekolah Anda. Kustomisasi penuh branding instansi, anti-curang tingkat tinggi, dan kemudahan manajemen QR Code.
                     </p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5">
-                        <a href="{{ route('register') }}" class="group relative px-10 py-5 bg-slate-900 border border-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-2xl">
-                            Mulai Gratis Sekarang
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="{{ route('register') }}" class="w-full sm:w-auto px-10 py-5 bg-slate-900 border border-slate-900 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-2xl">
+                            Mulai Sekarang
                         </a>
-                        <a href="#features" class="px-10 py-5 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all hover:bg-slate-50">
-                            Lihat Fitur
+                        <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="w-full sm:w-auto px-8 py-3.5 bg-black text-white rounded-xl flex items-center gap-3 transition-all hover:scale-105 shadow-xl border border-white/10 group">
+                            <svg class="w-6 h-6 group-hover:text-emerald-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L18.05,15.81C19.33,16.55 19.33,18.41 18.05,19.15L14.53,21.16L13.69,20.31L16.81,15.12M14.53,2.84L18.05,4.85C19.33,5.59 19.33,7.45 18.05,8.19L16.81,8.88L13.69,3.69L14.53,2.84M13.69,12L20.31,15.12C21.15,15.52 21.65,16.26 21.65,17.1C21.65,17.94 21.15,18.68 20.31,19.08L6.81,3.12L13.69,12Z"/>
+                            </svg>
+                            <div class="text-left leading-tight">
+                                <p class="text-[8px] font-bold uppercase tracking-widest text-white/60">Download on</p>
+                                <p class="text-sm font-black uppercase">Play Store</p>
+                            </div>
                         </a>
                     </div>
                     <div class="mt-12 flex items-center justify-center lg:justify-start gap-8 opacity-60">
@@ -299,15 +307,17 @@
     <!-- Footer -->
     <footer class="py-16 bg-white border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="flex items-center gap-2.5">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="flex items-center gap-2">
                     <div class="w-8 h-8 flex items-center justify-center">
                         <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo Icon" class="w-full h-full object-contain">
                     </div>
-                    <div class="text-base font-black tracking-tighter flex items-center uppercase">
+                    <div class="text-base font-black flex items-center gap-1 leading-none uppercase tracking-tighter">
                         <span class="text-slate-900">SCHOLA</span>
-                        <span class="text-emerald-500 ml-1">EXAM</span>
-                        <span class="text-slate-900">BRO</span>
+                        <div class="flex items-center">
+                            <span class="text-emerald-600">EXAM</span>
+                            <span class="text-slate-900">BRO</span>
+                        </div>
                     </div>
                 </div>
                 
