@@ -81,13 +81,13 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-0.5">
                 <div class="w-10 h-10 flex items-center justify-center">
                     <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo" class="w-full h-full object-contain">
                 </div>
-                <div class="text-[20px] font-black flex items-center leading-none tracking-[-0.06em]">
+                <div class="text-[20px] font-black flex items-center leading-none tracking-[-0.07em]">
                     <span class="text-slate-900 uppercase">SCHOLA</span>
-                    <span class="text-emerald-600 uppercase ml-1">EXAM</span>
+                    <span class="text-emerald-600 uppercase ml-0.5">EXAM</span>
                     <span class="text-slate-900 uppercase">BRO</span>
                 </div>
             </div>
@@ -126,17 +126,17 @@
                         <span class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
                         <span class="text-[10px] font-black text-brand-600 uppercase tracking-widest">Platform Exambro #1 di Indonesia</span>
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.02] mb-4 uppercase tracking-tighter">
+                    <h1 class="text-5xl lg:text-7xl font-black text-slate-900 leading-[1] mb-2 uppercase tracking-tighter">
                         Amankan Ujian Digital <br> Dengan <span class="text-emerald-500">Eksklusivitas</span>
                     </h1>
-                    <p class="text-lg text-slate-500 font-medium mb-7 max-w-2xl leading-relaxed">
+                    <p class="text-lg text-slate-500 font-medium mb-5 max-w-2xl leading-relaxed">
                         Schola Exambro memberikan perlindungan maksimal untuk ujian online sekolah Anda. Kustomisasi penuh branding instansi, anti-curang tingkat tinggi, dan kemudahan manajemen QR Code.
                     </p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4">
                         <a href="{{ route('register') }}" class="w-full sm:w-auto px-10 py-5 bg-slate-900 border border-slate-900 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-2xl">
                             Mulai Sekarang
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="w-full sm:w-auto h-[60px] transition-all hover:scale-105 active:scale-95 -ml-2">
+                        <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="w-full sm:w-auto h-[60px] transition-all hover:scale-105 active:scale-95 -ml-4">
                             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-full object-contain">
                         </a>
                     </div>
@@ -300,13 +300,13 @@
     <footer class="py-16 bg-white border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-10">
-                <div class="flex items-center gap-1">
+                <div class="flex items-center gap-0.5">
                     <div class="w-8 h-8 flex items-center justify-center">
                         <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo Icon" class="w-full h-full object-contain">
                     </div>
-                    <div class="text-[17px] font-black flex items-center leading-none uppercase tracking-[-0.06em]">
+                    <div class="text-[17px] font-black flex items-center leading-none uppercase tracking-[-0.07em]">
                         <span class="text-slate-900">SCHOLA</span>
-                        <span class="text-emerald-600 ml-1">EXAM</span>
+                        <span class="text-emerald-600 ml-0.5">EXAM</span>
                         <span class="text-slate-900">BRO</span>
                     </div>
                 </div>
