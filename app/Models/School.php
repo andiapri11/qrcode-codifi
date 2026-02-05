@@ -27,6 +27,7 @@ class School extends Model
         'exit_password',
         'violation_password',
         'custom_background',
+        'enable_alarm',
     ];
 
     protected static function booted()
@@ -44,6 +45,7 @@ class School extends Model
     protected $casts = [
         'subscription_expires_at' => 'datetime',
         'is_active' => 'boolean',
+        'enable_alarm' => 'boolean',
         'max_links' => 'integer',
     ];
 

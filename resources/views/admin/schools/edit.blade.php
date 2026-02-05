@@ -249,6 +249,25 @@
                                     class="w-full bg-rose-50/20 border-2 border-rose-100/50 py-4 px-6 rounded-2xl font-black text-rose-600 text-sm outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-300 transition-all shadow-inner hover:bg-white uppercase tracking-widest">
                                 <p class="text-[9px] text-slate-400 mt-3 ml-1 italic font-bold tracking-tight">* Diminta jika siswa mencoba curang (Unpin)</p>
                             </div>
+
+                            <div class="sm:col-span-2">
+                                <div class="p-6 bg-slate-50 rounded-3xl border border-slate-100 flex items-center justify-between group hover:border-indigo-200 transition-all">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-rose-500 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-[11px] font-black text-slate-900 uppercase tracking-widest">Aktifkan Alarm Pelanggaran</h4>
+                                            <p class="text-[9px] text-slate-400 font-bold uppercase tracking-tight mt-1">Bunyi alarm keras saat siswa mencoba keluar aplikasi</p>
+                                        </div>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="hidden" name="enable_alarm" value="0">
+                                        <input type="checkbox" name="enable_alarm" value="1" class="sr-only peer" {{ $school->enable_alarm ? 'checked' : '' }}>
+                                        <div class="w-14 h-7 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-emerald-500 shadow-inner"></div>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

@@ -177,6 +177,7 @@ class SchoolController extends Controller
             'domain_whitelist' => 'nullable|string',
             'theme_color' => 'nullable|string|max:7',
             'custom_background' => 'nullable|image|mimes:jpeg,png,jpg|max:3072',
+            'enable_alarm' => 'nullable|boolean',
         ];
 
         // Ensure subscription_type is available for the next validation check
@@ -204,6 +205,7 @@ class SchoolController extends Controller
             'violation_password' => $request->violation_password,
             'domain_whitelist' => $request->domain_whitelist,
             'theme_color' => $request->theme_color ?? '#3C50E0',
+            'enable_alarm' => $request->boolean('enable_alarm'),
         ];
 
         if ((strtolower($user->role) === 'superadmin' || $school->subscription_type === 'lifetime') && $request->filled('school_code')) {

@@ -119,6 +119,7 @@ class HandshakeController extends Controller
                 'authorized_at' => now()->toIso8601String(),
                 'exit_password' => $examLink->school->exit_password ?? 'admin123',
                 'violation_password' => $examLink->school->violation_password ?? 'admin123',
+                'enable_alarm' => (bool) $examLink->school->enable_alarm,
             ]
         ]);
     }
@@ -179,6 +180,7 @@ class HandshakeController extends Controller
                     'custom_background' => $school->background_url,
                     'exit_password' => $school->exit_password ?? 'admin123',
                     'violation_password' => $school->violation_password ?? 'admin123',
+                    'enable_alarm' => (bool) $school->enable_alarm,
                 ]
             ]);
         } catch (\Exception $e) {
