@@ -205,7 +205,7 @@
                             <input type="checkbox" name="remember" class="w-3.5 h-3.5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 mr-2">
                             <span data-i18n="remember_me">Ingat Saya</span>
                         </label>
-                        <a href="#" class="hover:text-blue-500 transition-colors italic" data-i18n="forgot_password">Lupa Sandi?</a>
+                        <a href="{{ route('password.request') }}" class="hover:text-blue-500 transition-colors italic" data-i18n="forgot_password">Lupa Sandi?</a>
                     </div>
 
                     <div class="space-y-2 pt-4">
