@@ -6,25 +6,34 @@
     <meta name="google-site-verification" content="W2cgEcBUfDyFXgYD7cgWT_b-ZnF0E5H0vYpPJfKxIys" />
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png?v=3') }}">
 
-    <title>Schola Exambro - Aplikasi Exambro & Management Ujian Digital Paling Aman</title>
-    <meta name="description" content="Schola Exambro adalah aplikasi management ujian digital (CBT) paling aman dan eksklusif. Mencegah kecurangan siswa, fitur whitelist domain, dan instant QR generator.">
-    <meta name="keywords" content="exambro, schola exambro, aplikasi ujian online, browser ujian aman, cbt indonesia, safe exam browser android, kelola ujian sekolah, anti cheat ujian, download exambro">
-    <meta name="author" content="CODIFI.ID">
+    <title>Aplikasi Exambro Ujian Andorid dan Dekstop Anti-Curang Paling Aman</title>
+    <meta name="description" content="Schola Exambro: Platform Management Ujian Digital & Lockdown Browser Paling Aman di Indonesia. Fitur Whitelabel Sekolah, QR Code Instant, dan Proteksi Sistem Tinggi.">
+    <meta name="keywords" content="Schola Exambro, Aplikasi CBT, Lockdown Browser, Ujian Sekolah Online, Anti-Curang, Codifi, Exam Browser Desktop">
+    <meta name="author" content="Codifi Team">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Schola Exambro - Aplikasi Exambro & Management Ujian Digital Paling Aman">
-    <meta property="og:description" content="Solusi ujian digital anti-curang dengan branding eksklusif sekolah. Kelola link ujian Google Forms, Quizizz, atau Moodle dengan sistem keamanan tinggi.">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="Schola Exambro - Aplikasi Ujian Digital Anti-Curang">
+    <meta property="og:description" content="Tingkatkan integritas ujian sekolah dengan Schola Exambro. Branding logo sekolah sendiri dan fitur penguncian sistem level tinggi.">
     <meta property="og:image" content="{{ asset('assets/images/logo.png') }}">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="Schola Exambro - Aplikasi Exambro & Management Ujian Digital Paling Aman">
-    <meta property="twitter:description" content="Solusi ujian digital anti-curang dengan branding eksklusif sekolah. Kelola link ujian Google Forms, Quizizz, atau Moodle dengan sistem keamanan tinggi.">
-    <meta property="twitter:image" content="{{ asset('assets/images/logo.png') }}">
+    <!-- Schema.org for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Schola Exambro",
+      "operatingSystem": "Windows, Android",
+      "applicationCategory": "EducationApplication",
+      "author": {
+        "@type": "Organization",
+        "name": "Codifi ID"
+      },
+      "description": "Aplikasi management ujian digital (CBT) paling aman dengan fitur Whitelabel Instansi."
+    }
+    </script>
 
     <link rel="canonical" href="{{ url()->current() }}">
 

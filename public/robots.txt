@@ -1,4 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
 
-Sitemap: https://schola.codifi.id/sitemap.xml
+Sitemap: https://qrcode.codifi.id/sitemap.xml
