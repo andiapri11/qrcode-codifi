@@ -65,7 +65,7 @@
                 @csrf
 
                 <!-- Password Reset Token -->
-                <input type="hidden" name="token" value="{{ $token }}">
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                 <!-- Email Address -->
                 <div class="space-y-1.5">
@@ -76,7 +76,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                             </svg>
                         </div>
-                        <input type="email" name="email" id="email" value="{{ old('email', $email) }}" required readonly
+                        <input type="email" name="email" id="email" value="{{ old('email', $request->email) }}" required readonly
                             class="bg-transparent w-full outline-none text-slate-500 font-bold text-sm pr-5 cursor-not-allowed" />
                     </div>
                 </div>
