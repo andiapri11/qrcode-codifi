@@ -3,6 +3,8 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    ErrorDocument 403 /
+
     RewriteEngine On
 
     # Handle Authorization Header
