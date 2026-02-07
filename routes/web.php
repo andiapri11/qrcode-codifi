@@ -9,10 +9,16 @@ use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\SystemSettingController;
+use App\Http\Controllers\PublicController;
+
 // Basic Root Route
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Public Download Page
+Route::get('/download', [PublicController::class, 'download'])->name('public.download');
 
 // Static Legal & Help Pages
 Route::get('/help', function () { return view('legal.help'); })->name('help');
@@ -82,14 +88,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/partners/{user}', [\App\Http\Controllers\Admin\PartnerController::class, 'update'])->name('partners.update');
         Route::delete('/partners/{user}', [\App\Http\Controllers\Admin\PartnerController::class, 'destroy'])->name('partners.destroy');
 
-        // System Settings (Placeholder)
-        Route::get('/settings', function() {
-            return view('admin.settings', ['title' => 'Pengaturan Sistem']);
-        })->name('admin.settings');
-        
-        Route::post('/settings', function() {
-            return back()->with('success', 'Pengaturan placeholder berhasil disimpan (simulasi).');
-        });
+        // System Settings
+        Route::get('/settings', [SystemSettingController::class, 'index'])->name('admin.settings');
+        Route::post('/settings', [SystemSettingController::class, 'update'])->name('admin.settings.update');
     });
 });
 

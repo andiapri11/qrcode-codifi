@@ -116,6 +116,14 @@
                             <span class="font-bold text-sm tracking-tight">Barcode Ujian</span>
                         </a>
 
+                        <!-- Unduh Aplikasi (Public Link) -->
+                        <a href="{{ route('public.download') }}" target="_blank" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-blue-600">
+                            <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            <span class="font-bold text-sm tracking-tight text-indigo-600">Pusat Unduhan</span>
+                        </a>
+
                         <div class="pt-6 pb-2 px-4">
                             <span class="text-slate-400 dark:text-slate-600 text-[10px] font-black uppercase tracking-[0.2em]">Management</span>
                         </div>
