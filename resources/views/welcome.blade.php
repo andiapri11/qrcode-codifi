@@ -126,6 +126,7 @@
                 <a href="#features" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Fitur Utama</a>
                 <a href="#how-it-works" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Cara Kerja</a>
                 <a href="#pricing" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Harga Layanan</a>
+                <a href="{{ route('public.download') }}" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-indigo-600 hover:text-indigo-700 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Download</a>
                 <a href="https://wa.me/6285768441485" target="_blank" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Hubungi Sales</a>
             </div>
 
@@ -154,9 +155,10 @@
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 p-6 animate-in slide-in-from-top duration-300">
             <div class="flex flex-col gap-5">
                 <a href="#features" onclick="toggleMobileMenu()" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">✨ Fitur Utama</a>
-                <a href="#how-it-works" onclick="toggleMobileMenu()" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">🚀 Cara Kerja</a>
-                <a href="#pricing" onclick="toggleMobileMenu()" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">💰 Harga Layanan</a>
-                <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="text-xs font-black text-slate-600 uppercase tracking-[0.2em]">📱 Download App</a>
+                <a href="#how-it-works" onclick="toggleMobileMenu()" class="block px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-brand-500 border-b border-slate-50">Cara Kerja</a>
+            <a href="#pricing" onclick="toggleMobileMenu()" class="block px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-brand-500 border-b border-slate-50">Harga</a>
+            <a href="{{ route('public.download') }}" onclick="toggleMobileMenu()" class="block px-6 py-4 text-[10px] font-black text-indigo-600 uppercase tracking-widest hover:text-indigo-700 border-b border-slate-50">Download App</a>
+            <a href="https://wa.me/6285768441485" target="_blank" class="block px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-brand-500 border-b border-slate-50">Hubungi Sales</a>
                 <hr class="border-slate-100">
                 @guest
                     <a href="{{ route('register') }}" class="w-full py-4 bg-brand-500 text-white text-center rounded-2xl text-[11px] font-black uppercase tracking-[0.3em]">Daftar Akun Baru</a>
@@ -191,7 +193,10 @@
                         <a href="{{ route('register') }}" class="w-full sm:w-auto px-10 py-5 bg-slate-800 border border-slate-800 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-xl">
                             Mulai Sekarang
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="w-full sm:w-auto h-[60px] transition-all hover:scale-105 active:scale-95 sm:-ml-4 flex items-center justify-center">
+                        <a href="{{ route('public.download') }}" class="w-full sm:w-auto px-10 py-5 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-slate-50 hover:scale-105 active:scale-95 shadow-sm">
+                            Download App
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.codifi.schola" target="_blank" class="hidden sm:flex w-full sm:w-auto h-[60px] transition-all hover:scale-105 active:scale-95 sm:-ml-4 items-center justify-center">
                             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-full object-contain">
                         </a>
                     </div>
