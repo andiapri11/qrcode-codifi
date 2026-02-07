@@ -49,7 +49,7 @@
                     <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest tracking-[0.2em]">Official Download Link</span>
                 </div>
                 <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 uppercase tracking-tighter">Pusat Unduhan <br class="sm:hidden"> <span class="text-emerald-500 italic">Schola Exambro</span></h1>
-                <p class="text-slate-500 font-medium max-w-lg mx-auto text-sm leading-relaxed uppercase tracking-wide opacity-70">Satu aplikasi untuk seluruh jenjang pendidikan. Amankan integritas ujian sekolah Anda dengan teknologi lockdown browser terkini.</p>
+                <p class="text-slate-500 font-medium max-w-lg mx-auto text-sm leading-relaxed tracking-wide opacity-80 italic">Satu aplikasi untuk semua kebutuhan. Pastikan ujian berlangsung lebih tertib, jujur, dan tenang lewat sistem keamanan yang bisa Anda andalkan.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
@@ -59,7 +59,7 @@
                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1V11.59H0V3.449zm0 8.891h9.75v9.491L0 20.461v-8.121zm10.549-10.435L24 0v11.431h-13.451V1.905zm13.451 10.435L24 24l-13.451-1.939v-9.626H24z"/></svg>
                     </div>
                     <h2 class="text-xl font-black mb-2 uppercase tracking-tight tracking-[-0.02em]">Desktop Windows</h2>
-                    <p class="text-slate-500 text-[11px] font-bold uppercase tracking-wide leading-relaxed mb-8 flex-grow opacity-60">Optimasi untuk Windows 10 & 11. Fitur pengunci sistem total (Lockdown), blokir multitasking, dan proteksi pencatatan layar otomatis.</p>
+                    <p class="text-slate-500 text-xs font-medium leading-relaxed mb-8 flex-grow opacity-80">Siap digunakan di Windows 10 & 11. Aplikasi ini bakal otomatis mengunci akses ke program lain dan mencegah rekaman layar, jadi peserta bisa fokus penuh mengerjakan soal tanpa gangguan.</p>
                     
                     <div class="space-y-3">
                         <a href="{{ $settings['download_link_windows'] ?? '#' }}" 
@@ -68,7 +68,7 @@
                         </a>
                         <div class="flex justify-between items-center px-1">
                              <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">v{{ $settings['app_version'] ?? '1.0.0' }}</span>
-                             <span class="text-[9px] font-black text-emerald-500 uppercase tracking-widest">Secure Client</span>
+                             <span class="text-[9px] font-black text-emerald-500 uppercase tracking-widest">Sistem Stabil</span>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414C17.0456 15.3414 16.6585 14.9543 16.6585 14.4769C16.6585 13.9995 17.0456 13.6124 17.523 13.6124C18.0004 13.6124 18.3875 13.9995 18.3875 14.4769C18.3875 14.9543 18.0004 15.3414 17.523 15.3414ZM6.47699 15.3414C5.99958 15.3414 5.61251 14.9543 5.61251 14.4769C5.61251 13.9995 5.99958 13.6124 6.47699 13.6124C6.95439 13.6124 7.34146 13.9995 7.34146 14.4769C7.34146 14.9543 6.95439 15.3414 6.47699 15.3414ZM17.8631 6.01429L19.6826 2.86282C19.7828 2.68916 19.7233 2.46746 19.5497 2.36712C19.376 2.26685 19.1543 2.32634 19.054 2.49993L17.2104 5.6946C15.6841 5.00048 13.9213 4.6094 12.0001 4.6094C10.0788 4.6094 8.31603 5.00048 6.78972 5.6946L4.94611 2.49993C4.84584 2.32634 4.62414 2.26685 4.45048 2.36712C4.27681 2.46746 4.21733 2.68916 4.3176 2.86282L6.13706 6.01429C2.6953 7.85409 0.341461 11.4287 0.341461 15.5841H23.6585C23.6585 11.4287 21.3047 7.85409 17.8631 6.01429Z"/></svg>
                     </div>
                     <h2 class="text-xl font-black mb-2 uppercase tracking-tight tracking-[-0.02em]">Mobile Android</h2>
-                    <p class="text-slate-500 text-[11px] font-bold uppercase tracking-wide leading-relaxed mb-8 flex-grow opacity-60">Lockdown browser untuk smartphone. Fitur scan otomatis, deteksi floating apps, dan penguncian tombol home/recent apps yang tangguh.</p>
+                    <p class="text-slate-500 text-xs font-medium leading-relaxed mb-8 flex-grow opacity-80">Browser khusus untuk HP Android. Cukup scan QR code, aplikasi akan otomatis membatasi akses ke menu navigasi dan aplikasi lain supaya jalannya ujian tetap aman dan jujur.</p>
                     
                     <div class="space-y-3">
                         <a href="{{ $settings['download_link_android'] ?? '#' }}" 
