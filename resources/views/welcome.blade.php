@@ -184,12 +184,12 @@
                         <span class="text-[9px] sm:text-[10px] font-black text-brand-600 uppercase tracking-widest">Platform Exambro #1 di Indonesia</span>
                     </div>
                     <h1 class="text-4xl sm:text-5xl lg:text-[64px] font-black text-slate-900 leading-[1.05] mb-6 uppercase tracking-tighter">
-                        Amankan <br class="hidden sm:block"> 
-                        Ujian Digital <br> 
-                        Dengan <span class="text-emerald-500">Eksklusivitas</span>
+                        Aplikasi <span class="text-emerald-500">Exam Browser</span> <br class="hidden sm:block"> 
+                        Ujian Digital Lebih <br> 
+                        <span class="text-slate-900 italic">Aman</span> & Profesional
                     </h1>
                     <p class="text-base sm:text-lg lg:text-lg text-slate-500 font-medium mb-10 max-w-2xl leading-relaxed mx-auto lg:mx-0">
-                        Platform CBT Nomor #1 dengan keamanan tingkat tinggi, Whitelist Domain, dan fitur Branding Instansi untuk pengalaman ujian yang lebih profesional.
+                        Solusi Aplikasi Exam Browser terbaik dengan keamanan tingkat tinggi, Anti-Curang, dan fitur Branding Instansi untuk pengalaman ujian yang lebih profesional dan terpercaya.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-2">
                         <a href="{{ route('public.download') }}" class="w-full sm:w-auto px-12 py-5 bg-slate-900 border border-slate-900 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-black hover:scale-105 active:scale-95 shadow-xl shadow-slate-900/20">
