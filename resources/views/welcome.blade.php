@@ -8,8 +8,8 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/logo.png?v=3') }}">
     <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png?v=3') }}">
 
-    <title>Aplikasi Exambro Ujian Andorid dan Dekstop Anti-Curang Paling Aman</title>
-    <meta name="description" content="Schola Exambro: Platform Management Ujian Digital & Lockdown Browser Paling Aman di Indonesia. Fitur Whitelabel Sekolah, QR Code Instant, dan Proteksi Sistem Tinggi.">
+    <title>Download Aplikasi Exambro - Schola Exambro Anti-Curang Paling Aman</title>
+    <meta name="description" content="Download aplikasi Exambro resmi dari Schola Exambro. Platform management ujian digital (CBT) & lockdown browser paling aman dengan fitur Whitelabel Sekolah dan QR Code Instant.">
     <meta name="keywords" content="Schola Exambro, Aplikasi CBT, Lockdown Browser, Ujian Sekolah Online, Anti-Curang, Codifi, Exam Browser Desktop">
     <meta name="author" content="Codifi Team">
     <meta name="robots" content="index, follow">
@@ -218,7 +218,7 @@
                     <!-- Premium UI Mockup Illustration -->
                     <div class="relative z-10 animate-float">
                         <div class="rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-200">
-                            <img src="{{ asset('assets/images/materi1.jpg') }}" alt="Schola Exambro Preview" class="w-full h-auto">
+                            <img src="{{ asset('assets/images/materi1.jpg') }}" alt="Download Aplikasi Exambro - Tampilan Schola Exambro" class="w-full h-auto">
                         </div>
                     </div>
                 </div>
