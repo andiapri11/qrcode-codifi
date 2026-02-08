@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="W2cgEcBUfDyFXgYD7cgWT_b-ZnF0E5H0vYpPJfKxIys" />
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png?v=3') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo.png?v=3') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png?v=3') }}">
 
     <title>Aplikasi Exambro Ujian Andorid dan Dekstop Anti-Curang Paling Aman</title>
     <meta name="description" content="Schola Exambro: Platform Management Ujian Digital & Lockdown Browser Paling Aman di Indonesia. Fitur Whitelabel Sekolah, QR Code Instant, dan Proteksi Sistem Tinggi.">
