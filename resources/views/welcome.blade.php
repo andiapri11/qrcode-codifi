@@ -183,7 +183,7 @@
                         <span class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
                         <span class="text-[9px] sm:text-[10px] font-black text-brand-600 uppercase tracking-widest">Platform Exambro #1 di Indonesia</span>
                     </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-[64px] font-black text-slate-900 leading-[1.05] mb-6 uppercase tracking-tighter">
+                    <h1 class="text-3xl sm:text-4xl lg:text-[48px] font-black text-slate-900 leading-[1.1] mb-6 uppercase tracking-tighter">
                         Aplikasi <span class="text-emerald-500">Exam Browser</span> <br class="hidden sm:block"> 
                         Ujian Digital Lebih <br> 
                         <span class="text-slate-900 italic">Aman</span> & Profesional
