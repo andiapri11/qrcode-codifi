@@ -87,7 +87,7 @@
                     </td>
                     <td class="px-8 py-6 text-center">
                         @if($school->subscription_type === 'lifetime')
-                            <span class="bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-500 text-[10px] font-black px-4 py-1.5 rounded-xl border border-amber-100 dark:border-amber-900/30 uppercase tracking-widest text-[9px]">LIFE TIME</span>
+                            <span class="whitespace-nowrap bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-500 text-[9px] font-black px-4 py-1.5 rounded-xl border border-amber-100 dark:border-amber-900/30 uppercase tracking-widest">LIFETIME</span>
                         @else
                             <div class="flex flex-col items-center">
                                 @php
@@ -96,7 +96,7 @@
                                     elseif($school->subscription_type === '1_year' || ($school->subscription_type === 'year' && $school->max_links == 20)) $planLabel = '1 TAHUN';
                                     elseif($school->subscription_type === 'year') $planLabel = 'ANNUAL';
                                 @endphp
-                                <span class="bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black px-4 py-1.5 rounded-xl border border-indigo-100 dark:border-indigo-900/30 uppercase tracking-widest text-[9px] mb-1.5">{{ $planLabel }}</span>
+                                <span class="whitespace-nowrap bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 text-[9px] font-black px-4 py-1.5 rounded-xl border border-indigo-100 dark:border-indigo-900/30 uppercase tracking-widest mb-1.5">{{ $planLabel }}</span>
                                 @if($school->subscription_expires_at)
                                     <span class="text-[9px] font-bold uppercase tracking-tighter {{ $school->subscription_expires_at->isPast() ? 'text-rose-500' : 'text-slate-400' }}">
                                         {{ $school->subscription_expires_at->format('d M Y') }}
