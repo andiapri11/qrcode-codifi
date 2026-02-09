@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="W2cgEcBUfDyFXgYD7cgWT_b-ZnF0E5H0vYpPJfKxIys" />
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png?v=3') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo.png?v=3') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/logo.png?v=3') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png?v=3') }}">
 
-    <title>Download Aplikasi Exambro - Schola Exambro Anti-Curang Paling Aman</title>
+    <title>Schola Exambro - Aplikasi Ujian Digital Anti-Curang Paling Aman</title>
     <meta name="description" content="Download aplikasi Exambro resmi dari Schola Exambro. Platform management ujian digital (CBT) & lockdown browser paling aman dengan fitur Whitelabel Sekolah dan QR Code Instant.">
     <meta name="keywords" content="Schola Exambro, Aplikasi CBT, Lockdown Browser, Ujian Sekolah Online, Anti-Curang, Codifi, Exam Browser Desktop">
     <meta name="author" content="Codifi Team">
@@ -25,13 +26,28 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Schola Exambro",
+      "url": "{{ url('/') }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ url('/') }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Schola Exambro",
       "operatingSystem": "Windows, Android",
       "applicationCategory": "EducationApplication",
-      "author": {
+      "publisher": {
         "@type": "Organization",
-        "name": "Codifi ID"
+        "name": "Codifi ID",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ asset('assets/images/logo.png') }}"
+        }
       },
       "description": "Aplikasi management ujian digital (CBT) paling aman dengan fitur Whitelabel Instansi."
     }
