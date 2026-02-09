@@ -78,6 +78,7 @@
                     
                     <div class="w-full space-y-3">
                         <a href="{{ $settings['download_link_windows'] ?? '#' }}" 
+                           target="_blank"
                            class="block w-full bg-slate-900 text-center text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-black transition-all shadow-xl shadow-slate-900/20 {{ !isset($settings['download_link_windows']) ? 'opacity-50 cursor-not-allowed' : '' }}">
                            {{ isset($settings['download_link_windows']) ? 'Download Gratis (Windows)' : 'Belum Tersedia' }}
                         </a>
@@ -112,10 +113,10 @@
                     </div>
 
                     <div class="w-full space-y-3">
-                        <a href="https://mega.nz/file/UDgGFLpK#t69-H1zVn4N3MXyEqUOmZdsUa6e_7HjuBZwshxqQTy0" 
+                        <a href="{{ $settings['download_link_android'] ?? '#' }}" 
                            target="_blank"
-                           class="block w-full bg-slate-900 text-center text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-black transition-all shadow-xl shadow-slate-900/20">
-                           Download Gratis (Android)
+                           class="block w-full bg-slate-900 text-center text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-black transition-all shadow-xl shadow-slate-900/20 {{ !isset($settings['download_link_android']) ? 'opacity-50 cursor-not-allowed' : '' }}">
+                           {{ isset($settings['download_link_android']) ? 'Download Gratis (Android)' : 'Belum Tersedia' }}
                         </a>
                         <div class="flex justify-between items-center px-1">
                              <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">v{{ $settings['app_version'] ?? '1.1.2' }}</span>
