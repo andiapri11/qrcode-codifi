@@ -21,11 +21,31 @@
             background: rgba(15, 23, 42, 0.82);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .prose h2 { @apply text-2xl font-bold mt-10 mb-4 text-slate-800 dark:text-blue-400 tracking-tight; }
-        .prose p { @apply text-slate-600 dark:text-slate-400 leading-relaxed mb-6; }
-        .prose ul { @apply list-disc ml-6 mb-6 text-slate-600 dark:text-slate-400 space-y-2; }
-        .prose li { @apply leading-relaxed; }
-        .prose strong { @apply text-slate-900 dark:text-white font-bold; }
+        .prose h2 { 
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            letter-spacing: -0.025em;
+        }
+        .dark .prose h2 { color: #60a5fa; }
+        .prose p { 
+            margin-bottom: 1.5rem;
+            line-height: 1.75;
+            color: #475569;
+        }
+        .dark .prose p { color: #94a3b8; }
+        .prose ul { 
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #475569;
+        }
+        .dark .prose ul { color: #94a3b8; }
+        .prose li { margin-bottom: 0.5rem; line-height: 1.6; }
+        .prose strong { color: #0f172a; font-weight: 700; }
+        .dark .prose strong { color: #f8fafc; }
     </style>
 </head>
 <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
@@ -80,8 +100,8 @@
 
             <h2>7. Hubungi Kami</h2>
             <p>Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini, silakan hubungi kami melalui:</p>
-            <p><strong>Email:</strong> andiapri11@gmail.com<br>
-            <strong>Website:</strong> https://codifi.id</p>
+            <p><strong>Email:</strong> help@codifi.id<br>
+            <strong>Website:</strong> https://qrcode.codifi.id</p>
         </section>
 
         <div class="mt-20 pt-10 border-t border-slate-100 dark:border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4">
