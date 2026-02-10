@@ -3,8 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png?v=3') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <title>Download Schola Exambro - Aplikasi Ujian Aman</title>
+    <meta name="description" content="Download aplikasi Schola Exambro untuk Windows dan Android. Solusi ujian digital paling aman dengan fitur pembatasan akses ketat.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>

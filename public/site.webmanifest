@@ -1,0 +1,21 @@
+{
+    "name": "Schola Exambro",
+    "short_name": "Schola",
+    "description": "Aplikasi management ujian digital (CBT) paling aman.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3C50E0",
+    "icons": [
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

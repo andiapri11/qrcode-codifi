@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="W2cgEcBUfDyFXgYD7cgWT_b-ZnF0E5H0vYpPJfKxIys" />
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/logo.png?v=3') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/logo.png') }}">
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
-    <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png?v=3') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
     <title>Schola Exambro - Aplikasi Ujian Digital Anti-Curang Paling Aman</title>
     <meta name="description" content="Download aplikasi Exambro resmi dari Schola Exambro. Platform management ujian digital (CBT) & lockdown browser paling aman dengan fitur Whitelabel Sekolah dan QR Code Instant.">
