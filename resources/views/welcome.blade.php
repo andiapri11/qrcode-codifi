@@ -10,7 +10,6 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/logo.png') }}">
     <link rel="icon" type="image/png" sizes="144x144" href="{{ asset('assets/images/logo.png') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
