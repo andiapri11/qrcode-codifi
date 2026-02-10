@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syarat & Ketentuan | Schola Exambro</title>
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
     <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" sizes="144x144" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/logo.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <script src="https://cdn.tailwindcss.com"></script>
