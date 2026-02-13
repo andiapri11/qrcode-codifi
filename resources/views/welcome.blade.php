@@ -502,9 +502,61 @@
                 </div>
             </div>
         </div>
+    </section>    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-white relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 px-4">
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 uppercase tracking-tight">Tanya Jawab Umum</h2>
+                <p class="text-slate-500 font-medium max-w-2xl mx-auto text-sm sm:text-base">Temukan jawaban atas pertanyaan yang paling sering diajukan mengenai layanan kami.</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+                <!-- FAQ Item 1 -->
+                <div class="group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300">
+                    <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center justify-between">
+                        Apakah aplikasi ini benar-benar aman dari kecurangan?
+                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
+                    </h3>
+                    <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90">
+                        Sangat aman. Schola Exambro menggunakan teknologi lock-screen yang sangat ketat. Aplikasi akan otomatis mendeteksi jika siswa mencoba membuka aplikasi lain, melakukan screenshot, atau mencoba menggunakan fitur split-screen di ponsel mereka.
+                    </p>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300">
+                    <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center justify-between">
+                        Metode pembayaran apa saja yang didukung?
+                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
+                    </h3>
+                    <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90">
+                        Berkat integrasi Xendit, kami mendukung berbagai metode pembayaran otomatis mulai dari <strong>QRIS (Dana, OVO, GoPay, ShopeePay)</strong>, Transfer Bank (Virtual Account), hingga gerai retail seperti Alfamart. Semua pembayaran terkonfirmasi secara instan.
+                    </p>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300">
+                    <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center justify-between">
+                        Berapa lama proses aktivasi akun setelah membayar?
+                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
+                    </h3>
+                    <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90">
+                        Proses aktivasi berlangsung secara **otomatis dan instan**. Segera setelah pembayaran Anda terverifikasi oleh sistem Xendit, status langganan di dashboard Anda akan langsung berubah menjadi aktif dan kuota barcode bertambah.
+                    </p>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300">
+                    <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center justify-between">
+                        Apakah sekolah harus memiliki server sendiri?
+                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
+                    </h3>
+                    <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90">
+                        Tidak perlu. Schola Exambro berbasis Cloud. Pihak sekolah hanya perlu memiliki koneksi internet dan dashboard admin untuk mengelola link ujian. Segala infrastruktur server dan keamanan sistem sudah kami tangani sepenuhnya.
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
-
-
 
     <!-- Footer -->
     <footer class="py-16 bg-white border-t border-slate-100">
