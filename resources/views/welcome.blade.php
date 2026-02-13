@@ -510,49 +510,57 @@
                 <p class="text-slate-500 font-medium max-w-2xl mx-auto text-sm sm:text-base">Temukan jawaban atas pertanyaan yang paling sering diajukan mengenai layanan kami.</p>
             </div>
 
-            <div class="grid grid-cols-1 gap-6">
+            <div class="grid grid-cols-1 gap-4">
                 <!-- FAQ Item 1 -->
-                <div class="group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300">
-                    <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center justify-between">
+                <div class="faq-item group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(1)">
+                    <h3 class="text-lg font-black text-slate-900 flex items-center justify-between">
                         Apakah aplikasi ini benar-benar aman dari kecurangan?
-                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
+                        <span id="faq-icon-1" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
                     </h3>
-                    <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90">
-                        Sangat aman. Schola Exambro menggunakan teknologi lock-screen yang sangat ketat. Aplikasi akan otomatis mendeteksi jika siswa mencoba membuka aplikasi lain, melakukan screenshot, atau mencoba menggunakan fitur split-screen di ponsel mereka.
-                    </p>
+                    <div id="faq-answer-1" class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90 pt-6">
+                            Sangat aman. Schola Exambro menggunakan teknologi lock-screen yang sangat ketat. Aplikasi akan otomatis mendeteksi jika siswa mencoba membuka aplikasi lain, melakukan screenshot, atau mencoba menggunakan fitur split-screen di ponsel mereka.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- FAQ Item 2 -->
-                <div class="group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300">
-                    <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center justify-between">
+                <div class="faq-item group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(2)">
+                    <h3 class="text-lg font-black text-slate-900 flex items-center justify-between">
                         Metode pembayaran apa saja yang didukung?
-                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
+                        <span id="faq-icon-2" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
                     </h3>
-                    <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90">
-                        Berkat integrasi Xendit, kami mendukung berbagai metode pembayaran otomatis mulai dari <strong>QRIS (Dana, OVO, GoPay, ShopeePay)</strong>, Transfer Bank (Virtual Account), hingga gerai retail seperti Alfamart. Semua pembayaran terkonfirmasi secara instan.
-                    </p>
+                    <div id="faq-answer-2" class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90 pt-6">
+                            Berkat integrasi Xendit, kami mendukung berbagai metode pembayaran otomatis mulai dari <strong>QRIS (Dana, OVO, GoPay, ShopeePay)</strong>, Transfer Bank (Virtual Account), hingga gerai retail seperti Alfamart. Semua pembayaran terkonfirmasi secara instan.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- FAQ Item 3 -->
-                <div class="group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300">
-                    <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center justify-between">
+                <div class="faq-item group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(3)">
+                    <h3 class="text-lg font-black text-slate-900 flex items-center justify-between">
                         Berapa lama proses aktivasi akun setelah membayar?
-                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
+                        <span id="faq-icon-3" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
                     </h3>
-                    <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90">
-                        Proses aktivasi berlangsung secara **otomatis dan instan**. Segera setelah pembayaran Anda terverifikasi oleh sistem Xendit, status langganan di dashboard Anda akan langsung berubah menjadi aktif dan kuota barcode bertambah.
-                    </p>
+                    <div id="faq-answer-3" class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90 pt-6">
+                            Proses aktivasi berlangsung secara **otomatis dan instan**. Segera setelah pembayaran Anda terverifikasi oleh sistem Xendit, status langganan di dashboard Anda akan langsung berubah menjadi aktif dan kuota barcode bertambah.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- FAQ Item 4 -->
-                <div class="group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300">
-                    <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center justify-between">
+                <div class="faq-item group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(4)">
+                    <h3 class="text-lg font-black text-slate-900 flex items-center justify-between">
                         Apakah sekolah harus memiliki server sendiri?
-                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
+                        <span id="faq-icon-4" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
                     </h3>
-                    <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90">
-                        Tidak perlu. Schola Exambro berbasis Cloud. Pihak sekolah hanya perlu memiliki koneksi internet dan dashboard admin untuk mengelola link ujian. Segala infrastruktur server dan keamanan sistem sudah kami tangani sepenuhnya.
-                    </p>
+                    <div id="faq-answer-4" class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-[14px] font-medium text-slate-500 leading-relaxed font-sans opacity-90 pt-6">
+                            Tidak perlu. Schola Exambro berbasis Cloud. Pihak sekolah hanya perlu memiliki koneksi internet dan dashboard admin untuk mengelola link ujian. Segala infrastruktur server dan keamanan sistem sudah kami tangani sepenuhnya.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -638,6 +646,36 @@
             } else {
                 menu.classList.add('hidden');
                 icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            }
+        }
+
+        function toggleFaq(id) {
+            const answer = document.getElementById(`faq-answer-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            const allAnswers = document.querySelectorAll('[id^="faq-answer-"]');
+            const allIcons = document.querySelectorAll('[id^="faq-icon-"]');
+
+            // Close other answers
+            allAnswers.forEach((item, index) => {
+                if (item.id !== `faq-answer-${id}`) {
+                    item.style.maxHeight = null;
+                    allIcons[index].textContent = '+';
+                    allIcons[index].classList.remove('bg-emerald-500', 'text-white');
+                    allIcons[index].classList.add('bg-slate-100', 'text-slate-400');
+                }
+            });
+
+            // Toggle current answer
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                icon.textContent = '+';
+                icon.classList.remove('bg-emerald-500', 'text-white');
+                icon.classList.add('bg-slate-100', 'text-slate-400');
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                icon.textContent = '-';
+                icon.classList.add('bg-emerald-500', 'text-white');
+                icon.classList.remove('bg-slate-100', 'text-slate-400');
             }
         }
     </script>
