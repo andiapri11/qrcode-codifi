@@ -535,7 +535,7 @@
                             <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center group-hover:bg-emerald-50 transition-colors">
                                 <svg class="w-4 h-4 text-slate-400 group-hover:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                             </div>
-                            <span class="text-xs font-bold uppercase tracking-tight leading-tight">Yogyakarta, Indonesia</span>
+                            <span class="text-xs font-bold uppercase tracking-tight leading-tight">Sumatera Selatan, Indonesia</span>
                         </div>
                     </div>
                 </div>
