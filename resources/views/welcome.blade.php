@@ -431,7 +431,7 @@
                         <h3 class="text-[10px] font-black text-emerald-600 uppercase tracking-[0.3em] mb-4">Masa Aktif 6 Bulan</h3>
                         <div class="flex items-baseline gap-1">
                             <span class="text-lg font-bold text-slate-400">Rp</span>
-                            <span class="text-4xl font-black text-slate-900 tracking-tighter">200rb</span>
+                            <span class="text-4xl font-black text-slate-900 tracking-tighter">200.000</span>
                         </div>
                     </div>
                     <ul class="space-y-4 mb-10 opacity-70 flex-grow">
@@ -458,7 +458,7 @@
                         <h3 class="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mb-4 text-center">Masa Aktif 1 Tahun</h3>
                         <div class="flex items-baseline justify-center gap-1">
                             <span class="text-lg font-bold text-slate-500">Rp</span>
-                            <span class="text-5xl font-black text-white tracking-tighter">350rb</span>
+                            <span class="text-5xl font-black text-white tracking-tighter">350.000</span>
                         </div>
                     </div>
                     <ul class="space-y-4 mb-10 opacity-90 flex-grow text-center">
@@ -481,7 +481,7 @@
                         <h3 class="text-[10px] font-black text-indigo-600 uppercase tracking-[0.3em] mb-4">Masa Aktif 3 Tahun</h3>
                         <div class="flex items-baseline gap-1">
                             <span class="text-lg font-bold text-slate-400">Rp</span>
-                            <span class="text-4xl font-black text-slate-900 tracking-tighter">700rb</span>
+                            <span class="text-4xl font-black text-slate-900 tracking-tighter">700.000</span>
                         </div>
                     </div>
                     <ul class="space-y-4 mb-10 opacity-70 flex-grow">
@@ -530,6 +530,12 @@
                                 <svg class="w-4 h-4 text-slate-400 group-hover:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             </div>
                             <span class="text-xs font-bold uppercase tracking-widest">support@codifi.id</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-500 group">
+                            <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center group-hover:bg-emerald-50 transition-colors">
+                                <svg class="w-4 h-4 text-slate-400 group-hover:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-widest">+62 857-6844-1485</span>
                         </div>
                         <div class="flex items-center gap-3 text-slate-500 group">
                             <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center group-hover:bg-emerald-50 transition-colors">
