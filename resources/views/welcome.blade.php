@@ -426,7 +426,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Plan 1 -->
-                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+                <div class="bg-white p-6 sm:p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
                     <div class="mb-8">
                         <h3 class="text-[10px] font-black text-emerald-600 uppercase tracking-[0.3em] mb-4">Masa Aktif 6 Bulan</h3>
                         <div class="flex items-baseline gap-1">
@@ -452,7 +452,7 @@
                 </div>
 
                 <!-- Plan 2 -->
-                <div class="bg-slate-900 p-10 rounded-[2.5rem] shadow-2xl shadow-blue-200 relative transform md:-translate-y-4 flex flex-col border border-blue-500/20">
+                <div class="bg-slate-900 p-6 sm:p-10 rounded-[2.5rem] shadow-2xl shadow-blue-200 relative transform md:-translate-y-4 flex flex-col border border-blue-500/20 mt-8 md:mt-0">
                     <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-[8px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-xl">Best Value</div>
                     <div class="mb-8">
                         <h3 class="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mb-4 text-center">Masa Aktif 1 Tahun</h3>
@@ -476,7 +476,7 @@
                 </div>
 
                 <!-- Plan 3 -->
-                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+                <div class="bg-white p-6 sm:p-10 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
                     <div class="mb-8">
                         <h3 class="text-[10px] font-black text-indigo-600 uppercase tracking-[0.3em] mb-4">Masa Aktif 3 Tahun</h3>
                         <div class="flex items-baseline gap-1">
@@ -512,7 +512,7 @@
 
             <div class="grid grid-cols-1 gap-4">
                 <!-- FAQ Item 1 -->
-                <div class="faq-item group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(1)">
+                <div class="faq-item group border border-slate-100 rounded-[2.5rem] p-6 sm:p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(1)">
                     <h3 class="text-lg font-black text-slate-900 flex items-center justify-between">
                         Apakah aplikasi ini benar-benar aman dari kecurangan?
                         <span id="faq-icon-1" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
@@ -525,7 +525,7 @@
                 </div>
 
                 <!-- FAQ Item 2 -->
-                <div class="faq-item group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(2)">
+                <div class="faq-item group border border-slate-100 rounded-[2.5rem] p-6 sm:p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(2)">
                     <h3 class="text-lg font-black text-slate-900 flex items-center justify-between">
                         Metode pembayaran apa saja yang didukung?
                         <span id="faq-icon-2" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
@@ -538,7 +538,7 @@
                 </div>
 
                 <!-- FAQ Item 3 -->
-                <div class="faq-item group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(3)">
+                <div class="faq-item group border border-slate-100 rounded-[2.5rem] p-6 sm:p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(3)">
                     <h3 class="text-lg font-black text-slate-900 flex items-center justify-between">
                         Berapa lama proses aktivasi akun setelah membayar?
                         <span id="faq-icon-3" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
@@ -551,7 +551,7 @@
                 </div>
 
                 <!-- FAQ Item 4 -->
-                <div class="faq-item group border border-slate-100 rounded-[2rem] p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(4)">
+                <div class="faq-item group border border-slate-100 rounded-[2.5rem] p-6 sm:p-8 hover:border-emerald-500/20 hover:bg-slate-50 transition-all duration-300 cursor-pointer" onclick="toggleFaq(4)">
                     <h3 class="text-lg font-black text-slate-900 flex items-center justify-between">
                         Apakah sekolah harus memiliki server sendiri?
                         <span id="faq-icon-4" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:text-white transition-all text-sm">+</span>
