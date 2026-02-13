@@ -321,95 +321,93 @@
         </div>
     </section>
 
-    <!-- Alur Implementasi Section -->
-    <section id="how-it-works" class="py-24 lg:py-40 bg-[#0a1128] relative overflow-hidden">
-        <!-- Subtle Tech background -->
+    <!-- Alur Implementasi Section (Senior Dev Refined) -->
+    <section id="how-it-works" class="py-24 lg:py-36 bg-[#0a1128] relative overflow-hidden">
+        <!-- Background Tech pattern overlay -->
         <div class="absolute inset-0 opacity-[0.03] pointer-events-none hero-pattern scale-150"></div>
-        <div class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[150px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[150px]"></div>
+        <div class="absolute top-0 left-0 w-full h-full">
+            <div class="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[120px]"></div>
+        </div>
 
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center mb-24">
                 <h2 class="text-4xl lg:text-6xl font-black text-white mb-4 uppercase tracking-tighter font-outfit">Alur Implementasi</h2>
-                <div class="flex items-center justify-center gap-4">
-                    <div class="h-px w-12 bg-blue-500/50"></div>
-                    <h3 class="text-xl lg:text-2xl font-light text-blue-400 uppercase tracking-[0.4em] font-outfit">Schola Exambro</h3>
-                    <div class="h-px w-12 bg-blue-500/50"></div>
-                </div>
+                <h3 class="text-xl lg:text-2xl font-light text-slate-400 uppercase tracking-[0.4em] font-outfit opacity-80">Schola Exambro</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                 <!-- Step 1: Konfigurasi -->
-                <div class="relative pt-8 group">
-                    <div class="bg-white rounded-[40px] p-10 h-full shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500 flex flex-col relative">
-                        <!-- Step Badge - Fixed Positioning -->
-                        <div class="absolute top-0 left-10 -translate-y-1/2 bg-[#1e293b] text-white px-6 py-2.5 rounded-2xl text-xl font-black font-outfit shadow-xl z-20">01</div>
+                <div class="relative pt-6 group">
+                    <div class="bg-white rounded-[32px] p-8 lg:p-10 h-full shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex flex-col relative overflow-visible transition-all duration-500 hover:-translate-y-2">
+                        <!-- Step Badge -->
+                        <div class="absolute top-0 left-8 -translate-y-1/2 bg-[#1e293b] text-white px-5 py-2 rounded-xl text-lg font-black font-outfit shadow-lg z-20">01</div>
                         
-                        <div class="flex justify-between items-center mb-8 pt-4">
-                            <h4 class="text-xl font-black text-slate-900 uppercase tracking-tight font-outfit">Konfigurasi</h4>
-                            <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform duration-500">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM17 12h-2v2h2v-2zm-4 0h-2v2h2v-2zm-4 0H7v2h2v-2zm8-4h-2v2h2V8zm-4 0h-2v2h2V8zm-4 0H7v2h2V8z"/></svg>
+                        <div class="flex items-center justify-between gap-3 mb-8 pt-4">
+                            <h4 class="text-[19px] font-black text-slate-800 uppercase tracking-tight font-outfit">Konfigurasi</h4>
+                            <div class="w-12 h-11 shrink-0 bg-emerald-100/80 rounded-xl flex items-center justify-center text-emerald-600">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                             </div>
                         </div>
 
-                        <p class="text-[15px] font-bold text-slate-500 leading-relaxed font-sans opacity-90">
+                        <p class="text-[15px] font-bold text-slate-500 leading-relaxed font-sans opacity-95">
                             Admin menyiapkan ujian melalui dashboard, mulai dari soal, durasi, hingga peserta. Semua teratur dan siap digunakan sesuai jadwal.
                         </p>
                     </div>
                 </div>
 
                 <!-- Step 2: Distribusi QR -->
-                <div class="relative pt-8 group">
-                    <div class="bg-white rounded-[40px] p-10 h-full shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500 flex flex-col relative">
-                        <!-- Step Badge -->
-                        <div class="absolute top-0 left-10 -translate-y-1/2 bg-[#1e293b] text-white px-6 py-2.5 rounded-2xl text-xl font-black font-outfit shadow-xl z-20">02</div>
+                <div class="relative pt-6 group">
+                    <div class="bg-white rounded-[32px] p-8 lg:p-10 h-full shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex flex-col relative overflow-visible transition-all duration-500 hover:-translate-y-2">
+                         <!-- Step Badge -->
+                        <div class="absolute top-0 left-8 -translate-y-1/2 bg-[#1e293b] text-white px-5 py-2 rounded-xl text-lg font-black font-outfit shadow-lg z-20">02</div>
 
-                        <div class="flex justify-between items-center mb-8 pt-4">
-                            <h4 class="text-xl font-black text-slate-900 uppercase tracking-tight font-outfit">Distribusi QR</h4>
-                            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform duration-500">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zM13 3v8h8V3h-8zm6 6h-4V5h4v4zM13 13h2v2h-2v-2zm2 2h2v2h-2v-2zm-2 2h2v2h-2v-2zm2 2h2v2h-2v-2zm2-2h2v2h-2v-2zm0-4h2v2h-2v-2zm2 2h2v2h-2v-2z"/></svg>
+                        <div class="flex items-center justify-between gap-3 mb-8 pt-4">
+                            <h4 class="text-[19px] font-black text-slate-800 uppercase tracking-tight font-outfit">Distribusi QR</h4>
+                            <div class="w-12 h-11 shrink-0 bg-blue-100/80 rounded-xl flex items-center justify-center text-blue-600">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
                             </div>
                         </div>
 
-                        <p class="text-[15px] font-bold text-slate-500 leading-relaxed font-sans opacity-90">
+                        <p class="text-[15px] font-bold text-slate-500 leading-relaxed font-sans opacity-95">
                             Instansi membagikan kode atau QR login kepada peserta. Proses cepat dan langsung terhubung ke sistem ujian.
                         </p>
                     </div>
                 </div>
 
                 <!-- Step 3: Aplikasi Client -->
-                <div class="relative pt-8 group">
-                    <div class="bg-white rounded-[40px] p-10 h-full shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500 flex flex-col relative">
+                <div class="relative pt-6 group">
+                    <div class="bg-white rounded-[32px] p-8 lg:p-10 h-full shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex flex-col relative overflow-visible transition-all duration-500 hover:-translate-y-2">
                         <!-- Step Badge -->
-                        <div class="absolute top-0 left-10 -translate-y-1/2 bg-[#1e293b] text-white px-6 py-2.5 rounded-2xl text-xl font-black font-outfit shadow-xl z-20">03</div>
+                        <div class="absolute top-0 left-8 -translate-y-1/2 bg-[#1e293b] text-white px-5 py-2 rounded-xl text-lg font-black font-outfit shadow-lg z-20">03</div>
 
-                        <div class="flex justify-between items-center mb-8 pt-4">
-                            <h4 class="text-xl font-black text-slate-900 uppercase tracking-tight font-outfit">Aplikasi Client</h4>
-                            <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-500 group-hover:scale-110 transition-transform duration-500">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                        <div class="flex items-center justify-between gap-3 mb-8 pt-4">
+                            <h4 class="text-[19px] font-black text-slate-800 uppercase tracking-tight font-outfit">Aplikasi Client</h4>
+                            <div class="w-12 h-11 shrink-0 bg-purple-100/80 rounded-xl flex items-center justify-center text-purple-600">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
                             </div>
                         </div>
 
-                        <p class="text-[15px] font-bold text-slate-500 leading-relaxed font-sans opacity-90">
+                        <p class="text-[15px] font-bold text-slate-500 leading-relaxed font-sans opacity-95">
                             Peserta memasukkan kode dan otomatis masuk ke halaman ujian. Sistem berjalan dalam mode fullscreen secure.
                         </p>
                     </div>
                 </div>
 
                 <!-- Step 4: Monitoring -->
-                <div class="relative pt-8 group">
-                    <div class="bg-white rounded-[40px] p-10 h-full shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500 flex flex-col relative">
+                <div class="relative pt-6 group">
+                    <div class="bg-white rounded-[32px] p-8 lg:p-10 h-full shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex flex-col relative overflow-visible transition-all duration-500 hover:-translate-y-2">
                         <!-- Step Badge -->
-                        <div class="absolute top-0 left-10 -translate-y-1/2 bg-[#1e293b] text-white px-6 py-2.5 rounded-2xl text-xl font-black font-outfit shadow-xl z-20">04</div>
+                        <div class="absolute top-0 left-8 -translate-y-1/2 bg-[#1e293b] text-white px-5 py-2 rounded-xl text-lg font-black font-outfit shadow-lg z-20">04</div>
 
-                        <div class="flex justify-between items-center mb-8 pt-4">
-                            <h4 class="text-xl font-black text-slate-900 uppercase tracking-tight font-outfit">Monitoring</h4>
-                            <div class="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-50 group-hover:scale-110 transition-transform duration-500">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13h8V3H3v10zm2-8h4v4H5V5zm8 16h8V11h-8v10zm2-8h4v4h-4v-4zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"/></svg>
+                        <div class="flex items-center justify-between gap-3 mb-8 pt-4">
+                            <h4 class="text-[19px] font-black text-slate-800 uppercase tracking-tight font-outfit">Monitoring</h4>
+                            <div class="w-12 h-11 shrink-0 bg-yellow-100/80 rounded-xl flex items-center justify-center text-yellow-600">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                             </div>
                         </div>
 
-                        <p class="text-[15px] font-bold text-slate-500 leading-relaxed font-sans opacity-90">
+                        <p class="text-[15px] font-bold text-slate-500 leading-relaxed font-sans opacity-95">
                             Pengawas memantau ujian secara real-time. Jika peserta keluar aplikasi, sistem memberi peringatan otomatis.
                         </p>
                     </div>
