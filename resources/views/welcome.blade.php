@@ -236,7 +236,7 @@
 
                 <div class="flex-1 relative">
                     <!-- Premium UI Mockup Illustration -->
-                    <div class="relative z-10 animate-float">
+                    <div class="relative z-10">
                         <div class="rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-200">
                             <img src="{{ asset('assets/images/materi1.jpg') }}" alt="Download Aplikasi Exambro - Tampilan Schola Exambro" class="w-full h-auto">
                         </div>
@@ -321,67 +321,93 @@
         </div>
     </section>
 
-    <!-- How it Works Section -->
-    <section id="how-it-works" class="py-12 bg-slate-900 relative overflow-hidden">
-        <!-- Background Decor -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div class="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-brand-500 rounded-full blur-[150px]"></div>
-            <div class="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-emerald-500 rounded-full blur-[150px]"></div>
-        </div>
+    <!-- Alur Implementasi Section -->
+    <section id="how-it-works" class="py-20 lg:py-32 bg-[#0a1128] relative overflow-hidden">
+        <!-- Background Tech pattern overlay -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none hero-pattern"></div>
+        <div class="absolute top-[10%] right-[-5%] w-[400px] h-[400px] bg-blue-600/20 rounded-full blur-[120px]"></div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 px-4">
-                <span class="text-[10px] font-black text-emerald-400 uppercase tracking-[0.3em] mb-4 block">Alur Kerja</span>
-                <h2 class="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tight">4 Langkah Mudah</h2>
-                <p class="text-slate-400 font-medium max-w-2xl mx-auto text-sm sm:text-base">Kelola ujian digital dengan standar keamanan tinggi dalam hitungan menit secara mandiri.</p>
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-black text-white mb-2 uppercase tracking-tight font-outfit">Alur Implementasi</h2>
+                <h3 class="text-2xl lg:text-3xl font-light text-slate-300 uppercase tracking-[0.3em] font-outfit">Schola Exambro</h3>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Step 1 -->
-                <div class="relative group">
-                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-xl font-black text-white/20 group-hover:text-emerald-400 transition-colors z-20 backdrop-blur-sm">01</div>
-                    <div class="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:bg-white/10 transition-all duration-500 h-full relative overflow-hidden group">
-                        <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                <!-- Step 1: Konfigurasi -->
+                <div class="relative pt-6">
+                    <div class="bg-white rounded-[32px] p-8 h-full shadow-2xl shadow-blue-900/20 flex flex-col relative overflow-hidden group">
+                        <!-- Step Badge -->
+                        <div class="absolute top-0 left-8 -translate-y-1/2 bg-[#1e293b] text-white px-5 py-2 rounded-xl text-lg font-black font-outfit z-20">01</div>
+                        
+                        <!-- Icon Placeholder (Matches Mockup) -->
+                        <div class="flex justify-between items-start mb-6 pt-2">
+                            <h4 class="text-xl font-black text-slate-800 uppercase tracking-tight font-outfit">Konfigurasi</h4>
+                            <div class="w-12 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM17 12h-2v2h2v-2zm-4 0h-2v2h2v-2zm-4 0H7v2h2v-2zm8-4h-2v2h2V8zm-4 0h-2v2h2V8zm-4 0H7v2h2V8z"/></svg>
+                            </div>
                         </div>
-                        <h4 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Konfigurasi</h4>
-                        <p class="text-sm text-slate-400 leading-relaxed font-bold opacity-80">Daftarkan URL ujian sekolah Anda di dashboard untuk membuat Barcode aman.</p>
+
+                        <p class="text-[15px] font-bold text-slate-600 leading-relaxed font-sans">
+                            Admin menyiapkan ujian melalui dashboard, mulai dari soal, durasi, hingga peserta. Semua teratur dan siap digunakan sesuai jadwal.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Step 2 -->
-                <div class="relative group">
-                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-xl font-black text-white/20 group-hover:text-emerald-400 transition-colors z-20 backdrop-blur-sm">02</div>
-                    <div class="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:bg-white/10 transition-all duration-500 h-full relative overflow-hidden group">
-                        <div class="w-14 h-14 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" /></svg>
+                <!-- Step 2: Distribusi QR -->
+                <div class="relative pt-6">
+                    <div class="bg-white rounded-[32px] p-8 h-full shadow-2xl shadow-blue-900/20 flex flex-col relative overflow-hidden">
+                         <!-- Step Badge -->
+                        <div class="absolute top-0 left-8 -translate-y-1/2 bg-[#1e293b] text-white px-5 py-2 rounded-xl text-lg font-black font-outfit z-20">02</div>
+
+                        <div class="flex justify-between items-start mb-6 pt-2">
+                            <h4 class="text-xl font-black text-slate-800 uppercase tracking-tight font-outfit">Distribusi QR</h4>
+                            <div class="w-12 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zM13 3v8h8V3h-8zm6 6h-4V5h4v4zM13 13h2v2h-2v-2zm2 2h2v2h-2v-2zm-2 2h2v2h-2v-2zm2 2h2v2h-2v-2zm2-2h2v2h-2v-2zm0-4h2v2h-2v-2zm2 2h2v2h-2v-2z"/></svg>
+                            </div>
                         </div>
-                        <h4 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Distribusi QR</h4>
-                        <p class="text-sm text-slate-400 leading-relaxed font-bold opacity-80">Cetak Barcode atau tampilkan lewat proyektor untuk di-scan oleh para siswa.</p>
+
+                        <p class="text-[15px] font-bold text-slate-600 leading-relaxed font-sans">
+                            Instansi membagikan kode atau QR login kepada peserta. Proses cepat dan langsung terhubung ke sistem ujian.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Step 3 -->
-                <div class="relative group">
-                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-xl font-black text-white/20 group-hover:text-emerald-400 transition-colors z-20 backdrop-blur-sm">03</div>
-                    <div class="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:bg-white/10 transition-all duration-500 h-full relative overflow-hidden group">
-                        <div class="w-14 h-14 bg-purple-500/20 text-purple-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                <!-- Step 3: Aplikasi Client -->
+                <div class="relative pt-6">
+                    <div class="bg-white rounded-[32px] p-8 h-full shadow-2xl shadow-blue-900/20 flex flex-col relative overflow-hidden">
+                        <!-- Step Badge -->
+                        <div class="absolute top-0 left-8 -translate-y-1/2 bg-[#1e293b] text-white px-5 py-2 rounded-xl text-lg font-black font-outfit z-20">03</div>
+
+                        <div class="flex justify-between items-start mb-6 pt-2">
+                            <h4 class="text-xl font-black text-slate-800 uppercase tracking-tight font-outfit">Aplikasi Client</h4>
+                            <div class="w-12 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                            </div>
                         </div>
-                        <h4 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Aplikasi Client</h4>
-                        <p class="text-sm text-slate-400 leading-relaxed font-bold opacity-80">Siswa menggunakan Mobile App untuk scan QR & mengerjakan soal ujian.</p>
+
+                        <p class="text-[15px] font-bold text-slate-600 leading-relaxed font-sans">
+                            Peserta memasukkan kode dan otomatis masuk ke halaman ujian. Sistem berjalan dalam mode fullscreen secure.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Step 4 -->
-                <div class="relative group">
-                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-xl font-black text-white/20 group-hover:text-emerald-400 transition-colors z-20 backdrop-blur-sm">04</div>
-                    <div class="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:bg-white/10 transition-all duration-500 h-full relative overflow-hidden group">
-                        <div class="w-14 h-14 bg-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                <!-- Step 4: Monitoring -->
+                <div class="relative pt-6">
+                    <div class="bg-white rounded-[32px] p-8 h-full shadow-2xl shadow-blue-900/20 flex flex-col relative overflow-hidden">
+                        <!-- Step Badge -->
+                        <div class="absolute top-0 left-8 -translate-y-1/2 bg-[#1e293b] text-white px-5 py-2 rounded-xl text-lg font-black font-outfit z-20">04</div>
+
+                        <div class="flex justify-between items-start mb-6 pt-2">
+                            <h4 class="text-xl font-black text-slate-800 uppercase tracking-tight font-outfit">Monitoring</h4>
+                            <div class="w-12 h-10 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm2-8h4v4H5V5zm8 16h8V11h-8v10zm2-8h4v4h-4v-4zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"/></svg>
+                            </div>
                         </div>
-                        <h4 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Monitoring</h4>
-                        <p class="text-sm text-slate-400 leading-relaxed font-bold opacity-80">Pantau aktivitas login dan progres siswa secara realtime dari dashboard Anda.</p>
+
+                        <p class="text-[15px] font-bold text-slate-600 leading-relaxed font-sans">
+                            Pengawas memantau ujian secara real-time. Jika peserta keluar aplikasi, sistem memberi peringatan otomatis.
+                        </p>
                     </div>
                 </div>
             </div>
