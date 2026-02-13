@@ -227,7 +227,7 @@
                             <td class="px-8 py-4 text-[9px] font-bold text-slate-400 uppercase tracking-widest">{{ $trx->created_at->format('d/m/y, H:i') }}</td>
                             <td class="px-8 py-4 text-right">
                                 @if(!$isSuperAdmin && $trx->status == 'pending' && $trx->snap_token)
-                                    <button onclick="window.snap.pay('{{ $trx->snap_token }}')" class="bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">Bayar</button>
+                                    <a href="{{ $trx->snap_token }}" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">Bayar</a>
                                 @endif
 
                                 @if($trx->status == 'success')
@@ -287,7 +287,7 @@
                             </div>
                             <div class="flex items-center gap-2">
                                 @if(!$isSuperAdmin && $trx->status == 'pending' && $trx->snap_token)
-                                    <button onclick="window.snap.pay('{{ $trx->snap_token }}')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-100">Bayar</button>
+                                    <a href="{{ $trx->snap_token }}" target="_blank" class="bg-indigo-600 text-white px-4 py-2 rounded-xl font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-100">Bayar</a>
                                 @endif
 
                                 @if($trx->status == 'success')
@@ -377,8 +377,7 @@
     </div>
 </div>
 
-<!-- Midtrans Snap Script -->
-<script type="text/javascript" src="{{ config('services.midtrans.is_production') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.sandbox.midtrans.com/snap/snap.js' }}" data-client-key="{{ config('services.midtrans.client_key') }}"></script>
+<!-- Xendit Invoice Redirect Logic -->
 <script>
     const plansData = @json($plans);
     let currentSelectedPlanId = null;
@@ -438,15 +437,8 @@
         .then(response => response.json())
         .then(data => {
             closeReviewModal();
-            if (data.token) {
-                window.snap.pay(data.token, {
-                    onSuccess: function(result) { window.location.href = "{{ route('subscription.success') }}"; },
-                    onPending: function(result) { location.reload(); },
-                    onError: function(result) { 
-                        showAlert('Error', 'Pembayaran gagal! Silakan coba kembali.', 'error');
-                    },
-                    onClose: function() { }
-                });
+            if (data.invoice_url) {
+                window.location.href = data.invoice_url;
             } else {
                 showAlert('Error', data.error || 'Terjadi gangguan pada sistem pembayaran.', 'error');
             }

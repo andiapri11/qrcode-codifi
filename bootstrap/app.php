@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         
         $middleware->validateCsrfTokens(except: [
-            '/payments/midtrans/callback',
+            '/payments/xendit/callback',
         ]);
         
         // $middleware->throttleApi('api', 60); // Default API throttle

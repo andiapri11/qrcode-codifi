@@ -24,6 +24,7 @@ Route::get('/download', [PublicController::class, 'download'])->name('public.dow
 Route::get('/help', function () { return view('legal.help'); })->name('help');
 Route::get('/terms', function () { return view('legal.terms'); })->name('terms');
 Route::get('/privacy', function () { return view('legal.privacy'); })->name('privacy');
+Route::get('/refund', function () { return view('legal.refund'); })->name('refund');
 
 // GET Logout to prevent 419 Page Expired
 Route::get('/logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout.get');
@@ -42,8 +43,8 @@ Route::middleware(['web'])->group(function () {
     Route::post('auth/onboarding', [\App\Http\Controllers\Auth\GoogleController::class, 'completeOnboarding'])->name('auth.onboarding.store');
 });
 
-// Midtrans Callback (Public - Heavily Throttled)
-Route::post('/payments/midtrans/callback', [\App\Http\Controllers\Admin\SubscriptionController::class, 'callback']);
+// Xendit Callback (Public)
+Route::post('/payments/xendit/callback', [\App\Http\Controllers\Admin\SubscriptionController::class, 'callback']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -11,13 +11,13 @@ use Illuminate\Support\Str;
 
 class SubscriptionController extends Controller
 {
-    private $midtrans_server_key;
-    private $midtrans_is_production;
+    private $xendit_api_key;
+    private $xendit_callback_token;
 
     public function __construct()
     {
-        $this->midtrans_server_key = config('services.midtrans.server_key');
-        $this->midtrans_is_production = config('services.midtrans.is_production', false);
+        $this->xendit_api_key = config('services.xendit.api_key');
+        $this->xendit_callback_token = config('services.xendit.callback_token');
     }
 
     public function index()
@@ -116,43 +116,42 @@ class SubscriptionController extends Controller
             'status' => 'pending',
         ]);
 
-        // Midtrans Snap API Request
-        $auth = base64_encode($this->midtrans_server_key . ':');
-        $url = $this->midtrans_is_production 
-            ? 'https://app.midtrans.com/snap/v1/transactions' 
-            : 'https://app.sandbox.midtrans.com/snap/v1/transactions';
+        // Xendit Invoice API Request
+        $auth = base64_encode($this->xendit_api_key . ':');
+        $url = 'https://api.xendit.co/v2/invoices';
 
         try {
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
                 'Authorization' => 'Basic ' . $auth,
             ])->post($url, [
-                'transaction_details' => [
-                    'order_id' => $reference,
-                    'gross_amount' => (int)$plan['price'],
-                ],
-                'customer_details' => [
-                    'first_name' => Auth::user()->name,
+                'external_id' => $reference,
+                'amount' => (int)$plan['price'],
+                'description' => 'Aktivasi Paket ' . $plan['name'] . ' - Schola Exambro',
+                'invoice_duration' => 86400, // 24 hours
+                'customer' => [
+                    'given_names' => Auth::user()->name,
                     'email' => Auth::user()->email,
                 ],
-                'item_details' => [
+                'items' => [
                     [
-                        'id' => $request->plan,
-                        'price' => (int)$plan['price'],
+                        'name' => $plan['name'],
                         'quantity' => 1,
-                        'name' => $plan['name'] . ' Schola CBT',
+                        'price' => (int)$plan['price'],
                     ]
                 ],
+                // Redirect back to our site after payment
+                'success_redirect_url' => route('subscription.success'),
+                'failure_redirect_url' => route('subscription.index'),
             ]);
 
             if ($response->successful()) {
-                $snapToken = $response->json()['token'];
-                $transaction->update(['snap_token' => $snapToken]);
-                return response()->json(['token' => $snapToken]);
+                $invoice = $response->json();
+                $transaction->update(['snap_token' => $invoice['invoice_url']]); // Re-using column for simplicity
+                return response()->json(['invoice_url' => $invoice['invoice_url']]);
             }
 
-            return response()->json(['error' => 'Gagal menghubungi Midtrans: ' . $response->body()], 500);
+            return response()->json(['error' => 'Gagal menghubungi Xendit: ' . $response->body()], 500);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
         }
@@ -162,7 +161,7 @@ class SubscriptionController extends Controller
     {
         $user = Auth::user();
         
-        // Authorization check: only school owner or superadmin
+        // Authorization check
         if ($user->role !== 'superadmin' && $user->school->id !== $transaction->school_id) {
             abort(403, 'Unauthorized access to invoice.');
         }
@@ -178,62 +177,69 @@ class SubscriptionController extends Controller
 
     public function callback(Request $request)
     {
-        $serverKey = $this->midtrans_server_key;
-        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        $xenditCallbackToken = $this->xendit_callback_token;
+        $callbackTokenHeader = $request->header('x-callback-token');
 
-        if ($hashed == $request->signature_key) {
-            $transaction = Transaction::where('reference', $request->order_id)->first();
-            if ($transaction) {
-                if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
-                    $transaction->update([
-                        'status' => 'success',
-                        'paid_at' => now(),
-                        'midtrans_payload' => $request->all()
-                    ]);
+        if ($xenditCallbackToken && $callbackTokenHeader !== $xenditCallbackToken) {
+            return response()->json(['status' => 'error', 'message' => 'Invalid Callback Token'], 403);
+        }
 
-                    // Update School Subscription
-                    $school = $transaction->school;
-                    $type = $transaction->type; // 6_months, 1_year, lifetime
-                    
-                    if ($type == 'lifetime') {
-                         $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
-                            ? $school->subscription_expires_at 
-                            : now();
-                            
-                        $school->update([
-                            'subscription_type' => 'lifetime',
-                            'subscription_expires_at' => $currentExpiry->addMonths(36),
-                            'max_links' => 100, 
-                        ]);
-                    } else {
-                        $months = $type == '6_months' ? 6 : 12;
-                        $addLinks = $type == '6_months' ? 10 : 20;
-                        
-                        $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
-                            ? $school->subscription_expires_at 
-                            : now();
-                        
-                        // Cumulative logic: if not trial/expired, add to existing. Otherwise start fresh.
-                        $newMaxLinks = ($school->subscription_type === 'trial' || !$school->subscription_expires_at || $school->subscription_expires_at->isPast())
-                            ? $addLinks 
-                            : $school->max_links + $addLinks;
+        $external_id = $request->external_id;
+        $status = $request->status; // PAID, SETTLED, etc.
 
-                        $school->update([
-                            'subscription_type' => $type, 
-                            'subscription_expires_at' => $currentExpiry->addMonths($months),
-                            'max_links' => $newMaxLinks,
-                        ]);
-                    }
-                } elseif ($request->transaction_status == 'pending') {
-                    $transaction->update(['status' => 'pending']);
-                } else {
-                    $transaction->update(['status' => 'failed']);
+        $transaction = Transaction::where('reference', $external_id)->first();
+        
+        if ($transaction) {
+            if ($status == 'PAID' || $status == 'SETTLED') {
+                // Prevent duplicate processing
+                if ($transaction->status === 'success') {
+                    return response()->json(['status' => 'success', 'message' => 'Already processed'], 200);
                 }
+
+                $transaction->update([
+                    'status' => 'success',
+                    'paid_at' => now(),
+                    'midtrans_payload' => $request->all() // Re-using column for payload
+                ]);
+
+                // Update School Subscription
+                $school = $transaction->school;
+                $type = $transaction->type;
+                
+                if ($type == 'lifetime') {
+                    $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
+                        ? $school->subscription_expires_at 
+                        : now();
+                        
+                    $school->update([
+                        'subscription_type' => 'lifetime',
+                        'subscription_expires_at' => $currentExpiry->addMonths(36),
+                        'max_links' => 100, 
+                    ]);
+                } else {
+                    $months = $type == '6_months' ? 6 : 12;
+                    $addLinks = $type == '6_months' ? 10 : 20;
+                    
+                    $currentExpiry = ($school->subscription_expires_at && $school->subscription_expires_at->isFuture()) 
+                        ? $school->subscription_expires_at 
+                        : now();
+                    
+                    $newMaxLinks = ($school->subscription_type === 'trial' || !$school->subscription_expires_at || $school->subscription_expires_at->isPast())
+                        ? $addLinks 
+                        : $school->max_links + $addLinks;
+
+                    $school->update([
+                        'subscription_type' => $type, 
+                        'subscription_expires_at' => $currentExpiry->addMonths($months),
+                        'max_links' => $newMaxLinks,
+                    ]);
+                }
+            } elseif ($status == 'EXPIRED') {
+                $transaction->update(['status' => 'failed']);
             }
         }
 
         return response()->json(['status' => 'success'], 200);
-
     }
 
     public function destroyTransaction(Transaction $transaction)
