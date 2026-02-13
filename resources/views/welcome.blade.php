@@ -238,7 +238,7 @@
                     <!-- Premium UI Mockup Illustration -->
                     <div class="relative z-10">
                         <div class="rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-200">
-                            <img src="{{ asset('assets/images/materi1.jpg') }}" alt="Download Aplikasi Exambro - Tampilan Schola Exambro" class="w-full h-auto">
+                            <img src="{{ asset('assets/images/materi1.webp') }}" alt="Download Aplikasi Exambro - Tampilan Schola Exambro" class="w-full h-auto">
                         </div>
                     </div>
                 </div>
