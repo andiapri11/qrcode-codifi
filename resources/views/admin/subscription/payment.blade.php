@@ -6,13 +6,24 @@
     /* Focus Mode: Keep sidebar, hide top header only */
     nav.sticky, header.bg-white { display: none !important; }
     main { padding-top: 1.5rem !important; }
+    
+    /* Mobile Iframe Adjustments */
+    @media (max-width: 768px) {
+        #paymentIframe { 
+            height: 900px !important; 
+            margin-top: -95px !important; 
+        }
+        .payment-container {
+            border-radius: 1.5rem !important;
+        }
+    }
 </style>
 
-<div class="flex items-center justify-center py-4 md:py-8 animate-in fade-in duration-1000">
-    <div class="w-full max-w-[1100px] bg-white rounded-3xl shadow-[0_48px_100px_-24px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden flex flex-col md:flex-row min-h-[750px]">
+<div class="flex items-center justify-center py-2 md:py-8 animate-in fade-in duration-1000">
+    <div class="w-full max-w-[1100px] bg-white rounded-[2rem] md:rounded-3xl shadow-[0_48px_100px_-24px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden flex flex-col md:flex-row min-h-[600px] md:min-h-[750px] mx-2">
         
         <!-- Left Column: Order Summary -->
-        <div class="w-full md:w-[420px] bg-slate-50/40 border-r border-slate-100 p-8 md:p-14 flex flex-col">
+        <div class="w-full md:w-[420px] bg-slate-50/40 border-b md:border-b-0 md:border-r border-slate-100 p-6 md:p-14 flex flex-col">
             <a href="{{ route('subscription.index') }}" class="inline-flex items-center text-[11px] font-black text-slate-400 hover:text-slate-900 transition-all mb-16 group tracking-widest">
                 <svg class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" /></svg>
                 KEMBALI
