@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ asset('favicon-new.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('favicon-new.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico?v=2') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon.ico?v=2') }}" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('assets/images/logo.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/logo.png') }}">
     <link rel="icon" type="image/png" sizes="144x144" href="{{ asset('assets/images/logo.png') }}">
@@ -79,7 +79,7 @@
         <div class="max-w-7xl mx-auto px-6 w-full flex items-center justify-between">
             <a href="/" class="flex items-center gap-1.5 group">
                 <div class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <img src="{{ asset('assets/images/logo.png?v=3') }}" alt="Logo" class="w-full h-full object-contain">
+                    <img src="{{ asset('assets/images/logo.png?v=4') }}" alt="Logo" class="w-full h-full object-contain">
                 </div>
                 <div class="text-[18px] lg:text-[22px] font-black flex items-center leading-none tracking-[-0.07em]">
                     <span class="text-slate-900 uppercase">SCHOLA</span>
