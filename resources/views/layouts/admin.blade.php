@@ -8,13 +8,12 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="{{ asset('favicon.ico?v=2') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('favicon.ico?v=2') }}" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="icon" type="image/png" sizes="144x144" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/logo.png?v=5') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/logo.png?v=5') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('assets/images/logo.png?v=5') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png?v=5') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico?v=3') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon.ico?v=3') }}" type="image/x-icon">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
