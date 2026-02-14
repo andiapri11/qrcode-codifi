@@ -13,51 +13,50 @@
         
         <!-- Left Column: Order Summary -->
         <div class="w-full md:w-[420px] bg-slate-50/40 border-r border-slate-100 p-8 md:p-14 flex flex-col">
-            <div class="mb-auto">
-                <a href="{{ route('subscription.index') }}" class="inline-flex items-center text-[11px] font-black text-slate-400 hover:text-slate-900 transition-all mb-16 group tracking-widest">
-                    <svg class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" /></svg>
-                    KEMBALI
-                </a>
+            <a href="{{ route('subscription.index') }}" class="inline-flex items-center text-[11px] font-black text-slate-400 hover:text-slate-900 transition-all mb-16 group tracking-widest">
+                <svg class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" /></svg>
+                KEMBALI
+            </a>
 
-                <div class="space-y-2 mb-12">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
-                        <span class="text-[10px] font-black text-indigo-600 tracking-[0.3em] uppercase">Checkout</span>
-                    </div>
-                    <h2 class="text-4xl font-medium text-slate-900 tracking-tighter leading-[1.1]">Konfirmasi<br>Pembayaran</h2>
+            <div class="space-y-2 mb-12">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                    <span class="text-[10px] font-black text-indigo-600 tracking-[0.3em] uppercase">Checkout</span>
                 </div>
-
-                <div class="space-y-8">
-                    <div class="flex justify-between items-start">
-                        <div class="space-y-1.5">
-                            <p class="text-[14px] font-bold text-slate-800 uppercase tracking-tight">{{ $plan['name'] }}</p>
-                            <p class="text-[12px] text-slate-500 font-medium">Subscription Plan ({{ $plan['duration'] }})</p>
-                        </div>
-                        <span class="text-[14px] font-black text-slate-900">IDR {{ number_format($transaction->amount, 0, ',', '.') }}</span>
-                    </div>
-
-                    <div class="h-px bg-slate-200/50 w-full"></div>
-
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center text-[12px] text-slate-500 font-medium tracking-tight">
-                            <span>Subtotal</span>
-                            <span>IDR {{ number_format($transaction->amount, 0, ',', '.') }}</span>
-                        </div>
-                        <div class="flex justify-between items-center text-[12px] text-slate-500 font-medium tracking-tight">
-                            <span>Biaya Transaksi</span>
-                            <span class="text-emerald-500 text-[10px] font-black uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded-md">Free</span>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="text-4xl font-medium text-slate-900 tracking-tighter leading-[1.1]">Konfirmasi<br>Pembayaran</h2>
             </div>
 
-            <div class="mt-16 pt-12 border-t border-slate-200/50">
-                <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] block mb-3">Total Payable</span>
-                <div class="text-5xl font-light text-slate-950 tracking-tighter flex items-baseline gap-1">
-                    <span class="text-xl font-medium text-slate-400">IDR</span>{{ number_format($transaction->amount, 0, ',', '.') }}
+            <div class="space-y-8">
+                <div class="flex justify-between items-start">
+                    <div class="space-y-1.5">
+                        <p class="text-[14px] font-bold text-slate-800 uppercase tracking-tight">{{ $plan['name'] }}</p>
+                        <p class="text-[12px] text-slate-500 font-medium">Subscription Plan ({{ $plan['duration'] }})</p>
+                    </div>
+                    <span class="text-[14px] font-black text-slate-900">IDR {{ number_format($transaction->amount, 0, ',', '.') }}</span>
+                </div>
+
+                <div class="h-px bg-slate-200/50 w-full"></div>
+
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center text-[12px] text-slate-500 font-medium tracking-tight">
+                        <span>Subtotal</span>
+                        <span>IDR {{ number_format($transaction->amount, 0, ',', '.') }}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-[12px] text-slate-500 font-medium tracking-tight">
+                        <span>Biaya Transaksi</span>
+                        <span class="text-emerald-500 text-[10px] font-black uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded-md">Free</span>
+                    </div>
+                </div>
+
+                <!-- Total moved up right after the fees -->
+                <div class="pt-8 border-t border-slate-900/10">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] block mb-3">Total Payable</span>
+                    <div class="text-5xl font-light text-slate-950 tracking-tighter flex items-baseline gap-1">
+                        <span class="text-xl font-medium text-slate-400 uppercase">IDR</span>{{ number_format($transaction->amount, 0, ',', '.') }}
+                    </div>
                 </div>
                 
-                <div class="mt-10 flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                <div class="mt-6 flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
                     <div class="flex items-center gap-3">
                         <div class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></div>
                         <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest tabular-nums" id="countdown">00:00:00</span>
@@ -69,18 +68,12 @@
 
         <!-- Right Column: Focus Payment -->
         <div class="flex-1 flex flex-col relative bg-white">
-            <!-- Floating Security Indicator -->
-            <div class="absolute top-10 right-10 flex items-center gap-2 group cursor-help z-20">
-                <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">AES-256 Encrypted</span>
-                <svg class="w-4 h-4 text-slate-200 group-hover:text-emerald-500 transition-colors" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" /></svg>
-            </div>
-
             <!-- Loader -->
             <div id="paymentLoader" class="absolute inset-0 z-30 bg-white flex flex-col items-center justify-center transition-all duration-700">
                 <div class="w-8 h-8 border-[3px] border-slate-50 border-t-indigo-600 rounded-full animate-spin"></div>
             </div>
 
-            <!-- Iframe Section: Deep Negative Margin to Hide Internal Header -->
+            <!-- Iframe Section -->
             <div class="flex-1 overflow-hidden">
                 <iframe 
                     src="{{ $transaction->snap_token }}" 
@@ -91,12 +84,12 @@
                 ></iframe>
             </div>
 
-            <!-- Subtle Trust Signatures -->
-            <div class="p-8 border-t border-slate-50 bg-slate-50/20 flex flex-wrap justify-center items-center gap-x-8 gap-y-4 grayscale opacity-20 hover:opacity-100 transition-opacity duration-500">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Visa_2021.svg/1200px-Visa_2021.svg.png" class="h-2.5">
+            <!-- Fixed Logo Assets -->
+            <div class="p-8 border-t border-slate-50 bg-slate-50/20 flex flex-wrap justify-center items-center gap-x-10 gap-y-4 grayscale opacity-20 hover:opacity-100 transition-opacity duration-500">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" class="h-2.5">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" class="h-4">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/JCB_logo.svg/1280px-JCB_logo.svg.png" class="h-4">
-                <img src="https://static.okrs.id/assets/images/payment/qris.png" class="h-5">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/JCB_logo.svg/1200px-JCB_logo.svg.png" class="h-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Pay_Logo_%282020%29.svg/1200px-Google_Pay_Logo_%282020%29.svg.png" class="h-3">
             </div>
         </div>
     </div>
