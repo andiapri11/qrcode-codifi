@@ -6,81 +6,80 @@
     <title>Syarat & Ketentuan | Schola Exambro</title>
     <link rel="shortcut icon" href="{{ asset('favicon-new.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('favicon-new.ico') }}" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="icon" type="image/png" sizes="144x144" href="{{ asset('assets/images/logo.png') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png') }}">
-    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = { darkMode: 'class' }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Outfit', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .glass-header {
-            background: rgba(255, 255, 255, 0.82);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
-        .dark .glass-header {
-            background: rgba(15, 23, 42, 0.82);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .prose h2 { @apply text-2xl font-bold mt-10 mb-4 text-slate-800 dark:text-blue-400; }
-        .prose p { @apply text-slate-600 dark:text-slate-400 leading-relaxed mb-6; }
     </style>
 </head>
-<body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
+<body class="bg-slate-50 text-slate-900 min-h-screen antialiased">
 
-    <header class="sticky top-0 z-50 glass-header px-6 py-4">
-        <div class="max-w-4xl mx-auto flex items-center justify-between">
-            <a href="{{ route('login') }}" class="flex items-center gap-2">
+    <!-- Simple Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-header h-20 flex items-center">
+        <div class="max-w-4xl mx-auto w-full px-6 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="w-8 h-8">
-                <span class="font-black text-lg tracking-tighter">Schola <span class="text-blue-600 italic">CBT</span></span>
+                <span class="font-black text-lg tracking-tighter uppercase">Schola <span class="text-emerald-600">Exambro</span></span>
             </a>
-            <button onclick="toggleDarkMode()" class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full">
-                <svg id="moonIcon" class="w-5 h-5 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                <svg id="sunIcon" class="w-5 h-5 hidden dark:block text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-            </button>
+            <a href="/" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-900 transition-colors">Kembali ke Beranda</a>
         </div>
-    </header>
+    </nav>
 
-    <main class="max-w-4xl mx-auto px-6 py-16 prose">
-        <h1 class="text-4xl md:text-5xl font-black mb-10 tracking-tight">Syarat & <span class="text-blue-600">Ketentuan</span></h1>
-        
-        <p class="text-slate-400 text-sm italic mb-10">Terakhir diperbarui: 2 Februari 2026</p>
+    <main class="max-w-4xl mx-auto px-6 pt-32 pb-24">
+        <div class="bg-white rounded-[2.5rem] p-8 md:p-16 border border-slate-200 shadow-sm">
+            <h1 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight uppercase">Syarat & <span class="text-emerald-600">Ketentuan</span></h1>
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-12">Terakhir Diperbarui: 14 Februari 2026</p>
 
-        <section>
-            <h2>1. Penerimaan Ketentuan</h2>
-            <p>Dengan mengakses dan menggunakan layanan Schola Exambro, Anda setuju untuk terikat oleh syarat dan ketentuan ini. Jika Anda tidak setuju, harap jangan melanjutkan penggunaan layanan kami.</p>
-            
-            <h2>2. Pendaftaran Akun</h2>
-            <p>Pengguna wajib memberikan informasi yang akurat dan lengkap saat pendaftaran. Keamanan kata sandi adalah tanggung jawab penuh masing-masing instansi pengguna.</p>
+            <div class="space-y-10">
+                <section>
+                    <h2 class="text-xl font-black text-slate-900 mb-4 uppercase tracking-tight italic">1. Identitas Layanan</h2>
+                    <p class="text-slate-600 leading-relaxed font-medium text-sm md:text-base">
+                        Layanan Schola Exambro yang diakses melalui website ini dikelola secara sah oleh <strong>PT. CIPTA INOVASI DIGITAL</strong>. Dengan menggunakan layanan kami, Anda menyatakan telah membaca, memahami, dan menyetujui seluruh ketentuan yang ditetapkan di bawah ini.
+                    </p>
+                </section>
 
-            <h2>3. Penggunaan Layanan</h2>
-            <p>Schola Exambro dilarang digunakan untuk kegiatan ilegal, penipuan, atau tindakan yang dapat merusak integritas sistem ujian digital.</p>
+                <section>
+                    <h2 class="text-xl font-black text-slate-900 mb-4 uppercase tracking-tight italic">2. Kepemilikan Akun</h2>
+                    <p class="text-slate-600 leading-relaxed font-medium text-sm md:text-base">
+                        Setiap akun admin instansi pendidikan wajib didaftarkan menggunakan data yang valid. Anda bertanggung jawab penuh atas segala aktivitas yang terjadi di bawah akun Anda dan wajib menjaga kerahasiaan kredensial login Anda.
+                    </p>
+                </section>
 
-            <h2>4. Pembatalan & Pengembalian Dana</h2>
-            <p>Kebijakan langganan bersifat final. Instansi yang ingin berhenti dapat membatalkan langganan sebelum periode berikutnya dimulai.</p>
-        </section>
+                <section>
+                    <h2 class="text-xl font-black text-slate-900 mb-4 uppercase tracking-tight italic">3. Ketentuan Penggunaan Aplikasi</h2>
+                    <p class="text-slate-600 leading-relaxed font-medium text-sm md:text-base">
+                        Penggunaan layanan kami ditujukan untuk integritas ujian digital. Pengguna dilarang keras melakukan upaya reverse-engineering, peretasan, atau penggunaan sistem untuk kegiatan yang melanggar hukum di wilayah Republik Indonesia.
+                    </p>
+                </section>
 
-        <div class="mt-20 pt-10 border-t border-slate-100 dark:border-slate-900 flex justify-between items-center">
-            <a href="{{ route('login') }}" class="text-blue-600 font-bold flex items-center gap-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-                Kembali
-            </a>
-            <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">Copyright © 2026 ScholaCBT</p>
+                <section>
+                    <h2 class="text-xl font-black text-slate-900 mb-4 uppercase tracking-tight italic">4. Transaksi & Pembayaran</h2>
+                    <p class="text-slate-600 leading-relaxed font-medium text-sm md:text-base">
+                        Segala bentuk transaksi pembayaran langganan dilakukan secara otomatis melalui gateway pembayaran resmi kami. Proses aktivasi fitur premium akan dilakukan segera setelah sistem kami menerima konfirmasi pembayaran sukses.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-black text-slate-900 mb-4 uppercase tracking-tight italic">5. Perubahan Ketentuan</h2>
+                    <p class="text-slate-600 leading-relaxed font-medium text-sm md:text-base">
+                        <strong>PT. CIPTA INOVASI DIGITAL</strong> berhak melakukan perubahan atau pembaruan pada Syarat & Ketentuan ini sewaktu-waktu tanpa pemberitahuan sebelumnya. Perubahan akan berlaku efektif segera setelah dipublikasikan di halaman ini.
+                    </p>
+                </section>
+            </div>
+
+            <div class="mt-20 pt-12 border-t border-slate-100">
+                <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest text-center">
+                    &copy; 2026 PT. CIPTA INOVASI DIGITAL. Seluruh hak cipta dilindungi undang-undang.
+                </p>
+            </div>
         </div>
     </main>
-
-    <script>
-        if (localStorage.getItem('dark-mode') === 'true') document.documentElement.classList.add('dark');
-        function toggleDarkMode() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('dark-mode', isDark);
-        }
-    </script>
 </body>
 </html>
