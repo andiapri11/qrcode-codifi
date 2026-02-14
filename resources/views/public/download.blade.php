@@ -11,8 +11,51 @@
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/logo.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
-    <title>Download Schola Exambro - Aplikasi Ujian Aman</title>
-    <meta name="description" content="Download aplikasi Schola Exambro untuk Windows dan Android. Solusi ujian digital paling aman dengan fitur pembatasan akses ketat.">
+    <title>Download Schola Exambro - Aplikasi CBT Windows & Android (Resmi)</title>
+    <meta name="description" content="Pusat unduhan resmi Schola Exambro untuk Windows dan Android. Solusi terbaik untuk ujian digital (CBT) yang aman, anti-curang, dan profesional.">
+    <meta name="keywords" content="Download Exambro, Exam Browser Windows, Exambro Android APK, Aplikasi Ujian Digital, Schola Exambro">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/download') }}">
+    <meta property="og:title" content="Download Schola Exambro - Aplikasi CBT Aman">
+    <meta property="og:description" content="Download installer resmi Schola Exambro untuk Windows dan Android. Ujian sekolah jadi lebih aman dan anti-curang.">
+    <meta property="og:image" content="{{ asset('assets/images/logo.png') }}">
+
+    <link rel="canonical" href="{{ url('/download') }}">
+
+    <!-- Schema.org for Google -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ url('/') }}"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Download",
+          "item": "{{ url('/download') }}"
+        }]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Schola Exambro",
+        "operatingSystem": "Windows, Android",
+        "applicationCategory": "EducationApplication",
+        "downloadUrl": "{{ url('/download') }}",
+        "description": "Installer resmi Schola Exambro untuk keperluan ujian digital sekolah.",
+        "softwareVersion": "{{ $settings['app_version'] ?? '1.1.2' }}"
+      }
+    ]
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>

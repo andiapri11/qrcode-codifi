@@ -13,48 +13,91 @@
     <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
-    <title>Schola Exambro - Aplikasi Ujian Digital Anti-Curang Paling Aman</title>
-    <meta name="description" content="Download aplikasi Exambro resmi dari Schola Exambro. Platform management ujian digital (CBT) & lockdown browser paling aman dengan fitur Whitelabel Sekolah dan QR Code Instant.">
-    <meta name="keywords" content="Schola Exambro, Aplikasi CBT, Lockdown Browser, Ujian Sekolah Online, Anti-Curang, Codifi, Exam Browser Desktop">
+    <title>Schola Exambro - Aplikasi Ujian Digital & Lockdown Browser Aman</title>
+    <meta name="description" content="Download Schola Exambro, platform management ujian digital (CBT) & lockdown browser paling aman. Dilengkapi fitur Whitelabel Sekolah, Anti-Curang, dan QR Code Instant.">
+    <meta name="keywords" content="Schola Exambro, Aplikasi CBT, Lockdown Browser, Ujian Sekolah Online, Anti-Curang, Codifi, Exam Browser Desktop, Exam Browser Android">
     <meta name="author" content="Codifi Team">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:title" content="Schola Exambro - Aplikasi Ujian Digital Anti-Curang">
-    <meta property="og:description" content="Tingkatkan integritas ujian sekolah dengan Schola Exambro. Branding logo sekolah sendiri dan fitur penguncian sistem level tinggi.">
-    <meta property="og:image" content="{{ asset('assets/images/logo.png') }}">
+    <meta property="og:title" content="Schola Exambro - Solusi Ujian Digital Aman & Profesional">
+    <meta property="og:description" content="Tingkatkan integritas ujian sekolah dengan Schola Exambro. Fitur penguncian tingkat tinggi dan branding logo sekolah sendiri.">
+    <meta property="og:image" content="{{ asset('assets/images/materi1.webp') }}">
+    <meta property="og:site_name" content="Schola Exambro">
 
     <!-- Schema.org for Google -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Schola Exambro",
-      "url": "{{ url('/') }}",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "{{ url('/') }}/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Schola Exambro",
-      "operatingSystem": "Windows, Android",
-      "applicationCategory": "EducationApplication",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Codifi ID",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "{{ asset('assets/images/logo.png') }}"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Schola Exambro",
+        "alternateName": "Schola Exam Browser",
+        "url": "{{ url('/') }}",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "{{ url('/') }}/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
         }
       },
-      "description": "Aplikasi management ujian digital (CBT) paling aman dengan fitur Whitelabel Instansi."
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Schola Exambro",
+        "operatingSystem": "Windows, Android",
+        "applicationCategory": "EducationApplication",
+        "publisher": {
+          "@type": "Organization",
+          "name": "PT. CIPTA INOVASI DIGITAL",
+          "url": "https://codifi.id",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ asset('assets/images/logo.png') }}"
+          }
+        },
+        "description": "Aplikasi management ujian digital (CBT) paling aman dengan fitur Whitelabel Instansi.",
+        "offers": {
+          "@type": "Offer",
+          "price": "200000",
+          "priceCurrency": "IDR"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "Apakah aplikasi ini benar-benar aman dari kecurangan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sangat aman. Schola Exambro menggunakan teknologi lock-screen yang sangat ketat. Aplikasi akan otomatis mendeteksi jika siswa mencoba membuka aplikasi lain, melakukan screenshot, atau mencoba menggunakan fitur split-screen di ponsel mereka."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Metode pembayaran apa saja yang didukung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kami mendukung berbagai metode pembayaran otomatis melalui Xendit, termasuk QRIS (Dana, OVO, GoPay, ShopeePay), Transfer Bank (Virtual Account), dan gerai retail seperti Alfamart."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Berapa lama proses aktivasi akun setelah membayar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Proses aktivasi berlangsung secara otomatis dan instan segera setelah pembayaran Anda terverifikasi oleh sistem."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Apakah sekolah harus memiliki server sendiri?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tidak perlu. Schola Exambro berbasis Cloud. Pihak sekolah hanya perlu memiliki koneksi internet dan dashboard admin untuk mengelola link ujian."
+          }
+        }]
+      }
+    ]
     </script>
 
     <link rel="canonical" href="{{ url()->current() }}">

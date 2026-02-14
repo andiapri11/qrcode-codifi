@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kebijakan Pengembalian Dana | Schola Exambro</title>
+    <meta name="description" content="Kebijakan pengembalian dana (refund) Schola Exambro. Informasi mengenai kelayakan refund, proses pengajuan, dan biaya administrasi transaksi.">
+    <meta name="keywords" content="refund policy, pengembalian dana, schola exambro, xendit refund">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url('/refund') }}">
     <link rel="shortcut icon" href="{{ asset('favicon-new.ico') }}" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('assets/images/logo.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>

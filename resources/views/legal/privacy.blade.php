@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kebijakan Privasi | Schola Exambro</title>
+    <meta name="description" content="Kebijakan privasi Schola Exambro. Komitmen kami dalam melindungi data pengguna, penggunaan izin perangkat, dan standar keamanan informasi.">
+    <meta name="keywords" content="privacy policy, kebijakan privasi, perlindungan data, schola exambro">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url('/privacy') }}">
     <link rel="shortcut icon" href="{{ asset('favicon-new.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('favicon-new.ico') }}" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/logo.png') }}">
