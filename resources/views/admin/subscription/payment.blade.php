@@ -83,14 +83,6 @@
                     onload="handleIframeLoad()"
                 ></iframe>
             </div>
-
-            <!-- Fixed Logo Assets -->
-            <div class="p-8 border-t border-slate-50 bg-slate-50/20 flex flex-wrap justify-center items-center gap-x-10 gap-y-4 grayscale opacity-20 hover:opacity-100 transition-opacity duration-500">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" class="h-2.5">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" class="h-4">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/JCB_logo.svg/1200px-JCB_logo.svg.png" class="h-4">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Pay_Logo_%282020%29.svg/1200px-Google_Pay_Logo_%282020%29.svg.png" class="h-3">
-            </div>
         </div>
     </div>
 </div>
