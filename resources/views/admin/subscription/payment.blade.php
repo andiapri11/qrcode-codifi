@@ -3,12 +3,12 @@
 @section('content')
 <!-- Stripe-Inspired Minimalist Checkout -->
 <style>
-    /* Focus Mode: Hide Dashboard Sidebar & Header for pure checkout */
-    nav.sticky, aside, header.bg-white { display: none !important; }
-    main { padding-top: 0 !important; margin-top: 0 !important; }
+    /* Focus Mode: Keep sidebar, hide top header only */
+    nav.sticky, header.bg-white { display: none !important; }
+    main { padding-top: 1.5rem !important; }
 </style>
 
-<div class="min-h-screen flex items-center justify-center py-0 md:py-12 animate-in fade-in duration-1000 bg-slate-50/30">
+<div class="flex items-center justify-center py-4 md:py-8 animate-in fade-in duration-1000">
     <div class="w-full max-w-[1100px] bg-white rounded-3xl shadow-[0_48px_100px_-24px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden flex flex-col md:flex-row min-h-[750px]">
         
         <!-- Left Column: Order Summary -->
