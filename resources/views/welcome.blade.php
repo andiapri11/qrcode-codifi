@@ -29,6 +29,14 @@
     <meta property="og:image" content="{{ asset('assets/images/materi1.webp') }}">
     <meta property="og:site_name" content="Schola Exambro">
 
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Schola Exambro - Aplikasi Exam Browser #1 di Indonesia">
+    <meta name="twitter:description" content="Aplikasi management ujian digital (CBT) paling aman dengan fitur Whitelabel Instansi.">
+    <meta name="twitter:image" content="{{ asset('assets/images/materi1.webp') }}">
+
+    <meta name="theme-color" content="#3C50E0">
+
     <!-- Schema.org for Google -->
     <script type="application/ld+json">
     [
@@ -179,7 +187,7 @@
         <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 h-16 lg:h-24 flex items-center justify-between">
             <div class="flex items-center gap-1.5 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <div class="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <img src="{{ asset('assets/images/logo.png?v=4') }}" alt="Logo" class="w-full h-full object-contain">
+                    <img src="{{ asset('assets/images/logo.png?v=4') }}" alt="Logo Schola Exambro - Aplikasi Ujian Digital" class="w-full h-full object-contain">
                 </div>
                 <div class="text-[18px] lg:text-[22px] font-black flex items-center leading-none tracking-[-0.07em]">
                     <span class="text-slate-900 uppercase">SCHOLA</span>
@@ -283,7 +291,7 @@
                     <!-- Premium UI Mockup Illustration -->
                     <div class="relative z-10">
                         <div class="rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-200">
-                            <img src="{{ asset('assets/images/materi1.webp') }}" alt="Download Aplikasi Exambro - Tampilan Schola Exambro" class="w-full h-auto">
+                            <img src="{{ asset('assets/images/materi1.webp') }}" alt="Tampilan Dashboard Aplikasi Schola Exambro untuk Windows dan Android" class="w-full h-auto">
                         </div>
                     </div>
                 </div>
