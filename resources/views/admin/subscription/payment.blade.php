@@ -56,13 +56,6 @@
                     </div>
                 </div>
                 
-                <div class="mt-6 flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
-                    <div class="flex items-center gap-3">
-                        <div class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></div>
-                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest tabular-nums" id="countdown">00:00:00</span>
-                    </div>
-                    <svg class="w-4 h-4 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                </div>
             </div>
         </div>
 
@@ -103,32 +96,5 @@
         }, 800);
     }
 
-    function startCountdown() {
-        const expiry = new Date("{{ $transaction->created_at->addHours(24)->toIso8601String() }}").getTime();
-        const display = document.getElementById('countdown');
-        
-        const update = () => {
-            const now = new Date().getTime();
-            const diff = expiry - now;
-
-            if (diff <= 0) {
-                display.innerText = "TAGIHAN EXPIRED";
-                return;
-            }
-
-            const h = Math.floor(diff / (1000 * 60 * 60));
-            const m = Math.floor((diff / (1000 * 60)) % 60);
-            const s = Math.floor((diff / 1000) % 60);
-
-            display.innerText = "SISA WAKTU: " + 
-                String(h).padStart(2, '0') + ":" + 
-                String(m).padStart(2, '0') + ":" + 
-                String(s).padStart(2, '0');
-            
-            requestAnimationFrame(update);
-        };
-        update();
-    }
-    startCountdown();
 </script>
 @endsection
