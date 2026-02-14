@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="id">
+    <meta name="geo.region" content="ID-SS">
+    <meta name="geo.placename" content="Sumatera Selatan">
     <meta name="google-site-verification" content="W2cgEcBUfDyFXgYD7cgWT_b-ZnF0E5H0vYpPJfKxIys" />
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/logo.png?v=5') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/logo.png?v=5') }}">
