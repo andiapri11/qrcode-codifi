@@ -226,8 +226,8 @@
                             </td>
                             <td class="px-8 py-4 text-[9px] font-bold text-slate-400 uppercase tracking-widest">{{ $trx->created_at->format('d/m/y, H:i') }}</td>
                             <td class="px-8 py-4 text-right">
-                                @if(!$isSuperAdmin && $trx->status == 'pending' && $trx->snap_token)
-                                    <a href="{{ $trx->snap_token }}" target="_blank" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">Bayar</a>
+                                @if(!$isSuperAdmin && $trx->status == 'pending')
+                                    <a href="{{ route('subscription.payment', $trx->reference) }}" class="inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">Bayar</a>
                                 @endif
 
                                 @if($trx->status == 'success')
@@ -286,8 +286,8 @@
                                 <div class="text-xs font-black text-slate-900 dark:text-white mt-0.5">Rp{{ number_format($trx->amount, 0, ',', '.') }}</div>
                             </div>
                             <div class="flex items-center gap-2">
-                                @if(!$isSuperAdmin && $trx->status == 'pending' && $trx->snap_token)
-                                    <a href="{{ $trx->snap_token }}" target="_blank" class="bg-indigo-600 text-white px-4 py-2 rounded-xl font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-100">Bayar</a>
+                                @if(!$isSuperAdmin && $trx->status == 'pending')
+                                    <a href="{{ route('subscription.payment', $trx->reference) }}" class="bg-indigo-600 text-white px-4 py-2 rounded-xl font-black text-[8px] uppercase tracking-widest hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-100">Bayar</a>
                                 @endif
 
                                 @if($trx->status == 'success')
@@ -437,8 +437,8 @@
         .then(response => response.json())
         .then(data => {
             closeReviewModal();
-            if (data.invoice_url) {
-                window.location.href = data.invoice_url;
+            if (data.redirect_url) {
+                window.location.href = data.redirect_url;
             } else {
                 showAlert('Error', data.error || 'Terjadi gangguan pada sistem pembayaran.', 'error');
             }

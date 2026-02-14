@@ -53,6 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/subscription', [\App\Http\Controllers\Admin\SubscriptionController::class, 'index'])->name('subscription.index');
     Route::post('/subscription/checkout', [\App\Http\Controllers\Admin\SubscriptionController::class, 'checkout'])->name('subscription.checkout');
     Route::get('/subscription/success', [\App\Http\Controllers\Admin\SubscriptionController::class, 'success'])->name('subscription.success');
+    Route::get('/subscription/payment/{reference}', [\App\Http\Controllers\Admin\SubscriptionController::class, 'paymentDetail'])->name('subscription.payment');
     Route::get('/subscription/transactions/{transaction}/invoice', [\App\Http\Controllers\Admin\SubscriptionController::class, 'showInvoice'])->name('subscription.transactions.invoice');
     Route::delete('/subscription/transactions/{transaction}', [\App\Http\Controllers\Admin\SubscriptionController::class, 'destroyTransaction'])->name('subscription.transactions.destroy');
 

@@ -148,13 +148,43 @@ class SubscriptionController extends Controller
             if ($response->successful()) {
                 $invoice = $response->json();
                 $transaction->update(['snap_token' => $invoice['invoice_url']]); // Re-using column for simplicity
-                return response()->json(['invoice_url' => $invoice['invoice_url']]);
+                return response()->json([
+                    'success' => true,
+                    'redirect_url' => route('subscription.payment', $reference)
+                ]);
             }
 
             return response()->json(['error' => 'Gagal menghubungi Xendit: ' . $response->body()], 500);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
         }
+    }
+
+    public function paymentDetail($reference)
+    {
+        $transaction = Transaction::where('reference', $reference)->firstOrFail();
+        $user = Auth::user();
+
+        // Security: Only owner or superadmin can view
+        if ($user->role !== 'superadmin' && $user->school->id !== $transaction->school_id) {
+            abort(403);
+        }
+
+        // If already success, redirect to success page
+        if ($transaction->status === 'success') {
+            return redirect()->route('subscription.success');
+        }
+
+        // Define plans for UI
+        $plans = [
+             '6_months' => ['name' => 'Basic Semester', 'duration' => '6 Bulan'],
+             '1_year' => ['name' => 'Basic Annual', 'duration' => '1 Tahun'],
+             'lifetime' => ['name' => 'Exclusive Pro (3Y)', 'duration' => '3 Tahun'],
+        ];
+        
+        $plan = $plans[$transaction->type] ?? ['name' => 'Premium Plan', 'duration' => '-'];
+
+        return view('admin.subscription.payment', compact('transaction', 'plan'));
     }
 
     public function showInvoice(Transaction $transaction)
