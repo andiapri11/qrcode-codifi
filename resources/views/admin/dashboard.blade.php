@@ -320,7 +320,7 @@
                  <p class="text-[11px] text-indigo-200 font-bold leading-snug mb-5 opacity-90 uppercase tracking-wide">Butuh bantuan atau perpanjangan paket?</p>
                  
                  @php
-                    $waNumber = '6285768441485';
+                     $waNumber = '628218144726';
                     $waMessage = "Halo Support Schola, Saya " . $user->name . " dari " . ($user->school->name ?? 'Instansi') . ". Saya butuh bantuan mengenai...";
                     $waUrl = "https://wa.me/" . $waNumber . "?text=" . urlencode($waMessage);
                  @endphp

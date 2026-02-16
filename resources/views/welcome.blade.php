@@ -202,7 +202,7 @@
                 <a href="#how-it-works" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Cara Kerja</a>
                 <a href="#pricing" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Harga Layanan</a>
                 <a href="{{ route('public.download') }}" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-indigo-600 hover:text-indigo-700 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Download Gratis</a>
-                <a href="https://wa.me/6285768441485" target="_blank" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Hubungi Sales</a>
+                <a href="https://wa.me/628218144726" target="_blank" class="px-5 py-2.5 rounded-xl text-[10px] font-black text-slate-500 hover:text-slate-900 hover:bg-slate-100 uppercase tracking-[0.2em] transition-all">Hubungi Sales</a>
             </div>
 
             <div class="flex items-center gap-3 sm:gap-5">
@@ -233,7 +233,7 @@
                 <a href="#how-it-works" onclick="toggleMobileMenu()" class="block px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-brand-500 border-b border-slate-50">Cara Kerja</a>
                 <a href="#pricing" onclick="toggleMobileMenu()" class="block px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-brand-500 border-b border-slate-50">Harga</a>
                 <a href="{{ route('public.download') }}" onclick="toggleMobileMenu()" class="block px-6 py-4 text-[10px] font-black text-indigo-600 uppercase tracking-widest hover:text-indigo-700 border-b border-slate-50">Download Gratis</a>
-                <a href="https://wa.me/6285768441485" target="_blank" class="block px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-brand-500 border-b border-slate-50">Hubungi Sales</a>
+                <a href="https://wa.me/628218144726" target="_blank" class="block px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-brand-500 border-b border-slate-50">Hubungi Sales</a>
                 <hr class="border-slate-100">
                 @guest
                     <a href="{{ route('register') }}" class="w-full py-4 bg-brand-500 text-white text-center rounded-2xl text-[11px] font-black uppercase tracking-[0.3em]">Daftar Akun Baru</a>
@@ -648,7 +648,7 @@
                             <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center group-hover:bg-emerald-50 transition-colors">
                                 <svg class="w-4 h-4 text-slate-400 group-hover:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                             </div>
-                            <span class="text-xs font-bold uppercase tracking-widest">+62 857-6844-1485</span>
+                            <span class="text-xs font-bold uppercase tracking-widest">+62 821-8144-726</span>
                         </div>
                         <div class="flex items-center gap-3 text-slate-500 group">
                             <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center group-hover:bg-emerald-50 transition-colors">
