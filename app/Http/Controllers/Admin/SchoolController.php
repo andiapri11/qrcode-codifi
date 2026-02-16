@@ -188,10 +188,17 @@ class SchoolController extends Controller
 
         $request->validate($validationData);
 
-        if (strtolower($user->role) === 'superadmin' || $school->subscription_type === 'lifetime') {
-            $maxLength = $school->subscription_type === 'lifetime' ? 10 : 5;
+        if (strtolower($user->role) === 'superadmin' || $school->subscription_type !== 'trial') {
+            $maxLength = 10;
             $request->validate([
-                'school_code' => ['nullable', 'string', 'max:'.$maxLength, Rule::unique('schools', 'school_code')->ignore($school->id)],
+                'school_code' => [
+                    'nullable', 
+                    'string', 
+                    'max:'.$maxLength, 
+                    Rule::unique('schools', 'school_code')->ignore($school->id)
+                ],
+            ], [
+                'school_code.unique' => 'Kode Instansi ini sudah dipakai oleh instansi lain, silakan gunakan kode yang berbeda.',
             ]);
         }
 
@@ -200,13 +207,20 @@ class SchoolController extends Controller
             'address' => $request->address,
             'phone' => $request->phone,
             'email' => $request->email,
-            'slug' => Str::slug($request->name),
             'exit_password' => $request->exit_password,
             'violation_password' => $request->violation_password,
             'domain_whitelist' => $request->domain_whitelist,
             'theme_color' => $request->theme_color ?? '#3C50E0',
             'enable_alarm' => $request->boolean('enable_alarm'),
         ];
+
+        // Unique Slug Generation
+        $slug = Str::slug($request->name);
+        if ($school->name !== $request->name) {
+            $count = School::where('slug', 'like', "{$slug}%")->where('id', '!=', $school->id)->count();
+            $data['slug'] = $count ? "{$slug}-" . ($count + 1) : $slug;
+            $data['name'] = $request->name;
+        }
 
         if ((strtolower($user->role) === 'superadmin' || $school->subscription_type === 'lifetime') && $request->filled('school_code')) {
             $data['school_code'] = strtoupper($request->school_code);

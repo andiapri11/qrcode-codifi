@@ -371,6 +371,22 @@
             localStorage.setItem('app-lang', lang);
             location.reload();
         }
+
+        // Global Error & Success Handling (Pop-ups)
+        document.addEventListener('DOMContentLoaded', function() {
+            @if($errors->any())
+                const errorMsg = "{!! implode('\\n', $errors->all()) !!}";
+                showAlert('Terjadi Kesalahan', errorMsg, 'error');
+            @endif
+
+            @if(session('success'))
+                showAlert('Berhasil', "{{ session('success') }}", 'success');
+            @endif
+
+            @if(session('error'))
+                showAlert('Gagal', "{{ session('error') }}", 'error');
+            @endif
+        });
     </script>
 </body>
 </html>
