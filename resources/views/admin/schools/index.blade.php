@@ -40,10 +40,10 @@
         <table class="w-full text-left border-collapse">
             <thead>
                 <tr class="bg-slate-50/50 dark:bg-slate-800/20 border-b border-slate-100 dark:border-slate-800">
-                    <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em]">Informasi Instansi</th>
-                    <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em]">Informasi Kontak</th>
-                    <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] text-center">Langganan</th>
-                    <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] text-center">Total Omzet</th>
+                    <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em]">Instansi & Kode</th>
+                    <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em]">Administrator (Email Daftar)</th>
+                    <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] text-center">Tanggal Bergabung</th>
+                    <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] text-center">Paket & Billing</th>
                     <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] text-center">Status</th>
                     <th class="px-8 py-5 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] text-right">Tindakan</th>
                 </tr>
@@ -62,53 +62,58 @@
                             </div>
                             <div class="flex flex-col">
                                 <span class="text-slate-900 dark:text-white font-black text-sm uppercase tracking-tight">{{ $school->name }}</span>
-                                <span class="text-slate-400 dark:text-slate-500 text-[9px] font-black tracking-[0.2em] uppercase mt-0.5">KODE: {{ $school->school_code }}</span>
+                                <span class="flex items-center gap-1.5 mt-0.5">
+                                    <span class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[8px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider border border-slate-200 dark:border-slate-700">CODE: {{ $school->school_code }}</span>
+                                </span>
                             </div>
                         </div>
                     </td>
                     <td class="px-8 py-6">
+                        @php $admin = $school->users->first(); @endphp
                         <div class="flex flex-col gap-1">
-                            @if($school->email)
-                                <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
-                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                                    <span class="text-[10px] font-bold truncate max-w-[150px]">{{ $school->email }}</span>
+                            @if($admin)
+                                <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                    <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                                    <span class="text-[11px] font-black uppercase tracking-tight">{{ $admin->name }}</span>
                                 </div>
-                            @endif
-                            @if($school->phone)
                                 <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
-                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                                    <span class="text-[10px] font-bold">{{ $school->phone }}</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                    <span class="text-[10px] font-bold underline decoration-slate-200 underline-offset-4">{{ $admin->email }}</span>
                                 </div>
-                            @endif
-                            @if(!$school->email && !$school->phone)
-                                <span class="text-[10px] text-slate-300 dark:text-slate-600 font-bold uppercase tracking-tight italic">No Contact Info</span>
+                            @elseif($school->email)
+                                <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                    <span class="text-[10px] font-bold">{{ $school->email }}</span>
+                                </div>
+                            @else
+                                <span class="text-[10px] text-slate-300 dark:text-slate-600 font-bold uppercase tracking-tight italic">Belum ada admin</span>
                             @endif
                         </div>
                     </td>
                     <td class="px-8 py-6 text-center">
-                        @if($school->subscription_type === 'lifetime')
-                            <span class="whitespace-nowrap bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-500 text-[9px] font-black px-4 py-1.5 rounded-xl border border-amber-100 dark:border-amber-900/30 uppercase tracking-widest">LIFETIME</span>
-                        @else
-                            <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center">
+                            <span class="text-slate-900 dark:text-white font-black text-sm tracking-tighter">{{ $school->created_at->format('d/m/Y') }}</span>
+                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">{{ $school->created_at->diffForHumans() }}</span>
+                        </div>
+                    </td>
+                    <td class="px-8 py-6">
+                        <div class="flex flex-col items-center gap-2">
+                            @if($school->subscription_type === 'lifetime')
+                                <span class="whitespace-nowrap bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-500 text-[9px] font-black px-4 py-1 rounded-xl border border-amber-100 dark:border-amber-900/30 uppercase tracking-widest">LIFETIME</span>
+                            @else
                                 @php
                                     $planLabel = 'TRIAL';
                                     if($school->subscription_type === '6_months' || ($school->subscription_type === 'year' && $school->max_links == 10)) $planLabel = '6 BULAN';
                                     elseif($school->subscription_type === '1_year' || ($school->subscription_type === 'year' && $school->max_links == 20)) $planLabel = '1 TAHUN';
                                     elseif($school->subscription_type === 'year') $planLabel = 'ANNUAL';
                                 @endphp
-                                <span class="whitespace-nowrap bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 text-[9px] font-black px-4 py-1.5 rounded-xl border border-indigo-100 dark:border-indigo-900/30 uppercase tracking-widest mb-1.5">{{ $planLabel }}</span>
-                                @if($school->subscription_expires_at)
-                                    <span class="text-[9px] font-bold uppercase tracking-tighter {{ $school->subscription_expires_at->isPast() ? 'text-rose-500' : 'text-slate-400' }}">
-                                        {{ $school->subscription_expires_at->format('d M Y') }}
-                                    </span>
-                                @endif
+                                <span class="whitespace-nowrap bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 text-[9px] font-black px-4 py-1 rounded-xl border border-indigo-100 dark:border-indigo-900/30 uppercase tracking-widest">{{ $planLabel }}</span>
+                            @endif
+                            
+                            <div class="flex flex-col items-center">
+                                <span class="text-slate-900 dark:text-white font-black text-xs tracking-tighter">Rp {{ number_format($school->total_revenue ?? 0, 0, ',', '.') }}</span>
+                                <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest mt-0.5 leading-none">{{ $school->exam_links_count }} Barcodes</span>
                             </div>
-                        @endif
-                    </td>
-                    <td class="px-8 py-6 text-center">
-                        <div class="flex flex-col items-center">
-                            <span class="text-slate-900 dark:text-white font-black text-sm tracking-tighter">Rp {{ number_format($school->total_revenue ?? 0, 0, ',', '.') }}</span>
-                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">{{ $school->exam_links_count }} Assets</span>
                         </div>
                     </td>
                     <td class="px-8 py-6 text-center">

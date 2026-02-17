@@ -30,6 +30,9 @@ class SchoolController extends Controller
         $perPage = $request->input('per_page', 10);
 
         $query->withCount('examLinks')
+              ->with(['users' => function($q) {
+                  $q->where('role', 'school_admin')->oldest();
+              }])
               ->withSum(['transactions as total_revenue' => function($query) {
                   $query->where('status', 'success');
               }], 'amount');
